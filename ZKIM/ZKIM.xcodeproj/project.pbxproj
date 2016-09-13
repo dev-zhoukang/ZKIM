@@ -14,7 +14,6 @@
 		58E360131D87D5E100D38839 /* ZKIMTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E360121D87D5E100D38839 /* ZKIMTests.m */; };
 		58E3601E1D87D5E100D38839 /* ZKIMUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E3601D1D87D5E100D38839 /* ZKIMUITests.m */; };
 		58E3602F1D87D63D00D38839 /* ZKMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E3602D1D87D63D00D38839 /* ZKMainViewController.m */; };
-		58E360301D87D63D00D38839 /* ZKMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58E3602E1D87D63D00D38839 /* ZKMainViewController.xib */; };
 		58E3605F1D87D81000D38839 /* libHyphenateFullSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E3605E1D87D81000D38839 /* libHyphenateFullSDK.a */; };
 		58E360611D87E49800D38839 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E360601D87E49800D38839 /* CoreMedia.framework */; };
 		58E360631D87E4A400D38839 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E360621D87E4A400D38839 /* AudioToolbox.framework */; };
@@ -27,6 +26,8 @@
 		58E360711D87E50700D38839 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E360701D87E50700D38839 /* libsqlite3.tbd */; };
 		58E360741D87EC0C00D38839 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E360731D87EC0C00D38839 /* libiconv.tbd */; };
 		58E360781D87F16F00D38839 /* ZKConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E360771D87F16F00D38839 /* ZKConfig.m */; };
+		58E3607D1D88111200D38839 /* ZKHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E3607B1D88111200D38839 /* ZKHomeViewController.m */; };
+		58E3607E1D88111200D38839 /* ZKHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58E3607C1D88111200D38839 /* ZKHomeViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +63,6 @@
 		58E3601F1D87D5E100D38839 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58E3602C1D87D63D00D38839 /* ZKMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKMainViewController.h; sourceTree = "<group>"; };
 		58E3602D1D87D63D00D38839 /* ZKMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKMainViewController.m; sourceTree = "<group>"; };
-		58E3602E1D87D63D00D38839 /* ZKMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKMainViewController.xib; sourceTree = "<group>"; };
 		58E360371D87D81000D38839 /* EMCallLocalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCallLocalView.h; sourceTree = "<group>"; };
 		58E360381D87D81000D38839 /* EMCallManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCallManagerDelegate.h; sourceTree = "<group>"; };
 		58E360391D87D81000D38839 /* EMCallRemoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCallRemoteView.h; sourceTree = "<group>"; };
@@ -115,6 +115,9 @@
 		58E360761D87F16F00D38839 /* ZKConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKConfig.h; sourceTree = "<group>"; };
 		58E360771D87F16F00D38839 /* ZKConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKConfig.m; sourceTree = "<group>"; };
 		58E360791D87F1D500D38839 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		58E3607A1D88111200D38839 /* ZKHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKHomeViewController.h; sourceTree = "<group>"; };
+		58E3607B1D88111200D38839 /* ZKHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKHomeViewController.m; sourceTree = "<group>"; };
+		58E3607C1D88111200D38839 /* ZKHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKHomeViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,7 +225,9 @@
 			children = (
 				58E3602C1D87D63D00D38839 /* ZKMainViewController.h */,
 				58E3602D1D87D63D00D38839 /* ZKMainViewController.m */,
-				58E3602E1D87D63D00D38839 /* ZKMainViewController.xib */,
+				58E3607A1D88111200D38839 /* ZKHomeViewController.h */,
+				58E3607B1D88111200D38839 /* ZKHomeViewController.m */,
+				58E3607C1D88111200D38839 /* ZKHomeViewController.xib */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -426,9 +431,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58E3607E1D88111200D38839 /* ZKHomeViewController.xib in Resources */,
 				58E360081D87D5E100D38839 /* LaunchScreen.storyboard in Resources */,
 				58E360051D87D5E100D38839 /* Assets.xcassets in Resources */,
-				58E360301D87D63D00D38839 /* ZKMainViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +461,7 @@
 				58E360781D87F16F00D38839 /* ZKConfig.m in Sources */,
 				58E35FFD1D87D5E100D38839 /* AppDelegate.m in Sources */,
 				58E35FFA1D87D5E100D38839 /* main.m in Sources */,
+				58E3607D1D88111200D38839 /* ZKHomeViewController.m in Sources */,
 				58E3602F1D87D63D00D38839 /* ZKMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -598,7 +604,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/ZKIM/Thirdparty/EMLib",
 					"$(PROJECT_DIR)/ZKIM/Thirdparty/HyphenateFullSDK/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zk520it.ZKIM;
@@ -617,7 +622,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/ZKIM/Thirdparty/EMLib",
 					"$(PROJECT_DIR)/ZKIM/Thirdparty/HyphenateFullSDK/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zk520it.ZKIM;
