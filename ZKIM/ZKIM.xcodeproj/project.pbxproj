@@ -25,6 +25,8 @@
 		58E3606D1D87E4E700D38839 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E3606C1D87E4E700D38839 /* libz.tbd */; };
 		58E3606F1D87E4F600D38839 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E3606E1D87E4F600D38839 /* libstdc++.6.0.9.tbd */; };
 		58E360711D87E50700D38839 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E360701D87E50700D38839 /* libsqlite3.tbd */; };
+		58E360741D87EC0C00D38839 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E360731D87EC0C00D38839 /* libiconv.tbd */; };
+		58E360781D87F16F00D38839 /* ZKConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E360771D87F16F00D38839 /* ZKConfig.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +111,10 @@
 		58E3606C1D87E4E700D38839 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		58E3606E1D87E4F600D38839 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		58E360701D87E50700D38839 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		58E360731D87EC0C00D38839 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		58E360761D87F16F00D38839 /* ZKConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKConfig.h; sourceTree = "<group>"; };
+		58E360771D87F16F00D38839 /* ZKConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKConfig.m; sourceTree = "<group>"; };
+		58E360791D87F1D500D38839 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58E360741D87EC0C00D38839 /* libiconv.tbd in Frameworks */,
 				58E360711D87E50700D38839 /* libsqlite3.tbd in Frameworks */,
 				58E3606F1D87E4F600D38839 /* libstdc++.6.0.9.tbd in Frameworks */,
 				58E3606D1D87E4E700D38839 /* libz.tbd in Frameworks */,
@@ -172,6 +179,7 @@
 				58E35FFB1D87D5E100D38839 /* AppDelegate.h */,
 				58E35FFC1D87D5E100D38839 /* AppDelegate.m */,
 				58E3602B1D87D61C00D38839 /* Classes */,
+				58E360751D87F15D00D38839 /* Config */,
 				58E360311D87D76000D38839 /* Thirdparty */,
 				58E35FF81D87D5E100D38839 /* Supporting Files */,
 			);
@@ -186,6 +194,7 @@
 				58E360061D87D5E100D38839 /* LaunchScreen.storyboard */,
 				58E360091D87D5E100D38839 /* Info.plist */,
 				58E35FF91D87D5E100D38839 /* main.m */,
+				58E360791D87F1D500D38839 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -291,6 +300,7 @@
 		58E360721D87E5B000D38839 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				58E360731D87EC0C00D38839 /* libiconv.tbd */,
 				58E360701D87E50700D38839 /* libsqlite3.tbd */,
 				58E3606E1D87E4F600D38839 /* libstdc++.6.0.9.tbd */,
 				58E3606C1D87E4E700D38839 /* libz.tbd */,
@@ -302,6 +312,15 @@
 				58E360601D87E49800D38839 /* CoreMedia.framework */,
 			);
 			name = Framework;
+			sourceTree = "<group>";
+		};
+		58E360751D87F15D00D38839 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				58E360761D87F16F00D38839 /* ZKConfig.h */,
+				58E360771D87F16F00D38839 /* ZKConfig.m */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -434,6 +453,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58E360781D87F16F00D38839 /* ZKConfig.m in Sources */,
 				58E35FFD1D87D5E100D38839 /* AppDelegate.m in Sources */,
 				58E35FFA1D87D5E100D38839 /* main.m in Sources */,
 				58E3602F1D87D63D00D38839 /* ZKMainViewController.m in Sources */,
@@ -572,6 +592,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ENABLE_BITCODE = NO;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = ZKIM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -590,6 +611,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ENABLE_BITCODE = NO;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = ZKIM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
