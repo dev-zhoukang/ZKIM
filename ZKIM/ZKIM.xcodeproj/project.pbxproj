@@ -16,6 +16,15 @@
 		58E3602F1D87D63D00D38839 /* ZKMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E3602D1D87D63D00D38839 /* ZKMainViewController.m */; };
 		58E360301D87D63D00D38839 /* ZKMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58E3602E1D87D63D00D38839 /* ZKMainViewController.xib */; };
 		58E3605F1D87D81000D38839 /* libHyphenateFullSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E3605E1D87D81000D38839 /* libHyphenateFullSDK.a */; };
+		58E360611D87E49800D38839 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E360601D87E49800D38839 /* CoreMedia.framework */; };
+		58E360631D87E4A400D38839 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E360621D87E4A400D38839 /* AudioToolbox.framework */; };
+		58E360651D87E4AE00D38839 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E360641D87E4AE00D38839 /* AVFoundation.framework */; };
+		58E360671D87E4BB00D38839 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E360661D87E4BB00D38839 /* MobileCoreServices.framework */; };
+		58E360691D87E4C700D38839 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E360681D87E4C700D38839 /* ImageIO.framework */; };
+		58E3606B1D87E4D900D38839 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E3606A1D87E4D900D38839 /* libc++.tbd */; };
+		58E3606D1D87E4E700D38839 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E3606C1D87E4E700D38839 /* libz.tbd */; };
+		58E3606F1D87E4F600D38839 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E3606E1D87E4F600D38839 /* libstdc++.6.0.9.tbd */; };
+		58E360711D87E50700D38839 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E360701D87E50700D38839 /* libsqlite3.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +100,15 @@
 		58E3605B1D87D81000D38839 /* IEMGroupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IEMGroupManager.h; sourceTree = "<group>"; };
 		58E3605C1D87D81000D38839 /* OpenGLView20.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLView20.h; sourceTree = "<group>"; };
 		58E3605E1D87D81000D38839 /* libHyphenateFullSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libHyphenateFullSDK.a; sourceTree = "<group>"; };
+		58E360601D87E49800D38839 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		58E360621D87E4A400D38839 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		58E360641D87E4AE00D38839 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		58E360661D87E4BB00D38839 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		58E360681D87E4C700D38839 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		58E3606A1D87E4D900D38839 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		58E3606C1D87E4E700D38839 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		58E3606E1D87E4F600D38839 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
+		58E360701D87E50700D38839 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +116,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58E360711D87E50700D38839 /* libsqlite3.tbd in Frameworks */,
+				58E3606F1D87E4F600D38839 /* libstdc++.6.0.9.tbd in Frameworks */,
+				58E3606D1D87E4E700D38839 /* libz.tbd in Frameworks */,
+				58E3606B1D87E4D900D38839 /* libc++.tbd in Frameworks */,
+				58E360691D87E4C700D38839 /* ImageIO.framework in Frameworks */,
+				58E360671D87E4BB00D38839 /* MobileCoreServices.framework in Frameworks */,
+				58E360651D87E4AE00D38839 /* AVFoundation.framework in Frameworks */,
+				58E360631D87E4A400D38839 /* AudioToolbox.framework in Frameworks */,
+				58E360611D87E49800D38839 /* CoreMedia.framework in Frameworks */,
 				58E3605F1D87D81000D38839 /* libHyphenateFullSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -154,6 +181,7 @@
 		58E35FF81D87D5E100D38839 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				58E360721D87E5B000D38839 /* Framework */,
 				58E360041D87D5E100D38839 /* Assets.xcassets */,
 				58E360061D87D5E100D38839 /* LaunchScreen.storyboard */,
 				58E360091D87D5E100D38839 /* Info.plist */,
@@ -258,6 +286,22 @@
 				58E3605E1D87D81000D38839 /* libHyphenateFullSDK.a */,
 			);
 			path = lib;
+			sourceTree = "<group>";
+		};
+		58E360721D87E5B000D38839 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				58E360701D87E50700D38839 /* libsqlite3.tbd */,
+				58E3606E1D87E4F600D38839 /* libstdc++.6.0.9.tbd */,
+				58E3606C1D87E4E700D38839 /* libz.tbd */,
+				58E3606A1D87E4D900D38839 /* libc++.tbd */,
+				58E360681D87E4C700D38839 /* ImageIO.framework */,
+				58E360661D87E4BB00D38839 /* MobileCoreServices.framework */,
+				58E360641D87E4AE00D38839 /* AVFoundation.framework */,
+				58E360621D87E4A400D38839 /* AudioToolbox.framework */,
+				58E360601D87E49800D38839 /* CoreMedia.framework */,
+			);
+			name = Framework;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -460,6 +504,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -504,6 +549,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -525,6 +571,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ZKIM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -542,6 +589,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ZKIM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
