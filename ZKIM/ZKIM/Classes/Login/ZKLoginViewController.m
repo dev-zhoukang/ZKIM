@@ -10,6 +10,9 @@
 
 @interface ZKLoginViewController ()
 
+@property (weak, nonatomic) IBOutlet UITextField *accountTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+
 @end
 
 @implementation ZKLoginViewController
@@ -21,12 +24,7 @@
 
 #pragma mark - Actions
 
-- (IBAction)loginBtnClick
-{
-    
-}
-
-- (IBAction)regBtnClick
+- (IBAction)doneBtnClick
 {
     
 }

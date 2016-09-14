@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZKLoginHomeViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launch_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="7lz-iK-duz"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k6N-DJ-Bfg" userLabel="Btn View">
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFt-r2-Oof">
+                            <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="110" id="zif-WG-PpG"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <state key="normal" title="登录">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="loginBtnClick" destination="-1" eventType="touchUpInside" id="haT-KU-N18"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8G0-3G-d3a">
+                            <color key="backgroundColor" red="0.060197065399999999" green="0.77286485059999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="110" id="yJR-du-4A8"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <state key="normal" title="注册">
+                                <color key="titleColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="regBtnClick" destination="-1" eventType="touchUpInside" id="sRL-XQ-Pfi"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="nFt-r2-Oof" secondAttribute="bottom" id="66O-Rc-bOG"/>
+                        <constraint firstAttribute="bottom" secondItem="8G0-3G-d3a" secondAttribute="bottom" id="6Ah-pj-XY8"/>
+                        <constraint firstItem="8G0-3G-d3a" firstAttribute="top" secondItem="k6N-DJ-Bfg" secondAttribute="top" id="8OP-IO-PFO"/>
+                        <constraint firstItem="nFt-r2-Oof" firstAttribute="top" secondItem="k6N-DJ-Bfg" secondAttribute="top" id="Eti-UW-t27"/>
+                        <constraint firstItem="nFt-r2-Oof" firstAttribute="leading" secondItem="k6N-DJ-Bfg" secondAttribute="leading" constant="40" id="RNR-e3-clB"/>
+                        <constraint firstAttribute="trailing" secondItem="8G0-3G-d3a" secondAttribute="trailing" constant="40" id="ZOQ-sH-TNf"/>
+                        <constraint firstAttribute="height" constant="50" id="hcW-rX-HMm"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="7lz-iK-duz" secondAttribute="trailing" id="3Bc-ko-stw"/>
+                <constraint firstAttribute="bottom" secondItem="7lz-iK-duz" secondAttribute="bottom" id="DHI-Ux-dg2"/>
+                <constraint firstAttribute="bottom" secondItem="k6N-DJ-Bfg" secondAttribute="bottom" constant="30" id="HHg-PR-W3h"/>
+                <constraint firstItem="7lz-iK-duz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="NoM-Yh-LZp"/>
+                <constraint firstItem="k6N-DJ-Bfg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Wg6-hK-UI9"/>
+                <constraint firstItem="7lz-iK-duz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ytd-tt-HN0"/>
+                <constraint firstAttribute="trailing" secondItem="k6N-DJ-Bfg" secondAttribute="trailing" id="zgS-PD-9g5"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="Launch_image.png" width="320" height="568"/>
+    </resources>
+</document>
