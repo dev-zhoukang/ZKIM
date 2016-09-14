@@ -23,14 +23,17 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    ZKRootViewController *vc = [[ZKRootViewController alloc] init];
-    self.window.rootViewController = vc;
+    _rootViewController = [[ZKRootViewController alloc] init];
+    self.window.rootViewController = _rootViewController;
     
     //AppKey:注册的AppKey，详细见下面注释。
     //apnsCertName:推送证书名（不需要加后缀），详细见下面注释。
     EMOptions *options = [EMOptions optionsWithAppkey:kAppKey_EM];
     options.apnsCertName = @"istore_dev";
-    [[EMClient sharedClient] initializeSDKWithOptions:options];
+    EMError *error = [[EMClient sharedClient] initializeSDKWithOptions:options];
+    if (error) {
+        NSLog(@"初始化失败===%@", error.errorDescription);
+    }
     
     return YES;
 }

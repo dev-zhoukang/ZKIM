@@ -8,4 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
+#define _applicationContext [ApplicationContext sharedContext]
+
 extern NSString *const kAppKey_EM;

@@ -24,17 +24,18 @@
 
 - (IBAction)loginBtnClick
 {
-    
+    [self pushLoginVCWithType:ZKLoginTypeLogin];
 }
 
 - (IBAction)regBtnClick
 {
-    [self pushLoginVC];
+    [self pushLoginVCWithType:ZKLoginTypeRegister];
 }
 
-- (void)pushLoginVC
+- (void)pushLoginVCWithType:(ZKLoginType)loginType
 {
     ZKLoginViewController *loginVC = [[ZKLoginViewController alloc] init];
+    loginVC.loginType = loginType;
     [self.navigationController pushViewController:loginVC animated:YES];
 }
 

@@ -16,6 +16,9 @@
 		58D147EB1D89240A00A17D6D /* ZKLoginHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D147E91D89240A00A17D6D /* ZKLoginHomeViewController.xib */; };
 		58D147EF1D89288A00A17D6D /* ZKLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D147ED1D89288A00A17D6D /* ZKLoginViewController.m */; };
 		58D147F01D89288A00A17D6D /* ZKLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D147EE1D89288A00A17D6D /* ZKLoginViewController.xib */; };
+		58D147F51D892E8D00A17D6D /* USSuspensionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D147F31D892E8D00A17D6D /* USSuspensionView.m */; };
+		58D147F61D892E8D00A17D6D /* USSuspensionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D147F41D892E8D00A17D6D /* USSuspensionView.xib */; };
+		58D147FA1D89366100A17D6D /* ApplicationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D147F91D89366100A17D6D /* ApplicationContext.m */; };
 		58E35FFA1D87D5E100D38839 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E35FF91D87D5E100D38839 /* main.m */; };
 		58E35FFD1D87D5E100D38839 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E35FFC1D87D5E100D38839 /* AppDelegate.m */; };
 		58E360051D87D5E100D38839 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58E360041D87D5E100D38839 /* Assets.xcassets */; };
@@ -68,6 +71,12 @@
 		58D147EC1D89288A00A17D6D /* ZKLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKLoginViewController.h; sourceTree = "<group>"; };
 		58D147ED1D89288A00A17D6D /* ZKLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKLoginViewController.m; sourceTree = "<group>"; };
 		58D147EE1D89288A00A17D6D /* ZKLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKLoginViewController.xib; sourceTree = "<group>"; };
+		58D147F21D892E8D00A17D6D /* USSuspensionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USSuspensionView.h; sourceTree = "<group>"; };
+		58D147F31D892E8D00A17D6D /* USSuspensionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USSuspensionView.m; sourceTree = "<group>"; };
+		58D147F41D892E8D00A17D6D /* USSuspensionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = USSuspensionView.xib; sourceTree = "<group>"; };
+		58D147F71D892EFC00A17D6D /* MacroToolHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacroToolHeader.h; sourceTree = "<group>"; };
+		58D147F81D89366100A17D6D /* ApplicationContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationContext.h; sourceTree = "<group>"; };
+		58D147F91D89366100A17D6D /* ApplicationContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationContext.m; sourceTree = "<group>"; };
 		58E35FF51D87D5E100D38839 /* ZKIM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZKIM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58E35FF91D87D5E100D38839 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		58E35FFB1D87D5E100D38839 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -190,6 +199,8 @@
 		58AB30241D891B89007BB571 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				58D147F81D89366100A17D6D /* ApplicationContext.h */,
+				58D147F91D89366100A17D6D /* ApplicationContext.m */,
 				58AB30251D891B89007BB571 /* ZKHomeViewController.h */,
 				58AB30261D891B89007BB571 /* ZKHomeViewController.m */,
 				58AB30271D891B89007BB571 /* ZKHomeViewController.xib */,
@@ -219,6 +230,16 @@
 				58D147EE1D89288A00A17D6D /* ZKLoginViewController.xib */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		58D147F11D892E8D00A17D6D /* SuspensionView */ = {
+			isa = PBXGroup;
+			children = (
+				58D147F21D892E8D00A17D6D /* USSuspensionView.h */,
+				58D147F31D892E8D00A17D6D /* USSuspensionView.m */,
+				58D147F41D892E8D00A17D6D /* USSuspensionView.xib */,
+			);
+			path = SuspensionView;
 			sourceTree = "<group>";
 		};
 		58E35FEC1D87D5E100D38839 = {
@@ -298,6 +319,7 @@
 		58E360311D87D76000D38839 /* Thirdparty */ = {
 			isa = PBXGroup;
 			children = (
+				58D147F11D892E8D00A17D6D /* SuspensionView */,
 				58D147DD1D89233F00A17D6D /* UIView+AutoLayout */,
 				58E360351D87D81000D38839 /* HyphenateFullSDK */,
 			);
@@ -386,6 +408,7 @@
 		58E360751D87F15D00D38839 /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				58D147F71D892EFC00A17D6D /* MacroToolHeader.h */,
 				58E360761D87F16F00D38839 /* ZKConfig.h */,
 				58E360771D87F16F00D38839 /* ZKConfig.m */,
 			);
@@ -502,6 +525,7 @@
 				58AB302B1D891B89007BB571 /* ZKHomeViewController.xib in Resources */,
 				58D147EB1D89240A00A17D6D /* ZKLoginHomeViewController.xib in Resources */,
 				58E360051D87D5E100D38839 /* Assets.xcassets in Resources */,
+				58D147F61D892E8D00A17D6D /* USSuspensionView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,7 +556,9 @@
 				58E35FFA1D87D5E100D38839 /* main.m in Sources */,
 				58AB302A1D891B89007BB571 /* ZKHomeViewController.m in Sources */,
 				58AB302C1D891B89007BB571 /* ZKRootViewController.m in Sources */,
+				58D147F51D892E8D00A17D6D /* USSuspensionView.m in Sources */,
 				58D147EA1D89240A00A17D6D /* ZKLoginHomeViewController.m in Sources */,
+				58D147FA1D89366100A17D6D /* ApplicationContext.m in Sources */,
 				58D147EF1D89288A00A17D6D /* ZKLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

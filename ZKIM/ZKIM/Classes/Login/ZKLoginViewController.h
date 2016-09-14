@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, ZKLoginType) {
+    ZKLoginTypeLogin,
+    ZKLoginTypeRegister
+};
+
 @interface ZKLoginViewController : UIViewController
+
+@property (nonatomic, assign) ZKLoginType loginType;
 
 @end

@@ -10,4 +10,4 @@
 
 #import "ZKConfig.h"
 
-NSString *const kAppKey_EM = @"kAppKey_EM"; //!< 环信AppKey
+NSString *const kAppKey_EM = @"11112222333344445555#zkim"; //!< 环信AppKey

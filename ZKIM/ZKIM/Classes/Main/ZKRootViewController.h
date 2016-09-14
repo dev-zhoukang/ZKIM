@@ -10,4 +10,6 @@
 
 @interface ZKRootViewController : UIViewController
 
+@property (nonatomic, strong, readonly) UINavigationController *rootNavigationController;
+
 @end
