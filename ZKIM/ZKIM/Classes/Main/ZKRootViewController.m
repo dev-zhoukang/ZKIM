@@ -28,8 +28,8 @@
     [self.view insertSubview:_rootNavigationController.view atIndex:0];
     [_rootNavigationController.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
     
-    ZKLoginHomeViewController *loginHomeVC = [[ZKLoginHomeViewController alloc] init];
-    [_applicationContext presentNavigationController:loginHomeVC animated:NO completion:nil];
+//    ZKLoginHomeViewController *loginHomeVC = [[ZKLoginHomeViewController alloc] init];
+//    [_applicationContext presentNavigationController:loginHomeVC animated:NO completion:nil];
 }
 
 @end
