@@ -10,7 +10,10 @@
 		58AB30231D891AFD007BB571 /* Launch_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58AB30221D891AFD007BB571 /* Launch_image@2x.png */; };
 		58AB302A1D891B89007BB571 /* ZKHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58AB30261D891B89007BB571 /* ZKHomeViewController.m */; };
 		58AB302B1D891B89007BB571 /* ZKHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58AB30271D891B89007BB571 /* ZKHomeViewController.xib */; };
-		58AB302C1D891B89007BB571 /* ZKMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58AB30291D891B89007BB571 /* ZKMainViewController.m */; };
+		58AB302C1D891B89007BB571 /* ZKRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58AB30291D891B89007BB571 /* ZKRootViewController.m */; };
+		58D147E01D89233F00A17D6D /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D147DF1D89233F00A17D6D /* UIView+AutoLayout.m */; };
+		58D147EA1D89240A00A17D6D /* ZKLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D147E81D89240A00A17D6D /* ZKLoginViewController.m */; };
+		58D147EB1D89240A00A17D6D /* ZKLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D147E91D89240A00A17D6D /* ZKLoginViewController.xib */; };
 		58E35FFA1D87D5E100D38839 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E35FF91D87D5E100D38839 /* main.m */; };
 		58E35FFD1D87D5E100D38839 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E35FFC1D87D5E100D38839 /* AppDelegate.m */; };
 		58E360051D87D5E100D38839 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58E360041D87D5E100D38839 /* Assets.xcassets */; };
@@ -53,8 +56,13 @@
 		58AB30251D891B89007BB571 /* ZKHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKHomeViewController.h; sourceTree = "<group>"; };
 		58AB30261D891B89007BB571 /* ZKHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKHomeViewController.m; sourceTree = "<group>"; };
 		58AB30271D891B89007BB571 /* ZKHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKHomeViewController.xib; sourceTree = "<group>"; };
-		58AB30281D891B89007BB571 /* ZKMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKMainViewController.h; sourceTree = "<group>"; };
-		58AB30291D891B89007BB571 /* ZKMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKMainViewController.m; sourceTree = "<group>"; };
+		58AB30281D891B89007BB571 /* ZKRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKRootViewController.h; sourceTree = "<group>"; };
+		58AB30291D891B89007BB571 /* ZKRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKRootViewController.m; sourceTree = "<group>"; };
+		58D147DE1D89233F00A17D6D /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
+		58D147DF1D89233F00A17D6D /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
+		58D147E71D89240A00A17D6D /* ZKLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKLoginViewController.h; sourceTree = "<group>"; };
+		58D147E81D89240A00A17D6D /* ZKLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKLoginViewController.m; sourceTree = "<group>"; };
+		58D147E91D89240A00A17D6D /* ZKLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKLoginViewController.xib; sourceTree = "<group>"; };
 		58E35FF51D87D5E100D38839 /* ZKIM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZKIM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58E35FF91D87D5E100D38839 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		58E35FFB1D87D5E100D38839 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -180,15 +188,27 @@
 				58AB30251D891B89007BB571 /* ZKHomeViewController.h */,
 				58AB30261D891B89007BB571 /* ZKHomeViewController.m */,
 				58AB30271D891B89007BB571 /* ZKHomeViewController.xib */,
-				58AB30281D891B89007BB571 /* ZKMainViewController.h */,
-				58AB30291D891B89007BB571 /* ZKMainViewController.m */,
+				58AB30281D891B89007BB571 /* ZKRootViewController.h */,
+				58AB30291D891B89007BB571 /* ZKRootViewController.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
 		};
-		58AB302D1D891BA3007BB571 /* Login */ = {
+		58D147DD1D89233F00A17D6D /* UIView+AutoLayout */ = {
 			isa = PBXGroup;
 			children = (
+				58D147DE1D89233F00A17D6D /* UIView+AutoLayout.h */,
+				58D147DF1D89233F00A17D6D /* UIView+AutoLayout.m */,
+			);
+			path = "UIView+AutoLayout";
+			sourceTree = "<group>";
+		};
+		58D147E61D8923FC00A17D6D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				58D147E71D89240A00A17D6D /* ZKLoginViewController.h */,
+				58D147E81D89240A00A17D6D /* ZKLoginViewController.m */,
+				58D147E91D89240A00A17D6D /* ZKLoginViewController.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -261,7 +281,7 @@
 		58E3602B1D87D61C00D38839 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				58AB302D1D891BA3007BB571 /* Login */,
+				58D147E61D8923FC00A17D6D /* Login */,
 				58AB30241D891B89007BB571 /* Main */,
 			);
 			path = Classes;
@@ -270,6 +290,7 @@
 		58E360311D87D76000D38839 /* Thirdparty */ = {
 			isa = PBXGroup;
 			children = (
+				58D147DD1D89233F00A17D6D /* UIView+AutoLayout */,
 				58E360351D87D81000D38839 /* HyphenateFullSDK */,
 			);
 			path = Thirdparty;
@@ -470,6 +491,7 @@
 				58AB30231D891AFD007BB571 /* Launch_image@2x.png in Resources */,
 				58E360081D87D5E100D38839 /* LaunchScreen.storyboard in Resources */,
 				58AB302B1D891B89007BB571 /* ZKHomeViewController.xib in Resources */,
+				58D147EB1D89240A00A17D6D /* ZKLoginViewController.xib in Resources */,
 				58E360051D87D5E100D38839 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,10 +518,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				58E360781D87F16F00D38839 /* ZKConfig.m in Sources */,
+				58D147E01D89233F00A17D6D /* UIView+AutoLayout.m in Sources */,
 				58E35FFD1D87D5E100D38839 /* AppDelegate.m in Sources */,
 				58E35FFA1D87D5E100D38839 /* main.m in Sources */,
 				58AB302A1D891B89007BB571 /* ZKHomeViewController.m in Sources */,
-				58AB302C1D891B89007BB571 /* ZKMainViewController.m in Sources */,
+				58AB302C1D891B89007BB571 /* ZKRootViewController.m in Sources */,
+				58D147EA1D89240A00A17D6D /* ZKLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 //
-//  ZKMainViewController.h
+//  ZKRootViewController.h
 //  ZKIM
 //
 //  Created by ZK on 16/9/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZKMainViewController : UIViewController
+@interface ZKRootViewController : UIViewController
 
 @end

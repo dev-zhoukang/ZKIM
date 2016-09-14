@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "ZKMainViewController.h"
+#import "ZKRootViewController.h"
 #import "EMSDK.h"
 
 @interface AppDelegate ()
@@ -23,7 +23,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    ZKMainViewController *vc = [[ZKMainViewController alloc] init];
+    ZKRootViewController *vc = [[ZKRootViewController alloc] init];
     self.window.rootViewController = vc;
     
     //AppKey:注册的AppKey，详细见下面注释。
