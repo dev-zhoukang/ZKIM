@@ -10,126 +10,28 @@
 
 @implementation ZKHVButton
 
-- (id)initWithFrame:(CGRect)frame
+#pragma mark - Init
+
+- (instancetype)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self makeEdgeHighlighted:self.highlighted];
+    if (self = [super initWithFrame:frame]) {
+        [self setup];
     }
     return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        [self makeEdgeHighlighted:self.highlighted];
+    if (self = [super initWithCoder:aDecoder]) {
+        [self setup];
     }
     return self;
 }
 
-#pragma mark - Overwrite
-
-- (void)setImage:(UIImage *)image forState:(UIControlState)state
+- (void)setup
 {
-    UIImage *oldImage = [self imageForState:state];
-    
-    [super setImage:image forState:state];
-    
-    if (!oldImage || !CGSizeEqualToSize(oldImage.size, image.size)) {
-        [self makeEdgeHighlighted:self.highlighted];
-    }
-}
-
-- (void)setTitle:(NSString *)title forState:(UIControlState)state
-{
-    [super setTitle:title forState:state];
-    
-    [self makeEdgeHighlighted:self.highlighted];
-}
-
-- (void)setFrame:(CGRect)frame
-{
-    [super setFrame:frame];
-    
-    [self makeEdgeHighlighted:self.highlighted];
-}
-
-- (void)setImageSize:(CGSize)size forState:(UIControlState)state
-{
-    UIImage *oldImage = [self imageForState:state];
-    
-    if (oldImage && !CGSizeEqualToSize(oldImage.size, size)) {
-        [self setImage:[self imageWithImage:oldImage scaledToSize:size] forState:state];
-    }
-}
-
-- (UIImage*)imageWithImage:(UIImage*)image
-              scaledToSize:(CGSize)newSize;
-{
-    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
-    [image drawInRect:(CGRect){CGPointZero,newSize}];
-    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return newImage;
-}
-
-- (void)makeEdgeHighlighted:(BOOL)highlighted
-{
-    [self setTitleEdgeInsets:UIEdgeInsetsZero];
-    [self setImageEdgeInsets:UIEdgeInsetsZero];
-    
-    NSString *_text;
-    UIImage *_image;
-    
-    if (highlighted) {
-        _text = [self titleForState:UIControlStateHighlighted];
-        _image = [self imageForState:UIControlStateHighlighted];
-    }
-    else if (self.selected){
-        _text = [self titleForState:UIControlStateSelected];
-        _image = [self imageForState:UIControlStateSelected];
-    }
-    else{
-        _text = [self titleForState:UIControlStateNormal];
-        _image = [self imageForState:UIControlStateNormal];
-    }
-    
-    self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
-    
-    CGFloat btnWidth = self.bounds.size.width;
-    CGFloat btnHeight = self.bounds.size.height;
-    
-    CGFloat imgHeight = _image.size.height;
-    
-    CGFloat imgCenterX = self.imageView.center.x;
-    
-    CGFloat textHeight = self.titleLabel.bounds.size.height;
-    CGSize  size = [self sizeWithFont:self.titleLabel.font
-                    constrainedToSize:CGSizeMake(CGFLOAT_MAX, textHeight)
-                                 text:_text];
-    
-    CGFloat textCenterX = size.width/2 + self.titleLabel.frame.origin.x;
-    
-    CGFloat top = (btnHeight - (imgHeight + self.space + textHeight)) / 2;
-    
-    [self setImageEdgeInsets:UIEdgeInsetsMake(top, (btnWidth / 2 - imgCenterX), 0, 0)];
-    [self setTitleEdgeInsets:UIEdgeInsetsMake(imgHeight + self.space + top, (btnWidth / 2 - textCenterX), 0, 0)];
-}
-
-- (CGSize)sizeWithFont:(UIFont*)tFont constrainedToSize:(CGSize)consize text:(NSString *)text
-{
-    if (!(text.length > 0)) {
-        text = @"";
-    }
-    
-    NSAttributedString *attrStr = [[NSAttributedString alloc] initWithString:text
-                                                                  attributes:@{NSFontAttributeName:tFont}];
-    return [attrStr boundingRectWithSize:consize
-                                 options:NSStringDrawingUsesLineFragmentOrigin
-                                 context:nil].size;
+    _space = 5.f;
+    _verticalAlignment = ZKHVButtonAlignmentBottom;
 }
 
 #pragma mark - Setter
@@ -138,29 +40,42 @@
 {
     _space = space;
     
-    [self makeEdgeHighlighted:self.highlighted];
+    [self setNeedsLayout];
 }
 
-- (void)setImageResize:(CGSize)imageResize
-{
-    _imageResize = imageResize;
-    [self setImageSize:imageResize forState:UIControlStateNormal];
-    [self setImageSize:imageResize forState:UIControlStateHighlighted];
-    [self setImageSize:imageResize forState:UIControlStateSelected];
-}
+#pragma mark - Overwrite
 
-- (void)setHighlighted:(BOOL)highlighted
+- (void)layoutSubviews
 {
-    [super setHighlighted:highlighted];
+    [super layoutSubviews];
     
-    [self makeEdgeHighlighted:highlighted];
-}
-
-- (void)setSelected:(BOOL)selected
-{
-    [super setSelected:selected];
+    CGRect imageViewFrame = self.imageView.frame;
+    CGRect titleFrame = self.titleLabel.frame;
     
-    [self makeEdgeHighlighted:self.highlighted];
+    if (CGRectEqualToRect(CGRectZero, imageViewFrame) || CGRectEqualToRect(CGRectZero, titleFrame)) {
+        return;
+    }
+    
+    CGFloat contentHeight = imageViewFrame.size.height + _space + titleFrame.size.height;
+    
+    switch (_verticalAlignment) {
+        case ZKHVButtonAlignmentBottom: {
+            imageViewFrame.origin.y = self.bounds.size.height - contentHeight;
+        } break;
+        case ZKHVButtonAlignmentTop: {
+            imageViewFrame.origin.y = 0;
+        } break;
+        case ZKHVButtonAlignmentCenter: {
+            imageViewFrame.origin.y = (self.bounds.size.height - contentHeight) * 0.5;
+        } break;
+    }
+    
+    imageViewFrame.origin.x = (self.bounds.size.width - imageViewFrame.size.width) * 0.5;
+    self.imageView.frame = imageViewFrame;
+    
+    titleFrame.origin.x = (self.bounds.size.width - titleFrame.size.width) * 0.5;
+    titleFrame.origin.y = CGRectGetMaxY(imageViewFrame) + _space;
+    self.titleLabel.frame = titleFrame;
 }
 
 @end
