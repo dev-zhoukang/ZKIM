@@ -10,4 +10,6 @@
 
 @interface ZKHomeViewController : UIViewController
 
+@property (nonatomic, assign) NSInteger pageIndex;
+
 @end

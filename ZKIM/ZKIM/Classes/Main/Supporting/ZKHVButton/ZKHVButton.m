@@ -60,21 +60,21 @@
     
     switch (_verticalAlignment) {
         case ZKHVButtonAlignmentBottom: {
-            imageViewFrame.origin.y = self.bounds.size.height - contentHeight;
+            imageViewFrame.origin.y = truncf(self.bounds.size.height - contentHeight);
         } break;
         case ZKHVButtonAlignmentTop: {
             imageViewFrame.origin.y = 0;
         } break;
         case ZKHVButtonAlignmentCenter: {
-            imageViewFrame.origin.y = (self.bounds.size.height - contentHeight) * 0.5;
+            imageViewFrame.origin.y = truncf((self.bounds.size.height - contentHeight) * 0.5);
         } break;
     }
     
-    imageViewFrame.origin.x = (self.bounds.size.width - imageViewFrame.size.width) * 0.5;
+    imageViewFrame.origin.x = truncf((self.bounds.size.width - imageViewFrame.size.width) * 0.5);
     self.imageView.frame = imageViewFrame;
     
-    titleFrame.origin.x = (self.bounds.size.width - titleFrame.size.width) * 0.5;
-    titleFrame.origin.y = CGRectGetMaxY(imageViewFrame) + _space;
+    titleFrame.origin.x = truncf((self.bounds.size.width - titleFrame.size.width) * 0.5);
+    titleFrame.origin.y = truncf(CGRectGetMaxY(imageViewFrame) + _space);
     self.titleLabel.frame = titleFrame;
 }
 

@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZKHomeViewController">
             <connections>
+                <outlet property="tabView" destination="CjM-du-0di" id="CkG-Hs-MDo"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="tabBtns" destination="rZK-qB-cve" id="ab5-ac-cR3"/>
                 <outletCollection property="tabBtns" destination="mb2-fh-U1b" id="lvz-de-S81"/>
@@ -22,6 +23,18 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CjM-du-0di" userLabel="Tab View">
                     <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mNs-IH-fut" userLabel="Line View">
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="mqg-6u-mln">
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="constant">
+                                            <real key="value" value="0.34999999999999998"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </constraint>
+                            </constraints>
+                        </view>
                         <visualEffectView opaque="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rv9-ra-9m8">
                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="tXE-bH-VnL">
                                 <frame key="frameInset"/>
@@ -58,6 +71,7 @@
                     <constraints>
                         <constraint firstItem="mb2-fh-U1b" firstAttribute="height" secondItem="rZK-qB-cve" secondAttribute="height" id="3It-uS-jFn"/>
                         <constraint firstItem="mb2-fh-U1b" firstAttribute="leading" secondItem="rZK-qB-cve" secondAttribute="trailing" id="4VR-3z-E97"/>
+                        <constraint firstItem="mNs-IH-fut" firstAttribute="top" secondItem="CjM-du-0di" secondAttribute="top" id="7Nj-eu-Yqi"/>
                         <constraint firstItem="hlW-hf-kgg" firstAttribute="top" secondItem="rZK-qB-cve" secondAttribute="top" id="AwY-EA-OlC"/>
                         <constraint firstItem="eeS-3b-fHJ" firstAttribute="width" secondItem="rZK-qB-cve" secondAttribute="width" id="Esy-1e-qFS"/>
                         <constraint firstAttribute="trailing" secondItem="hlW-hf-kgg" secondAttribute="trailing" id="F9O-0G-1E2"/>
@@ -67,14 +81,16 @@
                         <constraint firstItem="hlW-hf-kgg" firstAttribute="width" secondItem="rZK-qB-cve" secondAttribute="width" id="L2A-HD-sGg"/>
                         <constraint firstItem="mb2-fh-U1b" firstAttribute="width" secondItem="rZK-qB-cve" secondAttribute="width" id="PEi-HZ-71x"/>
                         <constraint firstItem="eeS-3b-fHJ" firstAttribute="top" secondItem="rZK-qB-cve" secondAttribute="top" id="Psa-9e-LkX"/>
+                        <constraint firstAttribute="trailing" secondItem="mNs-IH-fut" secondAttribute="trailing" id="SKg-9Q-cfM"/>
                         <constraint firstItem="Rv9-ra-9m8" firstAttribute="leading" secondItem="CjM-du-0di" secondAttribute="leading" id="Shu-dg-BCC"/>
-                        <constraint firstItem="Rv9-ra-9m8" firstAttribute="top" secondItem="CjM-du-0di" secondAttribute="top" id="T7O-qU-eMy"/>
                         <constraint firstItem="hlW-hf-kgg" firstAttribute="bottom" secondItem="rZK-qB-cve" secondAttribute="bottom" id="WIH-U6-f8e"/>
                         <constraint firstAttribute="trailing" secondItem="Rv9-ra-9m8" secondAttribute="trailing" id="Xnb-R2-pyP"/>
                         <constraint firstItem="rZK-qB-cve" firstAttribute="top" secondItem="CjM-du-0di" secondAttribute="top" id="bgD-uj-rcp"/>
+                        <constraint firstItem="Rv9-ra-9m8" firstAttribute="top" secondItem="mNs-IH-fut" secondAttribute="bottom" id="d15-za-Tal"/>
+                        <constraint firstItem="mNs-IH-fut" firstAttribute="leading" secondItem="CjM-du-0di" secondAttribute="leading" id="eyf-S0-6Fn"/>
                         <constraint firstItem="eeS-3b-fHJ" firstAttribute="bottom" secondItem="rZK-qB-cve" secondAttribute="bottom" id="f4I-pD-DqK"/>
                         <constraint firstItem="mb2-fh-U1b" firstAttribute="bottom" secondItem="rZK-qB-cve" secondAttribute="bottom" id="f6j-8r-Z4g"/>
-                        <constraint firstAttribute="height" constant="55" id="fLx-ll-YeB"/>
+                        <constraint firstAttribute="height" constant="50" id="fLx-ll-YeB"/>
                         <constraint firstItem="hlW-hf-kgg" firstAttribute="leading" secondItem="eeS-3b-fHJ" secondAttribute="trailing" id="in8-Hl-Dma"/>
                         <constraint firstItem="eeS-3b-fHJ" firstAttribute="leading" secondItem="mb2-fh-U1b" secondAttribute="trailing" id="npC-1V-nRD"/>
                         <constraint firstItem="hlW-hf-kgg" firstAttribute="height" secondItem="rZK-qB-cve" secondAttribute="height" id="rvb-NF-uLJ"/>
