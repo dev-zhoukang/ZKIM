@@ -40,7 +40,8 @@
 
 - (UINavigationController *)navigationController
 {
-    return (id)[(AppDelegate *)[[UIApplication sharedApplication] delegate] rootNavigationController];
+    //return self.rootViewController.rootNavigationController;
+    return nil;
 }
 
 - (ZKHomeViewController *)homeViewController

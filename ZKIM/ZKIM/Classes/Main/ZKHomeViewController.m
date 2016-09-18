@@ -107,13 +107,20 @@
 {
     if (!_viewControllers) {
         _viewControllers = @[
-                             [[ZKWeChatViewController alloc] init],
-                             [[ZKContactViewController alloc] init],
-                             [[ZKDiscoverViewController alloc] init],
-                             [[ZKMeViewController alloc] init],
+                             [self VCWithClass:[ZKWeChatViewController class]],
+                             [self VCWithClass:[ZKContactViewController class]],
+                             [self VCWithClass:[ZKDiscoverViewController class]],
+                             [self VCWithClass:[ZKMeViewController class]]
                              ];
     }
     return _viewControllers;
+}
+
+- (UIViewController *)VCWithClass:(Class)class
+{
+    UIViewController *viewController = [[class alloc] init];
+    ZKNavigationController *navc = [[ZKNavigationController alloc] initWithRootViewController:viewController];
+    return navc;
 }
 
 @end

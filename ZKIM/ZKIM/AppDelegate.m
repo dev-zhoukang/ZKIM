@@ -25,9 +25,7 @@
     [self.window makeKeyAndVisible];
     
     _rootViewController = [[ZKRootViewController alloc] init];
-    _rootNavigationController = [[ZKNavigationController alloc] initWithRootViewController:_rootViewController];
-    
-    self.window.rootViewController = _rootNavigationController;
+    self.window.rootViewController = _rootViewController;
     
     //AppKey:注册的AppKey，详细见下面注释。
     //apnsCertName:推送证书名（不需要加后缀），详细见下面注释。

@@ -32,7 +32,7 @@
     NSMutableDictionary *itemAttributes = [[NSMutableDictionary alloc] init];
     itemAttributes[NSForegroundColorAttributeName] = [UIColor whiteColor];
     itemAttributes[NSFontAttributeName] = [UIFont systemFontOfSize:17.f];
-    itemAttributes[NSShadowAttributeName] = [NSValue valueWithUIOffset:UIOffsetZero];
+    //itemAttributes[NSShadowAttributeName] = [NSValue valueWithUIOffset:UIOffsetZero];
     [itemAppearance setTitleTextAttributes:itemAttributes forState:UIControlStateNormal];
     [itemAppearance setTitleTextAttributes:itemAttributes forState:UIControlStateHighlighted];
 }
@@ -64,6 +64,11 @@
         viewController.hidesBottomBarWhenPushed = YES;
     }
     [super pushViewController:viewController animated:animated];
+}
+
+- (void)back
+{
+    [self popViewControllerAnimated:YES];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
