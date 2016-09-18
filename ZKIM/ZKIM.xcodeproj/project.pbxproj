@@ -20,13 +20,6 @@
 		58D147F61D892E8D00A17D6D /* USSuspensionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D147F41D892E8D00A17D6D /* USSuspensionView.xib */; };
 		58D147FA1D89366100A17D6D /* ApplicationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D147F91D89366100A17D6D /* ApplicationContext.m */; };
 		58D147FF1D894F1900A17D6D /* ZKHVButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D147FE1D894F1900A17D6D /* ZKHVButton.m */; };
-		58D148031D895C6B00A17D6D /* Home.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58D148021D895C6B00A17D6D /* Home.xcassets */; };
-		58D148051D895C7700A17D6D /* Contact.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58D148041D895C7700A17D6D /* Contact.xcassets */; };
-		58D148091D895C8F00A17D6D /* Timeline.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58D148081D895C8F00A17D6D /* Timeline.xcassets */; };
-		58D1480B1D895CEF00A17D6D /* Discover.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58D1480A1D895CEF00A17D6D /* Discover.xcassets */; };
-		58D1480D1D895D2500A17D6D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58D1480C1D895D2500A17D6D /* Images.xcassets */; };
-		58D1480F1D895D4100A17D6D /* Me.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58D1480E1D895D4100A17D6D /* Me.xcassets */; };
-		58D148111D895D6700A17D6D /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58D148101D895D6700A17D6D /* Media.xcassets */; };
 		58E35FFA1D87D5E100D38839 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E35FF91D87D5E100D38839 /* main.m */; };
 		58E35FFD1D87D5E100D38839 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E35FFC1D87D5E100D38839 /* AppDelegate.m */; };
 		58E360051D87D5E100D38839 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58E360041D87D5E100D38839 /* Assets.xcassets */; };
@@ -87,13 +80,6 @@
 		58D147F91D89366100A17D6D /* ApplicationContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationContext.m; sourceTree = "<group>"; };
 		58D147FD1D894F1900A17D6D /* ZKHVButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKHVButton.h; sourceTree = "<group>"; };
 		58D147FE1D894F1900A17D6D /* ZKHVButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKHVButton.m; sourceTree = "<group>"; };
-		58D148021D895C6B00A17D6D /* Home.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Home.xcassets; sourceTree = "<group>"; };
-		58D148041D895C7700A17D6D /* Contact.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Contact.xcassets; sourceTree = "<group>"; };
-		58D148081D895C8F00A17D6D /* Timeline.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Timeline.xcassets; sourceTree = "<group>"; };
-		58D1480A1D895CEF00A17D6D /* Discover.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Discover.xcassets; sourceTree = "<group>"; };
-		58D1480C1D895D2500A17D6D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		58D1480E1D895D4100A17D6D /* Me.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Me.xcassets; sourceTree = "<group>"; };
-		58D148101D895D6700A17D6D /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		58E35FF51D87D5E100D38839 /* ZKIM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZKIM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58E35FF91D87D5E100D38839 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		58E35FFB1D87D5E100D38839 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -316,13 +302,6 @@
 			children = (
 				58E360721D87E5B000D38839 /* Framework */,
 				58E360041D87D5E100D38839 /* Assets.xcassets */,
-				58D148021D895C6B00A17D6D /* Home.xcassets */,
-				58D148041D895C7700A17D6D /* Contact.xcassets */,
-				58D1480A1D895CEF00A17D6D /* Discover.xcassets */,
-				58D148081D895C8F00A17D6D /* Timeline.xcassets */,
-				58D1480C1D895D2500A17D6D /* Images.xcassets */,
-				58D1480E1D895D4100A17D6D /* Me.xcassets */,
-				58D148101D895D6700A17D6D /* Media.xcassets */,
 				58E360061D87D5E100D38839 /* LaunchScreen.storyboard */,
 				58E360091D87D5E100D38839 /* Info.plist */,
 				58E35FF91D87D5E100D38839 /* main.m */,
@@ -561,20 +540,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58D1480F1D895D4100A17D6D /* Me.xcassets in Resources */,
 				58AB30231D891AFD007BB571 /* Launch_image@2x.png in Resources */,
-				58D148111D895D6700A17D6D /* Media.xcassets in Resources */,
 				58D147F01D89288A00A17D6D /* ZKLoginViewController.xib in Resources */,
-				58D148031D895C6B00A17D6D /* Home.xcassets in Resources */,
 				58E360081D87D5E100D38839 /* LaunchScreen.storyboard in Resources */,
-				58D1480B1D895CEF00A17D6D /* Discover.xcassets in Resources */,
 				58AB302B1D891B89007BB571 /* ZKHomeViewController.xib in Resources */,
 				58D147EB1D89240A00A17D6D /* ZKLoginHomeViewController.xib in Resources */,
-				58D148091D895C8F00A17D6D /* Timeline.xcassets in Resources */,
 				58E360051D87D5E100D38839 /* Assets.xcassets in Resources */,
-				58D1480D1D895D2500A17D6D /* Images.xcassets in Resources */,
 				58D147F61D892E8D00A17D6D /* USSuspensionView.xib in Resources */,
-				58D148051D895C7700A17D6D /* Contact.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
