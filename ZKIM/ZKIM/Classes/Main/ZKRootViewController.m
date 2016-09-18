@@ -9,6 +9,7 @@
 #import "ZKRootViewController.h"
 #import "ZKHomeViewController.h"
 #import "ZKLoginHomeViewController.h"
+#import "ZKNavigationController.h"
 
 @interface ZKRootViewController ()
 
@@ -21,12 +22,10 @@
     [super viewDidLoad];
     
     ZKHomeViewController *homeViewController = [[ZKHomeViewController alloc] init];
-    _rootNavigationController = [[UINavigationController alloc] initWithRootViewController:homeViewController];
-    [_rootNavigationController setNavigationBarHidden:YES animated:NO];
     
-    [self addChildViewController:_rootNavigationController];
-    [self.view insertSubview:_rootNavigationController.view atIndex:0];
-    [_rootNavigationController.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+    [self addChildViewController:homeViewController];
+    [self.view insertSubview:homeViewController.view atIndex:0];
+    [homeViewController.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
     
 //    ZKLoginHomeViewController *loginHomeVC = [[ZKLoginHomeViewController alloc] init];
 //    [_applicationContext presentNavigationController:loginHomeVC animated:NO completion:nil];

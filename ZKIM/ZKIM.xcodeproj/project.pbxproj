@@ -28,6 +28,7 @@
 		58D1482D1D8E780000A17D6D /* ZKMeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D1482B1D8E780000A17D6D /* ZKMeViewController.xib */; };
 		58D148321D8E793C00A17D6D /* ZKWeChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D148301D8E793C00A17D6D /* ZKWeChatViewController.m */; };
 		58D148331D8E793C00A17D6D /* ZKWeChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D148311D8E793C00A17D6D /* ZKWeChatViewController.xib */; };
+		58D148361D8E7F3C00A17D6D /* ZKNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D148351D8E7F3C00A17D6D /* ZKNavigationController.m */; };
 		58E35FFA1D87D5E100D38839 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E35FF91D87D5E100D38839 /* main.m */; };
 		58E35FFD1D87D5E100D38839 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E35FFC1D87D5E100D38839 /* AppDelegate.m */; };
 		58E360051D87D5E100D38839 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58E360041D87D5E100D38839 /* Assets.xcassets */; };
@@ -100,6 +101,8 @@
 		58D1482F1D8E793C00A17D6D /* ZKWeChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKWeChatViewController.h; sourceTree = "<group>"; };
 		58D148301D8E793C00A17D6D /* ZKWeChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKWeChatViewController.m; sourceTree = "<group>"; };
 		58D148311D8E793C00A17D6D /* ZKWeChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKWeChatViewController.xib; sourceTree = "<group>"; };
+		58D148341D8E7F3C00A17D6D /* ZKNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKNavigationController.h; sourceTree = "<group>"; };
+		58D148351D8E7F3C00A17D6D /* ZKNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKNavigationController.m; sourceTree = "<group>"; };
 		58E35FF51D87D5E100D38839 /* ZKIM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZKIM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58E35FF91D87D5E100D38839 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		58E35FFB1D87D5E100D38839 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -229,6 +232,8 @@
 				58AB30271D891B89007BB571 /* ZKHomeViewController.xib */,
 				58AB30281D891B89007BB571 /* ZKRootViewController.h */,
 				58AB30291D891B89007BB571 /* ZKRootViewController.m */,
+				58D148341D8E7F3C00A17D6D /* ZKNavigationController.h */,
+				58D148351D8E7F3C00A17D6D /* ZKNavigationController.m */,
 				58D147FB1D89402700A17D6D /* Supporting */,
 			);
 			path = Main;
@@ -651,6 +656,7 @@
 				58D148271D8E77F500A17D6D /* ZKDiscoverViewController.m in Sources */,
 				58D1482C1D8E780000A17D6D /* ZKMeViewController.m in Sources */,
 				58D147F51D892E8D00A17D6D /* USSuspensionView.m in Sources */,
+				58D148361D8E7F3C00A17D6D /* ZKNavigationController.m in Sources */,
 				58D147EA1D89240A00A17D6D /* ZKLoginHomeViewController.m in Sources */,
 				58D147FA1D89366100A17D6D /* ApplicationContext.m in Sources */,
 				58D147EF1D89288A00A17D6D /* ZKLoginViewController.m in Sources */,

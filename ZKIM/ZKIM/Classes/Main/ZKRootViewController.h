@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+@class ZKNavigationController;
 
 @interface ZKRootViewController : UIViewController
-
-@property (nonatomic, strong, readonly) UINavigationController *rootNavigationController;
 
 @end

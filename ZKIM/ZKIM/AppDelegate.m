@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ZKRootViewController.h"
 #import "EMSDK.h"
+#import "ZKNavigationController.h"
 
 @interface AppDelegate ()
 
@@ -24,7 +25,9 @@
     [self.window makeKeyAndVisible];
     
     _rootViewController = [[ZKRootViewController alloc] init];
-    self.window.rootViewController = _rootViewController;
+    _rootNavigationController = [[ZKNavigationController alloc] initWithRootViewController:_rootViewController];
+    
+    self.window.rootViewController = _rootNavigationController;
     
     //AppKey:注册的AppKey，详细见下面注释。
     //apnsCertName:推送证书名（不需要加后缀），详细见下面注释。

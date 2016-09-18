@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ZKRootViewController;
+@class ZKRootViewController, ZKNavigationController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) ZKRootViewController *rootViewController;
+@property (nonatomic, strong) ZKNavigationController *rootNavigationController;
 
 @end

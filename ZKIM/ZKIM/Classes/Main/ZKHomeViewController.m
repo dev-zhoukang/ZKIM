@@ -11,6 +11,7 @@
 #import "ZKContactViewController.h"
 #import "ZKDiscoverViewController.h"
 #import "ZKMeViewController.h"
+#import "ZKNavigationController.h"
 
 @interface ZKHomeViewController ()
 
