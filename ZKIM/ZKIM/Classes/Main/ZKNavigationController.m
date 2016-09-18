@@ -24,7 +24,7 @@
     
     NSMutableDictionary *barAttributes = [[NSMutableDictionary alloc] init];
     barAttributes[NSForegroundColorAttributeName] = [UIColor whiteColor];
-    barAttributes[NSFontAttributeName] = [UIFont boldSystemFontOfSize:20.f];
+    barAttributes[NSFontAttributeName] = [UIFont boldSystemFontOfSize:19.f];
     
     [barAppearance setTitleTextAttributes:barAttributes];
     

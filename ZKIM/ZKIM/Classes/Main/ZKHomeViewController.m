@@ -107,18 +107,19 @@
 {
     if (!_viewControllers) {
         _viewControllers = @[
-                             [self VCWithClass:[ZKWeChatViewController class]],
-                             [self VCWithClass:[ZKContactViewController class]],
-                             [self VCWithClass:[ZKDiscoverViewController class]],
-                             [self VCWithClass:[ZKMeViewController class]]
+                             [self VCWithClass:[ZKWeChatViewController class] title:@"微信"],
+                             [self VCWithClass:[ZKContactViewController class] title:@"通讯录"],
+                             [self VCWithClass:[ZKDiscoverViewController class] title:@"发现"],
+                             [self VCWithClass:[ZKMeViewController class] title:@"我"]
                              ];
     }
     return _viewControllers;
 }
 
-- (UIViewController *)VCWithClass:(Class)class
+- (UIViewController *)VCWithClass:(Class)class title:(NSString *)title
 {
     UIViewController *viewController = [[class alloc] init];
+    viewController.title = title;
     ZKNavigationController *navc = [[ZKNavigationController alloc] initWithRootViewController:viewController];
     return navc;
 }

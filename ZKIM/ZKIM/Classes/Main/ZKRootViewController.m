@@ -31,4 +31,9 @@
 //    [_applicationContext presentNavigationController:loginHomeVC animated:NO completion:nil];
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 @end
