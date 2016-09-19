@@ -16,5 +16,6 @@
 #import "ApplicationContext.h"
 #import "ZKHVButton.h"
 #import "YYKit.h"
+#import "MJExtension.h"
 
 #endif /* PrefixHeader_pch */

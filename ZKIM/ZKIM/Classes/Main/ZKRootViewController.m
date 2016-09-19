@@ -10,6 +10,7 @@
 #import "ZKHomeViewController.h"
 #import "ZKLoginHomeViewController.h"
 #import "ZKNavigationController.h"
+#import "ZKLoginUser.h"
 
 @interface ZKRootViewController ()
 
@@ -27,8 +28,8 @@
     [self.view insertSubview:homeViewController.view atIndex:0];
     [homeViewController.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
     
-//    ZKLoginHomeViewController *loginHomeVC = [[ZKLoginHomeViewController alloc] init];
-//    [_applicationContext presentNavigationController:loginHomeVC animated:NO completion:nil];
+    ZKLoginHomeViewController *loginHomeVC = [[ZKLoginHomeViewController alloc] init];
+    [_applicationContext presentNavigationController:loginHomeVC animated:NO completion:nil];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
