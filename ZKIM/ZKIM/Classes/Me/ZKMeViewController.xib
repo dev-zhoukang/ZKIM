@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZKMeViewController">
             <connections>
+                <outlet property="tableView" destination="ZDz-05-ENF" id="lBY-qZ-0Ef"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,7 +16,23 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZDz-05-ENF">
+                    <color key="backgroundColor" red="0.99607843139999996" green="0.4039215686" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="zfP-dR-eYn"/>
+                        <outlet property="delegate" destination="-1" id="BH2-Om-FlV"/>
+                    </connections>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" red="1" green="0.84524433724832215" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="ZDz-05-ENF" secondAttribute="bottom" id="GxQ-sp-Yaa"/>
+                <constraint firstAttribute="trailing" secondItem="ZDz-05-ENF" secondAttribute="trailing" id="S1q-VD-bNR"/>
+                <constraint firstItem="ZDz-05-ENF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ixT-de-fG6"/>
+                <constraint firstItem="ZDz-05-ENF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jCZ-V8-sxB"/>
+            </constraints>
+            <point key="canvasLocation" x="-95" y="35"/>
         </view>
     </objects>
 </document>

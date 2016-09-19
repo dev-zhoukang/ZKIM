@@ -27,13 +27,14 @@
     _rootViewController = [[ZKRootViewController alloc] init];
     self.window.rootViewController = _rootViewController;
     
-    //AppKey:注册的AppKey，详细见下面注释。
-    //apnsCertName:推送证书名（不需要加后缀），详细见下面注释。
     EMOptions *options = [EMOptions optionsWithAppkey:kAppKey_EM];
     options.apnsCertName = @"istore_dev";
     EMError *error = [[EMClient sharedClient] initializeSDKWithOptions:options];
     if (error) {
-        NSLog(@"初始化失败===%@", error.errorDescription);
+        DLog(@"环信初始化失败===%@", error.errorDescription);
+    }
+    else {
+        DLog(@"环信初始化成功");
     }
     
     return YES;

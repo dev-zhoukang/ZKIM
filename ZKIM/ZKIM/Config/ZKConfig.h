@@ -14,7 +14,8 @@
 #define RGBACOLOR(r,g,b,a)  [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)] //RGBA进制颜色值
 #define HexColor(hexValue)  [UIColor colorWithRed:((float)(((hexValue) & 0xFF0000) >> 16))/255.0 green:((float)(((hexValue) & 0xFF00) >> 8))/255.0 blue:((float)((hexValue) & 0xFF))/255.0 alpha:1]   //16进制颜色值，如：#000000 , 注意：在使用的时候hexValue写成：0x000000
 
-#define GlobalGreenColor   RGBCOLOR(31, 185, 34)
+#define GlobalGreenColor   RGBCOLOR(31.f, 185.f, 34.f)
+#define GlobalBGColor      RGBCOLOR(239.f, 239.f, 245.f)
 
 #ifdef __OBJC__
 #ifdef DEBUG
