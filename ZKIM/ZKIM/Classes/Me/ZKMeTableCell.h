@@ -12,6 +12,6 @@
 
 @property (nonatomic, strong) NSDictionary *dataInfo;
 
-+ (instancetype)cellWithTableView:(UITableView *)tableView;
++ (instancetype)cellWithTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath;
 
 @end

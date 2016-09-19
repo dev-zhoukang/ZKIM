@@ -5,6 +5,16 @@
 	<array>
 		<dict>
 			<key>title</key>
+			<string>周康</string>
+			<key>icon</key>
+			<string>me.jpg</string>
+			<key>wechat</key>
+			<string>zk_520it</string>
+		</dict>
+	</array>
+	<array>
+		<dict>
+			<key>title</key>
 			<string>相册</string>
 			<key>icon</key>
 			<string>MoreMyAlbum</string>

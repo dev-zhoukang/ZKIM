@@ -33,7 +33,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    DLog(@"=====%zd", self.dataSource.count);
     return self.dataSource.count;
 }
 
@@ -44,7 +43,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZKMeTableCell *cell = [ZKMeTableCell cellWithTableView:tableView];
+    ZKMeTableCell *cell = [ZKMeTableCell cellWithTableView:tableView indexPath:indexPath];
     cell.dataInfo = self.dataSource[indexPath.section][indexPath.row];
     return cell;
 }
@@ -59,6 +58,17 @@
     UIView *footer = [[UIView alloc] init];
     footer.backgroundColor = [UIColor clearColor];
     return footer;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (!indexPath.section) return 85.f;
+    return 44.f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Getter
