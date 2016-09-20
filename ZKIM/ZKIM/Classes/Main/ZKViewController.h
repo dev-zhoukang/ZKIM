@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface ZKViewController : UIViewController
+{
+    CGFloat _topInset;
+}
 
 @property(nonatomic, strong) NSString *hint;
 @property(nonatomic, assign) CGFloat topInset;
 
 @property(nonatomic, strong) UINavigationBar *navigationBar;
-@property(nonatomic, strong) UINavigationItem *myNavigationItem;
 
 //---------设置导航栏-----------
 

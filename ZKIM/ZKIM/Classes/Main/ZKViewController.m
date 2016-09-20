@@ -9,7 +9,7 @@
 #import "ZKViewController.h"
 
 @interface ZKViewController ()
-
+@property(nonatomic, strong) UINavigationItem *myNavigationItem;
 @end
 
 @implementation ZKViewController

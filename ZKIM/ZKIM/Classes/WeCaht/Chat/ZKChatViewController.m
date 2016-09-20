@@ -7,10 +7,12 @@
 //
 
 #import "ZKChatViewController.h"
+#import "ZKChatBar.h"
 
 @interface ZKChatViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) ZKChatBar   *chatBar;
 
 @end
 
@@ -25,21 +27,20 @@
 
 - (void)setupUI
 {
-    self.view.backgroundColor = GlobalBGColor;
     self.title = @"聊天详情";
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:@"哈哈" style:UIBarButtonItemStyleDone target:self action:@selector(qq)];
-    self.myNavigationItem.leftBarButtonItem = leftItem;
     
     _tableView = [[UITableView alloc]
-                  initWithFrame:(CGRect){CGPointZero, SCREEN_WIDTH, SCREEN_HEIGHT} style:UITableViewStylePlain];
+                  initWithFrame:(CGRect){0, _topInset, SCREEN_WIDTH, SCREEN_HEIGHT} style:UITableViewStylePlain];
+    _tableView.backgroundColor = GlobalChatBGColor;
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.frame = self.view.bounds;
-}
-
-- (void)qq
-{
+    _tableView.tableFooterView = [[UIView alloc] init];
+    [self.view addSubview:_tableView];
     
+    _chatBar = [ZKChatBar chatBar];
+    _chatBar.left = 0;
+    _chatBar.bottom = SCREEN_HEIGHT;
+    [self.view addSubview:_chatBar];
 }
 
 #pragma mark - <UITableViewDelegate, UITableViewDataSource>

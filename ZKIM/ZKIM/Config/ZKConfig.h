@@ -17,6 +17,7 @@
 
 #define GlobalGreenColor   RGBCOLOR(31.f, 185.f, 34.f)
 #define GlobalBGColor      RGBCOLOR(239.f, 239.f, 245.f)
+#define GlobalChatBGColor      RGBCOLOR(230.f, 230.f, 230.f)
 
 #ifdef __OBJC__
 #ifdef DEBUG

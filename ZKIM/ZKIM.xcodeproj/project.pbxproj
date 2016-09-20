@@ -13,6 +13,8 @@
 		583A81EC1D91092C006F14C6 /* ZKChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A81EB1D91092C006F14C6 /* ZKChatViewController.m */; };
 		583A82361D91219B006F14C6 /* ZKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A82351D91219B006F14C6 /* ZKViewController.m */; };
 		583A823A1D912A01006F14C6 /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A82391D912A01006F14C6 /* NSString+Common.m */; };
+		583A823E1D913B12006F14C6 /* ZKChatBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A823D1D913B12006F14C6 /* ZKChatBar.m */; };
+		583A82401D913B22006F14C6 /* ZKChatBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 583A823F1D913B22006F14C6 /* ZKChatBar.xib */; };
 		58AB30231D891AFD007BB571 /* Launch_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58AB30221D891AFD007BB571 /* Launch_image@2x.png */; };
 		58AB302A1D891B89007BB571 /* ZKHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58AB30261D891B89007BB571 /* ZKHomeViewController.m */; };
 		58AB302B1D891B89007BB571 /* ZKHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58AB30271D891B89007BB571 /* ZKHomeViewController.xib */; };
@@ -179,6 +181,9 @@
 		583A82351D91219B006F14C6 /* ZKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKViewController.m; sourceTree = "<group>"; };
 		583A82381D912A01006F14C6 /* NSString+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Common.h"; sourceTree = "<group>"; };
 		583A82391D912A01006F14C6 /* NSString+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Common.m"; sourceTree = "<group>"; };
+		583A823C1D913B12006F14C6 /* ZKChatBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatBar.h; sourceTree = "<group>"; };
+		583A823D1D913B12006F14C6 /* ZKChatBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChatBar.m; sourceTree = "<group>"; };
+		583A823F1D913B22006F14C6 /* ZKChatBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKChatBar.xib; sourceTree = "<group>"; };
 		58AB30221D891AFD007BB571 /* Launch_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Launch_image@2x.png"; sourceTree = "<group>"; };
 		58AB30251D891B89007BB571 /* ZKHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKHomeViewController.h; sourceTree = "<group>"; };
 		58AB30261D891B89007BB571 /* ZKHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKHomeViewController.m; sourceTree = "<group>"; };
@@ -520,6 +525,7 @@
 		583A81E91D91090B006F14C6 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				583A823B1D913A63006F14C6 /* ChatBar */,
 				583A81EA1D91092C006F14C6 /* ZKChatViewController.h */,
 				583A81EB1D91092C006F14C6 /* ZKChatViewController.m */,
 			);
@@ -533,6 +539,16 @@
 				583A82391D912A01006F14C6 /* NSString+Common.m */,
 			);
 			path = Tool;
+			sourceTree = "<group>";
+		};
+		583A823B1D913A63006F14C6 /* ChatBar */ = {
+			isa = PBXGroup;
+			children = (
+				583A823C1D913B12006F14C6 /* ZKChatBar.h */,
+				583A823D1D913B12006F14C6 /* ZKChatBar.m */,
+				583A823F1D913B22006F14C6 /* ZKChatBar.xib */,
+			);
+			path = ChatBar;
 			sourceTree = "<group>";
 		};
 		58AB30201D891ADF007BB571 /* Images */ = {
@@ -1256,6 +1272,7 @@
 				58E360081D87D5E100D38839 /* LaunchScreen.storyboard in Resources */,
 				58D149681D8FEE3100A17D6D /* Info.plist in Resources */,
 				58D148281D8E77F500A17D6D /* ZKDiscoverViewController.xib in Resources */,
+				583A82401D913B22006F14C6 /* ZKChatBar.xib in Resources */,
 				583A81E81D90FE4A006F14C6 /* ZKWeChatCell.xib in Resources */,
 				58AB302B1D891B89007BB571 /* ZKHomeViewController.xib in Resources */,
 				58D147EB1D89240A00A17D6D /* ZKLoginHomeViewController.xib in Resources */,
@@ -1351,6 +1368,7 @@
 				58D149241D8FD9C400A17D6D /* YYTextDebugOption.m in Sources */,
 				58D1491A1D8FD9C400A17D6D /* YYFrameImage.m in Sources */,
 				58D149691D8FEE3100A17D6D /* MJExtensionConst.m in Sources */,
+				583A823E1D913B12006F14C6 /* ZKChatBar.m in Sources */,
 				58D148271D8E77F500A17D6D /* ZKDiscoverViewController.m in Sources */,
 				58D149351D8FD9C400A17D6D /* YYLabel.m in Sources */,
 				583A82361D91219B006F14C6 /* ZKViewController.m in Sources */,
