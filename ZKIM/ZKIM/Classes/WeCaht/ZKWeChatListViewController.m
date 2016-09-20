@@ -1,22 +1,22 @@
 //
-//  ZKWeChatViewController.m
+//  ZKWeChatListViewController.m
 //  ZKIM
 //
 //  Created by ZK on 16/9/18.
 //  Copyright © 2016年 ZK. All rights reserved.
 //
 
-#import "ZKWeChatViewController.h"
+#import "ZKWeChatListViewController.h"
 #import "ZKWeChatCell.h"
 
-@interface ZKWeChatViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface ZKWeChatListViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataSource;
 
 @end
 
-@implementation ZKWeChatViewController
+@implementation ZKWeChatListViewController
 
 - (void)viewDidLoad
 {

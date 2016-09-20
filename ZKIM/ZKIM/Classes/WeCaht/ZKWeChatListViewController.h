@@ -1,5 +1,5 @@
 //
-//  ZKWeChatViewController.h
+//  ZKWeChatListViewController.h
 //  ZKIM
 //
 //  Created by ZK on 16/9/18.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZKWeChatViewController : UIViewController
+@interface ZKWeChatListViewController : UIViewController
 
 @end

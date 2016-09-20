@@ -7,7 +7,7 @@
 //
 
 #import "ZKHomeViewController.h"
-#import "ZKWeChatViewController.h"
+#import "ZKWeChatListViewController.h"
 #import "ZKContactViewController.h"
 #import "ZKDiscoverViewController.h"
 #import "ZKMeViewController.h"
@@ -107,7 +107,7 @@
 {
     if (!_viewControllers) {
         _viewControllers = @[
-                             [self VCWithClass:[ZKWeChatViewController class] title:@"微信"],
+                             [self VCWithClass:[ZKWeChatListViewController class] title:@"微信"],
                              [self VCWithClass:[ZKContactViewController class] title:@"通讯录"],
                              [self VCWithClass:[ZKDiscoverViewController class] title:@"发现"],
                              [self VCWithClass:[ZKMeViewController class] title:@"我"]

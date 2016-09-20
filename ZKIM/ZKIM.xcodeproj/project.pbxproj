@@ -10,6 +10,7 @@
 		583A81E31D90CBE7006F14C6 /* ZKXMPPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A81E21D90CBE7006F14C6 /* ZKXMPPManager.m */; };
 		583A81E71D90FE4A006F14C6 /* ZKWeChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A81E51D90FE4A006F14C6 /* ZKWeChatCell.m */; };
 		583A81E81D90FE4A006F14C6 /* ZKWeChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 583A81E61D90FE4A006F14C6 /* ZKWeChatCell.xib */; };
+		583A81EC1D91092C006F14C6 /* ZKChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A81EB1D91092C006F14C6 /* ZKChatViewController.m */; };
 		58AB30231D891AFD007BB571 /* Launch_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58AB30221D891AFD007BB571 /* Launch_image@2x.png */; };
 		58AB302A1D891B89007BB571 /* ZKHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58AB30261D891B89007BB571 /* ZKHomeViewController.m */; };
 		58AB302B1D891B89007BB571 /* ZKHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58AB30271D891B89007BB571 /* ZKHomeViewController.xib */; };
@@ -29,8 +30,8 @@
 		58D148281D8E77F500A17D6D /* ZKDiscoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D148261D8E77F500A17D6D /* ZKDiscoverViewController.xib */; };
 		58D1482C1D8E780000A17D6D /* ZKMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D1482A1D8E780000A17D6D /* ZKMeViewController.m */; };
 		58D1482D1D8E780000A17D6D /* ZKMeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D1482B1D8E780000A17D6D /* ZKMeViewController.xib */; };
-		58D148321D8E793C00A17D6D /* ZKWeChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D148301D8E793C00A17D6D /* ZKWeChatViewController.m */; };
-		58D148331D8E793C00A17D6D /* ZKWeChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D148311D8E793C00A17D6D /* ZKWeChatViewController.xib */; };
+		58D148321D8E793C00A17D6D /* ZKWeChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D148301D8E793C00A17D6D /* ZKWeChatListViewController.m */; };
+		58D148331D8E793C00A17D6D /* ZKWeChatListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D148311D8E793C00A17D6D /* ZKWeChatListViewController.xib */; };
 		58D148361D8E7F3C00A17D6D /* ZKNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D148351D8E7F3C00A17D6D /* ZKNavigationController.m */; };
 		58D148381D8F789000A17D6D /* Me_Plist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 58D148371D8F789000A17D6D /* Me_Plist.plist */; };
 		58D1483C1D8F7D1D00A17D6D /* ZKMeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D1483A1D8F7D1D00A17D6D /* ZKMeTableCell.m */; };
@@ -170,6 +171,8 @@
 		583A81E41D90FE4A006F14C6 /* ZKWeChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKWeChatCell.h; sourceTree = "<group>"; };
 		583A81E51D90FE4A006F14C6 /* ZKWeChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKWeChatCell.m; sourceTree = "<group>"; };
 		583A81E61D90FE4A006F14C6 /* ZKWeChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKWeChatCell.xib; sourceTree = "<group>"; };
+		583A81EA1D91092C006F14C6 /* ZKChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatViewController.h; sourceTree = "<group>"; };
+		583A81EB1D91092C006F14C6 /* ZKChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChatViewController.m; sourceTree = "<group>"; };
 		58AB30221D891AFD007BB571 /* Launch_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Launch_image@2x.png"; sourceTree = "<group>"; };
 		58AB30251D891B89007BB571 /* ZKHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKHomeViewController.h; sourceTree = "<group>"; };
 		58AB30261D891B89007BB571 /* ZKHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKHomeViewController.m; sourceTree = "<group>"; };
@@ -201,9 +204,9 @@
 		58D148291D8E780000A17D6D /* ZKMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKMeViewController.h; sourceTree = "<group>"; };
 		58D1482A1D8E780000A17D6D /* ZKMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKMeViewController.m; sourceTree = "<group>"; };
 		58D1482B1D8E780000A17D6D /* ZKMeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKMeViewController.xib; sourceTree = "<group>"; };
-		58D1482F1D8E793C00A17D6D /* ZKWeChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKWeChatViewController.h; sourceTree = "<group>"; };
-		58D148301D8E793C00A17D6D /* ZKWeChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKWeChatViewController.m; sourceTree = "<group>"; };
-		58D148311D8E793C00A17D6D /* ZKWeChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKWeChatViewController.xib; sourceTree = "<group>"; };
+		58D1482F1D8E793C00A17D6D /* ZKWeChatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKWeChatListViewController.h; sourceTree = "<group>"; };
+		58D148301D8E793C00A17D6D /* ZKWeChatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKWeChatListViewController.m; sourceTree = "<group>"; };
+		58D148311D8E793C00A17D6D /* ZKWeChatListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKWeChatListViewController.xib; sourceTree = "<group>"; };
 		58D148341D8E7F3C00A17D6D /* ZKNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKNavigationController.h; sourceTree = "<group>"; };
 		58D148351D8E7F3C00A17D6D /* ZKNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKNavigationController.m; sourceTree = "<group>"; };
 		58D148371D8F789000A17D6D /* Me_Plist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Me_Plist.plist; sourceTree = "<group>"; };
@@ -508,6 +511,15 @@
 			path = ZKXMPPManager;
 			sourceTree = "<group>";
 		};
+		583A81E91D91090B006F14C6 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				583A81EA1D91092C006F14C6 /* ZKChatViewController.h */,
+				583A81EB1D91092C006F14C6 /* ZKChatViewController.m */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
 		58AB30201D891ADF007BB571 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -628,9 +640,10 @@
 		58D1482E1D8E793C00A17D6D /* WeCaht */ = {
 			isa = PBXGroup;
 			children = (
-				58D1482F1D8E793C00A17D6D /* ZKWeChatViewController.h */,
-				58D148301D8E793C00A17D6D /* ZKWeChatViewController.m */,
-				58D148311D8E793C00A17D6D /* ZKWeChatViewController.xib */,
+				583A81E91D91090B006F14C6 /* Chat */,
+				58D1482F1D8E793C00A17D6D /* ZKWeChatListViewController.h */,
+				58D148301D8E793C00A17D6D /* ZKWeChatListViewController.m */,
+				58D148311D8E793C00A17D6D /* ZKWeChatListViewController.xib */,
 				583A81E41D90FE4A006F14C6 /* ZKWeChatCell.h */,
 				583A81E51D90FE4A006F14C6 /* ZKWeChatCell.m */,
 				583A81E61D90FE4A006F14C6 /* ZKWeChatCell.xib */,
@@ -1220,7 +1233,7 @@
 				58AB30231D891AFD007BB571 /* Launch_image@2x.png in Resources */,
 				58D148381D8F789000A17D6D /* Me_Plist.plist in Resources */,
 				58D1483D1D8F7D1D00A17D6D /* ZKMeTableCell.xib in Resources */,
-				58D148331D8E793C00A17D6D /* ZKWeChatViewController.xib in Resources */,
+				58D148331D8E793C00A17D6D /* ZKWeChatListViewController.xib in Resources */,
 				58D147F01D89288A00A17D6D /* ZKLoginViewController.xib in Resources */,
 				58E360081D87D5E100D38839 /* LaunchScreen.storyboard in Resources */,
 				58D149681D8FEE3100A17D6D /* Info.plist in Resources */,
@@ -1270,7 +1283,7 @@
 				58D147E01D89233F00A17D6D /* UIView+AutoLayout.m in Sources */,
 				58D149711D8FEE3100A17D6D /* NSObject+MJProperty.m in Sources */,
 				58D149181D8FD9C400A17D6D /* UIImageView+YYWebImage.m in Sources */,
-				58D148321D8E793C00A17D6D /* ZKWeChatViewController.m in Sources */,
+				58D148321D8E793C00A17D6D /* ZKWeChatListViewController.m in Sources */,
 				58D149151D8FD9C400A17D6D /* CALayer+YYWebImage.m in Sources */,
 				58D1496F1D8FEE3100A17D6D /* NSObject+MJCoding.m in Sources */,
 				58D1490D1D8FD9C400A17D6D /* UITableView+YYAdd.m in Sources */,
@@ -1298,6 +1311,7 @@
 				58D1493C1D8FD9C400A17D6D /* YYReachability.m in Sources */,
 				58D149061D8FD9C400A17D6D /* UIControl+YYAdd.m in Sources */,
 				58AB302A1D891B89007BB571 /* ZKHomeViewController.m in Sources */,
+				583A81EC1D91092C006F14C6 /* ZKChatViewController.m in Sources */,
 				58D1493A1D8FD9C400A17D6D /* YYGestureRecognizer.m in Sources */,
 				58D1483C1D8F7D1D00A17D6D /* ZKMeTableCell.m in Sources */,
 				58D147FF1D894F1900A17D6D /* ZKHVButton.m in Sources */,
