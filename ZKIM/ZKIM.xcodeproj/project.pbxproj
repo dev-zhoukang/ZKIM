@@ -11,6 +11,8 @@
 		583A81E71D90FE4A006F14C6 /* ZKWeChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A81E51D90FE4A006F14C6 /* ZKWeChatCell.m */; };
 		583A81E81D90FE4A006F14C6 /* ZKWeChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 583A81E61D90FE4A006F14C6 /* ZKWeChatCell.xib */; };
 		583A81EC1D91092C006F14C6 /* ZKChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A81EB1D91092C006F14C6 /* ZKChatViewController.m */; };
+		583A82361D91219B006F14C6 /* ZKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A82351D91219B006F14C6 /* ZKViewController.m */; };
+		583A823A1D912A01006F14C6 /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A82391D912A01006F14C6 /* NSString+Common.m */; };
 		58AB30231D891AFD007BB571 /* Launch_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58AB30221D891AFD007BB571 /* Launch_image@2x.png */; };
 		58AB302A1D891B89007BB571 /* ZKHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58AB30261D891B89007BB571 /* ZKHomeViewController.m */; };
 		58AB302B1D891B89007BB571 /* ZKHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58AB30271D891B89007BB571 /* ZKHomeViewController.xib */; };
@@ -173,6 +175,10 @@
 		583A81E61D90FE4A006F14C6 /* ZKWeChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKWeChatCell.xib; sourceTree = "<group>"; };
 		583A81EA1D91092C006F14C6 /* ZKChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatViewController.h; sourceTree = "<group>"; };
 		583A81EB1D91092C006F14C6 /* ZKChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChatViewController.m; sourceTree = "<group>"; };
+		583A82341D91219B006F14C6 /* ZKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKViewController.h; sourceTree = "<group>"; };
+		583A82351D91219B006F14C6 /* ZKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKViewController.m; sourceTree = "<group>"; };
+		583A82381D912A01006F14C6 /* NSString+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Common.h"; sourceTree = "<group>"; };
+		583A82391D912A01006F14C6 /* NSString+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Common.m"; sourceTree = "<group>"; };
 		58AB30221D891AFD007BB571 /* Launch_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Launch_image@2x.png"; sourceTree = "<group>"; };
 		58AB30251D891B89007BB571 /* ZKHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKHomeViewController.h; sourceTree = "<group>"; };
 		58AB30261D891B89007BB571 /* ZKHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKHomeViewController.m; sourceTree = "<group>"; };
@@ -520,6 +526,15 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
+		583A82371D9129FB006F14C6 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				583A82381D912A01006F14C6 /* NSString+Common.h */,
+				583A82391D912A01006F14C6 /* NSString+Common.m */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
 		58AB30201D891ADF007BB571 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -548,6 +563,8 @@
 				58AB30291D891B89007BB571 /* ZKRootViewController.m */,
 				58D148341D8E7F3C00A17D6D /* ZKNavigationController.h */,
 				58D148351D8E7F3C00A17D6D /* ZKNavigationController.m */,
+				583A82341D91219B006F14C6 /* ZKViewController.h */,
+				583A82351D91219B006F14C6 /* ZKViewController.m */,
 				583A81E01D90CB19006F14C6 /* ZKXMPPManager */,
 				58D147FB1D89402700A17D6D /* Supporting */,
 			);
@@ -1020,6 +1037,7 @@
 				58D148171D8E775D00A17D6D /* Discover */,
 				58D148191D8E775D00A17D6D /* Me */,
 				58D147E61D8923FC00A17D6D /* Login */,
+				583A82371D9129FB006F14C6 /* Tool */,
 				58AB30241D891B89007BB571 /* Main */,
 			);
 			path = Classes;
@@ -1307,6 +1325,7 @@
 				58D149371D8FD9C400A17D6D /* YYAsyncLayer.m in Sources */,
 				58D149201D8FD9C400A17D6D /* YYWebImageOperation.m in Sources */,
 				58D149071D8FD9C400A17D6D /* UIDevice+YYAdd.m in Sources */,
+				583A823A1D912A01006F14C6 /* NSString+Common.m in Sources */,
 				58D149341D8FD9C400A17D6D /* YYTextUtilities.m in Sources */,
 				58D1493C1D8FD9C400A17D6D /* YYReachability.m in Sources */,
 				58D149061D8FD9C400A17D6D /* UIControl+YYAdd.m in Sources */,
@@ -1334,6 +1353,7 @@
 				58D149691D8FEE3100A17D6D /* MJExtensionConst.m in Sources */,
 				58D148271D8E77F500A17D6D /* ZKDiscoverViewController.m in Sources */,
 				58D149351D8FD9C400A17D6D /* YYLabel.m in Sources */,
+				583A82361D91219B006F14C6 /* ZKViewController.m in Sources */,
 				58D1491B1D8FD9C400A17D6D /* YYImage.m in Sources */,
 				58D149051D8FD9C400A17D6D /* UIColor+YYAdd.m in Sources */,
 				58D1491E1D8FD9C400A17D6D /* YYSpriteSheetImage.m in Sources */,

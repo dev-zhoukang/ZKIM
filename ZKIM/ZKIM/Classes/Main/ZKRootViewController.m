@@ -23,10 +23,12 @@
     [super viewDidLoad];
     
     ZKHomeViewController *homeViewController = [[ZKHomeViewController alloc] init];
+    UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:homeViewController];
+    [navc setNavigationBarHidden:YES animated:NO];
     
-    [self addChildViewController:homeViewController];
-    [self.view insertSubview:homeViewController.view atIndex:0];
-    [homeViewController.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+    [self addChildViewController:navc];
+    [self.view insertSubview:navc.view atIndex:0];
+    [navc.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
     
     if (!_loginUser) {
         ZKLoginHomeViewController *loginHomeVC = [[ZKLoginHomeViewController alloc] init];

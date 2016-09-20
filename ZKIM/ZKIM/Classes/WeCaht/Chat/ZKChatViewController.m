@@ -26,12 +26,20 @@
 - (void)setupUI
 {
     self.view.backgroundColor = GlobalBGColor;
+    self.title = @"聊天详情";
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:@"哈哈" style:UIBarButtonItemStyleDone target:self action:@selector(qq)];
+    self.myNavigationItem.leftBarButtonItem = leftItem;
     
     _tableView = [[UITableView alloc]
                   initWithFrame:(CGRect){CGPointZero, SCREEN_WIDTH, SCREEN_HEIGHT} style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.frame = self.view.bounds;
+}
+
+- (void)qq
+{
+    
 }
 
 #pragma mark - <UITableViewDelegate, UITableViewDataSource>

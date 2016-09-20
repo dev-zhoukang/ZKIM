@@ -120,8 +120,7 @@
 {
     UIViewController *viewController = [[class alloc] init];
     viewController.title = title;
-    ZKNavigationController *navc = [[ZKNavigationController alloc] initWithRootViewController:viewController];
-    return navc;
+    return viewController;
 }
 
 @end
