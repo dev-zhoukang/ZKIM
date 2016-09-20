@@ -17,5 +17,6 @@
 #import "ZKHVButton.h"
 #import "YYKit.h"
 #import "MJExtension.h"
+#import "AuthData.h"
 
 #endif /* PrefixHeader_pch */

@@ -1,17 +1,16 @@
 //
-//  AutoData.m
+//  AuthData.m
 //  ZKIM
 //
 //  Created by ZK on 16/9/19.
 //  Copyright © 2016年 ZK. All rights reserved.
 //
 
-#import "AutoData.h"
-#import "ZKLoginUser.h"
+#import "AuthData.h"
 
 static ZKLoginUser *loginUser;
 
-@implementation AutoData
+@implementation AuthData
 
 + (ZKLoginUser *)loginUser
 {

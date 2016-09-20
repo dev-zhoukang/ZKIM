@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		583A81E31D90CBE7006F14C6 /* ZKXMPPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A81E21D90CBE7006F14C6 /* ZKXMPPManager.m */; };
 		58AB30231D891AFD007BB571 /* Launch_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58AB30221D891AFD007BB571 /* Launch_image@2x.png */; };
 		58AB302A1D891B89007BB571 /* ZKHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58AB30261D891B89007BB571 /* ZKHomeViewController.m */; };
 		58AB302B1D891B89007BB571 /* ZKHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58AB30271D891B89007BB571 /* ZKHomeViewController.xib */; };
@@ -111,7 +112,7 @@
 		58D149401D8FD9C400A17D6D /* YYTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D148EC1D8FD9C400A17D6D /* YYTimer.m */; };
 		58D149411D8FD9C400A17D6D /* YYTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D148EE1D8FD9C400A17D6D /* YYTransaction.m */; };
 		58D149421D8FD9C400A17D6D /* YYWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D148F01D8FD9C400A17D6D /* YYWeakProxy.m */; };
-		58D1494F1D8FEDB300A17D6D /* AutoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D1494C1D8FEDB300A17D6D /* AutoData.m */; };
+		58D1494F1D8FEDB300A17D6D /* AuthData.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D1494C1D8FEDB300A17D6D /* AuthData.m */; };
 		58D149501D8FEDB300A17D6D /* ZKLoginUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D1494E1D8FEDB300A17D6D /* ZKLoginUser.m */; };
 		58D149681D8FEE3100A17D6D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 58D149521D8FEE3100A17D6D /* Info.plist */; };
 		58D149691D8FEE3100A17D6D /* MJExtensionConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D149551D8FEE3100A17D6D /* MJExtensionConst.m */; };
@@ -162,6 +163,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		583A81E11D90CBE7006F14C6 /* ZKXMPPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKXMPPManager.h; sourceTree = "<group>"; };
+		583A81E21D90CBE7006F14C6 /* ZKXMPPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKXMPPManager.m; sourceTree = "<group>"; };
 		58AB30221D891AFD007BB571 /* Launch_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Launch_image@2x.png"; sourceTree = "<group>"; };
 		58AB30251D891B89007BB571 /* ZKHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKHomeViewController.h; sourceTree = "<group>"; };
 		58AB30261D891B89007BB571 /* ZKHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKHomeViewController.m; sourceTree = "<group>"; };
@@ -362,8 +365,8 @@
 		58D148EF1D8FD9C400A17D6D /* YYWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWeakProxy.h; sourceTree = "<group>"; };
 		58D148F01D8FD9C400A17D6D /* YYWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWeakProxy.m; sourceTree = "<group>"; };
 		58D148F11D8FD9C400A17D6D /* YYKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYKit.h; sourceTree = "<group>"; };
-		58D1494B1D8FEDB300A17D6D /* AutoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoData.h; sourceTree = "<group>"; };
-		58D1494C1D8FEDB300A17D6D /* AutoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoData.m; sourceTree = "<group>"; };
+		58D1494B1D8FEDB300A17D6D /* AuthData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthData.h; sourceTree = "<group>"; };
+		58D1494C1D8FEDB300A17D6D /* AuthData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthData.m; sourceTree = "<group>"; };
 		58D1494D1D8FEDB300A17D6D /* ZKLoginUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKLoginUser.h; sourceTree = "<group>"; };
 		58D1494E1D8FEDB300A17D6D /* ZKLoginUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKLoginUser.m; sourceTree = "<group>"; };
 		58D149521D8FEE3100A17D6D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -491,6 +494,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		583A81E01D90CB19006F14C6 /* ZKXMPPManager */ = {
+			isa = PBXGroup;
+			children = (
+				583A81E11D90CBE7006F14C6 /* ZKXMPPManager.h */,
+				583A81E21D90CBE7006F14C6 /* ZKXMPPManager.m */,
+			);
+			path = ZKXMPPManager;
+			sourceTree = "<group>";
+		};
 		58AB30201D891ADF007BB571 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -519,6 +531,7 @@
 				58AB30291D891B89007BB571 /* ZKRootViewController.m */,
 				58D148341D8E7F3C00A17D6D /* ZKNavigationController.h */,
 				58D148351D8E7F3C00A17D6D /* ZKNavigationController.m */,
+				583A81E01D90CB19006F14C6 /* ZKXMPPManager */,
 				58D147FB1D89402700A17D6D /* Supporting */,
 			);
 			path = Main;
@@ -875,8 +888,8 @@
 		58D1494A1D8FEDB300A17D6D /* User */ = {
 			isa = PBXGroup;
 			children = (
-				58D1494B1D8FEDB300A17D6D /* AutoData.h */,
-				58D1494C1D8FEDB300A17D6D /* AutoData.m */,
+				58D1494B1D8FEDB300A17D6D /* AuthData.h */,
+				58D1494C1D8FEDB300A17D6D /* AuthData.m */,
 				58D1494D1D8FEDB300A17D6D /* ZKLoginUser.h */,
 				58D1494E1D8FEDB300A17D6D /* ZKLoginUser.m */,
 			);
@@ -1311,6 +1324,7 @@
 				58D149231D8FD9C400A17D6D /* YYTextContainerView.m in Sources */,
 				58D148F51D8FD9C400A17D6D /* NSDate+YYAdd.m in Sources */,
 				58D1492C1D8FD9C400A17D6D /* NSAttributedString+YYText.m in Sources */,
+				583A81E31D90CBE7006F14C6 /* ZKXMPPManager.m in Sources */,
 				58D147F51D892E8D00A17D6D /* USSuspensionView.m in Sources */,
 				58D149281D8FD9C400A17D6D /* YYTextLayout.m in Sources */,
 				58D148FC1D8FD9C400A17D6D /* NSObject+YYAddForKVO.m in Sources */,
@@ -1321,7 +1335,7 @@
 				58D149171D8FD9C400A17D6D /* UIButton+YYWebImage.m in Sources */,
 				58D1496B1D8FEE3100A17D6D /* MJProperty.m in Sources */,
 				58D149361D8FD9C400A17D6D /* YYTextView.m in Sources */,
-				58D1494F1D8FEDB300A17D6D /* AutoData.m in Sources */,
+				58D1494F1D8FEDB300A17D6D /* AuthData.m in Sources */,
 				58D149391D8FD9C400A17D6D /* YYFileHash.m in Sources */,
 				58D1496D1D8FEE3100A17D6D /* MJPropertyType.m in Sources */,
 				58D148361D8E7F3C00A17D6D /* ZKNavigationController.m in Sources */,

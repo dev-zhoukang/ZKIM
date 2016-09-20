@@ -8,15 +8,13 @@
 
 #import "AppDelegate.h"
 #import "ZKRootViewController.h"
-#import "EMSDK.h"
-#import "ZKNavigationController.h"
+#import "ZKXMPPManager.h"
 
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
@@ -27,27 +25,20 @@
     _rootViewController = [[ZKRootViewController alloc] init];
     self.window.rootViewController = _rootViewController;
     
-    EMOptions *options = [EMOptions optionsWithAppkey:kAppKey_EM];
-    options.apnsCertName = @"istore_dev";
-    EMError *error = [[EMClient sharedClient] initializeSDKWithOptions:options];
-    if (error) {
-        DLog(@"环信初始化失败===%@", error.errorDescription);
-    }
-    else {
-        DLog(@"环信初始化成功");
-    }
+    // 初始化环信
+    [ZKXMPPManager initEMSDK];
     
     return YES;
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    [[EMClient sharedClient] applicationDidEnterBackground:application];
+    [ZKXMPPManager applicationDidEnterBackground:application];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    [[EMClient sharedClient] applicationWillEnterForeground:application];
+    [ZKXMPPManager applicationWillEnterForeground:application];
 }
 
 @end

@@ -1,5 +1,5 @@
 //
-//  AutoData.h
+//  AuthData.h
 //  ZKIM
 //
 //  Created by ZK on 16/9/19.
@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-@class ZKLoginUser;
+#import "ZKLoginUser.h"
 
-@interface AutoData : NSObject
+@interface AuthData : NSObject
 
 + (ZKLoginUser *)loginUser;
 + (void)removeLoginUser;

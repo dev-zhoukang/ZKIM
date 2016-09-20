@@ -59,7 +59,13 @@
         [USSuspensionView showWithMessage:errorHintStr];
     }
     else {
+        // 设置自动登录
         [[EMClient sharedClient].options setIsAutoLogin:YES];
+        NSDictionary *info = @{
+                               @"account":_accountTextField.text,
+                               @"password":_passwordTextField.text // 不应该明文存储在本地, 这只是Demo, 所以...
+                               };
+        [AuthData loginSuccess:info];
         [USSuspensionView showWithMessage:@"正在登录..."];
         [KeyWindow endEditing:YES];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

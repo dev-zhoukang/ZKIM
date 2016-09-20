@@ -28,8 +28,10 @@
     [self.view insertSubview:homeViewController.view atIndex:0];
     [homeViewController.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
     
-    ZKLoginHomeViewController *loginHomeVC = [[ZKLoginHomeViewController alloc] init];
-    [_applicationContext presentNavigationController:loginHomeVC animated:NO completion:nil];
+    if (!_loginUser) {
+        ZKLoginHomeViewController *loginHomeVC = [[ZKLoginHomeViewController alloc] init];
+        [_applicationContext presentNavigationController:loginHomeVC animated:NO completion:nil];
+    }
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
