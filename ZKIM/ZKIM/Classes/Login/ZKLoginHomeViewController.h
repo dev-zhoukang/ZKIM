@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZKLoginHomeViewController : UIViewController
+@interface ZKLoginHomeViewController : ZKViewController
 
 @end

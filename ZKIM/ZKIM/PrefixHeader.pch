@@ -9,6 +9,7 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
+#import "ZKViewController.h"
 #import "ZKConfig.h"
 #import "UIView+AutoLayout.h"
 #import "USSuspensionView.h"
@@ -18,7 +19,6 @@
 #import "YYKit.h"
 #import "MJExtension.h"
 #import "AuthData.h"
-#import "ZKViewController.h"
 #import "NSString+Common.h"
 
 #endif /* PrefixHeader_pch */

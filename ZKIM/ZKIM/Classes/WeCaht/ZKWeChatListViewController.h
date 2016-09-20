@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZKWeChatListViewController : UIViewController
+@interface ZKWeChatListViewController : ZKViewController
 
 @end

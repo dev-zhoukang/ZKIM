@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZKContactViewController : UIViewController
+@interface ZKContactViewController : ZKViewController
 
 @end

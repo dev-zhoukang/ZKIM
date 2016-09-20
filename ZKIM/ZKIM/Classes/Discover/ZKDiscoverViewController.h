@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZKDiscoverViewController : UIViewController
+@interface ZKDiscoverViewController : ZKViewController
 
 @end

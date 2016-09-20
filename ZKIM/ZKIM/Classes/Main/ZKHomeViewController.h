@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZKHomeViewController : UIViewController
+@interface ZKHomeViewController : ZKViewController
 
 @property (nonatomic, assign) NSInteger pageIndex;
 

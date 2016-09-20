@@ -13,7 +13,7 @@ typedef NS_ENUM(NSInteger, ZKLoginType) {
     ZKLoginTypeRegister
 };
 
-@interface ZKLoginViewController : UIViewController
+@interface ZKLoginViewController : ZKViewController
 
 @property (nonatomic, assign) ZKLoginType loginType;
 

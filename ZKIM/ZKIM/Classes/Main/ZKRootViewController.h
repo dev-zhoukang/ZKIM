@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ZKNavigationController;
 
-@interface ZKRootViewController : UIViewController
+@interface ZKRootViewController : ZKViewController
 
 @end
