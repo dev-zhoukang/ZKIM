@@ -28,16 +28,17 @@
     [super viewDidLoad];
     self.view.clipsToBounds = YES;
     
-    self.automaticallyAdjustsScrollViewInsets = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.navigationBar.clipsToBounds = YES;
     self.navigationBar.translucent = NO;
-    self.navigationBar.barTintColor = [UIColor whiteColor];
+    self.navigationBar.tintColor = [UIColor whiteColor];
+    [self.navigationBar setBackgroundImage:[UIImage imageNamed:@"bg_nav"] forBarMetrics:UIBarMetricsDefault];
     
     NSShadow *shadow = [NSShadow new];
     NSDictionary *dict = @{NSShadowAttributeName:shadow,
-                           NSFontAttributeName:[UIFont boldSystemFontOfSize:16.f],
-                           NSForegroundColorAttributeName:HexColor(0xb69257)};
+                           NSFontAttributeName:[UIFont boldSystemFontOfSize:19.f],
+                           NSForegroundColorAttributeName:[UIColor whiteColor]};
     self.navigationBar.titleTextAttributes = dict;
     
     if (self.navigationController) {

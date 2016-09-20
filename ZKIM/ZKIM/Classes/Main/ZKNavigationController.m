@@ -20,7 +20,6 @@
     UINavigationBar *barAppearance = [UINavigationBar appearance];
     barAppearance.tintColor = [UIColor whiteColor];
     [barAppearance setBackgroundImage:[UIImage imageNamed:@"bg_nav"] forBarMetrics:UIBarMetricsDefault];
-    barAppearance.barStyle = UIBarStyleBlack;
     
     NSMutableDictionary *barAttributes = [[NSMutableDictionary alloc] init];
     barAttributes[NSForegroundColorAttributeName] = [UIColor whiteColor];
