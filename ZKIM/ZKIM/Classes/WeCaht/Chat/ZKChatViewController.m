@@ -25,6 +25,8 @@
 
 - (void)setupUI
 {
+    self.view.backgroundColor = GlobalBGColor;
+    
     _tableView = [[UITableView alloc]
                   initWithFrame:(CGRect){CGPointZero, SCREEN_WIDTH, SCREEN_HEIGHT} style:UITableViewStylePlain];
     _tableView.delegate = self;

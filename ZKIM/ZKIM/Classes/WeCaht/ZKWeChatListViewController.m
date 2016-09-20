@@ -8,6 +8,7 @@
 
 #import "ZKWeChatListViewController.h"
 #import "ZKWeChatCell.h"
+#import "ZKChatViewController.h"
 
 @interface ZKWeChatListViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -43,6 +44,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    ZKChatViewController *chatVC = [[ZKChatViewController alloc] init];
+    [self.navigationController pushViewController:chatVC animated:YES];
 }
 
 #pragma mark - Getter
