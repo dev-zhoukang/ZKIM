@@ -32,18 +32,27 @@
                     </constraints>
                     <state key="normal" image="ToolViewInputVoice_35x35_"/>
                     <state key="selected" image="ToolViewKeyboard_35x35_"/>
+                    <connections>
+                        <action selector="chatBatBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="sgp-Hl-Eqx"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfS-sN-iqk" userLabel="Plus Button">
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="YfS-sN-iqk" secondAttribute="height" multiplier="1:1.2" id="5LO-PV-1fK"/>
-                    </constraints>
-                    <state key="normal" image="TypeSelectorBtn_Black_35x35_"/>
-                </button>
-                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="foW-l3-JEi" userLabel="Emoj Button">
+                <button opaque="NO" tag="1" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="foW-l3-JEi" userLabel="Emoj Button">
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" image="ToolViewEmotion_35x35_"/>
                     <state key="selected" image="ToolViewKeyboard_35x35_"/>
+                    <connections>
+                        <action selector="chatBatBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="gHI-d8-bQX"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="2" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfS-sN-iqk" userLabel="Plus Button">
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="YfS-sN-iqk" secondAttribute="height" multiplier="1:1.3" id="5LO-PV-1fK"/>
+                    </constraints>
+                    <state key="normal" image="TypeSelectorBtn_Black_35x35_"/>
+                    <connections>
+                        <action selector="chatBatBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="IPM-ZY-25B"/>
+                    </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kbx-P3-g4W">
                     <nil key="textColor"/>
@@ -56,6 +65,9 @@
                     <state key="normal" title="按住 说话">
                         <color key="titleColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="recordBtnClick" destination="iN0-l3-epB" eventType="touchUpInside" id="dSE-ca-753"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -64,7 +76,7 @@
                 <constraint firstAttribute="bottom" secondItem="foW-l3-JEi" secondAttribute="bottom" id="0hW-Zu-suj"/>
                 <constraint firstItem="ewu-dp-oFD" firstAttribute="trailing" secondItem="Kbx-P3-g4W" secondAttribute="trailing" id="3wF-EB-F1U"/>
                 <constraint firstItem="f3c-u4-TXm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4gu-ql-aFA"/>
-                <constraint firstItem="foW-l3-JEi" firstAttribute="width" secondItem="foW-l3-JEi" secondAttribute="height" multiplier="1:1.2" id="78b-PH-wmI"/>
+                <constraint firstItem="foW-l3-JEi" firstAttribute="width" secondItem="foW-l3-JEi" secondAttribute="height" multiplier="1:1.3" id="78b-PH-wmI"/>
                 <constraint firstItem="ewu-dp-oFD" firstAttribute="bottom" secondItem="Kbx-P3-g4W" secondAttribute="bottom" id="7pV-qI-ehd"/>
                 <constraint firstItem="5se-ey-v0S" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9Is-wq-XCh"/>
                 <constraint firstAttribute="bottom" secondItem="5se-ey-v0S" secondAttribute="bottom" id="Aq0-fb-eXc"/>
@@ -73,7 +85,7 @@
                 <constraint firstItem="Kbx-P3-g4W" firstAttribute="leading" secondItem="5se-ey-v0S" secondAttribute="trailing" id="N5a-xO-Hwl"/>
                 <constraint firstItem="ewu-dp-oFD" firstAttribute="leading" secondItem="Kbx-P3-g4W" secondAttribute="leading" id="Rcu-j2-FTS"/>
                 <constraint firstItem="f3c-u4-TXm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="RqC-Ln-Gzf"/>
-                <constraint firstItem="foW-l3-JEi" firstAttribute="leading" secondItem="Kbx-P3-g4W" secondAttribute="trailing" id="UyS-0q-kCT"/>
+                <constraint firstItem="foW-l3-JEi" firstAttribute="leading" secondItem="Kbx-P3-g4W" secondAttribute="trailing" constant="6" id="UyS-0q-kCT"/>
                 <constraint firstItem="YfS-sN-iqk" firstAttribute="leading" secondItem="foW-l3-JEi" secondAttribute="trailing" id="VWH-AW-Rhb"/>
                 <constraint firstItem="YfS-sN-iqk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Xny-UM-KJw"/>
                 <constraint firstItem="ewu-dp-oFD" firstAttribute="top" secondItem="Kbx-P3-g4W" secondAttribute="top" id="ZIX-4r-rAh"/>
@@ -86,6 +98,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="recordBtn" destination="ewu-dp-oFD" id="lvj-wU-Hov"/>
+                <outlet property="textField" destination="Kbx-P3-g4W" id="hmo-7A-CzM"/>
             </connections>
             <point key="canvasLocation" x="-130" y="-145"/>
         </view>

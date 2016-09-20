@@ -10,6 +10,8 @@
 
 @interface ZKChatBar()
 @property (weak, nonatomic) IBOutlet UIButton *recordBtn;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (nonatomic, strong) UIButton *selectedBtn;
 @end
 
 @implementation ZKChatBar
@@ -37,5 +39,16 @@
 {
     return [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil].firstObject;
 }
+
+#pragma mark - Action
+
+- (IBAction)chatBatBtnClick:(UIButton *)btn
+{
+    btn.selected = !btn.selected;
+}
+
+- (IBAction)recordBtnClick {
+}
+
 
 @end
