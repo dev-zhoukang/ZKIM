@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZKWeChatViewController">
             <connections>
+                <outlet property="tableView" destination="PFf-eS-FnM" id="CxX-ml-FpR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,8 +16,23 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PFf-eS-FnM">
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="lh4-6d-j3k"/>
+                        <outlet property="delegate" destination="-1" id="p66-Ps-nbF"/>
+                    </connections>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" red="0.99607843139999996" green="0.73474686222416108" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <point key="canvasLocation" x="-51" y="-64"/>
+            <constraints>
+                <constraint firstItem="PFf-eS-FnM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="YfO-aN-Sdg"/>
+                <constraint firstAttribute="trailing" secondItem="PFf-eS-FnM" secondAttribute="trailing" id="bQb-3U-X6v"/>
+                <constraint firstAttribute="bottom" secondItem="PFf-eS-FnM" secondAttribute="bottom" id="lDx-rL-lbL"/>
+                <constraint firstItem="PFf-eS-FnM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="z30-Q3-PM8"/>
+            </constraints>
+            <point key="canvasLocation" x="-77" y="-193"/>
         </view>
     </objects>
 </document>

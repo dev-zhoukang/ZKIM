@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		583A81E31D90CBE7006F14C6 /* ZKXMPPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A81E21D90CBE7006F14C6 /* ZKXMPPManager.m */; };
+		583A81E71D90FE4A006F14C6 /* ZKWeChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A81E51D90FE4A006F14C6 /* ZKWeChatCell.m */; };
+		583A81E81D90FE4A006F14C6 /* ZKWeChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 583A81E61D90FE4A006F14C6 /* ZKWeChatCell.xib */; };
 		58AB30231D891AFD007BB571 /* Launch_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58AB30221D891AFD007BB571 /* Launch_image@2x.png */; };
 		58AB302A1D891B89007BB571 /* ZKHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58AB30261D891B89007BB571 /* ZKHomeViewController.m */; };
 		58AB302B1D891B89007BB571 /* ZKHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58AB30271D891B89007BB571 /* ZKHomeViewController.xib */; };
@@ -165,6 +167,9 @@
 /* Begin PBXFileReference section */
 		583A81E11D90CBE7006F14C6 /* ZKXMPPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKXMPPManager.h; sourceTree = "<group>"; };
 		583A81E21D90CBE7006F14C6 /* ZKXMPPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKXMPPManager.m; sourceTree = "<group>"; };
+		583A81E41D90FE4A006F14C6 /* ZKWeChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKWeChatCell.h; sourceTree = "<group>"; };
+		583A81E51D90FE4A006F14C6 /* ZKWeChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKWeChatCell.m; sourceTree = "<group>"; };
+		583A81E61D90FE4A006F14C6 /* ZKWeChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKWeChatCell.xib; sourceTree = "<group>"; };
 		58AB30221D891AFD007BB571 /* Launch_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Launch_image@2x.png"; sourceTree = "<group>"; };
 		58AB30251D891B89007BB571 /* ZKHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKHomeViewController.h; sourceTree = "<group>"; };
 		58AB30261D891B89007BB571 /* ZKHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKHomeViewController.m; sourceTree = "<group>"; };
@@ -626,6 +631,9 @@
 				58D1482F1D8E793C00A17D6D /* ZKWeChatViewController.h */,
 				58D148301D8E793C00A17D6D /* ZKWeChatViewController.m */,
 				58D148311D8E793C00A17D6D /* ZKWeChatViewController.xib */,
+				583A81E41D90FE4A006F14C6 /* ZKWeChatCell.h */,
+				583A81E51D90FE4A006F14C6 /* ZKWeChatCell.m */,
+				583A81E61D90FE4A006F14C6 /* ZKWeChatCell.xib */,
 			);
 			path = WeCaht;
 			sourceTree = "<group>";
@@ -1217,6 +1225,7 @@
 				58E360081D87D5E100D38839 /* LaunchScreen.storyboard in Resources */,
 				58D149681D8FEE3100A17D6D /* Info.plist in Resources */,
 				58D148281D8E77F500A17D6D /* ZKDiscoverViewController.xib in Resources */,
+				583A81E81D90FE4A006F14C6 /* ZKWeChatCell.xib in Resources */,
 				58AB302B1D891B89007BB571 /* ZKHomeViewController.xib in Resources */,
 				58D147EB1D89240A00A17D6D /* ZKLoginHomeViewController.xib in Resources */,
 				58E360051D87D5E100D38839 /* Assets.xcassets in Resources */,
@@ -1269,6 +1278,7 @@
 				58D148FA1D8FD9C400A17D6D /* NSObject+YYAdd.m in Sources */,
 				58D149111D8FD9C400A17D6D /* YYDiskCache.m in Sources */,
 				58E35FFD1D87D5E100D38839 /* AppDelegate.m in Sources */,
+				583A81E71D90FE4A006F14C6 /* ZKWeChatCell.m in Sources */,
 				58D148F21D8FD9C400A17D6D /* NSArray+YYAdd.m in Sources */,
 				58D1491D1D8FD9C400A17D6D /* YYImageCoder.m in Sources */,
 				58D148221D8E77D800A17D6D /* ZKContactViewController.m in Sources */,
