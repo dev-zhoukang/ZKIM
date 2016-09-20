@@ -22,6 +22,8 @@
 {
     [super viewDidLoad];
     
+    self.navigationBar.hidden = YES;
+    
     ZKHomeViewController *homeViewController = [[ZKHomeViewController alloc] init];
     UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:homeViewController];
     [navc setNavigationBarHidden:YES animated:NO];

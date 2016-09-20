@@ -28,7 +28,7 @@
     [super viewDidLoad];
     self.view.clipsToBounds = YES;
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.automaticallyAdjustsScrollViewInsets = YES;
     
     self.navigationBar.clipsToBounds = YES;
     self.navigationBar.translucent = NO;
@@ -171,39 +171,43 @@
 
 - (void)setNavigationLeftView:(UIView *)view
 {
-    if ([view isKindOfClass:[UIButton class]]) {
-        [(UIButton *)view setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    }
-    
-    UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithCustomView:view];
-    
-    // 调整 leftBarButtonItem 的位置
-    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = 0;  //向左移动0个像素
-    
-    if ([self respondsToSelector:@selector(myNavigationItem)] && ((ZKViewController *)self).myNavigationItem) {
-        ((ZKViewController *)self).myNavigationItem.leftBarButtonItems = @[negativeSpacer, buttonItem];
-    }else{
-        self.navigationItem.leftBarButtonItems = @[negativeSpacer, buttonItem];
-    }
+    [self setupNavigationRightLeftView:view isLeftView:YES];
 }
 
 - (void)setNavigationRightView:(UIView *)view
 {
+    [self setupNavigationRightLeftView:view isLeftView:NO];
+}
+
+/** 创建导航栏的左右视图, 左或右 */
+- (void)setupNavigationRightLeftView:(UIView *)view isLeftView:(BOOL)isLeftView
+{
     if ([view isKindOfClass:[UIButton class]]) {
-        [(UIButton *)view setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+        [(UIButton *)view setContentHorizontalAlignment:isLeftView
+                                                                 ? UIControlContentHorizontalAlignmentLeft
+                                                                 : UIControlContentHorizontalAlignmentRight];
     }
+    
     UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithCustomView:view];
     
-    // 调整 rightBarButtonItem 的位置
+    // 调整 BarButtonItem 的位置
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = 0;  //向右移动0个像素
+    negativeSpacer.width = 0;  //移动0个像素
     
-    if ([self respondsToSelector:@selector(myNavigationItem)] && ((ZKViewController *)self).myNavigationItem) {
-        ((ZKViewController *)self).myNavigationItem.rightBarButtonItems = @[negativeSpacer, buttonItem];
+    if (isLeftView) {
+        if ([self respondsToSelector:@selector(myNavigationItem)] && ((ZKViewController *)self).myNavigationItem) {
+            ((ZKViewController *)self).myNavigationItem.leftBarButtonItems = @[negativeSpacer, buttonItem];
+        }else{
+            self.navigationItem.leftBarButtonItems = @[negativeSpacer, buttonItem];
+        }
     }
-    else{
-        self.navigationItem.rightBarButtonItems = @[negativeSpacer, buttonItem];
+    else {
+        if ([self respondsToSelector:@selector(myNavigationItem)] && ((ZKViewController *)self).myNavigationItem) {
+            ((ZKViewController *)self).myNavigationItem.rightBarButtonItems = @[negativeSpacer, buttonItem];
+        }
+        else{
+            self.navigationItem.rightBarButtonItems = @[negativeSpacer, buttonItem];
+        }
     }
 }
 

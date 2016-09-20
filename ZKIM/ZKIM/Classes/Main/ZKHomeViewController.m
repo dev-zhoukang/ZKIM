@@ -35,6 +35,8 @@
 
 - (void)setupUI
 {
+    self.navigationBar.hidden = YES;
+    
     [self setupTabBtn];
     [self setupPageViewController];
 }
@@ -48,8 +50,7 @@
     [self.view insertSubview:_pageViewController.view belowSubview:_tabView];
     [self addChildViewController:_pageViewController];
     
-    [_pageViewController.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeBottom];
-    [_pageViewController.view autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:_tabView withOffset:0];
+    [_pageViewController.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
 }
 
 - (void)setupTabBtn
