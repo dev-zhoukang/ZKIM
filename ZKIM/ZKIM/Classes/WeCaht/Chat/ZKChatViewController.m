@@ -41,6 +41,10 @@
     _chatBar.left = 0;
     _chatBar.bottom = SCREEN_HEIGHT;
     [self.view addSubview:_chatBar];
+    
+    UIControl *control = [[UIControl alloc] initWithFrame:self.view.bounds];
+    [self.view insertSubview:control belowSubview:_chatBar];
+    control addTarget:self action:<#(nonnull SEL)#> forControlEvents:<#(UIControlEvents)#>
 }
 
 #pragma mark - <UITableViewDelegate, UITableViewDataSource>
