@@ -124,4 +124,11 @@
     return viewController;
 }
 
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    [_tabView autoSetDimension:ALDimensionHeight toSize:_bottomInset];
+}
+
 @end

@@ -11,6 +11,7 @@
 @interface ZKViewController : UIViewController
 {
     CGFloat _topInset;
+    CGFloat _bottomInset; //!< TabBar 高度
 }
 
 @property(nonatomic, strong) NSString *hint;

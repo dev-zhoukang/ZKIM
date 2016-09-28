@@ -25,6 +25,8 @@
 
     _tableView.rowHeight = 67.f;
     _tableView.tableFooterView = [[UIView alloc] init];
+    _tableView.contentInset = UIEdgeInsetsMake(_topInset, 0, _bottomInset, 0);
+    [_tableView setContentOffset:CGPointMake(0, -_topInset)];
 }
 
 #pragma mark - <UITableViewDelegate, UITableViewDataSource>

@@ -58,6 +58,7 @@
 - (void)setup
 {
     _topInset = 64.f;
+    _bottomInset = 50.f;
     self.navigationBar = [[UINavigationBar alloc] initForAutoLayout];
     [self.navigationBar autoSetDimension:ALDimensionHeight toSize:_topInset];
     

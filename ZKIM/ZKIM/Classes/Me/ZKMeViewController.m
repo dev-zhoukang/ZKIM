@@ -27,6 +27,7 @@
     _tableView.sectionIndexBackgroundColor = [UIColor clearColor];
     _tableView.sectionIndexTrackingBackgroundColor = [UIColor clearColor];
     _tableView.backgroundColor = GlobalBGColor;
+    _tableView.contentInset = UIEdgeInsetsMake(_topInset, 0, _bottomInset, 0);
 }
 
 #pragma mark - <UITableViewDelegate, UITableViewDataSource>

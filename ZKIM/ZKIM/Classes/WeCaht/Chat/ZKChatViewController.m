@@ -44,7 +44,7 @@
     
     UIControl *control = [[UIControl alloc] initWithFrame:self.view.bounds];
     [self.view insertSubview:control belowSubview:_chatBar];
-    control addTarget:self action:<#(nonnull SEL)#> forControlEvents:<#(UIControlEvents)#>
+    [control addTarget:self action:@selector(didTapView) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark - <UITableViewDelegate, UITableViewDataSource>
@@ -57,6 +57,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return nil;
+}
+
+#pragma mark - Actions
+
+- (void)didTapView
+{
+    [KeyWindow endEditing:YES];
 }
 
 @end
