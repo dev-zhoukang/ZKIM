@@ -35,6 +35,8 @@ static CGFloat keyboard_y;
 - (void)setup
 {
     _textView.delegate = self;
+    _textView.returnKeyType = UIReturnKeySend;
+    _textView.font = [UIFont systemFontOfSize:15.f];
     
     [self addBorderForView:_recordBtn];
     [self addBorderForView:_textView];

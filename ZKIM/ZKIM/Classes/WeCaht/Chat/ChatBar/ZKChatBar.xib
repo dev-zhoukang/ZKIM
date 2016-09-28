@@ -27,7 +27,8 @@
                 <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5se-ey-v0S" userLabel="Voice Button">
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="50" id="awd-eo-mZg"/>
+                        <constraint firstAttribute="height" constant="50" id="Xm6-WQ-OLe"/>
+                        <constraint firstAttribute="width" constant="45" id="awd-eo-mZg"/>
                     </constraints>
                     <state key="normal" image="ToolViewInputVoice_35x35_"/>
                     <state key="selected" image="ToolViewKeyboard_35x35_"/>
@@ -39,6 +40,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="39" id="TH3-bM-BM6"/>
+                        <constraint firstAttribute="height" constant="50" id="YJg-9r-QLT"/>
                     </constraints>
                     <state key="normal" image="ToolViewEmotion_35x35_"/>
                     <state key="selected" image="ToolViewKeyboard_35x35_"/>
@@ -50,6 +52,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="38" id="1Bo-4d-drD"/>
+                        <constraint firstAttribute="height" constant="50" id="VfY-V7-5rx"/>
                     </constraints>
                     <state key="normal" image="TypeSelectorBtn_Black_35x35_"/>
                     <connections>
@@ -77,7 +80,6 @@
                 <constraint firstAttribute="bottom" secondItem="YfS-sN-iqk" secondAttribute="bottom" id="03S-bo-3H9"/>
                 <constraint firstAttribute="bottom" secondItem="foW-l3-JEi" secondAttribute="bottom" id="0hW-Zu-suj"/>
                 <constraint firstItem="f3c-u4-TXm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4gu-ql-aFA"/>
-                <constraint firstItem="5se-ey-v0S" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9Is-wq-XCh"/>
                 <constraint firstItem="C37-ua-kiN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="7" id="9ZK-5M-cvY"/>
                 <constraint firstAttribute="bottom" secondItem="5se-ey-v0S" secondAttribute="bottom" id="Aq0-fb-eXc"/>
                 <constraint firstAttribute="trailing" secondItem="f3c-u4-TXm" secondAttribute="trailing" id="KDJ-Aw-X8v"/>
@@ -85,14 +87,12 @@
                 <constraint firstItem="f3c-u4-TXm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="RqC-Ln-Gzf"/>
                 <constraint firstItem="YfS-sN-iqk" firstAttribute="leading" secondItem="foW-l3-JEi" secondAttribute="trailing" id="VWH-AW-Rhb"/>
                 <constraint firstAttribute="bottom" secondItem="C37-ua-kiN" secondAttribute="bottom" constant="7" id="X2H-9l-17n"/>
-                <constraint firstItem="YfS-sN-iqk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Xny-UM-KJw"/>
                 <constraint firstItem="C37-ua-kiN" firstAttribute="leading" secondItem="5se-ey-v0S" secondAttribute="trailing" id="Xyc-S0-tVF"/>
                 <constraint firstItem="ewu-dp-oFD" firstAttribute="leading" secondItem="5se-ey-v0S" secondAttribute="trailing" id="dcI-Ak-zCU"/>
                 <constraint firstAttribute="trailing" secondItem="YfS-sN-iqk" secondAttribute="trailing" id="hsh-2k-Ukt"/>
                 <constraint firstItem="5se-ey-v0S" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tvB-qT-4jl"/>
                 <constraint firstItem="foW-l3-JEi" firstAttribute="leading" secondItem="ewu-dp-oFD" secondAttribute="trailing" constant="6" id="uXX-rn-cWc"/>
                 <constraint firstItem="foW-l3-JEi" firstAttribute="leading" secondItem="C37-ua-kiN" secondAttribute="trailing" constant="6" id="xfR-Lk-2aE"/>
-                <constraint firstItem="foW-l3-JEi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="yEL-9g-osF"/>
                 <constraint firstAttribute="bottom" secondItem="ewu-dp-oFD" secondAttribute="bottom" constant="7" id="zgn-v9-IqD"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
