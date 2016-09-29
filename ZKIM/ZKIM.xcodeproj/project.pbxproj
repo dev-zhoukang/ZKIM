@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		582D55C41D9CE304004E9929 /* ZKChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C31D9CE304004E9929 /* ZKChatCell.m */; };
+		582D55C71D9CE3C8004E9929 /* ZKChatLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C61D9CE3C8004E9929 /* ZKChatLayout.m */; };
 		583A81E31D90CBE7006F14C6 /* ZKXMPPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A81E21D90CBE7006F14C6 /* ZKXMPPManager.m */; };
 		583A81E71D90FE4A006F14C6 /* ZKWeChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A81E51D90FE4A006F14C6 /* ZKWeChatCell.m */; };
 		583A81E81D90FE4A006F14C6 /* ZKWeChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 583A81E61D90FE4A006F14C6 /* ZKWeChatCell.xib */; };
@@ -170,6 +172,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		582D55C21D9CE304004E9929 /* ZKChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatCell.h; sourceTree = "<group>"; };
+		582D55C31D9CE304004E9929 /* ZKChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChatCell.m; sourceTree = "<group>"; };
+		582D55C51D9CE3C8004E9929 /* ZKChatLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatLayout.h; sourceTree = "<group>"; };
+		582D55C61D9CE3C8004E9929 /* ZKChatLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChatLayout.m; sourceTree = "<group>"; };
 		583A81E11D90CBE7006F14C6 /* ZKXMPPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKXMPPManager.h; sourceTree = "<group>"; };
 		583A81E21D90CBE7006F14C6 /* ZKXMPPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKXMPPManager.m; sourceTree = "<group>"; };
 		583A81E41D90FE4A006F14C6 /* ZKWeChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKWeChatCell.h; sourceTree = "<group>"; };
@@ -513,6 +519,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		582D55BA1D9CDA85004E9929 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				582D55BE1D9CDAEA004E9929 /* Layout */,
+				582D55C21D9CE304004E9929 /* ZKChatCell.h */,
+				582D55C31D9CE304004E9929 /* ZKChatCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		582D55BE1D9CDAEA004E9929 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				582D55C51D9CE3C8004E9929 /* ZKChatLayout.h */,
+				582D55C61D9CE3C8004E9929 /* ZKChatLayout.m */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
 		583A81E01D90CB19006F14C6 /* ZKXMPPManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -525,6 +550,7 @@
 		583A81E91D91090B006F14C6 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				582D55BA1D9CDA85004E9929 /* Cell */,
 				583A823B1D913A63006F14C6 /* ChatBar */,
 				583A81EA1D91092C006F14C6 /* ZKChatViewController.h */,
 				583A81EB1D91092C006F14C6 /* ZKChatViewController.m */,
@@ -1348,6 +1374,7 @@
 				58D149061D8FD9C400A17D6D /* UIControl+YYAdd.m in Sources */,
 				58AB302A1D891B89007BB571 /* ZKHomeViewController.m in Sources */,
 				583A81EC1D91092C006F14C6 /* ZKChatViewController.m in Sources */,
+				582D55C71D9CE3C8004E9929 /* ZKChatLayout.m in Sources */,
 				58D1493A1D8FD9C400A17D6D /* YYGestureRecognizer.m in Sources */,
 				58D1483C1D8F7D1D00A17D6D /* ZKMeTableCell.m in Sources */,
 				58D147FF1D894F1900A17D6D /* ZKHVButton.m in Sources */,
@@ -1363,6 +1390,7 @@
 				58D149101D8FD9C400A17D6D /* YYCache.m in Sources */,
 				58D1492B1D8FD9C400A17D6D /* YYTextSelectionView.m in Sources */,
 				58D149011D8FD9C400A17D6D /* YYCGUtilities.m in Sources */,
+				582D55C41D9CE304004E9929 /* ZKChatCell.m in Sources */,
 				58D1496E1D8FEE3100A17D6D /* NSObject+MJClass.m in Sources */,
 				58D148F71D8FD9C400A17D6D /* NSKeyedUnarchiver+YYAdd.m in Sources */,
 				58D149241D8FD9C400A17D6D /* YYTextDebugOption.m in Sources */,

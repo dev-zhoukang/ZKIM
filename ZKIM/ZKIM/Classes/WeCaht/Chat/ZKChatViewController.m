@@ -8,11 +8,13 @@
 
 #import "ZKChatViewController.h"
 #import "ZKChatBar.h"
+#import "ZKChatCell.h"
 
 @interface ZKChatViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ZKChatBar   *chatBar;
+@property (nonatomic, strong) NSArray *dataSource;
 
 @end
 
@@ -51,12 +53,30 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return self.dataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    ZKChatCell *cell = [ZKChatCell cellWithTableView:tableView type:ZKChatCellTypeText];
+    [cell updateCellWithInfo:self.dataSource[indexPath.item]];
+    return cell;
+}
+
+#pragma mark - Getter
+
+- (NSArray *)dataSource
+{
+    if (!_dataSource) {
+        _dataSource = @[
+                        @{@"content":@"哈哈哈哈哈哈这是什么?", @"isMine":@0},
+                        @{@"content":@"我也不知道啊!", @"isMine":@1},
+                        @{@"content":@"那你为什么发这个东西? 我真的一点都不明白. 对了, 想问你一件事, 我想了好久差点忘了, 你十一放假去干嘛?", @"isMine":@0},
+                        @{@"content":@"十一我没有事情做, 就在家歇着吧, 到时候来找我来看电影哈!", @"isMine":@1},
+                        @{@"content":@"好的, 正想问你呢, 好的, 不见不散!", @"isMine":@0}
+                        ];
+    }
+    return _dataSource;
 }
 
 #pragma mark - Actions
