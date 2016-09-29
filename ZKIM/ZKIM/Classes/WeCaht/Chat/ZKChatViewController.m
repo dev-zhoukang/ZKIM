@@ -45,7 +45,7 @@
                               @{@"content":@"到时候你看看能不能借我一些钱呀, 好久都没有看见过钱长什么样了, 真的特别需要钱, 帮帮忙吧, 还有一件事, 就是...", @"isMine":@0},
                               @{@"content":@"还有什么, 请说", @"isMine":@1},
                               @{@"content":@"算了, 给你讲个笑话吧, 你们用盗版的时候有想过做出这款软件的程序员吗？他们该如何养家糊口？ -- 哈哈哈，别逗了，程序员哪有家要养啊! ", @"isMine":@0},
-                              @{@"content":@"哈哈", @"isMine":@1},
+                              @{@"content":@"哈哈哈哈还好吧这个还是比较不错的哦继续将讲一个笑话, 我就告诉你", @"isMine":@1},
                               ];
         for (NSDictionary *entity in testData) {
             ZKChatLayout *layout = [[ZKChatLayout alloc] initWithChatEntity:entity];
@@ -69,6 +69,7 @@
     _tableView.dataSource = self;
     _tableView.alwaysBounceVertical = YES;
     _tableView.tableFooterView = [[UIView alloc] init];
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
     
     _chatBar = [ZKChatBar chatBar];

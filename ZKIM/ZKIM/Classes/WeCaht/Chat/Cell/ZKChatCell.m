@@ -33,19 +33,18 @@
 
 - (void)setup
 {
+    self.backgroundColor = [UIColor clearColor];
+    
     _iconImageView = [[UIImageView alloc] init];
     _iconImageView.size = CGSizeMake(40.f, 40.f);
     _iconImageView.top = 10.f;
     _iconImageView.image = [UIImage imageNamed:@"me"];
-    _iconImageView.backgroundColor = [UIColor greenColor];
     [self.contentView addSubview:_iconImageView];
     
     _bubbleImageView = [[UIImageView alloc] init];
-    _bubbleImageView.backgroundColor = [UIColor lightGrayColor];
     [self.contentView addSubview:_bubbleImageView];
     
     _contentLabel = [[YYLabel alloc] init];
-    _contentLabel.backgroundColor = [UIColor redColor];
     _contentLabel.displaysAsynchronously = YES;
     _contentLabel.fadeOnAsynchronouslyDisplay = NO;
     _contentLabel.ignoreCommonProperties = YES;
@@ -77,12 +76,39 @@
 
 - (void)layout
 {
+    _bubbleImageView.image = [self getBubbleImage];
+    
+    CGFloat labelWidth = _cellLayout.contentTextLayout.textBoundingSize.width;
+    CGFloat labelHeight = _cellLayout.contentTextLayout.textBoundingSize.height;
+    _contentLabel.size = _cellLayout.contentTextLayout.textBoundingSize;
+    _bubbleImageView.size = CGSizeMake(labelWidth+40.f, labelHeight+40.f);
+    _bubbleImageView.top = 10.f;
+    _contentLabel.top = 25.f;
+    
     if (_isMine) {
         _iconImageView.right = SCREEN_WIDTH - 10.f;
+        _bubbleImageView.right = CGRectGetMinX(_iconImageView.frame)-5.f;
+        _contentLabel.right = CGRectGetMinX(_iconImageView.frame)-25.f;
     }
     else {
         _iconImageView.left = 10.f;
+        _bubbleImageView.left = CGRectGetMaxX(_iconImageView.frame)+5.f;
+        _contentLabel.left = CGRectGetMaxX(_iconImageView.frame)+25.f;
     }
+}
+
+- (UIImage *)getBubbleImage
+{
+    UIImage *oriImage = nil;
+    if (_isMine) {
+        oriImage = [UIImage imageNamed:@"SenderTextNodeBkg"];
+    }
+    else {
+        oriImage = [UIImage imageNamed:@"ReceiverTextNodeBkg"];
+    }
+    CGSize size = oriImage.size;
+    UIImage *bubbleImage = [oriImage resizableImageWithCapInsets:UIEdgeInsetsMake(size.height*0.5, size.width*0.5, size.height*0.5, size.width*0.5)];
+    return bubbleImage;
 }
 
 @end
