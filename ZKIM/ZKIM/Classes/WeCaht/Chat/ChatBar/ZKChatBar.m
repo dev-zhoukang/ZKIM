@@ -10,9 +10,10 @@
 
 @interface ZKChatBar() <UITextViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *recordBtn;
+@property (weak, nonatomic) IBOutlet UIButton   *recordBtn;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
-@property (nonatomic, strong) UIButton *selectedBtn;
+@property (nonatomic, strong) UIButton          *selectedBtn;
+@property (nonatomic, strong) UIControl         *tapControl;
 
 @end
 
@@ -70,7 +71,26 @@ static CGFloat keyboard_y;
     
     [UIView animateWithDuration:duration animations:^{
         self.bottom = keyboardFrame.origin.y;
+        [self setTableViewOffsetWithKeyboardFrame:keyboardFrame];
+    } completion:^(BOOL finished) {
+        self.tapControl.hidden = keyboardFrame.origin.y==SCREEN_HEIGHT;
     }];
+}
+
+- (void)setTableViewOffsetWithKeyboardFrame:(CGRect)keyboardFrame
+{
+    UITableView *tableView = [self tableView];
+    
+    CGFloat maxTabelHeight = SCREEN_HEIGHT-64.f-keyboardFrame.size.height-self.frame.size.height;
+    
+    CGFloat delta = tableView.contentSize.height - maxTabelHeight;
+    if (delta > 0) {
+        [tableView setContentOffset:CGPointMake(0, delta)];
+    }
+    [tableView setContentInset:UIEdgeInsetsMake(tableView.contentInset.top,
+                                                0,
+                                                SCREEN_HEIGHT-keyboardFrame.origin.y,
+                                                0)];
 }
 
 #pragma mark - <UITextViewDelegate>
@@ -134,6 +154,52 @@ static CGFloat keyboard_y;
                          self.bottom = keyboard_y;
                          [self layoutIfNeeded];
                      } completion:nil];
+}
+
+#pragma mark - Getter
+
+- (UIControl *)tapControl
+{
+    if (!_tapControl) {
+        _tapControl = [[UIControl alloc] initWithFrame:KeyWindow.bounds];
+        [_tapControl addTarget:self action:@selector(tapAction) forControlEvents:UIControlEventTouchUpInside];
+        [self.viewController.view insertSubview:_tapControl belowSubview:self];
+    }
+    return _tapControl;
+}
+
+- (void)tapAction
+{
+    [KeyWindow endEditing:YES];
+}
+
+#pragma mark - 获取 view 所在控制器
+
+- (UIViewController *)viewController
+{
+    UIViewController *viewController = nil;
+    UIResponder *next = self.nextResponder;
+    while (next) {
+        if ([next isKindOfClass:[UIViewController class]]) {
+            viewController = (UIViewController *)next;
+            break;
+        }
+        next = next.nextResponder;
+    }
+    return viewController;
+}
+
+- (UITableView *)tableView
+{
+    __block UITableView *tableView = nil;
+
+    [self.viewController.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[UITableView class]]) {
+            tableView = obj;
+            *stop = YES;
+        }
+    }];
+    return tableView;
 }
 
 - (void)dealloc
