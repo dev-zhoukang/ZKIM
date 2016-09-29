@@ -189,6 +189,22 @@
     return isContan;
 }
 
+/*! JSON 转换成对象 */
+- (id)object
+{
+    id object = nil;
+    @try {
+        NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];;
+        object = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%s [Line %d] JSON字符串转换成对象出错了-->\n%@",__PRETTY_FUNCTION__, __LINE__,exception);
+    }
+    @finally {
+    }
+    return object;
+}
+
 @end
 
 

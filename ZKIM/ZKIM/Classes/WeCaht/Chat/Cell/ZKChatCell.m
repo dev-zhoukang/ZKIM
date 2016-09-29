@@ -30,14 +30,14 @@
 
 - (void)copyAction:(id)sender
 {
-    NSDictionary *dic = self.accessibilityValue.mj_keyValues;
+    NSDictionary *dic = [self.accessibilityValue object];
     
     [[UIPasteboard generalPasteboard] setString:dic[@"text"]];
 }
 
 - (void)deleteAction:(id)sender
 {
-    NSDictionary *dic = self.accessibilityValue.mj_keyValues;
+    NSDictionary *dic = [self.accessibilityValue object];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"dele" object:dic[@"index"]];
 }

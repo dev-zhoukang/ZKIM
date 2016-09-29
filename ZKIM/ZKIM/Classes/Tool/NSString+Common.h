@@ -24,6 +24,9 @@
 /** 是否包含中文 */
 - (BOOL)containsChineseCharacter;
 
+/*! JSON 转换成对象 */
+- (id)object;
+
 - (float)stringWidthWithFont:(UIFont *)font height:(float)height;
 - (float)stringHeightWithFont:(UIFont *)font width:(float)width;
 
