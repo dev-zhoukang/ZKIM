@@ -112,7 +112,6 @@
     return modulus == 0;
 }
 
-
 - (float)stringWidthWithFont:(UIFont *)font height:(float)height
 {
     if (self == nil || self.length == 0) {

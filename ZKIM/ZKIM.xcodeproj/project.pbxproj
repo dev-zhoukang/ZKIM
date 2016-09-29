@@ -11,6 +11,7 @@
 		582D55C71D9CE3C8004E9929 /* ZKChatLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C61D9CE3C8004E9929 /* ZKChatLayout.m */; };
 		582D55CA1D9CEB96004E9929 /* ZKRegularTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C91D9CEB96004E9929 /* ZKRegularTool.m */; };
 		582D55CD1D9CECDA004E9929 /* ZKTextLinePositionModifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55CC1D9CECDA004E9929 /* ZKTextLinePositionModifier.m */; };
+		582D55D01D9D1D3F004E9929 /* NSObject+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55CF1D9D1D3F004E9929 /* NSObject+Common.m */; };
 		583A81E31D90CBE7006F14C6 /* ZKXMPPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A81E21D90CBE7006F14C6 /* ZKXMPPManager.m */; };
 		583A81E71D90FE4A006F14C6 /* ZKWeChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A81E51D90FE4A006F14C6 /* ZKWeChatCell.m */; };
 		583A81E81D90FE4A006F14C6 /* ZKWeChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 583A81E61D90FE4A006F14C6 /* ZKWeChatCell.xib */; };
@@ -182,6 +183,8 @@
 		582D55C91D9CEB96004E9929 /* ZKRegularTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKRegularTool.m; sourceTree = "<group>"; };
 		582D55CB1D9CECDA004E9929 /* ZKTextLinePositionModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKTextLinePositionModifier.h; sourceTree = "<group>"; };
 		582D55CC1D9CECDA004E9929 /* ZKTextLinePositionModifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKTextLinePositionModifier.m; sourceTree = "<group>"; };
+		582D55CE1D9D1D3F004E9929 /* NSObject+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Common.h"; sourceTree = "<group>"; };
+		582D55CF1D9D1D3F004E9929 /* NSObject+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Common.m"; sourceTree = "<group>"; };
 		583A81E11D90CBE7006F14C6 /* ZKXMPPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKXMPPManager.h; sourceTree = "<group>"; };
 		583A81E21D90CBE7006F14C6 /* ZKXMPPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKXMPPManager.m; sourceTree = "<group>"; };
 		583A81E41D90FE4A006F14C6 /* ZKWeChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKWeChatCell.h; sourceTree = "<group>"; };
@@ -573,6 +576,8 @@
 			children = (
 				583A82381D912A01006F14C6 /* NSString+Common.h */,
 				583A82391D912A01006F14C6 /* NSString+Common.m */,
+				582D55CE1D9D1D3F004E9929 /* NSObject+Common.h */,
+				582D55CF1D9D1D3F004E9929 /* NSObject+Common.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1439,6 +1444,7 @@
 				58D149361D8FD9C400A17D6D /* YYTextView.m in Sources */,
 				58D1494F1D8FEDB300A17D6D /* AuthData.m in Sources */,
 				58D149391D8FD9C400A17D6D /* YYFileHash.m in Sources */,
+				582D55D01D9D1D3F004E9929 /* NSObject+Common.m in Sources */,
 				58D1496D1D8FEE3100A17D6D /* MJPropertyType.m in Sources */,
 				58D148361D8E7F3C00A17D6D /* ZKNavigationController.m in Sources */,
 				58D147EA1D89240A00A17D6D /* ZKLoginHomeViewController.m in Sources */,

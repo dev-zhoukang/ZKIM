@@ -20,5 +20,6 @@
 #import "MJExtension.h"
 #import "AuthData.h"
 #import "NSString+Common.h"
+#import "NSObject+Common.h"
 
 #endif /* PrefixHeader_pch */

@@ -9,6 +9,42 @@
 #import "ZKChatCell.h"
 #import "ZKChatLayout.h"
 
+@implementation UIImageView (Message)
+#pragma mark - UIResponder
+
+- (BOOL)canBecomeFirstResponder
+{
+    return true;
+}
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender
+{
+    if (action == @selector(copyAction:)){
+        return YES;
+    }
+    if (action == @selector(deleteAction:)){
+        return YES;
+    }
+    return NO;
+}
+
+- (void)copyAction:(id)sender
+{
+    NSDictionary *dic = self.accessibilityValue.mj_keyValues;
+    
+    [[UIPasteboard generalPasteboard] setString:dic[@"text"]];
+}
+
+- (void)deleteAction:(id)sender
+{
+    NSDictionary *dic = self.accessibilityValue.mj_keyValues;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"dele" object:dic[@"index"]];
+}
+
+@end
+
+
 @interface ZKChatCell ()
 
 @property (nonatomic, strong) UIImageView *iconImageView;
@@ -16,6 +52,7 @@
 @property (nonatomic, strong) YYLabel     *contentLabel;
 
 @property (nonatomic, assign) BOOL        isMine; //我的消息
+@property (nonatomic, strong) UILongPressGestureRecognizer *longPress;
 
 @end
 
@@ -34,6 +71,7 @@
 - (void)setup
 {
     self.backgroundColor = [UIColor clearColor];
+    self.selectionStyle = UITableViewCellSeparatorStyleNone;
     
     _iconImageView = [[UIImageView alloc] init];
     _iconImageView.size = CGSizeMake(40.f, 40.f);
@@ -49,6 +87,9 @@
     _contentLabel.fadeOnAsynchronouslyDisplay = NO;
     _contentLabel.ignoreCommonProperties = YES;
     [self.contentView addSubview:_contentLabel];
+    
+    _longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    [_contentLabel addGestureRecognizer:_longPress];
 }
 
 #pragma mark - Pub
@@ -61,6 +102,38 @@
         cell = [[ZKChatCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     return cell;
+}
+
+#pragma mark - Gesture
+
+- (void)handleLongPress:(UILongPressGestureRecognizer *)recognizer
+{
+    if (recognizer.state != UIGestureRecognizerStateBegan) return;
+    
+    UIMenuController *copyMenu = [UIMenuController sharedMenuController];
+    UIMenuItem *copyItem = [[UIMenuItem alloc] initWithTitle:@"复制"action:@selector(copyAction:)];
+    UIMenuItem *deleteItem = [[UIMenuItem alloc] initWithTitle:@"删除"action:@selector(deleteAction:)];
+    
+    [copyMenu setMenuItems:[NSArray arrayWithObjects:deleteItem, nil]];
+    
+    NSString *jsonValue = [@{@"text":_cellLayout.chatEntity[@"content"] , @"index":@(1)} json];
+    
+    [copyMenu setMenuItems:[NSArray arrayWithObjects:copyItem,deleteItem, nil]];
+    
+    BOOL labelResponse = [recognizer.view isKindOfClass:[UILabel class]] || [recognizer.view isKindOfClass:[YYLabel class]];
+    if (labelResponse) {
+        [_bubbleImageView becomeFirstResponder];
+        [copyMenu setTargetRect:_bubbleImageView.bounds inView:_bubbleImageView];
+        _bubbleImageView.accessibilityValue = jsonValue;
+    }
+    else{
+        [recognizer.view becomeFirstResponder];
+        [copyMenu setTargetRect:recognizer.view.bounds inView:recognizer.view];
+        recognizer.view.accessibilityValue = jsonValue;
+    }
+    [copyMenu setMenuVisible:YES animated:YES];
+    
+    [self setSelected:YES animated:YES];
 }
 
 #pragma mark - Setter
