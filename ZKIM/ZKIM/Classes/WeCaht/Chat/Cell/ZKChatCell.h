@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class ZKChatLayout;
+
 typedef NS_ENUM(NSInteger, ZKChatCellType) {
     ZKChatCellTypeText,
     ZKChatCellTypeImage
@@ -15,8 +17,8 @@ typedef NS_ENUM(NSInteger, ZKChatCellType) {
 
 @interface ZKChatCell : UITableViewCell
 
-+ (instancetype)cellWithTableView:(UITableView *)tableView type:(ZKChatCellType)type;
+@property (nonatomic, strong) ZKChatLayout *cellLayout;
 
-- (void)updateCellWithInfo:(NSDictionary *)info;
++ (instancetype)cellWithTableView:(UITableView *)tableView type:(ZKChatCellType)type;
 
 @end

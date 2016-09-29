@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		582D55C41D9CE304004E9929 /* ZKChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C31D9CE304004E9929 /* ZKChatCell.m */; };
 		582D55C71D9CE3C8004E9929 /* ZKChatLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C61D9CE3C8004E9929 /* ZKChatLayout.m */; };
+		582D55CA1D9CEB96004E9929 /* ZKRegularTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C91D9CEB96004E9929 /* ZKRegularTool.m */; };
+		582D55CD1D9CECDA004E9929 /* ZKTextLinePositionModifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55CC1D9CECDA004E9929 /* ZKTextLinePositionModifier.m */; };
 		583A81E31D90CBE7006F14C6 /* ZKXMPPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A81E21D90CBE7006F14C6 /* ZKXMPPManager.m */; };
 		583A81E71D90FE4A006F14C6 /* ZKWeChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A81E51D90FE4A006F14C6 /* ZKWeChatCell.m */; };
 		583A81E81D90FE4A006F14C6 /* ZKWeChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 583A81E61D90FE4A006F14C6 /* ZKWeChatCell.xib */; };
@@ -176,6 +178,10 @@
 		582D55C31D9CE304004E9929 /* ZKChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChatCell.m; sourceTree = "<group>"; };
 		582D55C51D9CE3C8004E9929 /* ZKChatLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatLayout.h; sourceTree = "<group>"; };
 		582D55C61D9CE3C8004E9929 /* ZKChatLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChatLayout.m; sourceTree = "<group>"; };
+		582D55C81D9CEB96004E9929 /* ZKRegularTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKRegularTool.h; sourceTree = "<group>"; };
+		582D55C91D9CEB96004E9929 /* ZKRegularTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKRegularTool.m; sourceTree = "<group>"; };
+		582D55CB1D9CECDA004E9929 /* ZKTextLinePositionModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKTextLinePositionModifier.h; sourceTree = "<group>"; };
+		582D55CC1D9CECDA004E9929 /* ZKTextLinePositionModifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKTextLinePositionModifier.m; sourceTree = "<group>"; };
 		583A81E11D90CBE7006F14C6 /* ZKXMPPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKXMPPManager.h; sourceTree = "<group>"; };
 		583A81E21D90CBE7006F14C6 /* ZKXMPPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKXMPPManager.m; sourceTree = "<group>"; };
 		583A81E41D90FE4A006F14C6 /* ZKWeChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKWeChatCell.h; sourceTree = "<group>"; };
@@ -534,6 +540,10 @@
 			children = (
 				582D55C51D9CE3C8004E9929 /* ZKChatLayout.h */,
 				582D55C61D9CE3C8004E9929 /* ZKChatLayout.m */,
+				582D55CB1D9CECDA004E9929 /* ZKTextLinePositionModifier.h */,
+				582D55CC1D9CECDA004E9929 /* ZKTextLinePositionModifier.m */,
+				582D55C81D9CEB96004E9929 /* ZKRegularTool.h */,
+				582D55C91D9CEB96004E9929 /* ZKRegularTool.m */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -1337,8 +1347,10 @@
 				58D149251D8FD9C400A17D6D /* YYTextEffectWindow.m in Sources */,
 				58D1490C1D8FD9C400A17D6D /* UIScrollView+YYAdd.m in Sources */,
 				58D149191D8FD9C400A17D6D /* YYAnimatedImageView.m in Sources */,
+				582D55CD1D9CECDA004E9929 /* ZKTextLinePositionModifier.m in Sources */,
 				58D1490A1D8FD9C400A17D6D /* UIImage+YYAdd.m in Sources */,
 				58D149301D8FD9C400A17D6D /* YYTextAttribute.m in Sources */,
+				582D55CA1D9CEB96004E9929 /* ZKRegularTool.m in Sources */,
 				58D149421D8FD9C400A17D6D /* YYWeakProxy.m in Sources */,
 				58D149501D8FEDB300A17D6D /* ZKLoginUser.m in Sources */,
 				58D147E01D89233F00A17D6D /* UIView+AutoLayout.m in Sources */,

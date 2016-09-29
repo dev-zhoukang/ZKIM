@@ -9,12 +9,13 @@
 #import "ZKChatViewController.h"
 #import "ZKChatBar.h"
 #import "ZKChatCell.h"
+#import "ZKChatLayout.h"
 
 @interface ZKChatViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ZKChatBar   *chatBar;
-@property (nonatomic, strong) NSArray *dataSource;
+@property (nonatomic, strong) NSMutableArray <ZKChatLayout *> *layouts;
 
 @end
 
@@ -24,7 +25,33 @@
 {
     [super viewDidLoad];
     
+    _layouts = [[NSMutableArray alloc] init];
+    
+    [self requestData];
+    
     [self setupUI];
+}
+
+- (void)requestData
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSArray *testData = @[
+                              @{@"content":@"哈哈哈哈哈哈这是什么?", @"isMine":@0},
+                              @{@"content":@"我也不知道啊!", @"isMine":@1},
+                              @{@"content":@"那你为什么发这个东西? 我真的一点都不明白. 对了, 想问你一件事, 我想了好久差点忘了, 你十一放假去干嘛?", @"isMine":@0},
+                              @{@"content":@"十一我没有事情做, 就在家歇着吧, 到时候来找我来看电影哈!", @"isMine":@1},
+                              @{@"content":@"好的, 正想问你呢, 好的, 不见不散!", @"isMine":@0}
+                              ];
+        for (NSDictionary *entity in testData) {
+            ZKChatLayout *layout = [[ZKChatLayout alloc] initWithChatEntity:entity];
+            [_layouts addObject:layout];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_tableView reloadData];
+        });
+    });
 }
 
 - (void)setupUI
@@ -36,6 +63,7 @@
     _tableView.backgroundColor = GlobalChatBGColor;
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.alwaysBounceVertical = YES;
     _tableView.tableFooterView = [[UIView alloc] init];
     [self.view addSubview:_tableView];
     
@@ -53,30 +81,21 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataSource.count;
+    return _layouts.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZKChatCell *cell = [ZKChatCell cellWithTableView:tableView type:ZKChatCellTypeText];
-    [cell updateCellWithInfo:self.dataSource[indexPath.item]];
+    cell.cellLayout = _layouts[indexPath.item];
     return cell;
 }
 
-#pragma mark - Getter
-
-- (NSArray *)dataSource
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!_dataSource) {
-        _dataSource = @[
-                        @{@"content":@"哈哈哈哈哈哈这是什么?", @"isMine":@0},
-                        @{@"content":@"我也不知道啊!", @"isMine":@1},
-                        @{@"content":@"那你为什么发这个东西? 我真的一点都不明白. 对了, 想问你一件事, 我想了好久差点忘了, 你十一放假去干嘛?", @"isMine":@0},
-                        @{@"content":@"十一我没有事情做, 就在家歇着吧, 到时候来找我来看电影哈!", @"isMine":@1},
-                        @{@"content":@"好的, 正想问你呢, 好的, 不见不散!", @"isMine":@0}
-                        ];
-    }
-    return _dataSource;
+    CGFloat height = _layouts[indexPath.item].height;
+    DLog(@"height=========%f", height);
+    return height + 20 + 20;
 }
 
 #pragma mark - Actions

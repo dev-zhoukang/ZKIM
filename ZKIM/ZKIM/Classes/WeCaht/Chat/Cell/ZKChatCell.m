@@ -7,6 +7,7 @@
 //
 
 #import "ZKChatCell.h"
+#import "ZKChatLayout.h"
 
 @interface ZKChatCell ()
 
@@ -33,18 +34,22 @@
 - (void)setup
 {
     _iconImageView = [[UIImageView alloc] init];
+    _iconImageView.size = CGSizeMake(40.f, 40.f);
+    _iconImageView.top = 10.f;
+    _iconImageView.image = [UIImage imageNamed:@"me"];
+    _iconImageView.backgroundColor = [UIColor greenColor];
     [self.contentView addSubview:_iconImageView];
     
     _bubbleImageView = [[UIImageView alloc] init];
+    _bubbleImageView.backgroundColor = [UIColor lightGrayColor];
     [self.contentView addSubview:_bubbleImageView];
     
     _contentLabel = [[YYLabel alloc] init];
+    _contentLabel.backgroundColor = [UIColor redColor];
+    _contentLabel.displaysAsynchronously = YES;
+    _contentLabel.fadeOnAsynchronouslyDisplay = NO;
+    _contentLabel.ignoreCommonProperties = YES;
     [self.contentView addSubview:_contentLabel];
-}
-
-- (void)layoutSubviews
-{
-    
 }
 
 #pragma mark - Pub
@@ -59,12 +64,25 @@
     return cell;
 }
 
-- (void)updateCellWithInfo:(NSDictionary *)info
+#pragma mark - Setter
+
+- (void)setCellLayout:(ZKChatLayout *)cellLayout
 {
-    _isMine = info[@"isMine"];
-    NSString *contentText = info[@"content"];
+    _cellLayout = cellLayout;
+    _isMine = [cellLayout.chatEntity[@"isMine"] boolValue];
+    _contentLabel.textLayout = cellLayout.contentTextLayout;
     
-    
+    [self layout];
+}
+
+- (void)layout
+{
+    if (_isMine) {
+        _iconImageView.right = SCREEN_WIDTH - 10.f;
+    }
+    else {
+        _iconImageView.left = 10.f;
+    }
 }
 
 @end
