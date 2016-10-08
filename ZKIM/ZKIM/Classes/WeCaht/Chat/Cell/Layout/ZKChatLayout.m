@@ -89,7 +89,7 @@
 {
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
     attributedString.font = ContentTextFont;
-    return [ZKRegularTool matchAttributedText:attributedString];
+    return [ZKRegularTool matchAttributedText:attributedString isMine:_isMine];
 }
 
 + (float)maxLabelWidth

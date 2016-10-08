@@ -8,9 +8,13 @@
 
 #import "ZKRegularTool.h"
 
+#define RegularTextColor  HexColor(0x63eebd)
+
 @implementation ZKRegularTool
-+ (NSMutableAttributedString *)matchAttributedText:(NSMutableAttributedString *)text
++ (NSMutableAttributedString *)matchAttributedText:(NSMutableAttributedString *)text isMine:(BOOL)isMine
 {
+    text.color = isMine?[UIColor whiteColor]:[UIColor blackColor];
+    
     // 高亮状态的背景
     YYTextBorder *highlightBorder = [[YYTextBorder alloc] init];
     highlightBorder.insets = UIEdgeInsetsMake(-1.f, 0, -3.f, 0);
@@ -41,7 +45,7 @@
     for (NSTextCheckingResult *urlResult in urlResults) {
         if (urlResult.range.location == NSNotFound && urlResult.range.length <= 1) continue;
         if ([text attribute:YYTextHighlightAttributeName atIndex:urlResult.range.location] == nil) {
-            [text setColor:HexColor(0x527ead) range:urlResult.range];
+            [text setColor:RegularTextColor range:urlResult.range];
             
             YYTextHighlight *highlight = [YYTextHighlight new];
             [highlight setBackgroundBorder:highlightBorder];
@@ -57,7 +61,7 @@
     for (NSTextCheckingResult *telResult in telResults) {
         if (telResult.range.location == NSNotFound && telResult.range.length <= 1) continue;
         if ([text attribute:YYTextHighlightAttributeName atIndex:telResult.range.location] == nil) {
-            [text setColor:HexColor(0x527ead) range:telResult.range];
+            [text setColor:RegularTextColor range:telResult.range];
             
             NSString *contentStr = [text attributedSubstringFromRange:telResult.range].string;
             
@@ -74,7 +78,7 @@
     for (NSTextCheckingResult *phoneResult in phoneResults) {
         if (phoneResult.range.location == NSNotFound && phoneResult.range.length <= 1) continue;
         if ([text attribute:YYTextHighlightAttributeName atIndex:phoneResult.range.location] == nil) {
-            [text setColor:HexColor(0x527ead) range:phoneResult.range];
+            [text setColor:RegularTextColor range:phoneResult.range];
             
             NSString *contentStr = [text attributedSubstringFromRange:phoneResult.range].string;
             

@@ -26,6 +26,7 @@
 		58AB302C1D891B89007BB571 /* ZKRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58AB30291D891B89007BB571 /* ZKRootViewController.m */; };
 		58BCC1B51DA8EB9700B6B881 /* ZKContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BCC1B31DA8EB9700B6B881 /* ZKContactCell.m */; };
 		58BCC1B61DA8EB9700B6B881 /* ZKContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58BCC1B41DA8EB9700B6B881 /* ZKContactCell.xib */; };
+		58BCC1BC1DA90A5500B6B881 /* UIImage+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BCC1BB1DA90A5500B6B881 /* UIImage+Common.m */; };
 		58D147E01D89233F00A17D6D /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D147DF1D89233F00A17D6D /* UIView+AutoLayout.m */; };
 		58D147EA1D89240A00A17D6D /* ZKLoginHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D147E81D89240A00A17D6D /* ZKLoginHomeViewController.m */; };
 		58D147EB1D89240A00A17D6D /* ZKLoginHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D147E91D89240A00A17D6D /* ZKLoginHomeViewController.xib */; };
@@ -210,6 +211,8 @@
 		58BCC1B21DA8EB9700B6B881 /* ZKContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKContactCell.h; sourceTree = "<group>"; };
 		58BCC1B31DA8EB9700B6B881 /* ZKContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKContactCell.m; sourceTree = "<group>"; };
 		58BCC1B41DA8EB9700B6B881 /* ZKContactCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKContactCell.xib; sourceTree = "<group>"; };
+		58BCC1BA1DA90A5500B6B881 /* UIImage+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Common.h"; sourceTree = "<group>"; };
+		58BCC1BB1DA90A5500B6B881 /* UIImage+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Common.m"; sourceTree = "<group>"; };
 		58D147DE1D89233F00A17D6D /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		58D147DF1D89233F00A17D6D /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 		58D147E71D89240A00A17D6D /* ZKLoginHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKLoginHomeViewController.h; sourceTree = "<group>"; };
@@ -582,6 +585,8 @@
 				583A82391D912A01006F14C6 /* NSString+Common.m */,
 				582D55CE1D9D1D3F004E9929 /* NSObject+Common.h */,
 				582D55CF1D9D1D3F004E9929 /* NSObject+Common.m */,
+				58BCC1BA1DA90A5500B6B881 /* UIImage+Common.h */,
+				58BCC1BB1DA90A5500B6B881 /* UIImage+Common.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1459,6 +1464,7 @@
 				58D149271D8FD9C400A17D6D /* YYTextKeyboardManager.m in Sources */,
 				58D147FA1D89366100A17D6D /* ApplicationContext.m in Sources */,
 				58D149331D8FD9C400A17D6D /* YYTextRunDelegate.m in Sources */,
+				58BCC1BC1DA90A5500B6B881 /* UIImage+Common.m in Sources */,
 				58D148F81D8FD9C400A17D6D /* NSNotificationCenter+YYAdd.m in Sources */,
 				58D1496C1D8FEE3100A17D6D /* MJPropertyKey.m in Sources */,
 				58D149091D8FD9C400A17D6D /* UIGestureRecognizer+YYAdd.m in Sources */,

@@ -174,7 +174,7 @@
 {
     UIImage *oriImage = nil;
     if (_isMine) {
-        oriImage = [UIImage imageNamed:@"SenderTextNodeBkg"];
+        oriImage = [[UIImage imageNamed:@"SenderTextNodeBkg"] tintedImageWithColor:RGBACOLOR(35, 130, 251, .87) style:UIImageTintStyleKeepingAlpha];
     }
     else {
         oriImage = [UIImage imageNamed:@"ReceiverTextNodeBkg"];

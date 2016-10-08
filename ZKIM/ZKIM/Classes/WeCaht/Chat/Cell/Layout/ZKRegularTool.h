@@ -10,7 +10,7 @@
 
 @interface ZKRegularTool : NSObject
 /** 将 string 匹配正则, 高亮显示 */
-+ (NSMutableAttributedString *)matchAttributedText:(NSMutableAttributedString *)attributedString;
++ (NSMutableAttributedString *)matchAttributedText:(NSMutableAttributedString *)attributedString isMine:(BOOL)isMine;
 
 /** 网址正则 如: www.hoolai.com */
 + (NSRegularExpression *)regularWebUrl;
