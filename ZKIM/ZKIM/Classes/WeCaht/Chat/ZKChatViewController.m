@@ -11,7 +11,7 @@
 #import "ZKChatCell.h"
 #import "ZKChatLayout.h"
 
-@interface ZKChatViewController () <UITableViewDelegate, UITableViewDataSource, ZKChatBarDelegate>
+@interface ZKChatViewController () <UITableViewDelegate, UITableViewDataSource, ZKChatBarDelegate, EMChatManagerDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ZKChatBar   *chatBar;
@@ -26,6 +26,7 @@
     [super viewDidLoad];
     
     _layouts = [[NSMutableArray alloc] init];
+    [[EMClient sharedClient].chatManager addDelegate:self];
     
     [self requestData];
     
@@ -126,6 +127,40 @@
     message.chatType = EMChatTypeChat;
     
     return message;
+}
+
+#pragma mark - <EMChatManagerDelegate>
+
+- (void)messagesDidReceive:(NSArray *)aMessages
+{
+    for (EMMessage *message in aMessages) {
+        EMMessageBody *body = message.body;
+        switch (body.type) {
+            case EMMessageBodyTypeText: {
+                EMTextMessageBody *textBody = (EMTextMessageBody *)body;
+                NSString *text = textBody.text;
+                DLog(@"收到一条文字消息 -- %@", text);
+            } break;
+            case EMMessageBodyTypeImage: {
+                
+            } break;
+            case EMMessageBodyTypeLocation: {
+                
+            } break;
+            case EMMessageBodyTypeVoice: {
+                
+            } break;
+            case EMMessageBodyTypeVideo: {
+                
+            } break;
+            case EMMessageBodyTypeFile: {
+                
+            } break;
+                
+            default: break;
+        }
+    }
+    
 }
 
 @end
