@@ -11,7 +11,7 @@
 #import "ZKChatCell.h"
 #import "ZKChatLayout.h"
 
-@interface ZKChatViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface ZKChatViewController () <UITableViewDelegate, UITableViewDataSource, ZKChatBarDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ZKChatBar   *chatBar;
@@ -34,6 +34,10 @@
 
 - (void)requestData
 {
+    EMConversation *conversation = [[EMClient sharedClient].chatManager getConversation:@"6001" type:EMConversationTypeChat createIfNotExist:YES];
+    
+    
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSArray *testData = @[
@@ -73,6 +77,7 @@
     [self.view addSubview:_tableView];
     
     _chatBar = [ZKChatBar chatBar];
+    _chatBar.delegate = self;
     _chatBar.left = 0;
     _chatBar.bottom = SCREEN_HEIGHT;
     [self.view addSubview:_chatBar];
@@ -96,6 +101,31 @@
 {
     CGFloat height = _layouts[indexPath.item].height;
     return height + 20 + 20;
+}
+
+#pragma mark - <ZKChatBarDelegate>
+
+- (void)charBar:(ZKChatBar *)chatBar sendText:(NSString *)content
+{
+    DLog(@"发送消息===%@", content);
+    
+    EMMessage *message = [self generateMessageWithText:content];
+    
+    [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
+        DLog(@"文字消息发送成功!");
+    }];
+}
+
+/*! 构造消息 */
+- (EMMessage *)generateMessageWithText:(NSString *)text
+{
+    EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithText:text];
+    NSString *from = [[EMClient sharedClient] currentUsername];
+    
+    EMMessage *message = [[EMMessage alloc] initWithConversationID:@"6001" from:from to:@"11" body:body ext:nil];
+    message.chatType = EMChatTypeChat;
+    
+    return message;
 }
 
 @end

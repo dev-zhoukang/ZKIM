@@ -108,8 +108,9 @@ static CGFloat keyboard_y;
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     if ([text isEqualToString:@"\n"]) {
-        DLog(@"发送消息==%@", textView.text);
-        
+        if ([self.delegate respondsToSelector:@selector(charBar:sendText:)]) {
+            [self.delegate charBar:self sendText:textView.text];
+        }
         return NO;
     }
     return YES;

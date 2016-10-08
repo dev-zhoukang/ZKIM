@@ -8,6 +8,7 @@
 
 #import "ZKContactViewController.h"
 #import "ZKContactCell.h"
+#import "ZKChatViewController.h"
 
 @interface ZKContactViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -85,6 +86,9 @@ static NSString *kCellIdentify = @"ZKContactCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    ZKChatViewController *chatVC = [[ZKChatViewController alloc] init];
+    [self.navigationController pushViewController:chatVC animated:YES];
 }
 
 @end
