@@ -18,11 +18,11 @@
 
 @implementation ZKChatLayout
 
-- (instancetype)initWithChatEntity:(NSDictionary *)entity
+- (instancetype)initWithEMMessage:(EMMessage *)message
 {
-    if (!entity) return nil;
+    if (!message) return nil;
     if (self = [super init]) {
-        _chatEntity = entity;
+        _message = message;
         [self layout];
     }
     return self;
@@ -32,7 +32,32 @@
 {
     _height = 0;
     
-    [self layoutContentText];
+    _isMine = [[EMClient sharedClient].currentUsername isEqualToString:_message.from];
+    
+    EMMessageBody *body = _message.body;
+    switch (body.type) {
+        case EMMessageBodyTypeText: {
+            [self layoutContentText];
+        } break;
+        case EMMessageBodyTypeImage: {
+            
+        } break;
+        case EMMessageBodyTypeLocation: {
+            
+        } break;
+        case EMMessageBodyTypeVoice: {
+            
+        } break;
+        case EMMessageBodyTypeVideo: {
+            
+        } break;
+        case EMMessageBodyTypeFile: {
+            
+        } break;
+            
+        default: break;
+    }
+    
     _height += _contentTextHeight;
 }
 
@@ -44,8 +69,10 @@
     modifier.font = ContentTextFont;
     modifier.paddingTop = 2.f;
     modifier.paddingBottom = 2.f;
+    EMTextMessageBody *textBody = (EMTextMessageBody *)_message.body;
+    _text = textBody.text;
     
-    NSMutableAttributedString *attributedString = [self matchText:_chatEntity[@"content"]];
+    NSMutableAttributedString *attributedString = [self matchText:textBody.text];
     
     YYTextContainer *container = [[YYTextContainer alloc] init];
     container.size = CGSizeMake([[self class] maxLabelWidth], MAXFLOAT);

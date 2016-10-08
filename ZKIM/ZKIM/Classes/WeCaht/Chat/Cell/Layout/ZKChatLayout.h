@@ -10,9 +10,12 @@
 
 @interface ZKChatLayout : NSObject
 
-- (instancetype)initWithChatEntity:(NSDictionary *)chatEntity;
+- (instancetype)initWithEMMessage:(EMMessage *)message;
 
-@property (nonatomic, strong) NSDictionary *chatEntity;
+@property (nonatomic, strong) EMMessage *message;
+@property (nonatomic, copy, readonly) NSString *text;
+@property (nonatomic, assign, readonly) BOOL isMine;
+
 @property (nonatomic, strong) YYTextLayout *contentTextLayout;
 @property (nonatomic, assign) CGFloat      contentTextHeight;
 

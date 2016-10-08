@@ -116,7 +116,7 @@
     
     [copyMenu setMenuItems:[NSArray arrayWithObjects:deleteItem, nil]];
     
-    NSString *jsonValue = [@{@"text":_cellLayout.chatEntity[@"content"] , @"index":@(1)} json];
+    NSString *jsonValue = [@{@"text":_cellLayout.text, @"index":@(1)} json];
     
     [copyMenu setMenuItems:[NSArray arrayWithObjects:copyItem,deleteItem, nil]];
     
@@ -141,7 +141,7 @@
 - (void)setCellLayout:(ZKChatLayout *)cellLayout
 {
     _cellLayout = cellLayout;
-    _isMine = [cellLayout.chatEntity[@"isMine"] boolValue];
+    _isMine = cellLayout.isMine;
     _contentLabel.textLayout = cellLayout.contentTextLayout;
     
     [self layout];
