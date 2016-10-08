@@ -105,6 +105,16 @@ static CGFloat keyboard_y;
     [self autoLayoutHeight];
 }
 
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        DLog(@"发送消息==%@", textView.text);
+        
+        return NO;
+    }
+    return YES;
+}
+
 #pragma mark - Action
 
 - (IBAction)chatBatBtnClick:(UIButton *)btn
@@ -143,8 +153,6 @@ static CGFloat keyboard_y;
     }
     
     CGSize size = [_textView sizeThatFits:CGSizeMake(_textView.width , MAXFLOAT)];
-    
-    [_textView autoSetDimension:ALDimensionHeight toSize:size.height];
     
     [UIView animateWithDuration:0.12
                           delay:0.0
