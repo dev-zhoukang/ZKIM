@@ -17,8 +17,8 @@
     highlightBorder.cornerRadius = 3.f;
     highlightBorder.fillColor = HexColor(0xbfdffe);
     
+    // 匹配表情
     NSRegularExpression *regular = [ZKRegularTool regularEmotion];
-    
     NSArray <NSTextCheckingResult *> * emoticonResults = [regular matchesInString:text.string options:kNilOptions range:NSMakeRange(0, text.string.length)];
     
     NSUInteger emoClipLength = 0;

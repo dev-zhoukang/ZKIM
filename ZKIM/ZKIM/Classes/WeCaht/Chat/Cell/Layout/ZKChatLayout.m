@@ -10,7 +10,7 @@
 #import "ZKTextLinePositionModifier.h"
 #import "ZKRegularTool.h"
 
-#define ContentTextFont    [UIFont systemFontOfSize:15.f]
+#define ContentTextFont    [UIFont systemFontOfSize:15.8f]
 
 @interface ZKChatLayout ()
 
