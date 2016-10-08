@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ZKContactCell" id="KGk-i7-Jjw" customClass="ZKContactCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <frame key="frameInset" width="375" height="49"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AlbumHeaderBackgrounImage" translatesAutoresizingMaskIntoConstraints="NO" id="avr-HK-crD">
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="avr-HK-crD" secondAttribute="height" multiplier="1:1" id="hxd-dp-Ksa"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="好友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jel-pz-mlu">
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="avr-HK-crD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="3mF-qS-FE8"/>
+                    <constraint firstItem="jel-pz-mlu" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="6eV-kv-Qwp"/>
+                    <constraint firstItem="avr-HK-crD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Hq6-EL-N5C"/>
+                    <constraint firstItem="jel-pz-mlu" firstAttribute="leading" secondItem="avr-HK-crD" secondAttribute="trailing" constant="12" id="RG0-kf-rb5"/>
+                    <constraint firstAttribute="bottom" secondItem="avr-HK-crD" secondAttribute="bottom" constant="8" id="k09-De-jrk"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="avatar" destination="avr-HK-crD" id="G2m-qY-mwS"/>
+                <outlet property="nameLabel" destination="jel-pz-mlu" id="rTH-21-PgN"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="AlbumHeaderBackgrounImage" width="600" height="400"/>
+    </resources>
+</document>
