@@ -10,12 +10,14 @@
 #import "ZKChatBar.h"
 #import "ZKChatCell.h"
 #import "ZKChatLayout.h"
+#import "MJRefresh.h"
 
 @interface ZKChatViewController () <UITableViewDelegate, UITableViewDataSource, ZKChatBarDelegate, EMChatManagerDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ZKChatBar   *chatBar;
 @property (nonatomic, strong) NSMutableArray <ZKChatLayout *> *layouts;
+@property (nonatomic, copy) NSString *lastMsgID;
 
 @end
 
@@ -26,27 +28,53 @@
     [super viewDidLoad];
     
     _layouts = [[NSMutableArray alloc] init];
+    _lastMsgID = nil;
+    
     [[EMClient sharedClient].chatManager addDelegate:self];
+    [self setupUI];
     
     [self requestData];
     
-    [self setupUI];
+    __weak typeof(self) weakSelf = self;
+    
+    _tableView.mj_header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
+        [weakSelf requestData];
+    }];
 }
 
 - (void)requestData
 {
     EMConversation *conversation = [[EMClient sharedClient].chatManager getConversation:@"6001" type:EMConversationTypeChat createIfNotExist:YES];
     
-    [conversation loadMessagesStartFromId:nil count:20 searchDirection:EMMessageSearchDirectionUp completion:^(NSArray *aMessages, EMError *aError) {
+    if (_layouts) {
+        ZKChatLayout *layout = _layouts.firstObject;
+        EMMessage *lastMsg = layout.message;
+        _lastMsgID = lastMsg.messageId;
+    }
+    
+    @weakify(self)
+    
+    [conversation loadMessagesStartFromId:_lastMsgID count:10 searchDirection:EMMessageSearchDirectionUp completion:^(NSArray *aMessages, EMError *aError) {
         
+        if (aError) {
+            DLog(@"获取聊天数据失败 -- %@", aError);
+            [weak_self.tableView.mj_header endRefreshing];
+            return;
+        }
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            NSMutableArray *tempArray = [[NSMutableArray alloc] init];
             
             for (EMMessage *message in aMessages) {
                 ZKChatLayout *layout = [[ZKChatLayout alloc] initWithEMMessage:message];
-                [_layouts addObject:layout];
+                [tempArray addObject:layout];
             }
             
+            NSRange indexsRange = NSMakeRange(0, tempArray.count);
+            [_layouts insertObjects:tempArray atIndexes:[NSIndexSet indexSetWithIndexesInRange:indexsRange]];
+            
             dispatch_async(dispatch_get_main_queue(), ^{
+                [weak_self.tableView.mj_header endRefreshing];
                 [_tableView reloadData];
             });
         });
@@ -104,6 +132,7 @@
     
     [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
         DLog(@"文字消息发送成功!");
+        
     }];
 }
 
