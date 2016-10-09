@@ -8,7 +8,7 @@
 
 #import "ZKRegularTool.h"
 
-#define RegularTextColor  HexColor(0x63eebd)
+#define RegularTextColor  HexColor(0x63bebd)
 
 @implementation ZKRegularTool
 + (NSMutableAttributedString *)matchAttributedText:(NSMutableAttributedString *)text isMine:(BOOL)isMine
