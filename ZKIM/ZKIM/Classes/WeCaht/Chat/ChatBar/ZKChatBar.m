@@ -105,11 +105,18 @@ static CGFloat keyboard_y;
     [self autoLayoutHeight];
 }
 
+/*! 发送消息 */
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     if ([text isEqualToString:@"\n"]) {
+        textView.text = [textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if ([textView.text isEqualToString:@""]) {
+            return NO;
+        }
+        
         if ([self.delegate respondsToSelector:@selector(charBar:sendText:)]) {
             [self.delegate charBar:self sendText:textView.text];
+            textView.text = @"";
         }
         return NO;
     }

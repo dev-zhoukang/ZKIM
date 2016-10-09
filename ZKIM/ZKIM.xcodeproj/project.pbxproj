@@ -27,6 +27,12 @@
 		58BCC1B51DA8EB9700B6B881 /* ZKContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BCC1B31DA8EB9700B6B881 /* ZKContactCell.m */; };
 		58BCC1B61DA8EB9700B6B881 /* ZKContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58BCC1B41DA8EB9700B6B881 /* ZKContactCell.xib */; };
 		58BCC1BC1DA90A5500B6B881 /* UIImage+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BCC1BB1DA90A5500B6B881 /* UIImage+Common.m */; };
+		58BCC1C11DA9D96F00B6B881 /* ZKAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BCC1C01DA9D96F00B6B881 /* ZKAlertView.m */; };
+		58BCC1C81DA9DF7D00B6B881 /* ZKAlertView_attention.png in Resources */ = {isa = PBXBuildFile; fileRef = 58BCC1C31DA9DF7D00B6B881 /* ZKAlertView_attention.png */; };
+		58BCC1C91DA9DF7D00B6B881 /* ZKAlertView_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 58BCC1C41DA9DF7D00B6B881 /* ZKAlertView_camera.png */; };
+		58BCC1CA1DA9DF7D00B6B881 /* ZKAlertView_heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 58BCC1C51DA9DF7D00B6B881 /* ZKAlertView_heart.png */; };
+		58BCC1CB1DA9DF7D00B6B881 /* ZKAlertView_identification.png in Resources */ = {isa = PBXBuildFile; fileRef = 58BCC1C61DA9DF7D00B6B881 /* ZKAlertView_identification.png */; };
+		58BCC1CC1DA9DF7D00B6B881 /* ZKAlertView_trash.png in Resources */ = {isa = PBXBuildFile; fileRef = 58BCC1C71DA9DF7D00B6B881 /* ZKAlertView_trash.png */; };
 		58D147E01D89233F00A17D6D /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D147DF1D89233F00A17D6D /* UIView+AutoLayout.m */; };
 		58D147EA1D89240A00A17D6D /* ZKLoginHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D147E81D89240A00A17D6D /* ZKLoginHomeViewController.m */; };
 		58D147EB1D89240A00A17D6D /* ZKLoginHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D147E91D89240A00A17D6D /* ZKLoginHomeViewController.xib */; };
@@ -213,6 +219,13 @@
 		58BCC1B41DA8EB9700B6B881 /* ZKContactCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKContactCell.xib; sourceTree = "<group>"; };
 		58BCC1BA1DA90A5500B6B881 /* UIImage+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Common.h"; sourceTree = "<group>"; };
 		58BCC1BB1DA90A5500B6B881 /* UIImage+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Common.m"; sourceTree = "<group>"; };
+		58BCC1BF1DA9D96F00B6B881 /* ZKAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKAlertView.h; sourceTree = "<group>"; };
+		58BCC1C01DA9D96F00B6B881 /* ZKAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKAlertView.m; sourceTree = "<group>"; };
+		58BCC1C31DA9DF7D00B6B881 /* ZKAlertView_attention.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZKAlertView_attention.png; sourceTree = "<group>"; };
+		58BCC1C41DA9DF7D00B6B881 /* ZKAlertView_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZKAlertView_camera.png; sourceTree = "<group>"; };
+		58BCC1C51DA9DF7D00B6B881 /* ZKAlertView_heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZKAlertView_heart.png; sourceTree = "<group>"; };
+		58BCC1C61DA9DF7D00B6B881 /* ZKAlertView_identification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZKAlertView_identification.png; sourceTree = "<group>"; };
+		58BCC1C71DA9DF7D00B6B881 /* ZKAlertView_trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZKAlertView_trash.png; sourceTree = "<group>"; };
 		58D147DE1D89233F00A17D6D /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		58D147DF1D89233F00A17D6D /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 		58D147E71D89240A00A17D6D /* ZKLoginHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKLoginHomeViewController.h; sourceTree = "<group>"; };
@@ -635,6 +648,36 @@
 				58D147FB1D89402700A17D6D /* Supporting */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		58BCC1BD1DA9D92800B6B881 /* MCAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				58BCC1BE1DA9D92800B6B881 /* ZKAlertView */,
+			);
+			path = MCAlertController;
+			sourceTree = "<group>";
+		};
+		58BCC1BE1DA9D92800B6B881 /* ZKAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				58BCC1BF1DA9D96F00B6B881 /* ZKAlertView.h */,
+				58BCC1C01DA9D96F00B6B881 /* ZKAlertView.m */,
+				58BCC1C21DA9DF7D00B6B881 /* ZKAlertViewImages */,
+			);
+			path = ZKAlertView;
+			sourceTree = "<group>";
+		};
+		58BCC1C21DA9DF7D00B6B881 /* ZKAlertViewImages */ = {
+			isa = PBXGroup;
+			children = (
+				58BCC1C31DA9DF7D00B6B881 /* ZKAlertView_attention.png */,
+				58BCC1C41DA9DF7D00B6B881 /* ZKAlertView_camera.png */,
+				58BCC1C51DA9DF7D00B6B881 /* ZKAlertView_heart.png */,
+				58BCC1C61DA9DF7D00B6B881 /* ZKAlertView_identification.png */,
+				58BCC1C71DA9DF7D00B6B881 /* ZKAlertView_trash.png */,
+			);
+			path = ZKAlertViewImages;
 			sourceTree = "<group>";
 		};
 		58D147DD1D89233F00A17D6D /* UIView+AutoLayout */ = {
@@ -1114,6 +1157,7 @@
 		58E360311D87D76000D38839 /* Thirdparty */ = {
 			isa = PBXGroup;
 			children = (
+				58BCC1BD1DA9D92800B6B881 /* MCAlertController */,
 				58D149511D8FEE3100A17D6D /* MJExtension */,
 				58D148411D8FD9C400A17D6D /* YYKit */,
 				58D147F11D892E8D00A17D6D /* SuspensionView */,
@@ -1325,12 +1369,17 @@
 				58E360081D87D5E100D38839 /* LaunchScreen.storyboard in Resources */,
 				58D149681D8FEE3100A17D6D /* Info.plist in Resources */,
 				58D148281D8E77F500A17D6D /* ZKDiscoverViewController.xib in Resources */,
+				58BCC1C91DA9DF7D00B6B881 /* ZKAlertView_camera.png in Resources */,
 				583A82401D913B22006F14C6 /* ZKChatBar.xib in Resources */,
+				58BCC1CA1DA9DF7D00B6B881 /* ZKAlertView_heart.png in Resources */,
+				58BCC1C81DA9DF7D00B6B881 /* ZKAlertView_attention.png in Resources */,
 				583A81E81D90FE4A006F14C6 /* ZKWeChatCell.xib in Resources */,
 				58AB302B1D891B89007BB571 /* ZKHomeViewController.xib in Resources */,
+				58BCC1CC1DA9DF7D00B6B881 /* ZKAlertView_trash.png in Resources */,
 				58D147EB1D89240A00A17D6D /* ZKLoginHomeViewController.xib in Resources */,
 				58E360051D87D5E100D38839 /* Assets.xcassets in Resources */,
 				58D147F61D892E8D00A17D6D /* USSuspensionView.xib in Resources */,
+				58BCC1CB1DA9DF7D00B6B881 /* ZKAlertView_identification.png in Resources */,
 				58D1482D1D8E780000A17D6D /* ZKMeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1380,6 +1429,7 @@
 				58D148FA1D8FD9C400A17D6D /* NSObject+YYAdd.m in Sources */,
 				58D149111D8FD9C400A17D6D /* YYDiskCache.m in Sources */,
 				58E35FFD1D87D5E100D38839 /* AppDelegate.m in Sources */,
+				58BCC1C11DA9D96F00B6B881 /* ZKAlertView.m in Sources */,
 				583A81E71D90FE4A006F14C6 /* ZKWeChatCell.m in Sources */,
 				58D148F21D8FD9C400A17D6D /* NSArray+YYAdd.m in Sources */,
 				58D1491D1D8FD9C400A17D6D /* YYImageCoder.m in Sources */,
