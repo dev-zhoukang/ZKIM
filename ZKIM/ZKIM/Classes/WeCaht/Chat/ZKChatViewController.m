@@ -73,9 +73,15 @@
             NSRange indexsRange = NSMakeRange(0, tempArray.count);
             [_layouts insertObjects:tempArray atIndexes:[NSIndexSet indexSetWithIndexesInRange:indexsRange]];
             
+            __block CGFloat newsHeight = 0;
+            [tempArray enumerateObjectsUsingBlock:^(ZKChatLayout *layout, NSUInteger idx, BOOL * _Nonnull stop) {
+                newsHeight += layout.height;
+            }];
+            
             dispatch_async(dispatch_get_main_queue(), ^{
-                [weak_self.tableView.mj_header endRefreshing];
                 [_tableView reloadData];
+//                [weak_self.tableView setContentOffset:CGPointMake(0, 200)];
+                [weak_self.tableView.mj_header endRefreshing];
             });
         });
     }];

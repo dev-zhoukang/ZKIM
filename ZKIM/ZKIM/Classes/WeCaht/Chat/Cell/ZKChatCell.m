@@ -70,7 +70,6 @@
 
 - (void)setup
 {
-    self.backgroundColor = [UIColor clearColor];
     self.selectionStyle = UITableViewCellSeparatorStyleNone;
     
     _iconImageView = [[UIImageView alloc] init];
