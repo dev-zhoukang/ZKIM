@@ -90,7 +90,7 @@
         
         CGFloat delta = weak_self.tableView.contentSize.height - maxTabelHeight;
         if (delta > 0) {
-            [weak_self.tableView setContentOffset:CGPointMake(0, delta)];
+            [weak_self.tableView setContentOffset:CGPointMake(0, delta + 10.f)];
         }
         weak_self.firstLoad = NO;
     }
@@ -117,6 +117,8 @@
     
     _tableView = [[UITableView alloc]
                   initWithFrame:(CGRect){0, _topInset, SCREEN_WIDTH, SCREEN_HEIGHT-_topInset-_bottomInset} style:UITableViewStylePlain];
+    _tableView.contentInset = UIEdgeInsetsMake(0, 0, 10.f, 0);
+    
     _tableView.backgroundColor = GlobalChatBGColor;
     _tableView.delegate = self;
     _tableView.dataSource = self;

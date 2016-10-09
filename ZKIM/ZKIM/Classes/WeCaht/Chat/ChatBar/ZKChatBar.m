@@ -19,6 +19,8 @@
 
 static CGFloat keyboard_y;
 
+static CGFloat const kBottomInset = 10.f;
+
 @implementation ZKChatBar
 
 - (void)awakeFromNib
@@ -85,11 +87,11 @@ static CGFloat keyboard_y;
     
     CGFloat delta = tableView.contentSize.height - maxTabelHeight;
     if (delta > 0) {
-        [tableView setContentOffset:CGPointMake(0, delta)];
+        [tableView setContentOffset:CGPointMake(0, delta+kBottomInset)];
     }
     [tableView setContentInset:UIEdgeInsetsMake(tableView.contentInset.top,
                                                 0,
-                                                SCREEN_HEIGHT-keyboardFrame.origin.y,
+                                                SCREEN_HEIGHT-keyboardFrame.origin.y+kBottomInset,
                                                 0)];
 }
 
@@ -160,14 +162,23 @@ static CGFloat keyboard_y;
         return;
     }
     
-    CGSize size = [_textView sizeThatFits:CGSizeMake(_textView.width , MAXFLOAT)];
+    UITableView *tableView = [self tableView];
+    
+    CGFloat chatBarNewHeight = [_textView sizeThatFits:CGSizeMake(_textView.width , MAXFLOAT)].height+14.f;
+    
+    if (chatBarNewHeight < 50.f) {
+        return;
+    }
     
     [UIView animateWithDuration:0.12
                           delay:0.0
                         options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseIn
                      animations:^{
-                         self.height = MAX(size.height + 14.f, 50.f);
+                         [tableView setContentOffset:(CGPoint){0, tableView.contentOffset.y+(chatBarNewHeight-self.height)}];
+                         
+                         self.height = chatBarNewHeight;
                          self.bottom = keyboard_y;
+                         
                          [self layoutIfNeeded];
                      } completion:nil];
 }
