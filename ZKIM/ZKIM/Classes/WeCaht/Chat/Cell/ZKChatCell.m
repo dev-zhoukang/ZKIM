@@ -9,42 +9,6 @@
 #import "ZKChatCell.h"
 #import "ZKChatLayout.h"
 
-@implementation UIImageView (Message)
-#pragma mark - UIResponder
-
-- (BOOL)canBecomeFirstResponder
-{
-    return true;
-}
-
-- (BOOL)canPerformAction:(SEL)action withSender:(id)sender
-{
-    if (action == @selector(copyAction:)){
-        return YES;
-    }
-    if (action == @selector(deleteAction:)){
-        return YES;
-    }
-    return NO;
-}
-
-- (void)copyAction:(id)sender
-{
-    NSDictionary *dic = [self.accessibilityValue object];
-    
-    [[UIPasteboard generalPasteboard] setString:dic[@"text"]];
-}
-
-- (void)deleteAction:(id)sender
-{
-    NSDictionary *dic = [self.accessibilityValue object];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"dele" object:dic[@"index"]];
-}
-
-@end
-
-
 @interface ZKChatCell ()
 
 @property (nonatomic, strong) UIImageView *iconImageView;
@@ -111,8 +75,11 @@
     if (recognizer.state != UIGestureRecognizerStateBegan) return;
     
     UIMenuController *copyMenu = [UIMenuController sharedMenuController];
-    UIMenuItem *copyItem = [[UIMenuItem alloc] initWithTitle:@"复制"action:@selector(copyAction:)];
-    UIMenuItem *deleteItem = [[UIMenuItem alloc] initWithTitle:@"删除"action:@selector(deleteAction:)];
+    
+    UIMenuItem *copyItem = [[UIMenuItem alloc]
+                            initWithTitle:@"复制"action:NSSelectorFromString(@"copyAction:")];
+    UIMenuItem *deleteItem = [[UIMenuItem alloc]
+                              initWithTitle:@"删除"action:NSSelectorFromString(@"deleteAction:")];
     
     [copyMenu setMenuItems:[NSArray arrayWithObjects:deleteItem, nil]];
     
@@ -185,3 +152,41 @@
 }
 
 @end
+
+////////////////////
+
+@implementation UIImageView (Message)
+#pragma mark - UIResponder
+
+- (BOOL)canBecomeFirstResponder
+{
+    return true;
+}
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender
+{
+    if (action == @selector(copyAction:)){
+        return YES;
+    }
+    if (action == @selector(deleteAction:)){
+        return YES;
+    }
+    return NO;
+}
+
+- (void)copyAction:(id)sender
+{
+    NSDictionary *dic = [self.accessibilityValue object];
+    
+    [[UIPasteboard generalPasteboard] setString:dic[@"text"]];
+}
+
+- (void)deleteAction:(id)sender
+{
+    NSDictionary *dic = [self.accessibilityValue object];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"dele" object:dic[@"index"]];
+}
+
+@end
+
