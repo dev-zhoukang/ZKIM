@@ -101,6 +101,12 @@
         }];
         
         [weak_self.tableView setContentOffset:CGPointMake(0, newsHeight)];
+        
+        // 已经加载全部
+        if (!newMsgs.count) {
+            [weak_self.refreshHeader noMoreData];
+        }
+        
         [weak_self.refreshHeader endRefresh];
     }
 }
@@ -127,11 +133,9 @@
     
     @weakify(self)
     _refreshHeader = [ZKChatRefreshHeader headerWithTableView:_tableView refreshBlock:^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weak_self requestData];
         });
-        
-        DLog(@"============刷新=========");
     }];
 }
 
