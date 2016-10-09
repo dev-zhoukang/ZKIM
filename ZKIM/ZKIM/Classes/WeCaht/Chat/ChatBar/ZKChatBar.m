@@ -116,6 +116,8 @@ static CGFloat const kBottomInset = 10.f;
             return NO;
         }
         
+        [self autoLayoutHeight];
+        
         if ([self.delegate respondsToSelector:@selector(charBar:sendText:)]) {
             [self.delegate charBar:self sendText:textView.text];
             textView.text = @"";
@@ -158,24 +160,26 @@ static CGFloat const kBottomInset = 10.f;
 
 - (void)autoLayoutHeight
 {
-    if (!_textView.text.length) {
-        return;
-    }
-    
-    UITableView *tableView = [self tableView];
-    
     CGFloat chatBarNewHeight = [_textView sizeThatFits:CGSizeMake(_textView.width , MAXFLOAT)].height+14.f;
     
     if (chatBarNewHeight < 50.f) {
+        [self animateSetHeight:50.f];
         return;
     }
     
-    [UIView animateWithDuration:0.12
+    [self animateSetHeight:chatBarNewHeight];
+}
+
+- (void)animateSetHeight:(CGFloat)chatBarNewHeight
+{
+    UITableView *tableView = [self tableView];
+    
+    [UIView animateWithDuration:0.2
                           delay:0.0
-                        options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseIn
+                        options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         [tableView setContentOffset:(CGPoint){0, tableView.contentOffset.y+(chatBarNewHeight-self.height)}];
                          
+                         [tableView setContentOffset:(CGPoint){0, tableView.contentOffset.y+(chatBarNewHeight-self.height)}];
                          self.height = chatBarNewHeight;
                          self.bottom = keyboard_y;
                          

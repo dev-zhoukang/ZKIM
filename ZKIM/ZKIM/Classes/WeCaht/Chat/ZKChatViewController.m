@@ -161,6 +161,7 @@
     return height;
 }
 
+#pragma mark - 发送消息
 #pragma mark - <ZKChatBarDelegate>
 
 - (void)charBar:(ZKChatBar *)chatBar sendText:(NSString *)content
@@ -172,7 +173,7 @@
     ZKChatLayout *layout = [[ZKChatLayout alloc] initWithEMMessage:message];
     [_layouts addObject:layout];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_layouts.count-1 inSection:0];
-    [_tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+    [_tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     
     [_tableView setContentOffset:CGPointMake(0, _tableView.contentOffset.y+layout.height) animated:YES];
     
