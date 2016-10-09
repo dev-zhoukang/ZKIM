@@ -167,6 +167,13 @@
     
     EMMessage *message = [self generateMessageWithText:content];
     
+    ZKChatLayout *layout = [[ZKChatLayout alloc] initWithEMMessage:message];
+    [_layouts addObject:layout];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_layouts.count-1 inSection:0];
+    [_tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+    
+    [_tableView setContentOffset:CGPointMake(0, _tableView.contentOffset.y+layout.height) animated:YES];
+    
     [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
         DLog(@"文字消息发送成功!");
         
