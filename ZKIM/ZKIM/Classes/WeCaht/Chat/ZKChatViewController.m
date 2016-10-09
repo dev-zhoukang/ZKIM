@@ -10,7 +10,7 @@
 #import "ZKChatBar.h"
 #import "ZKChatCell.h"
 #import "ZKChatLayout.h"
-#import "MJRefresh.h"
+#import "ZKChatRefreshHeader.h"
 
 @interface ZKChatViewController () <UITableViewDelegate, UITableViewDataSource, ZKChatBarDelegate, EMChatManagerDelegate>
 
@@ -18,6 +18,8 @@
 @property (nonatomic, strong) ZKChatBar   *chatBar;
 @property (nonatomic, strong) NSMutableArray <ZKChatLayout *> *layouts;
 @property (nonatomic, copy) NSString *lastMsgID;
+@property (nonatomic, assign) BOOL firstLoad;
+@property (nonatomic, strong) ZKChatRefreshHeader *refreshHeader;
 
 @end
 
@@ -29,17 +31,12 @@
     
     _layouts = [[NSMutableArray alloc] init];
     _lastMsgID = nil;
+    _firstLoad = YES;
     
     [[EMClient sharedClient].chatManager addDelegate:self];
     [self setupUI];
     
     [self requestData];
-    
-    __weak typeof(self) weakSelf = self;
-    
-    _tableView.mj_header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
-        [weakSelf requestData];
-    }];
 }
 
 - (void)requestData
@@ -48,17 +45,13 @@
     
     if (_layouts) {
         ZKChatLayout *layout = _layouts.firstObject;
-        EMMessage *lastMsg = layout.message;
-        _lastMsgID = lastMsg.messageId;
+        _lastMsgID = layout.message.messageId;
     }
     
-    @weakify(self)
-    
-    [conversation loadMessagesStartFromId:_lastMsgID count:10 searchDirection:EMMessageSearchDirectionUp completion:^(NSArray *aMessages, EMError *aError) {
+    [conversation loadMessagesStartFromId:_lastMsgID count:15 searchDirection:EMMessageSearchDirectionUp completion:^(NSArray *aMessages, EMError *aError) {
         
         if (aError) {
             DLog(@"获取聊天数据失败 -- %@", aError);
-            [weak_self.tableView.mj_header endRefreshing];
             return;
         }
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -73,18 +66,43 @@
             NSRange indexsRange = NSMakeRange(0, tempArray.count);
             [_layouts insertObjects:tempArray atIndexes:[NSIndexSet indexSetWithIndexesInRange:indexsRange]];
             
-            __block CGFloat newsHeight = 0;
-            [tempArray enumerateObjectsUsingBlock:^(ZKChatLayout *layout, NSUInteger idx, BOOL * _Nonnull stop) {
-                newsHeight += layout.height;
-            }];
-            
+            @weakify(self)
             dispatch_async(dispatch_get_main_queue(), ^{
-                [_tableView reloadData];
-//                [weak_self.tableView setContentOffset:CGPointMake(0, 200)];
-                [weak_self.tableView.mj_header endRefreshing];
+                
+                [weak_self.tableView reloadData];
+                [weak_self autoSetTableViewContentOffsetWithNewMsgs:tempArray];
             });
         });
     }];
+}
+
+/*! 
+ 第一次进入: 展示最新数据
+ 下拉历史数据: 无缝连接记录
+ */
+- (void)autoSetTableViewContentOffsetWithNewMsgs:(NSArray *)newMsgs
+{
+    @weakify(self)
+    
+    if (weak_self.firstLoad) {
+        
+        CGFloat maxTabelHeight = SCREEN_HEIGHT-_topInset-_bottomInset;
+        
+        CGFloat delta = weak_self.tableView.contentSize.height - maxTabelHeight;
+        if (delta > 0) {
+            [weak_self.tableView setContentOffset:CGPointMake(0, delta)];
+        }
+        weak_self.firstLoad = NO;
+    }
+    else {
+        __block CGFloat newsHeight = 0;
+        [newMsgs enumerateObjectsUsingBlock:^(ZKChatLayout *layout, NSUInteger idx, BOOL * _Nonnull stop) {
+            newsHeight += layout.height;
+        }];
+        
+        [weak_self.tableView setContentOffset:CGPointMake(0, newsHeight)];
+        [weak_self.refreshHeader endRefresh];
+    }
 }
 
 - (void)setupUI
@@ -106,6 +124,15 @@
     _chatBar.left = 0;
     _chatBar.bottom = SCREEN_HEIGHT;
     [self.view addSubview:_chatBar];
+    
+    @weakify(self)
+    _refreshHeader = [ZKChatRefreshHeader headerWithTableView:_tableView refreshBlock:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weak_self requestData];
+        });
+        
+        DLog(@"============刷新=========");
+    }];
 }
 
 #pragma mark - <UITableViewDelegate, UITableViewDataSource>
@@ -125,7 +152,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat height = _layouts[indexPath.item].height;
-    return height + 20 + 20;
+    return height;
 }
 
 #pragma mark - <ZKChatBarDelegate>
@@ -191,6 +218,11 @@
             default: break;
         }
     }
+}
+
+- (void)dealloc
+{
+    [_refreshHeader free];
 }
 
 @end

@@ -59,6 +59,7 @@
     }
     
     _height += _contentTextHeight;
+    _height += 20*2; // 加上上下的边距
 }
 
 - (void)layoutContentText

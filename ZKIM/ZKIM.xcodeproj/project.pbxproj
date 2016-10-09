@@ -53,6 +53,7 @@
 		58BCC2501DA9F24200B6B881 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BCC23A1DA9F24200B6B881 /* UIScrollView+MJExtension.m */; };
 		58BCC2511DA9F24200B6B881 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BCC23C1DA9F24200B6B881 /* UIScrollView+MJRefresh.m */; };
 		58BCC2521DA9F24200B6B881 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BCC23E1DA9F24200B6B881 /* UIView+MJExtension.m */; };
+		58BCC25F1DAA11B700B6B881 /* ZKChatRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BCC25E1DAA11B700B6B881 /* ZKChatRefreshHeader.m */; };
 		58D147E01D89233F00A17D6D /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D147DF1D89233F00A17D6D /* UIView+AutoLayout.m */; };
 		58D147EA1D89240A00A17D6D /* ZKLoginHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D147E81D89240A00A17D6D /* ZKLoginHomeViewController.m */; };
 		58D147EB1D89240A00A17D6D /* ZKLoginHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D147E91D89240A00A17D6D /* ZKLoginHomeViewController.xib */; };
@@ -286,6 +287,8 @@
 		58BCC23C1DA9F24200B6B881 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		58BCC23D1DA9F24200B6B881 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		58BCC23E1DA9F24200B6B881 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		58BCC25D1DAA11B700B6B881 /* ZKChatRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatRefreshHeader.h; sourceTree = "<group>"; };
+		58BCC25E1DAA11B700B6B881 /* ZKChatRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChatRefreshHeader.m; sourceTree = "<group>"; };
 		58D147DE1D89233F00A17D6D /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		58D147DF1D89233F00A17D6D /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 		58D147E71D89240A00A17D6D /* ZKLoginHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKLoginHomeViewController.h; sourceTree = "<group>"; };
@@ -835,6 +838,15 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
+		58BCC25C1DAA11B700B6B881 /* ZKChatRefreshHeader */ = {
+			isa = PBXGroup;
+			children = (
+				58BCC25D1DAA11B700B6B881 /* ZKChatRefreshHeader.h */,
+				58BCC25E1DAA11B700B6B881 /* ZKChatRefreshHeader.m */,
+			);
+			path = ZKChatRefreshHeader;
+			sourceTree = "<group>";
+		};
 		58D147DD1D89233F00A17D6D /* UIView+AutoLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -1312,6 +1324,7 @@
 		58E360311D87D76000D38839 /* Thirdparty */ = {
 			isa = PBXGroup;
 			children = (
+				58BCC25C1DAA11B700B6B881 /* ZKChatRefreshHeader */,
 				58BCC2101DA9F24200B6B881 /* MJRefresh */,
 				58BCC1BD1DA9D92800B6B881 /* MCAlertController */,
 				58D149511D8FEE3100A17D6D /* MJExtension */,
@@ -1655,6 +1668,7 @@
 				58D1482C1D8E780000A17D6D /* ZKMeViewController.m in Sources */,
 				58D1493D1D8FD9C400A17D6D /* YYSentinel.m in Sources */,
 				58D1490B1D8FD9C400A17D6D /* UIScreen+YYAdd.m in Sources */,
+				58BCC25F1DAA11B700B6B881 /* ZKChatRefreshHeader.m in Sources */,
 				58BCC2471DA9F24200B6B881 /* MJRefreshBackGifFooter.m in Sources */,
 				58D149121D8FD9C400A17D6D /* YYKVStorage.m in Sources */,
 				58D149161D8FD9C400A17D6D /* MKAnnotationView+YYWebImage.m in Sources */,
