@@ -6,6 +6,9 @@
 //  Copyright (c) 2014年 chen ying. All rights reserved.
 //
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+
 #import "NSDate+Common.h"
 
 @implementation NSDate (Common)
@@ -543,6 +546,7 @@
 @end
 
 @implementation NSString (DateCommon)
+
 - (NSDate *)date
 {
     return [self dateWithDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -553,4 +557,7 @@
     [dateFormatter setDateFormat:format];
     return [dateFormatter dateFromString:self];
 }
+
 @end
+
+#pragma GCC diagnostic pop
