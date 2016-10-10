@@ -40,7 +40,6 @@ static CGFloat const kBottomInset = 10.f;
 - (void)setup
 {
     self.size = (CGSize){SCREEN_WIDTH, kBarDefaultHeight};
-    
     _textView.delegate = self;
     _textView.returnKeyType = UIReturnKeySend;
     _textView.font = [UIFont systemFontOfSize:15.f];
@@ -155,9 +154,9 @@ static CGFloat const kBottomInset = 10.f;
                 [_textView becomeFirstResponder];
             }
             else {
-                [_textView resignFirstResponder];
                 _oriHeight = self.height;
-                [self animateSetHeight:kBarDefaultHeight shouldChangeTableViewOffset:YES];
+                [self animateSetHeight:kBarDefaultHeight];
+                [_textView resignFirstResponder];
             }
             
         } break;
@@ -183,25 +182,26 @@ static CGFloat const kBottomInset = 10.f;
     CGFloat chatBarNewHeight = [_textView sizeThatFits:CGSizeMake(_textView.width , MAXFLOAT)].height+14.f;
     
     if (chatBarNewHeight < kBarDefaultHeight) {
-        [self animateSetHeight:kBarDefaultHeight shouldChangeTableViewOffset:YES];
+        [self animateSetHeight:kBarDefaultHeight];
         return;
     }
     
-    [self animateSetHeight:chatBarNewHeight shouldChangeTableViewOffset:YES];
+    [self animateSetHeight:chatBarNewHeight];
 }
 
-- (void)animateSetHeight:(CGFloat)chatBarNewHeight shouldChangeTableViewOffset:(BOOL)shouldChangeTableViewOffset
+- (void)animateSetHeight:(CGFloat)chatBarNewHeight
 {
-    [UIView animateWithDuration:0.2
+    if (chatBarNewHeight > kBarDefaultHeight*3*WindowZoomScale) {
+        return;
+    }
+    
+    [UIView animateWithDuration:0.35
                           delay:0.0
                         options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut
                      animations:^{
                          self.height = chatBarNewHeight;
                          self.bottom = keyboard_y;
-                    
-                         if (shouldChangeTableViewOffset) {
-                             [self setTableViewOffsetWithKeyboardFrame:_keyboardFrame];
-                         }
+                         [self setTableViewOffsetWithKeyboardFrame:_keyboardFrame];
                          
                          [self layoutIfNeeded];
                      } completion:nil];
