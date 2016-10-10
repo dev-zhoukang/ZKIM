@@ -61,7 +61,7 @@
     _timeLabel.textColor = [UIColor whiteColor];
     _timeLabel.backgroundColor = RGBCOLOR(195, 195, 195);
     _timeLabel.text = @"昨天 10:26";
-    _timeLabel.top = 9.f;
+    _timeLabel.top = 8.f;
     _timeLabel.height = 18.f;
     _timeLabel.layer.cornerRadius = 3.5f;
     _timeLabel.layer.masksToBounds = YES;
