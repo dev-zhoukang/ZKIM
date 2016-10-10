@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UIImageView *iconImageView;
 @property (nonatomic, strong) UIImageView *bubbleImageView;
 @property (nonatomic, strong) YYLabel     *contentLabel;
+@property (nonatomic, strong) UILabel     *timeLabel;
 
 @property (nonatomic, assign) BOOL        isMine; //我的消息
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPress;
@@ -47,10 +48,23 @@
     [self.contentView addSubview:_bubbleImageView];
     
     _contentLabel = [[YYLabel alloc] init];
+    _contentLabel.backgroundColor = [UIColor clearColor];
     _contentLabel.displaysAsynchronously = NO;
     _contentLabel.fadeOnAsynchronouslyDisplay = NO;
     _contentLabel.ignoreCommonProperties = YES;
     [self.contentView addSubview:_contentLabel];
+    
+    _timeLabel = [[UILabel alloc] init];
+    [self.contentView addSubview:_timeLabel];
+    _timeLabel.font = [UIFont systemFontOfSize:12.f];
+    _timeLabel.textColor = [UIColor whiteColor];
+    _timeLabel.backgroundColor = RGBCOLOR(195, 195, 195);
+    _timeLabel.text = @"昨天 10:26";
+    [_timeLabel sizeToFit];
+    _timeLabel.top = 10.f;
+    _timeLabel.centerX = SCREEN_WIDTH * 0.5;
+    _timeLabel.layer.cornerRadius = 3.f;
+    _timeLabel.layer.masksToBounds = YES;
     
     _longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     [_contentLabel addGestureRecognizer:_longPress];
@@ -118,22 +132,33 @@
 {
     _bubbleImageView.image = [self getBubbleImage];
     
-    CGFloat labelWidth = _cellLayout.contentTextLayout.textBoundingSize.width;
-    CGFloat labelHeight = _cellLayout.contentTextLayout.textBoundingSize.height;
-    _contentLabel.size = _cellLayout.contentTextLayout.textBoundingSize;
+    CGFloat labelWidth    = _cellLayout.contentTextLayout.textBoundingSize.width;
+    CGFloat labelHeight   = _cellLayout.contentTextLayout.textBoundingSize.height;
+    _contentLabel.size    = _cellLayout.contentTextLayout.textBoundingSize;
     _bubbleImageView.size = CGSizeMake(labelWidth+40.f, labelHeight+40.f);
-    _bubbleImageView.top = 10.f;
-    _contentLabel.top = 25.f;
     
-    if (_isMine) {
-        _iconImageView.right = SCREEN_WIDTH - 10.f;
-        _bubbleImageView.right = CGRectGetMinX(_iconImageView.frame)-5.f;
-        _contentLabel.right = CGRectGetMinX(_iconImageView.frame)-25.f;
+    if (_cellLayout.needShowTime) {
+        _timeLabel.hidden    = NO;
+        _bubbleImageView.top = 30.f;
+        _contentLabel.top    = 45.f;
+        _iconImageView.top   = 30.f;
     }
     else {
-        _iconImageView.left = 10.f;
+        _timeLabel.hidden    = YES;
+        _bubbleImageView.top = 10.f;
+        _contentLabel.top    = 25.f;
+        _iconImageView.top   = 10.f;
+    }
+    
+    if (_isMine) {
+        _iconImageView.right   = SCREEN_WIDTH - 10.f;
+        _bubbleImageView.right = CGRectGetMinX(_iconImageView.frame)-5.f;
+        _contentLabel.right    = CGRectGetMinX(_iconImageView.frame)-25.f;
+    }
+    else {
+        _iconImageView.left   = 10.f;
         _bubbleImageView.left = CGRectGetMaxX(_iconImageView.frame)+5.f;
-        _contentLabel.left = CGRectGetMaxX(_iconImageView.frame)+25.f;
+        _contentLabel.left    = CGRectGetMaxX(_iconImageView.frame)+25.f;
     }
 }
 

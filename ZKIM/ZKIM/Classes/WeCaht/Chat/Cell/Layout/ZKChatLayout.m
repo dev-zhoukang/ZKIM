@@ -23,6 +23,7 @@
     if (!message) return nil;
     if (self = [super init]) {
         _message = message;
+        _needShowTime = YES;
         [self layout];
     }
     return self;
@@ -60,6 +61,10 @@
     
     _height += _contentTextHeight;
     _height += 20*2; // 加上上下的边距
+    
+    if (_needShowTime) { // 展示时间的高度
+        _height += 20;
+    }
 }
 
 - (void)layoutContentText
