@@ -196,9 +196,8 @@
             DLog(@"消息发送失败 -- %@", error.errorDescription);
             return;
         }
+        [_tableView reloadData];
         DLog(@"文字消息发送成功!");
-        ZKChatCell *cell = [_tableView visibleCells].lastObject;
-        [cell stopLoading];
     }];
 }
 
@@ -209,10 +208,8 @@
     [_layouts addObject:layout];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_layouts.count-1 inSection:0];
     [_tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    [_tableView reloadData];
     
-    ZKChatCell *cell = [_tableView visibleCells].lastObject;
-    [cell startLoading];
+    [_tableView reloadData];
     
     [UIView animateWithDuration:0.25 animations:^{
         [_chatBar setTableViewOffsetWithKeyboardFrame:_chatBar.keyboardFrame];

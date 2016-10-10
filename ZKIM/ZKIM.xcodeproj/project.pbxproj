@@ -21,6 +21,7 @@
 		583A823E1D913B12006F14C6 /* ZKChatBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A823D1D913B12006F14C6 /* ZKChatBar.m */; };
 		583A82401D913B22006F14C6 /* ZKChatBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 583A823F1D913B22006F14C6 /* ZKChatBar.xib */; };
 		58658EFA1DAB46B1005E54FA /* NSDate+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 58658EF91DAB46B1005E54FA /* NSDate+Common.m */; };
+		587948DB1DAB80DB0053DCDA /* ZKChatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 587948DA1DAB80DB0053DCDA /* ZKChatManager.m */; };
 		58AB30231D891AFD007BB571 /* Launch_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58AB30221D891AFD007BB571 /* Launch_image@2x.png */; };
 		58AB302A1D891B89007BB571 /* ZKHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58AB30261D891B89007BB571 /* ZKHomeViewController.m */; };
 		58AB302B1D891B89007BB571 /* ZKHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58AB30271D891B89007BB571 /* ZKHomeViewController.xib */; };
@@ -232,6 +233,8 @@
 		583A823F1D913B22006F14C6 /* ZKChatBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKChatBar.xib; sourceTree = "<group>"; };
 		58658EF81DAB46B1005E54FA /* NSDate+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Common.h"; sourceTree = "<group>"; };
 		58658EF91DAB46B1005E54FA /* NSDate+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Common.m"; sourceTree = "<group>"; };
+		587948D91DAB80DB0053DCDA /* ZKChatManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatManager.h; sourceTree = "<group>"; };
+		587948DA1DAB80DB0053DCDA /* ZKChatManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChatManager.m; sourceTree = "<group>"; };
 		58AB30221D891AFD007BB571 /* Launch_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Launch_image@2x.png"; sourceTree = "<group>"; };
 		58AB30251D891B89007BB571 /* ZKHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKHomeViewController.h; sourceTree = "<group>"; };
 		58AB30261D891B89007BB571 /* ZKHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKHomeViewController.m; sourceTree = "<group>"; };
@@ -653,6 +656,8 @@
 				583A823B1D913A63006F14C6 /* ChatBar */,
 				583A81EA1D91092C006F14C6 /* ZKChatViewController.h */,
 				583A81EB1D91092C006F14C6 /* ZKChatViewController.m */,
+				587948D91DAB80DB0053DCDA /* ZKChatManager.h */,
+				587948DA1DAB80DB0053DCDA /* ZKChatManager.m */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1654,6 +1659,7 @@
 				58D149381D8FD9C400A17D6D /* YYDispatchQueuePool.m in Sources */,
 				58D149101D8FD9C400A17D6D /* YYCache.m in Sources */,
 				58D1492B1D8FD9C400A17D6D /* YYTextSelectionView.m in Sources */,
+				587948DB1DAB80DB0053DCDA /* ZKChatManager.m in Sources */,
 				58D149011D8FD9C400A17D6D /* YYCGUtilities.m in Sources */,
 				582D55C41D9CE304004E9929 /* ZKChatCell.m in Sources */,
 				58BCC2481DA9F24200B6B881 /* MJRefreshBackNormalFooter.m in Sources */,

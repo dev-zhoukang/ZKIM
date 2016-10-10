@@ -75,6 +75,7 @@
     [_sendFailBtn setImage:[UIImage imageNamed:@"MessageSendFail"] forState:UIControlStateNormal];
     _sendFailBtn.size = (CGSize){35.f, 35.f};
     [_sendFailBtn addTarget:self action:@selector(sendFailBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    _sendFailBtn.hidden = YES;
     _sendFailBtn.contentMode = UIViewContentModeCenter;
     [self.contentView addSubview:_sendFailBtn];
     
@@ -92,16 +93,6 @@
         cell = [[ZKChatCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     return cell;
-}
-
-- (void)startLoading
-{
-    [_indicatorView startAnimating];
-}
-
-- (void)stopLoading
-{
-    [_indicatorView stopAnimating];
 }
 
 #pragma mark - Gesture
@@ -191,6 +182,18 @@
         _iconImageView.left   = 10.f;
         _bubbleImageView.left = CGRectGetMaxX(_iconImageView.frame)+5.f;
         _contentLabel.left    = CGRectGetMaxX(_iconImageView.frame)+25.f;
+    }
+    
+    _sendFailBtn.hidden = YES;
+    BOOL showLoading = _cellLayout.message.status == EMMessageStatusDelivering;
+    if (showLoading) {
+        [_indicatorView startAnimating];
+    }
+    else {
+        [_indicatorView stopAnimating];
+        if (_cellLayout.message.status == EMMessageStatusFailed) {
+            _sendFailBtn.hidden = NO;
+        }
     }
 }
 

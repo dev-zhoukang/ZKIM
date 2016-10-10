@@ -21,7 +21,4 @@ typedef NS_ENUM(NSInteger, ZKChatCellType) {
 
 + (instancetype)cellWithTableView:(UITableView *)tableView type:(ZKChatCellType)type;
 
-- (void)startLoading;
-- (void)stopLoading;
-
 @end
