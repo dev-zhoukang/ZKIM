@@ -21,9 +21,20 @@
 @property (nonatomic, assign) BOOL firstLoad;
 @property (nonatomic, strong) ZKChatRefreshHeader *refreshHeader;
 
+@property (nonatomic, copy) NSString *conversationID;
+@property (nonatomic, copy) NSString *toID;
+
 @end
 
 @implementation ZKChatViewController
+
++ (instancetype)chatViewControllerWithConversationID:(NSString *)conversationID toID:(NSString *)toID
+{
+    ZKChatViewController *chatVC = [[ZKChatViewController alloc] init];
+    chatVC.conversationID = conversationID;
+    chatVC.toID = toID;
+    return chatVC;
+}
 
 - (void)viewDidLoad
 {
@@ -41,7 +52,7 @@
 
 - (void)requestData
 {
-    EMConversation *conversation = [[EMClient sharedClient].chatManager getConversation:@"6001" type:EMConversationTypeChat createIfNotExist:YES];
+    EMConversation *conversation = [[EMClient sharedClient].chatManager getConversation:_conversationID type:EMConversationTypeChat createIfNotExist:YES];
     
     if (_layouts) {
         ZKChatLayout *layout = _layouts.firstObject;
@@ -95,12 +106,8 @@
         weak_self.firstLoad = NO;
     }
     else {
-        __block CGFloat newsHeight = 0;
-        [newMsgs enumerateObjectsUsingBlock:^(ZKChatLayout *layout, NSUInteger idx, BOOL * _Nonnull stop) {
-            newsHeight += layout.height;
-        }];
-        
-        [weak_self.tableView setContentOffset:CGPointMake(0, newsHeight)];
+    
+        [weak_self.tableView setContentOffset:CGPointMake(0, [weak_self calculateHeightWithLayouts:newMsgs])];
         
         // 已经加载全部
         if (!newMsgs.count) {
@@ -109,6 +116,15 @@
         
         [weak_self.refreshHeader endRefresh];
     }
+}
+
+- (CGFloat)calculateHeightWithLayouts:(NSArray *)layouts
+{
+    __block CGFloat layoutsHeight = 0;
+    [layouts enumerateObjectsUsingBlock:^(ZKChatLayout *layout, NSUInteger idx, BOOL * _Nonnull stop) {
+        layoutsHeight += layout.height;
+    }];
+    return layoutsHeight;
 }
 
 - (void)setupUI
@@ -175,11 +191,14 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_layouts.count-1 inSection:0];
     [_tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     
-    [_tableView setContentOffset:CGPointMake(0, _tableView.contentOffset.y+layout.height) animated:YES];
+    [_tableView reloadData];
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        [_chatBar setTableViewOffsetWithKeyboardFrame:_chatBar.keyboardFrame];
+    }];
     
     [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
         DLog(@"文字消息发送成功!");
-        
     }];
 }
 
@@ -189,7 +208,7 @@
     EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithText:text];
     NSString *from = [[EMClient sharedClient] currentUsername];
     
-    EMMessage *message = [[EMMessage alloc] initWithConversationID:@"6001" from:from to:@"11" body:body ext:nil];
+    EMMessage *message = [[EMMessage alloc] initWithConversationID:_conversationID from:from to:_toID body:body ext:nil];
     message.chatType = EMChatTypeChat;
     
     return message;

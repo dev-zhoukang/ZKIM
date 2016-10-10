@@ -87,7 +87,9 @@ static NSString *kCellIdentify = @"ZKContactCell";
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    ZKChatViewController *chatVC = [[ZKChatViewController alloc] init];
+    NSString *ID = _dataSource[indexPath.item];
+    
+    ZKChatViewController *chatVC = [ZKChatViewController chatViewControllerWithConversationID:ID toID:ID];
     [self.navigationController pushViewController:chatVC animated:YES];
 }
 

@@ -68,6 +68,8 @@ static CGFloat const kBottomInset = 10.f;
 - (void)handleKeyboardDidChangeFrame:(NSNotification *)note
 {
     CGRect keyboardFrame = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    _keyboardFrame = keyboardFrame;
+    
     NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     keyboard_y = keyboardFrame.origin.y;
     
@@ -79,11 +81,12 @@ static CGFloat const kBottomInset = 10.f;
     }];
 }
 
+/*! 根据内容设置 tableView的位移 */
 - (void)setTableViewOffsetWithKeyboardFrame:(CGRect)keyboardFrame
 {
     UITableView *tableView = [self tableView];
     
-    CGFloat maxTabelHeight = SCREEN_HEIGHT-64.f-keyboardFrame.size.height-self.frame.size.height;
+    CGFloat maxTabelHeight = SCREEN_HEIGHT-64.f-(keyboardFrame.size.height+self.height);
     
     CGFloat delta = tableView.contentSize.height - maxTabelHeight;
     if (delta > 0) {
@@ -91,7 +94,7 @@ static CGFloat const kBottomInset = 10.f;
     }
     [tableView setContentInset:UIEdgeInsetsMake(tableView.contentInset.top,
                                                 0,
-                                                SCREEN_HEIGHT-keyboardFrame.origin.y+kBottomInset,
+                                                (SCREEN_HEIGHT-keyboardFrame.origin.y)+kBottomInset,
                                                 0)];
 }
 
@@ -107,6 +110,7 @@ static CGFloat const kBottomInset = 10.f;
     [self autoLayoutHeight];
 }
 
+#pragma mark - 发送消息
 /*! 发送消息 */
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
@@ -115,8 +119,6 @@ static CGFloat const kBottomInset = 10.f;
         if ([textView.text isEqualToString:@""]) {
             return NO;
         }
-        
-        [self autoLayoutHeight];
         
         if ([self.delegate respondsToSelector:@selector(charBar:sendText:)]) {
             [self.delegate charBar:self sendText:textView.text];
@@ -172,16 +174,14 @@ static CGFloat const kBottomInset = 10.f;
 
 - (void)animateSetHeight:(CGFloat)chatBarNewHeight
 {
-    UITableView *tableView = [self tableView];
-    
     [UIView animateWithDuration:0.2
                           delay:0.0
                         options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         
-                         [tableView setContentOffset:(CGPoint){0, tableView.contentOffset.y+(chatBarNewHeight-self.height)}];
                          self.height = chatBarNewHeight;
                          self.bottom = keyboard_y;
+                    
+                         [self setTableViewOffsetWithKeyboardFrame:_keyboardFrame];
                          
                          [self layoutIfNeeded];
                      } completion:nil];

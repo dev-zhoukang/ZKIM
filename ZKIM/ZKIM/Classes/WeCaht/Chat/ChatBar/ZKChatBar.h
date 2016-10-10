@@ -22,6 +22,10 @@
 /** 初始化 */
 + (instancetype)chatBar;
 
+/*! 根据内容设置 tableView的位移 */
+- (void)setTableViewOffsetWithKeyboardFrame:(CGRect)keyboardFrame;
+
+@property (nonatomic, assign, readonly) CGRect keyboardFrame;
 @property (nonatomic, weak) id <ZKChatBarDelegate> delegate;
 
 @end

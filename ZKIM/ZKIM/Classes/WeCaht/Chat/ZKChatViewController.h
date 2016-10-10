@@ -10,4 +10,6 @@
 
 @interface ZKChatViewController : ZKViewController
 
++ (instancetype)chatViewControllerWithConversationID:(NSString *)conversationID toID:(NSString *)toID;
+
 @end

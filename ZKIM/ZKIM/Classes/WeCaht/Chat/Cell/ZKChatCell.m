@@ -47,7 +47,7 @@
     [self.contentView addSubview:_bubbleImageView];
     
     _contentLabel = [[YYLabel alloc] init];
-    _contentLabel.displaysAsynchronously = YES;
+    _contentLabel.displaysAsynchronously = NO;
     _contentLabel.fadeOnAsynchronouslyDisplay = NO;
     _contentLabel.ignoreCommonProperties = YES;
     [self.contentView addSubview:_contentLabel];
