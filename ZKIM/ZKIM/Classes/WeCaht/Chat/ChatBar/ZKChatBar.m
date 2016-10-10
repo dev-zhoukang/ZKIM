@@ -37,6 +37,8 @@ static CGFloat const kBottomInset = 10.f;
 
 - (void)setup
 {
+    self.size = (CGSize){SCREEN_WIDTH, 50.f};
+    
     _textView.delegate = self;
     _textView.returnKeyType = UIReturnKeySend;
     _textView.font = [UIFont systemFontOfSize:15.f];
