@@ -166,6 +166,7 @@ static CGFloat const kBottomInset = 10.f;
         } break;
         case 2: {
             DLog(@"Plus按钮点击");
+            imageName = @"TypeSelectorBtn_Black_35x35_";
         } break;
     }
     
