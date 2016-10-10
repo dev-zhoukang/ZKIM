@@ -189,7 +189,16 @@
     DLog(@"发送消息===%@", content);
     
     EMMessage *message = [self generateMessageWithText:content];
+    [self updateDataSourceWithMessage:message];
     
+    [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
+        DLog(@"文字消息发送成功!");
+    }];
+}
+
+/*! 跟新数据源 自动偏移 tableView */
+- (void)updateDataSourceWithMessage:(EMMessage *)message
+{
     ZKChatLayout *layout = [[ZKChatLayout alloc] initWithEMMessage:message];
     [_layouts addObject:layout];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_layouts.count-1 inSection:0];
@@ -199,10 +208,6 @@
     
     [UIView animateWithDuration:0.25 animations:^{
         [_chatBar setTableViewOffsetWithKeyboardFrame:_chatBar.keyboardFrame];
-    }];
-    
-    [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
-        DLog(@"文字消息发送成功!");
     }];
 }
 
@@ -218,6 +223,7 @@
     return message;
 }
 
+#pragma mark - 接收消息
 #pragma mark - <EMChatManagerDelegate>
 
 - (void)messagesDidReceive:(NSArray *)aMessages
@@ -234,6 +240,7 @@
                 EMTextMessageBody *textBody = (EMTextMessageBody *)body;
                 NSString *text = textBody.text;
                 DLog(@"文字消息 -- %@", text);
+                [self updateDataSourceWithMessage:message];
                 
             } break;
             case EMMessageBodyTypeImage: {
