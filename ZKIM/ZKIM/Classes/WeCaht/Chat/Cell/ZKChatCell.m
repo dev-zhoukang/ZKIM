@@ -15,6 +15,8 @@
 @property (nonatomic, strong) UIImageView *bubbleImageView;
 @property (nonatomic, strong) YYLabel     *contentLabel;
 @property (nonatomic, strong) UILabel     *timeLabel;
+@property (nonatomic, strong) UIActivityIndicatorView *indicatorView;
+@property (nonatomic, strong) UIButton *sendFailBtn;
 
 @property (nonatomic, assign) BOOL        isMine; //我的消息
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPress;
@@ -66,6 +68,16 @@
     _timeLabel.layer.cornerRadius = 3.5f;
     _timeLabel.layer.masksToBounds = YES;
     
+    _indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [self.contentView addSubview:_indicatorView];
+    
+    _sendFailBtn = [[UIButton alloc] init];
+    [_sendFailBtn setImage:[UIImage imageNamed:@"MessageSendFail"] forState:UIControlStateNormal];
+    _sendFailBtn.size = (CGSize){35.f, 35.f};
+    [_sendFailBtn addTarget:self action:@selector(sendFailBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    _sendFailBtn.contentMode = UIViewContentModeCenter;
+    [self.contentView addSubview:_sendFailBtn];
+    
     _longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     [_contentLabel addGestureRecognizer:_longPress];
 }
@@ -80,6 +92,16 @@
         cell = [[ZKChatCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     return cell;
+}
+
+- (void)startLoading
+{
+    [_indicatorView startAnimating];
+}
+
+- (void)stopLoading
+{
+    [_indicatorView stopAnimating];
 }
 
 #pragma mark - Gesture
@@ -155,10 +177,15 @@
         _iconImageView.top   = 10.f;
     }
     
+    _indicatorView.centerY = CGRectGetMidY(_bubbleImageView.frame);
+    _sendFailBtn.centerY = _indicatorView.centerY;
+    
     if (_isMine) {
         _iconImageView.right   = SCREEN_WIDTH - 10.f;
         _bubbleImageView.right = CGRectGetMinX(_iconImageView.frame)-5.f;
         _contentLabel.right    = CGRectGetMinX(_iconImageView.frame)-25.f;
+        _indicatorView.right = CGRectGetMinX(_bubbleImageView.frame);
+        _sendFailBtn.right = _indicatorView.right;
     }
     else {
         _iconImageView.left   = 10.f;
@@ -205,6 +232,16 @@
         dateStr = [dateStr stringByAppendingString:([date stringWithDateFormat:@"HH:mm"]?:@"")];
     }
     return dateStr;
+}
+
+#pragma mark - Actions
+
+- (void)sendFailBtnClick:(UIButton *)btn
+{
+    ZKAlertView *alertView = [ZKAlertView initWithMessage:@"是否重新发送该条信息?" iconType:ZKAlertIconTypeAttention cancelButtonTitle:@"取消" otherButtonTitles:@"重发", nil];
+    [alertView showWithCompletionBlock:^(NSInteger buttonIndex) {
+        DLog(@"=======%zd", buttonIndex);
+    }];
 }
 
 @end

@@ -98,7 +98,7 @@
     return [ZKRegularTool matchAttributedText:attributedString isMine:_isMine];
 }
 
-+ (float)maxLabelWidth
++ (CGFloat)maxLabelWidth
 {
     return SCREEN_WIDTH-(41+(60+20+13))*WindowZoomScale;
 }
