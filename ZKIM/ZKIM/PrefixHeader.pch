@@ -23,5 +23,6 @@
 #import "NSObject+Common.h"
 #import "EMSDK.h"
 #import "UIImage+Common.h"
+#import "NSDate+Common.h"
 
 #endif /* PrefixHeader_pch */

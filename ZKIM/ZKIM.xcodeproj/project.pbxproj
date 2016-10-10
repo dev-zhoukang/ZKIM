@@ -20,6 +20,7 @@
 		583A823A1D912A01006F14C6 /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A82391D912A01006F14C6 /* NSString+Common.m */; };
 		583A823E1D913B12006F14C6 /* ZKChatBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A823D1D913B12006F14C6 /* ZKChatBar.m */; };
 		583A82401D913B22006F14C6 /* ZKChatBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 583A823F1D913B22006F14C6 /* ZKChatBar.xib */; };
+		58658EFA1DAB46B1005E54FA /* NSDate+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 58658EF91DAB46B1005E54FA /* NSDate+Common.m */; };
 		58AB30231D891AFD007BB571 /* Launch_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58AB30221D891AFD007BB571 /* Launch_image@2x.png */; };
 		58AB302A1D891B89007BB571 /* ZKHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58AB30261D891B89007BB571 /* ZKHomeViewController.m */; };
 		58AB302B1D891B89007BB571 /* ZKHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58AB30271D891B89007BB571 /* ZKHomeViewController.xib */; };
@@ -229,6 +230,8 @@
 		583A823C1D913B12006F14C6 /* ZKChatBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatBar.h; sourceTree = "<group>"; };
 		583A823D1D913B12006F14C6 /* ZKChatBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChatBar.m; sourceTree = "<group>"; };
 		583A823F1D913B22006F14C6 /* ZKChatBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKChatBar.xib; sourceTree = "<group>"; };
+		58658EF81DAB46B1005E54FA /* NSDate+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Common.h"; sourceTree = "<group>"; };
+		58658EF91DAB46B1005E54FA /* NSDate+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Common.m"; sourceTree = "<group>"; };
 		58AB30221D891AFD007BB571 /* Launch_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Launch_image@2x.png"; sourceTree = "<group>"; };
 		58AB30251D891B89007BB571 /* ZKHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKHomeViewController.h; sourceTree = "<group>"; };
 		58AB30261D891B89007BB571 /* ZKHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKHomeViewController.m; sourceTree = "<group>"; };
@@ -657,6 +660,8 @@
 		583A82371D9129FB006F14C6 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				58658EF81DAB46B1005E54FA /* NSDate+Common.h */,
+				58658EF91DAB46B1005E54FA /* NSDate+Common.m */,
 				583A82381D912A01006F14C6 /* NSString+Common.h */,
 				583A82391D912A01006F14C6 /* NSString+Common.m */,
 				582D55CE1D9D1D3F004E9929 /* NSObject+Common.h */,
@@ -1581,6 +1586,7 @@
 				58E360781D87F16F00D38839 /* ZKConfig.m in Sources */,
 				58D149701D8FEE3100A17D6D /* NSObject+MJKeyValue.m in Sources */,
 				58D1490E1D8FD9C400A17D6D /* UITextField+YYAdd.m in Sources */,
+				58658EFA1DAB46B1005E54FA /* NSDate+Common.m in Sources */,
 				58D149251D8FD9C400A17D6D /* YYTextEffectWindow.m in Sources */,
 				58D1490C1D8FD9C400A17D6D /* UIScrollView+YYAdd.m in Sources */,
 				58D149191D8FD9C400A17D6D /* YYAnimatedImageView.m in Sources */,
@@ -1805,7 +1811,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1847,7 +1853,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1862,7 +1868,7 @@
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = ZKIM/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1881,7 +1887,7 @@
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = ZKIM/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

@@ -31,6 +31,7 @@ extern NSString *const kAppKey_EM;
 extern NSString *const UserDefaultKey_LoginUser;
 extern NSString *const UserDefaultKey_LoginResult;
 extern NSString *const Notification_LoginSuccess;
+extern NSString *const UserDefaultKey_timeDifference;
 
 
 

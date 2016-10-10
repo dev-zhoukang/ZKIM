@@ -15,3 +15,4 @@ NSString *const kAppKey_EM = @"11112222333344445555#zkim"; //!< 环信AppKey
 NSString *const UserDefaultKey_LoginUser = @"UserDefaultKey_LoginUser";
 NSString *const UserDefaultKey_LoginResult = @"UserDefaultKey_LoginResult";
 NSString *const Notification_LoginSuccess = @"Notification_LoginSuccess";
+NSString *const UserDefaultKey_timeDifference = @"UserDefaultKey_timeDifference";
