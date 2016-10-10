@@ -14,11 +14,13 @@
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (nonatomic, strong) UIButton          *selectedBtn;
 @property (nonatomic, strong) UIControl         *tapControl;
+@property (nonatomic, assign) CGFloat           oriHeight; // 如果输入文字很多, 记录高度(语音切换回来还原)
 
 @end
 
 static CGFloat keyboard_y;
 
+static CGFloat const kBarDefaultHeight = 50.f;
 static CGFloat const kBottomInset = 10.f;
 
 @implementation ZKChatBar
@@ -37,7 +39,7 @@ static CGFloat const kBottomInset = 10.f;
 
 - (void)setup
 {
-    self.size = (CGSize){SCREEN_WIDTH, 50.f};
+    self.size = (CGSize){SCREEN_WIDTH, kBarDefaultHeight};
     
     _textView.delegate = self;
     _textView.returnKeyType = UIReturnKeySend;
@@ -96,7 +98,7 @@ static CGFloat const kBottomInset = 10.f;
     }
     [tableView setContentInset:UIEdgeInsetsMake(tableView.contentInset.top,
                                                 0,
-                                                (SCREEN_HEIGHT-keyboardFrame.origin.y)+kBottomInset,
+                                                (SCREEN_HEIGHT-keyboardFrame.origin.y)+kBottomInset+(self.height-kBarDefaultHeight),
                                                 0)];
 }
 
@@ -147,10 +149,15 @@ static CGFloat const kBottomInset = 10.f;
             imageName = btn.selected?@"ToolViewKeyboard_35x35_":@"ToolViewInputVoice_35x35_";
             
             if (btn.isSelected) {
+                if (_oriHeight > kBarDefaultHeight) {
+                    self.height = _oriHeight;
+                }
                 [_textView becomeFirstResponder];
             }
             else {
                 [_textView resignFirstResponder];
+                _oriHeight = self.height;
+                [self animateSetHeight:kBarDefaultHeight shouldChangeTableViewOffset:YES];
             }
             
         } break;
@@ -175,15 +182,15 @@ static CGFloat const kBottomInset = 10.f;
 {
     CGFloat chatBarNewHeight = [_textView sizeThatFits:CGSizeMake(_textView.width , MAXFLOAT)].height+14.f;
     
-    if (chatBarNewHeight < 50.f) {
-        [self animateSetHeight:50.f];
+    if (chatBarNewHeight < kBarDefaultHeight) {
+        [self animateSetHeight:kBarDefaultHeight shouldChangeTableViewOffset:YES];
         return;
     }
     
-    [self animateSetHeight:chatBarNewHeight];
+    [self animateSetHeight:chatBarNewHeight shouldChangeTableViewOffset:YES];
 }
 
-- (void)animateSetHeight:(CGFloat)chatBarNewHeight
+- (void)animateSetHeight:(CGFloat)chatBarNewHeight shouldChangeTableViewOffset:(BOOL)shouldChangeTableViewOffset
 {
     [UIView animateWithDuration:0.2
                           delay:0.0
@@ -192,7 +199,9 @@ static CGFloat const kBottomInset = 10.f;
                          self.height = chatBarNewHeight;
                          self.bottom = keyboard_y;
                     
-                         [self setTableViewOffsetWithKeyboardFrame:_keyboardFrame];
+                         if (shouldChangeTableViewOffset) {
+                             [self setTableViewOffsetWithKeyboardFrame:_keyboardFrame];
+                         }
                          
                          [self layoutIfNeeded];
                      } completion:nil];
