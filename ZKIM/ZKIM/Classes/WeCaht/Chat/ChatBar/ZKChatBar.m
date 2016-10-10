@@ -136,10 +136,16 @@ static CGFloat const kBottomInset = 10.f;
 - (IBAction)chatBatBtnClick:(UIButton *)btn
 {
     btn.selected = !btn.selected;
+    
+    NSString *imageName = nil;
+    
     switch (btn.tag) {
         case 0: {
             DLog(@"Voive按钮点击");
             _recordBtn.hidden = btn.selected;
+            
+            imageName = btn.selected?@"ToolViewKeyboard_35x35_":@"ToolViewInputVoice_35x35_";
+            
             if (btn.isSelected) {
                 [_textView becomeFirstResponder];
             }
@@ -150,11 +156,14 @@ static CGFloat const kBottomInset = 10.f;
         } break;
         case 1: {
             DLog(@"Emoj按钮点击");
+            imageName = btn.selected?@"ToolViewKeyboard_35x35_":@"ToolViewEmotion_35x35_";
         } break;
         case 2: {
             DLog(@"Plus按钮点击");
         } break;
     }
+    
+    [btn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
 }
 
 - (IBAction)recordBtnClick
