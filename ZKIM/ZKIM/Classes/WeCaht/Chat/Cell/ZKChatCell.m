@@ -56,21 +56,21 @@
     
     _timeLabel = [[UILabel alloc] init];
     [self.contentView addSubview:_timeLabel];
+    _timeLabel.textAlignment = NSTextAlignmentCenter;
     _timeLabel.font = [UIFont systemFontOfSize:12.f];
     _timeLabel.textColor = [UIColor whiteColor];
     _timeLabel.backgroundColor = RGBCOLOR(195, 195, 195);
     _timeLabel.text = @"昨天 10:26";
-    [_timeLabel sizeToFit];
-    _timeLabel.top = 10.f;
-    _timeLabel.centerX = SCREEN_WIDTH * 0.5;
-    _timeLabel.layer.cornerRadius = 3.f;
+    _timeLabel.top = 9.f;
+    _timeLabel.height = 18.f;
+    _timeLabel.layer.cornerRadius = 3.5f;
     _timeLabel.layer.masksToBounds = YES;
     
     _longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     [_contentLabel addGestureRecognizer:_longPress];
 }
 
-#pragma mark - Pub
+#pragma mark - Public
 
 + (instancetype)cellWithTableView:(UITableView *)tableView type:(ZKChatCellType)type
 {
@@ -125,10 +125,10 @@
     _isMine = cellLayout.isMine;
     _contentLabel.textLayout = cellLayout.contentTextLayout;
     
-    [self layout];
+    [self update];
 }
 
-- (void)layout
+- (void)update
 {
     _bubbleImageView.image = [self getBubbleImage];
     
@@ -139,6 +139,11 @@
     
     if (_cellLayout.needShowTime) {
         _timeLabel.hidden    = NO;
+        NSDate *time = [NSDate dateWithTimeStamp:_cellLayout.message.timestamp];
+        NSString *timeStr = [self stringWithDate:time];
+        _timeLabel.text = timeStr;
+        _timeLabel.width = [timeStr stringWidthWithFont:_timeLabel.font height:MAXFLOAT]+8.f;
+        _timeLabel.centerX = SCREEN_WIDTH*0.5;
         _bubbleImageView.top = 30.f;
         _contentLabel.top    = 45.f;
         _iconImageView.top   = 30.f;
@@ -174,6 +179,32 @@
     CGSize size = oriImage.size;
     UIImage *bubbleImage = [oriImage resizableImageWithCapInsets:UIEdgeInsetsMake(size.height*0.5, size.width*0.5, size.height*0.5, size.width*0.5)];
     return bubbleImage;
+}
+
+- (NSString *)stringWithDate:(NSDate *)date
+{
+    NSString *dateStr = @"";
+    if ([date dayIndexSinceNow] < 0) {
+        //超过两天
+        switch ([date dayIndexSinceNow]) {
+            case -1:
+                dateStr = [date stringWithDateFormat:@"昨天 HH:mm"];
+                break;
+            case -2:
+                dateStr = [date stringWithDateFormat:@"前天 HH:mm"];
+                break;
+            default:
+                if ([[date allDateComponent] year] != [[[NSDate date] allDateComponent] year]) {
+                    dateStr = [date stringWithDateFormat:@"yyyy年MM月dd日 HH:mm"];
+                }else{
+                    dateStr = [date stringWithDateFormat:@"MM月dd日 HH:mm"];
+                }
+                break;
+        }
+    } else {
+        dateStr = [dateStr stringByAppendingString:([date stringWithDateFormat:@"HH:mm"]?:@"")];
+    }
+    return dateStr;
 }
 
 @end
