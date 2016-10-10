@@ -65,6 +65,11 @@
             DLog(@"获取聊天数据失败 -- %@", aError);
             return;
         }
+        if (!aMessages.count && _layouts.count) {
+            [_refreshHeader noMoreData];
+            return;
+        }
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
             NSMutableArray *tempArray = [[NSMutableArray alloc] init];
@@ -112,11 +117,6 @@
     else {
     
         [weak_self.tableView setContentOffset:CGPointMake(0, [weak_self calculateHeightWithLayouts:newMsgs])];
-        
-        // 已经加载全部
-        if (!newMsgs.count) {
-            [weak_self.refreshHeader noMoreData];
-        }
         
         [weak_self.refreshHeader endRefresh];
     }
