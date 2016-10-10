@@ -103,6 +103,10 @@
         if (delta > 0) {
             [weak_self.tableView setContentOffset:CGPointMake(0, delta + 10.f)];
         }
+        if (newMsgs.count != 15) { // 没有更多历史信息
+            [weak_self.refreshHeader autoHide];
+        }
+        
         weak_self.firstLoad = NO;
     }
     else {

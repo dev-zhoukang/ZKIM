@@ -83,6 +83,11 @@
     _isRefreshing = NO;
 }
 
+- (void)autoHide
+{
+    [_targetTableView setTableHeaderView:[UIView new]];
+}
+
 - (void)noMoreData
 {
     [_indicatorView stopAnimating];

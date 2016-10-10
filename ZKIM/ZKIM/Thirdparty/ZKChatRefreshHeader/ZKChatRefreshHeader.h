@@ -13,6 +13,7 @@
 + (instancetype)headerWithTableView:(UITableView *)tableView refreshBlock:(void (^)())block;
 - (void)endRefresh;
 - (void)noMoreData;
+- (void)autoHide;
 
 - (void)free;
 
