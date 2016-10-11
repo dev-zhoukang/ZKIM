@@ -1,13 +1,13 @@
 //
-//  ZKEmojPanel.m
+//  ZKEmotionPanel.h
 //  ZKIM
 //
 //  Created by ZK on 16/10/10.
 //  Copyright © 2016年 ZK. All rights reserved.
 //
 
-#import "ZKEmojPanel.h"
+#import <UIKit/UIKit.h>
 
-@implementation ZKEmojPanel
+@interface ZKEmotionPanel : UIView
 
 @end

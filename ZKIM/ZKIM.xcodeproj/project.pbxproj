@@ -18,7 +18,7 @@
 		583A823E1D913B12006F14C6 /* ZKChatBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A823D1D913B12006F14C6 /* ZKChatBar.m */; };
 		583A82401D913B22006F14C6 /* ZKChatBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 583A823F1D913B22006F14C6 /* ZKChatBar.xib */; };
 		584073311DABA8EF009B714A /* ZKToolPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 584073301DABA8EF009B714A /* ZKToolPanel.m */; };
-		584073341DABA925009B714A /* ZKEmojPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 584073331DABA925009B714A /* ZKEmojPanel.m */; };
+		584073341DABA925009B714A /* ZKEmotionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 584073331DABA925009B714A /* ZKEmotionPanel.m */; };
 		584073461DABABA8009B714A /* NSDate+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 584073381DABABA8009B714A /* NSDate+Common.m */; };
 		584073471DABABA8009B714A /* NSObject+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 5840733A1DABABA8009B714A /* NSObject+Common.m */; };
 		584073481DABABA8009B714A /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 5840733C1DABABA8009B714A /* NSString+Common.m */; };
@@ -228,8 +228,8 @@
 		583A823F1D913B22006F14C6 /* ZKChatBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKChatBar.xib; sourceTree = "<group>"; };
 		5840732F1DABA8EF009B714A /* ZKToolPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKToolPanel.h; sourceTree = "<group>"; };
 		584073301DABA8EF009B714A /* ZKToolPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKToolPanel.m; sourceTree = "<group>"; };
-		584073321DABA925009B714A /* ZKEmojPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKEmojPanel.h; sourceTree = "<group>"; };
-		584073331DABA925009B714A /* ZKEmojPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKEmojPanel.m; sourceTree = "<group>"; };
+		584073321DABA925009B714A /* ZKEmotionPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKEmotionPanel.h; sourceTree = "<group>"; };
+		584073331DABA925009B714A /* ZKEmotionPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKEmotionPanel.m; sourceTree = "<group>"; };
 		584073371DABABA8009B714A /* NSDate+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Common.h"; sourceTree = "<group>"; };
 		584073381DABABA8009B714A /* NSDate+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Common.m"; sourceTree = "<group>"; };
 		584073391DABABA8009B714A /* NSObject+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Common.h"; sourceTree = "<group>"; };
@@ -673,8 +673,8 @@
 			children = (
 				5840732F1DABA8EF009B714A /* ZKToolPanel.h */,
 				584073301DABA8EF009B714A /* ZKToolPanel.m */,
-				584073321DABA925009B714A /* ZKEmojPanel.h */,
-				584073331DABA925009B714A /* ZKEmojPanel.m */,
+				584073321DABA925009B714A /* ZKEmotionPanel.h */,
+				584073331DABA925009B714A /* ZKEmotionPanel.m */,
 			);
 			path = PanelView;
 			sourceTree = "<group>";
@@ -1681,7 +1681,7 @@
 				58D148271D8E77F500A17D6D /* ZKDiscoverViewController.m in Sources */,
 				58D149351D8FD9C400A17D6D /* YYLabel.m in Sources */,
 				583A82361D91219B006F14C6 /* ZKViewController.m in Sources */,
-				584073341DABA925009B714A /* ZKEmojPanel.m in Sources */,
+				584073341DABA925009B714A /* ZKEmotionPanel.m in Sources */,
 				58D1491B1D8FD9C400A17D6D /* YYImage.m in Sources */,
 				58BCC24B1DA9F24200B6B881 /* MJRefreshNormalHeader.m in Sources */,
 				58D149051D8FD9C400A17D6D /* UIColor+YYAdd.m in Sources */,

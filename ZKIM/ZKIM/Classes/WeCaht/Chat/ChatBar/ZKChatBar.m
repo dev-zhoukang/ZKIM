@@ -163,6 +163,7 @@ static CGFloat const kBottomInset = 10.f;
         case 1: {
             DLog(@"Emoj按钮点击");
             imageName = btn.selected?@"ToolViewKeyboard_35x35_":@"ToolViewEmotion_35x35_";
+            
         } break;
         case 2: {
             DLog(@"Plus按钮点击");
