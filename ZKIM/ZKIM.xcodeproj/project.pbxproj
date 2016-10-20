@@ -91,6 +91,7 @@
 		5802F4B01DB86AC200492BA5 /* YYWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5802F45E1DB86AC200492BA5 /* YYWeakProxy.m */; };
 		5802F4B31DB86D0F00492BA5 /* ZKEmoticonInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5802F4B21DB86D0F00492BA5 /* ZKEmoticonInputView.m */; };
 		5802F4B91DB8738F00492BA5 /* EmoticonWeibo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5802F4B81DB8738F00492BA5 /* EmoticonWeibo.bundle */; };
+		5802F4BC1DB8781C00492BA5 /* ZKEmoticonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5802F4BB1DB8781C00492BA5 /* ZKEmoticonHelper.m */; };
 		582D55C41D9CE304004E9929 /* ZKChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C31D9CE304004E9929 /* ZKChatCell.m */; };
 		582D55C71D9CE3C8004E9929 /* ZKChatLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C61D9CE3C8004E9929 /* ZKChatLayout.m */; };
 		582D55CA1D9CEB96004E9929 /* ZKRegularTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C91D9CEB96004E9929 /* ZKRegularTool.m */; };
@@ -381,6 +382,8 @@
 		5802F4B11DB86D0F00492BA5 /* ZKEmoticonInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKEmoticonInputView.h; sourceTree = "<group>"; };
 		5802F4B21DB86D0F00492BA5 /* ZKEmoticonInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKEmoticonInputView.m; sourceTree = "<group>"; };
 		5802F4B81DB8738F00492BA5 /* EmoticonWeibo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EmoticonWeibo.bundle; sourceTree = "<group>"; };
+		5802F4BA1DB8781C00492BA5 /* ZKEmoticonHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKEmoticonHelper.h; sourceTree = "<group>"; };
+		5802F4BB1DB8781C00492BA5 /* ZKEmoticonHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKEmoticonHelper.m; sourceTree = "<group>"; };
 		582D55C21D9CE304004E9929 /* ZKChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatCell.h; sourceTree = "<group>"; };
 		582D55C31D9CE304004E9929 /* ZKChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChatCell.m; sourceTree = "<group>"; };
 		582D55C51D9CE3C8004E9929 /* ZKChatLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatLayout.h; sourceTree = "<group>"; };
@@ -642,6 +645,8 @@
 				5802F3AD1DB862E700492BA5 /* ZKEmoticon.m */,
 				5802F4B11DB86D0F00492BA5 /* ZKEmoticonInputView.h */,
 				5802F4B21DB86D0F00492BA5 /* ZKEmoticonInputView.m */,
+				5802F4BA1DB8781C00492BA5 /* ZKEmoticonHelper.h */,
+				5802F4BB1DB8781C00492BA5 /* ZKEmoticonHelper.m */,
 			);
 			path = Emoticon;
 			sourceTree = "<group>";
@@ -1677,6 +1682,7 @@
 				5802F4761DB86AC200492BA5 /* UIFont+YYAdd.m in Sources */,
 				5802F4601DB86AC200492BA5 /* NSArray+YYAdd.m in Sources */,
 				58BCC24F1DA9F24200B6B881 /* NSBundle+MJRefresh.m in Sources */,
+				5802F4BC1DB8781C00492BA5 /* ZKEmoticonHelper.m in Sources */,
 				58BCC24E1DA9F24200B6B881 /* MJRefreshConst.m in Sources */,
 				5802F4801DB86AC200492BA5 /* YYKVStorage.m in Sources */,
 				58D1496F1D8FEE3100A17D6D /* NSObject+MJCoding.m in Sources */,
