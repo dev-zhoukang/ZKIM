@@ -103,8 +103,6 @@
 		583A82361D91219B006F14C6 /* ZKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A82351D91219B006F14C6 /* ZKViewController.m */; };
 		583A823E1D913B12006F14C6 /* ZKChatBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A823D1D913B12006F14C6 /* ZKChatBar.m */; };
 		583A82401D913B22006F14C6 /* ZKChatBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 583A823F1D913B22006F14C6 /* ZKChatBar.xib */; };
-		584073311DABA8EF009B714A /* ZKToolPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 584073301DABA8EF009B714A /* ZKToolPanel.m */; };
-		584073341DABA925009B714A /* ZKEmotionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 584073331DABA925009B714A /* ZKEmotionPanel.m */; };
 		584073461DABABA8009B714A /* NSDate+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 584073381DABABA8009B714A /* NSDate+Common.m */; };
 		584073471DABABA8009B714A /* NSObject+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 5840733A1DABABA8009B714A /* NSObject+Common.m */; };
 		584073481DABABA8009B714A /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 5840733C1DABABA8009B714A /* NSString+Common.m */; };
@@ -406,10 +404,6 @@
 		583A823C1D913B12006F14C6 /* ZKChatBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatBar.h; sourceTree = "<group>"; };
 		583A823D1D913B12006F14C6 /* ZKChatBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChatBar.m; sourceTree = "<group>"; };
 		583A823F1D913B22006F14C6 /* ZKChatBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKChatBar.xib; sourceTree = "<group>"; };
-		5840732F1DABA8EF009B714A /* ZKToolPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKToolPanel.h; sourceTree = "<group>"; };
-		584073301DABA8EF009B714A /* ZKToolPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKToolPanel.m; sourceTree = "<group>"; };
-		584073321DABA925009B714A /* ZKEmotionPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKEmotionPanel.h; sourceTree = "<group>"; };
-		584073331DABA925009B714A /* ZKEmotionPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKEmotionPanel.m; sourceTree = "<group>"; };
 		584073371DABABA8009B714A /* NSDate+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Common.h"; sourceTree = "<group>"; };
 		584073381DABABA8009B714A /* NSDate+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Common.m"; sourceTree = "<group>"; };
 		584073391DABABA8009B714A /* NSObject+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Common.h"; sourceTree = "<group>"; };
@@ -955,7 +949,6 @@
 		583A81E91D91090B006F14C6 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				5840732E1DABA8C9009B714A /* PanelView */,
 				582D55BA1D9CDA85004E9929 /* Cell */,
 				5802F3AB1DB862D500492BA5 /* Emoticon */,
 				583A823B1D913A63006F14C6 /* ChatBar */,
@@ -975,17 +968,6 @@
 				583A823F1D913B22006F14C6 /* ZKChatBar.xib */,
 			);
 			path = ChatBar;
-			sourceTree = "<group>";
-		};
-		5840732E1DABA8C9009B714A /* PanelView */ = {
-			isa = PBXGroup;
-			children = (
-				5840732F1DABA8EF009B714A /* ZKToolPanel.h */,
-				584073301DABA8EF009B714A /* ZKToolPanel.m */,
-				584073321DABA925009B714A /* ZKEmotionPanel.h */,
-				584073331DABA925009B714A /* ZKEmotionPanel.m */,
-			);
-			path = PanelView;
 			sourceTree = "<group>";
 		};
 		584073351DABABA8009B714A /* Tool */ = {
@@ -1679,7 +1661,6 @@
 				5802F46E1DB86AC200492BA5 /* CALayer+YYAdd.m in Sources */,
 				5802F4961DB86AC200492BA5 /* YYTextLayout.m in Sources */,
 				5802F46A1DB86AC200492BA5 /* NSObject+YYAddForKVO.m in Sources */,
-				584073311DABA8EF009B714A /* ZKToolPanel.m in Sources */,
 				5802F46F1DB86AC200492BA5 /* YYCGUtilities.m in Sources */,
 				5802F46C1DB86AC200492BA5 /* NSThread+YYAdd.m in Sources */,
 				58D149711D8FEE3100A17D6D /* NSObject+MJProperty.m in Sources */,
@@ -1758,7 +1739,6 @@
 				5802F4871DB86AC200492BA5 /* YYAnimatedImageView.m in Sources */,
 				5802F4981DB86AC200492BA5 /* YYTextMagnifier.m in Sources */,
 				5802F4AF1DB86AC200492BA5 /* YYTransaction.m in Sources */,
-				584073341DABA925009B714A /* ZKEmotionPanel.m in Sources */,
 				58BCC24B1DA9F24200B6B881 /* MJRefreshNormalHeader.m in Sources */,
 				58BCC2511DA9F24200B6B881 /* UIScrollView+MJRefresh.m in Sources */,
 				58D1482C1D8E780000A17D6D /* ZKMeViewController.m in Sources */,
