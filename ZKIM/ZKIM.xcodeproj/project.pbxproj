@@ -89,6 +89,8 @@
 		5802F4AE1DB86AC200492BA5 /* YYTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5802F45A1DB86AC200492BA5 /* YYTimer.m */; };
 		5802F4AF1DB86AC200492BA5 /* YYTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 5802F45C1DB86AC200492BA5 /* YYTransaction.m */; };
 		5802F4B01DB86AC200492BA5 /* YYWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5802F45E1DB86AC200492BA5 /* YYWeakProxy.m */; };
+		5802F4B31DB86D0F00492BA5 /* ZKEmoticonInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5802F4B21DB86D0F00492BA5 /* ZKEmoticonInputView.m */; };
+		5802F4B91DB8738F00492BA5 /* EmoticonWeibo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5802F4B81DB8738F00492BA5 /* EmoticonWeibo.bundle */; };
 		582D55C41D9CE304004E9929 /* ZKChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C31D9CE304004E9929 /* ZKChatCell.m */; };
 		582D55C71D9CE3C8004E9929 /* ZKChatLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C61D9CE3C8004E9929 /* ZKChatLayout.m */; };
 		582D55CA1D9CEB96004E9929 /* ZKRegularTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C91D9CEB96004E9929 /* ZKRegularTool.m */; };
@@ -376,6 +378,9 @@
 		5802F45D1DB86AC200492BA5 /* YYWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWeakProxy.h; sourceTree = "<group>"; };
 		5802F45E1DB86AC200492BA5 /* YYWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWeakProxy.m; sourceTree = "<group>"; };
 		5802F45F1DB86AC200492BA5 /* YYKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYKit.h; sourceTree = "<group>"; };
+		5802F4B11DB86D0F00492BA5 /* ZKEmoticonInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKEmoticonInputView.h; sourceTree = "<group>"; };
+		5802F4B21DB86D0F00492BA5 /* ZKEmoticonInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKEmoticonInputView.m; sourceTree = "<group>"; };
+		5802F4B81DB8738F00492BA5 /* EmoticonWeibo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EmoticonWeibo.bundle; sourceTree = "<group>"; };
 		582D55C21D9CE304004E9929 /* ZKChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatCell.h; sourceTree = "<group>"; };
 		582D55C31D9CE304004E9929 /* ZKChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChatCell.m; sourceTree = "<group>"; };
 		582D55C51D9CE3C8004E9929 /* ZKChatLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatLayout.h; sourceTree = "<group>"; };
@@ -635,6 +640,8 @@
 			children = (
 				5802F3AC1DB862E700492BA5 /* ZKEmoticon.h */,
 				5802F3AD1DB862E700492BA5 /* ZKEmoticon.m */,
+				5802F4B11DB86D0F00492BA5 /* ZKEmoticonInputView.h */,
+				5802F4B21DB86D0F00492BA5 /* ZKEmoticonInputView.m */,
 			);
 			path = Emoticon;
 			sourceTree = "<group>";
@@ -904,6 +911,14 @@
 				5802F45E1DB86AC200492BA5 /* YYWeakProxy.m */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		5802F4B71DB8738F00492BA5 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				5802F4B81DB8738F00492BA5 /* EmoticonWeibo.bundle */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		582D55BA1D9CDA85004E9929 /* Cell */ = {
@@ -1317,6 +1332,7 @@
 				58E35FFC1D87D5E100D38839 /* AppDelegate.m */,
 				58E3602B1D87D61C00D38839 /* Classes */,
 				584073351DABABA8009B714A /* Tool */,
+				5802F4B71DB8738F00492BA5 /* Resource */,
 				58E360751D87F15D00D38839 /* Config */,
 				58E360311D87D76000D38839 /* Thirdparty */,
 				58E35FF81D87D5E100D38839 /* Supporting Files */,
@@ -1597,6 +1613,7 @@
 				58BCC24D1DA9F24200B6B881 /* MJRefresh.bundle in Resources */,
 				58D147F61D892E8D00A17D6D /* USSuspensionView.xib in Resources */,
 				58BCC1CB1DA9DF7D00B6B881 /* ZKAlertView_identification.png in Resources */,
+				5802F4B91DB8738F00492BA5 /* EmoticonWeibo.bundle in Resources */,
 				58D1482D1D8E780000A17D6D /* ZKMeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1684,6 +1701,7 @@
 				584073471DABABA8009B714A /* NSObject+Common.m in Sources */,
 				58BCC2501DA9F24200B6B881 /* UIScrollView+MJExtension.m in Sources */,
 				58BCC2421DA9F24200B6B881 /* MJRefreshFooter.m in Sources */,
+				5802F4B31DB86D0F00492BA5 /* ZKEmoticonInputView.m in Sources */,
 				58BCC24C1DA9F24200B6B881 /* MJRefreshStateHeader.m in Sources */,
 				5802F4821DB86AC200492BA5 /* _YYWebImageSetter.m in Sources */,
 				58AB302A1D891B89007BB571 /* ZKHomeViewController.m in Sources */,

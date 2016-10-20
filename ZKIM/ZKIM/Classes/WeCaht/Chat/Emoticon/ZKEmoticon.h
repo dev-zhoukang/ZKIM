@@ -38,6 +38,6 @@ typedef NS_ENUM(NSInteger, ZKEmoticonType) {
 @property (nonatomic, copy) NSString *nameTW;
 @property (nonatomic, assign) NSInteger displayOnly;
 @property (nonatomic, assign) NSInteger groupType;
-@property (nonatomic, strong) NSArray <ZKEmoticon *> *emotions;
+@property (nonatomic, strong) NSArray <ZKEmoticon *> *emoticons;
 
 @end

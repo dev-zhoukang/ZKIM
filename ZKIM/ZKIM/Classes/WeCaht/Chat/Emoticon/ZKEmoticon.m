@@ -10,7 +10,7 @@
 
 @implementation ZKEmoticon
 
-+ (NSArray *)mj_ignoredPropertyNames
++ (NSArray *)modelPropertyBlacklist
 {
     return @[@"group"];
 }
@@ -21,17 +21,27 @@
 
 @implementation ZKEmoticonGroup
 
-+ (NSDictionary *)mj_replacedKeyFromPropertyName
++ (NSDictionary *)modelCustomPropertyMapper
 {
     return @{@"groupID" : @"id",
              @"nameCN" : @"group_name_cn",
              @"nameEN" : @"group_name_en",
              @"nameTW" : @"group_name_tw",
              @"displayOnly" : @"display_only",
-             @"groupType" : @"group_type",
-             @"emotions"  : [ZKEmoticon class]};
+             @"groupType" : @"group_type"};
 }
 
++ (NSDictionary *)modelContainerPropertyGenericClass
+{
+    return @{@"emoticons" : [ZKEmoticon class]};
+}
 
+- (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic
+{
+    [_emoticons enumerateObjectsUsingBlock:^(ZKEmoticon *emoticon, NSUInteger idx, BOOL *stop) {
+        emoticon.group = self;
+    }];
+    return YES;
+}
 
 @end
