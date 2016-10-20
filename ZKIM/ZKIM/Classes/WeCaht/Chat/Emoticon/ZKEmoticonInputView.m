@@ -278,12 +278,12 @@
 @interface ZKEmoticonInputView () <UICollectionViewDelegate, UICollectionViewDataSource, UIInputViewAudioFeedback, ZKEmoticonScrollViewDelegate>
 
 @property (nonatomic, strong) NSArray<UIButton *> *toolbarButtons;
-@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) ZKEmoticonScrollView *collectionView;
 @property (nonatomic, strong) UIView *pageControl;
 @property (nonatomic, strong) NSArray<ZKEmoticonGroup *> *emoticonGroups;
-@property (nonatomic, strong) NSArray<NSNumber *> *emoticonGroupPageIndexs; //!< 记录每组的最小index
-@property (nonatomic, strong) NSArray<NSNumber *> *emoticonGroupPageCounts; //!< 记录每组的页数
-@property (nonatomic, assign) NSInteger emoticonGroupTotalPageCount;        //!< 各组表情页数之和
+@property (nonatomic, strong) NSArray<NSNumber *> *emoticonGroupMinPageIndexs; //!< 记录每组的最小index
+@property (nonatomic, strong) NSArray<NSNumber *> *emoticonGroupPageCounts;    //!< 记录每组的页数
+@property (nonatomic, assign) NSInteger emoticonGroupTotalPageCount;           //!< 各组表情页数之和
 @property (nonatomic, assign) NSInteger currentPageIndex;
 
 @end
@@ -339,7 +339,7 @@ static NSString *const kCellIdentify = @"cell";
         if (count == 0) count = 1;
         index += count;
     }
-    _emoticonGroupPageIndexs = indexs;
+    _emoticonGroupMinPageIndexs = indexs;
     
     NSMutableArray *pageCounts = [NSMutableArray new];
     _emoticonGroupTotalPageCount = 0;
@@ -448,7 +448,7 @@ static NSString *const kCellIdentify = @"cell";
 - (void)_toolbarBtnDidTapped:(UIButton *)btn
 {
     NSInteger groupIndex = btn.tag;
-    NSInteger page = ((NSNumber *)_emoticonGroupPageIndexs[groupIndex]).integerValue;
+    NSInteger page = ((NSNumber *)_emoticonGroupMinPageIndexs[groupIndex]).integerValue;
     CGRect rect = CGRectMake(page * _collectionView.width, 0, _collectionView.width, _collectionView.height);
     [_collectionView scrollRectToVisible:rect animated:NO];
     [self scrollViewDidScroll:_collectionView];
@@ -457,8 +457,8 @@ static NSString *const kCellIdentify = @"cell";
 - (ZKEmoticon *)_emoticonForIndexPath:(NSIndexPath *)indexPath
 {
     NSUInteger section = indexPath.section;
-    for (NSInteger i = _emoticonGroupPageIndexs.count - 1; i >= 0; i--) {
-        NSNumber *pageIndex = _emoticonGroupPageIndexs[i];
+    for (NSInteger i = _emoticonGroupMinPageIndexs.count - 1; i >= 0; i--) {
+        NSNumber *pageIndex = _emoticonGroupMinPageIndexs[i];
         if (section >= pageIndex.unsignedIntegerValue) {
             ZKEmoticonGroup *group = _emoticonGroups[i];
             NSUInteger page = section - pageIndex.unsignedIntegerValue;
@@ -522,11 +522,11 @@ static NSString *const kCellIdentify = @"cell";
     if (page == _currentPageIndex) return;
     _currentPageIndex = page;
     NSInteger curGroupIndex = 0, curGroupPageIndex = 0, curGroupPageCount = 0;
-    for (NSInteger i = _emoticonGroupPageIndexs.count - 1; i >= 0; i--) {
-        NSNumber *pageIndex = _emoticonGroupPageIndexs[i];
+    for (NSInteger i = _emoticonGroupMinPageIndexs.count - 1; i >= 0; i--) {
+        NSNumber *pageIndex = _emoticonGroupMinPageIndexs[i];
         if (page >= pageIndex.unsignedIntegerValue) {
             curGroupIndex = i;
-            curGroupPageIndex = ((NSNumber *)_emoticonGroupPageIndexs[i]).integerValue;
+            curGroupPageIndex = ((NSNumber *)_emoticonGroupMinPageIndexs[i]).integerValue;
             curGroupPageCount = ((NSNumber *)_emoticonGroupPageCounts[i]).integerValue;
             break;
         }
