@@ -9,6 +9,7 @@
 #import "ZKMeViewController.h"
 #import "ZKMeTableCell.h"
 #import "MJRefresh.h"
+#import "ZKTestViewController.h"
 
 @interface ZKMeViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -71,6 +72,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    ZKTestViewController *testVC = [[ZKTestViewController alloc] init];
+    [self.navigationController pushViewController:testVC animated:YES];
 }
 
 #pragma mark - Getter

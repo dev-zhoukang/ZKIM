@@ -19,7 +19,7 @@
 
 @property(nonatomic, strong) UINavigationBar *navigationBar;
 
-//---------设置导航栏-----------
+//--------- 设置导航栏 -----------
 
 - (NSString *)backuptitle;
 

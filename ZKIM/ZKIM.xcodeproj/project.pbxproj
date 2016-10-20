@@ -92,6 +92,7 @@
 		5802F4B31DB86D0F00492BA5 /* ZKEmoticonInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5802F4B21DB86D0F00492BA5 /* ZKEmoticonInputView.m */; };
 		5802F4B91DB8738F00492BA5 /* EmoticonWeibo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5802F4B81DB8738F00492BA5 /* EmoticonWeibo.bundle */; };
 		5802F4BC1DB8781C00492BA5 /* ZKEmoticonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5802F4BB1DB8781C00492BA5 /* ZKEmoticonHelper.m */; };
+		5802F4BF1DB88F9B00492BA5 /* ZKTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5802F4BE1DB88F9B00492BA5 /* ZKTestViewController.m */; };
 		582D55C41D9CE304004E9929 /* ZKChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C31D9CE304004E9929 /* ZKChatCell.m */; };
 		582D55C71D9CE3C8004E9929 /* ZKChatLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C61D9CE3C8004E9929 /* ZKChatLayout.m */; };
 		582D55CA1D9CEB96004E9929 /* ZKRegularTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C91D9CEB96004E9929 /* ZKRegularTool.m */; };
@@ -384,6 +385,8 @@
 		5802F4B81DB8738F00492BA5 /* EmoticonWeibo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EmoticonWeibo.bundle; sourceTree = "<group>"; };
 		5802F4BA1DB8781C00492BA5 /* ZKEmoticonHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKEmoticonHelper.h; sourceTree = "<group>"; };
 		5802F4BB1DB8781C00492BA5 /* ZKEmoticonHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKEmoticonHelper.m; sourceTree = "<group>"; };
+		5802F4BD1DB88F9B00492BA5 /* ZKTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKTestViewController.h; sourceTree = "<group>"; };
+		5802F4BE1DB88F9B00492BA5 /* ZKTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKTestViewController.m; sourceTree = "<group>"; };
 		582D55C21D9CE304004E9929 /* ZKChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatCell.h; sourceTree = "<group>"; };
 		582D55C31D9CE304004E9929 /* ZKChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChatCell.m; sourceTree = "<group>"; };
 		582D55C51D9CE3C8004E9929 /* ZKChatLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatLayout.h; sourceTree = "<group>"; };
@@ -1252,6 +1255,8 @@
 				58D1483A1D8F7D1D00A17D6D /* ZKMeTableCell.m */,
 				58D1483B1D8F7D1D00A17D6D /* ZKMeTableCell.xib */,
 				58D148371D8F789000A17D6D /* Me_Plist.plist */,
+				5802F4BD1DB88F9B00492BA5 /* ZKTestViewController.h */,
+				5802F4BE1DB88F9B00492BA5 /* ZKTestViewController.m */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -1561,7 +1566,7 @@
 				TargetAttributes = {
 					58E35FF41D87D5E100D38839 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 9S49W485R2;
+						DevelopmentTeam = TE2958KSXV;
 					};
 					58E3600D1D87D5E100D38839 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1769,6 +1774,7 @@
 				58D149721D8FEE3100A17D6D /* NSString+MJExtension.m in Sources */,
 				58D1496B1D8FEE3100A17D6D /* MJProperty.m in Sources */,
 				58D1494F1D8FEDB300A17D6D /* AuthData.m in Sources */,
+				5802F4BF1DB88F9B00492BA5 /* ZKTestViewController.m in Sources */,
 				5802F48A1DB86AC200492BA5 /* YYImageCache.m in Sources */,
 				5802F4681DB86AC200492BA5 /* NSObject+YYAdd.m in Sources */,
 				58D1496D1D8FEE3100A17D6D /* MJPropertyType.m in Sources */,
@@ -1936,7 +1942,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9S49W485R2;
+				DEVELOPMENT_TEAM = TE2958KSXV;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = ZKIM/Info.plist;
@@ -1946,7 +1952,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/ZKIM/Thirdparty/HyphenateFullSDK/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.devzk.ZKIM;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zk.ZKIM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1955,7 +1961,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9S49W485R2;
+				DEVELOPMENT_TEAM = TE2958KSXV;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = ZKIM/Info.plist;
@@ -1965,7 +1971,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/ZKIM/Thirdparty/HyphenateFullSDK/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.devzk.ZKIM;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zk.ZKIM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
