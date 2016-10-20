@@ -7,14 +7,16 @@
 //
 
 #import "ZKChatBar.h"
+#import "ZKEmoticonInputView.h"
 
-@interface ZKChatBar() <UITextViewDelegate>
+@interface ZKChatBar() <UITextViewDelegate, ZKEmoticonInputViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton   *recordBtn;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (nonatomic, strong) UIButton          *selectedBtn;
 @property (nonatomic, strong) UIControl         *tapControl;
 @property (nonatomic, assign) CGFloat           oriHeight; // 如果输入文字很多, 记录高度(语音切换回来还原)
+@property (nonatomic, assign) BOOL isChangingBoard;
 
 @end
 
@@ -70,6 +72,8 @@ static CGFloat const kBottomInset = 10.f;
 
 - (void)handleKeyboardDidChangeFrame:(NSNotification *)note
 {
+    if (_isChangingBoard) return;
+    
     CGRect keyboardFrame = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     _keyboardFrame = keyboardFrame;
     
@@ -136,16 +140,13 @@ static CGFloat const kBottomInset = 10.f;
 
 - (IBAction)chatBatBtnClick:(UIButton *)btn
 {
-    btn.selected = !btn.selected;
-    
-    NSString *imageName = nil;
-    
     switch (btn.tag) {
         case 0: {
+             btn.selected = !btn.selected;
             DLog(@"Voive按钮点击");
             _recordBtn.hidden = btn.selected;
             
-            imageName = btn.selected?@"ToolViewKeyboard_35x35_":@"ToolViewInputVoice_35x35_";
+            NSString *imageName = btn.selected?@"ToolViewKeyboard_35x35_":@"ToolViewInputVoice_35x35_";
             
             if (btn.isSelected) {
                 if (_oriHeight > kBarDefaultHeight) {
@@ -158,20 +159,43 @@ static CGFloat const kBottomInset = 10.f;
                 [self animateSetHeight:kBarDefaultHeight];
                 [_textView resignFirstResponder];
             }
+            [btn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
             
         } break;
         case 1: {
-            DLog(@"Emoj按钮点击");
-            imageName = btn.selected?@"ToolViewKeyboard_35x35_":@"ToolViewEmotion_35x35_";
+
+            _isChangingBoard = YES;
+            [_textView resignFirstResponder];
+            
+            if (_textView.inputView) {
+                _textView.inputView = nil;
+                _isChangingBoard = NO;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.03 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [_textView becomeFirstResponder];
+                });
+                
+                [btn setImage:[UIImage imageNamed:@"ToolViewEmotion_35x35_"] forState:UIControlStateNormal];
+                [btn setImage:[UIImage imageNamed:@"ToolViewEmotionHL_35x35_"] forState:UIControlStateHighlighted];
+            }
+            else {
+                ZKEmoticonInputView *emoticonView = [ZKEmoticonInputView shareView];
+                _textView.inputView = emoticonView;
+                emoticonView.delegate = self;
+                _isChangingBoard = NO;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.03 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [_textView becomeFirstResponder];
+                });
+                
+                [btn setImage:[UIImage imageNamed:@"ToolViewKeyboard_35x35_"] forState:UIControlStateNormal];
+                [btn setImage:[UIImage imageNamed:@"ToolViewKeyboardHL_35x35_"] forState:UIControlStateHighlighted];
+            }
             
         } break;
         case 2: {
             DLog(@"Plus按钮点击");
-            imageName = @"TypeSelectorBtn_Black_35x35_";
+            //imageName = @"TypeSelectorBtn_Black_35x35_";
         } break;
     }
-    
-    [btn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
 }
 
 - (IBAction)recordBtnClick
