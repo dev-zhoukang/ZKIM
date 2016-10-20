@@ -18,39 +18,48 @@
 
 @implementation ZKEmoticonCell
 
-- (instancetype)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame
+{
     self = [super initWithFrame:frame];
+    [self setup];
+    return self;
+}
+
+- (void)setup
+{
     _imageView = [UIImageView new];
     _imageView.size = CGSizeMake(32, 32);
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.contentView addSubview:_imageView];
-    return self;
 }
 
-- (void)setEmoticon:(ZKEmoticon *)emoticon {
+#pragma mark - Setter
+
+- (void)setEmoticon:(ZKEmoticon *)emoticon
+{
     if (_emoticon == emoticon) return;
     _emoticon = emoticon;
     [self updateContent];
 }
 
-- (void)setIsDelete:(BOOL)isDelete {
+- (void)setIsDelete:(BOOL)isDelete
+{
     if (_isDelete == isDelete) return;
     _isDelete = isDelete;
     [self updateContent];
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    [self updateLayout];
-}
+#pragma mark - UpdateCell
 
-- (void)updateContent {
+- (void)updateContent
+{
     [_imageView cancelCurrentImageRequest];
     _imageView.image = nil;
     
     if (_isDelete) {
         _imageView.image = [UIImage imageNamed:@"compose_emotion_delete"];
-    } else if (_emoticon) {
+    }
+    else if (_emoticon) { //!< Emoji
         if (_emoticon.type == ZKEmoticonTypeEmoji) {
             NSNumber *num = [NSNumber numberWithString:_emoticon.code];
             NSString *str = [NSString stringWithUTF32Char:num.unsignedIntValue];
@@ -58,7 +67,8 @@
                 UIImage *img = [UIImage imageWithEmoji:str size:_imageView.width];
                 _imageView.image = img;
             }
-        } else if (_emoticon.group.groupID && _emoticon.png){
+        }
+        else if (_emoticon.group.groupID && _emoticon.png){ //!< 图片表情
             NSString *pngPath = [[ZKEmoticonHelper emoticonBundle] pathForScaledResource:_emoticon.png ofType:nil inDirectory:_emoticon.group.groupID];
             if (!pngPath) {
                 NSString *addBundlePath = [[ZKEmoticonHelper emoticonBundle].bundlePath stringByAppendingPathComponent:@"additional"];
@@ -72,13 +82,22 @@
     }
 }
 
-- (void)updateLayout {
+#pragma mark - Layout
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    [self updateLayout];
+}
+
+- (void)updateLayout
+{
     _imageView.center = CGPointMake(self.width / 2, self.height / 2);
 }
 
 @end
 
-// ---------  ----------
+// --------- ZKEmoticonScrollView ----------
 
 @protocol ZKEmoticonScrollViewDelegate <UICollectionViewDelegate>
 - (void)emoticonScrollViewDidTapCell:(ZKEmoticonCell *)cell;
@@ -87,26 +106,36 @@
 @interface ZKEmoticonScrollView : UICollectionView
 @end
 
-@implementation ZKEmoticonScrollView
-{
+@implementation ZKEmoticonScrollView {
     NSTimeInterval *_touchBeganTime;
     BOOL _touchMoved;
-    UIImageView *_magnifier;
+    UIImageView *_magnifier; // 放大镜
     UIImageView *_magnifierContent;
     __weak ZKEmoticonCell *_currentMagnifierCell;
     NSTimer *_backspaceTimer;
 }
 
+#pragma mark - Init
+
 - (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout
 {
     self = [super initWithFrame:frame collectionViewLayout:layout];
+    [self setup];
+    return self;
+}
+
+- (void)setup
+{
     self.backgroundColor = [UIColor clearColor];
     self.backgroundView = [UIView new];
     self.pagingEnabled = YES;
     self.showsHorizontalScrollIndicator = NO;
     self.clipsToBounds = NO;
+    // 拖拽的时候不取消选中状态
     self.canCancelContentTouches = NO;
+    // 不允许多点
     self.multipleTouchEnabled = NO;
+    
     _magnifier = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"emoticon_keyboard_magnifier"]];
     _magnifierContent = [UIImageView new];
     _magnifierContent.size = CGSizeMake(40, 40);
@@ -114,13 +143,14 @@
     [_magnifier addSubview:_magnifierContent];
     _magnifier.hidden = YES;
     [self addSubview:_magnifier];
-    return self;
 }
 
 - (void)dealloc
 {
     [self endBackspaceTimer];
 }
+
+#pragma mark - Touch
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
@@ -191,24 +221,23 @@
     }
     CGRect rect = [cell convertRect:cell.bounds toView:self];
     _magnifier.centerX = CGRectGetMidX(rect);
-    _magnifier.bottom = CGRectGetMaxY(rect) - 9;
+    _magnifier.bottom = CGRectGetMaxY(rect) - 15.f;
     _magnifier.hidden = NO;
     
     _magnifierContent.image = cell.imageView.image;
-    _magnifierContent.top = 20;
+    _magnifierContent.top = 20.f;
     
     [_magnifierContent.layer removeAllAnimations];
     NSTimeInterval dur = 0.1;
     [UIView animateWithDuration:dur delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        _magnifierContent.top = 3;
+        _magnifierContent.top = 3.f;
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:dur delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            _magnifierContent.top = 6;
+            _magnifierContent.top = 6.f;
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:dur delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                _magnifierContent.top = 5;
-            } completion:^(BOOL finished) {
-            }];
+                _magnifierContent.top = 5.f;
+            } completion:nil];
         }];
     }];
 }
@@ -241,9 +270,10 @@
     [_backspaceTimer invalidate];
     _backspaceTimer = nil;
 }
+
 @end
 
-// -------  -----------
+// -------- ZKEmoticonInputView -----------
 
 @interface ZKEmoticonInputView () <UICollectionViewDelegate, UICollectionViewDataSource, UIInputViewAudioFeedback, ZKEmoticonScrollViewDelegate>
 
@@ -251,9 +281,9 @@
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UIView *pageControl;
 @property (nonatomic, strong) NSArray<ZKEmoticonGroup *> *emoticonGroups;
-@property (nonatomic, strong) NSArray<NSNumber *> *emoticonGroupPageIndexs;
-@property (nonatomic, strong) NSArray<NSNumber *> *emoticonGroupPageCounts;
-@property (nonatomic, assign) NSInteger emoticonGroupTotalPageCount;
+@property (nonatomic, strong) NSArray<NSNumber *> *emoticonGroupPageIndexs; //!< 记录每组的最小index
+@property (nonatomic, strong) NSArray<NSNumber *> *emoticonGroupPageCounts; //!< 记录每组的页数
+@property (nonatomic, assign) NSInteger emoticonGroupTotalPageCount;        //!< 各组表情页数之和
 @property (nonatomic, assign) NSInteger currentPageIndex;
 
 @end
@@ -262,6 +292,7 @@ static CGFloat const kViewHeight = 216.f;
 static CGFloat const kToolbarHeight = 37.f;
 static CGFloat const kOneEmoticonHeight = 50.f;
 static NSUInteger const kOnePageCount = 20.f;
+static NSString *const kCellIdentify = @"cell";
 
 @implementation ZKEmoticonInputView
 
@@ -275,9 +306,17 @@ static NSUInteger const kOnePageCount = 20.f;
     return view;
 }
 
+#pragma mark - Init
+
 - (instancetype)init
 {
     self = [super init];
+    [self setup];
+    return self;
+}
+
+- (void)setup
+{
     self.frame = (CGRect){CGPointZero, SCREEN_WIDTH, kViewHeight};
     self.backgroundColor = HexColor(0xf9f9f9);
     [self _initGroups];
@@ -287,15 +326,11 @@ static NSUInteger const kOnePageCount = 20.f;
     
     _currentPageIndex = NSNotFound;
     [self _toolbarBtnDidTapped:_toolbarButtons.firstObject];
-    
-    return self;
 }
-
-#pragma mark - Private
 
 - (void)_initGroups
 {
-    _emoticonGroups = [self emoticonGroups];
+    _emoticonGroups = [ZKEmoticonHelper emoticonGroups];
     NSMutableArray *indexs = [NSMutableArray new];
     NSUInteger index = 0;
     for (ZKEmoticonGroup *group in _emoticonGroups) {
@@ -343,7 +378,7 @@ static NSUInteger const kOnePageCount = 20.f;
     layout.sectionInset = UIEdgeInsetsMake(0, paddingLeft, 0, paddingRight);
     
     _collectionView = [[ZKEmoticonScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kOneEmoticonHeight * 3) collectionViewLayout:layout];
-    [_collectionView registerClass:[ZKEmoticonCell class] forCellWithReuseIdentifier:@"cell"];
+    [_collectionView registerClass:[ZKEmoticonCell class] forCellWithReuseIdentifier:kCellIdentify];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     _collectionView.top = 5;
@@ -419,56 +454,8 @@ static NSUInteger const kOnePageCount = 20.f;
     [self scrollViewDidScroll:_collectionView];
 }
 
-- (NSArray<ZKEmoticonGroup *> *)emoticonGroups {
-    static NSMutableArray *groups;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSString *emoticonBundlePath = [[NSBundle mainBundle] pathForResource:@"EmoticonWeibo" ofType:@"bundle"];
-        NSString *emoticonPlistPath = [emoticonBundlePath stringByAppendingPathComponent:@"emoticons.plist"];
-        NSDictionary *plist = [NSDictionary dictionaryWithContentsOfFile:emoticonPlistPath];
-        NSArray *packages = plist[@"packages"];
-        groups = (NSMutableArray *)[NSArray modelArrayWithClass:[ZKEmoticonGroup class] json:packages];
-        
-        NSMutableDictionary *groupDic = [NSMutableDictionary new];
-        for (int i = 0, max = (int)groups.count; i < max; i++) {
-            ZKEmoticonGroup *group = groups[i];
-            if (group.groupID.length == 0) {
-                [groups removeObjectAtIndex:i];
-                i--;
-                max--;
-                continue;
-            }
-            NSString *path = [emoticonBundlePath stringByAppendingPathComponent:group.groupID];
-            NSString *infoPlistPath = [path stringByAppendingPathComponent:@"info.plist"];
-            NSDictionary *info = [NSDictionary dictionaryWithContentsOfFile:infoPlistPath];
-            [group modelSetWithDictionary:info];
-            if (group.emoticons.count == 0) {
-                i--;
-                max--;
-                continue;
-            }
-            groupDic[group.groupID] = group;
-        }
-        
-        NSArray<NSString *> *additionals = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[emoticonBundlePath stringByAppendingPathComponent:@"additional"] error:nil];
-        for (NSString *path in additionals) {
-            ZKEmoticonGroup *group = groupDic[path];
-            if (!group) continue;
-            NSString *infoJSONPath = [[[emoticonBundlePath stringByAppendingPathComponent:@"additional"] stringByAppendingPathComponent:path] stringByAppendingPathComponent:@"info.json"];
-            NSData *infoJSON = [NSData dataWithContentsOfFile:infoJSONPath];
-            ZKEmoticonGroup *addGroup = [ZKEmoticonGroup modelWithJSON:infoJSON];
-            if (addGroup.emoticons.count) {
-                for (ZKEmoticon *emoticon in addGroup.emoticons) {
-                    emoticon.group = group;
-                }
-                [((NSMutableArray *)group.emoticons) insertObjects:addGroup.emoticons atIndex:0];
-            }
-        }
-    });
-    return groups;
-}
-
-- (ZKEmoticon *)_emoticonForIndexPath:(NSIndexPath *)indexPath {
+- (ZKEmoticon *)_emoticonForIndexPath:(NSIndexPath *)indexPath
+{
     NSUInteger section = indexPath.section;
     for (NSInteger i = _emoticonGroupPageIndexs.count - 1; i >= 0; i--) {
         NSNumber *pageIndex = _emoticonGroupPageIndexs[i];
@@ -526,8 +513,12 @@ static NSUInteger const kOnePageCount = 20.f;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     NSInteger page = round(scrollView.contentOffset.x / scrollView.width);
-    if (page < 0) page = 0;
-    else if (page >= _emoticonGroupTotalPageCount) page = _emoticonGroupTotalPageCount - 1;
+    if (page < 0) {
+        page = 0;
+    }
+    else if (page >= _emoticonGroupTotalPageCount) {
+        page = _emoticonGroupTotalPageCount - 1;
+    }
     if (page == _currentPageIndex) return;
     _currentPageIndex = page;
     NSInteger curGroupIndex = 0, curGroupPageIndex = 0, curGroupPageCount = 0;
@@ -585,7 +576,7 @@ static NSUInteger const kOnePageCount = 20.f;
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZKEmoticonCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    ZKEmoticonCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentify forIndexPath:indexPath];
     if (indexPath.row == kOnePageCount) {
         cell.isDelete = YES;
         cell.emoticon = nil;

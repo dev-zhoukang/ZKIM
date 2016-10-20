@@ -36,6 +36,10 @@
     return @{@"emoticons" : [ZKEmoticon class]};
 }
 
+/*! If the default json-to-model transform does not fit to your model object, implement
+ this method to do additional process. You can also use this method to validate the
+ model's properties.
+ */
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic
 {
     [_emoticons enumerateObjectsUsingBlock:^(ZKEmoticon *emoticon, NSUInteger idx, BOOL *stop) {

@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ZKEmoticon.h"
 
 @interface ZKEmoticonHelper : NSObject
 
 + (NSBundle *)emoticonBundle;
++ (NSArray<ZKEmoticonGroup *> *)emoticonGroups;
 
 @end

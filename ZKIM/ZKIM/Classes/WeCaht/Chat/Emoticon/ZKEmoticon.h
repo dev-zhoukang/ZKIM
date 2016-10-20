@@ -11,19 +11,19 @@
 @class ZKEmoticonGroup;
 
 typedef NS_ENUM(NSInteger, ZKEmoticonType) {
-    ZKEmoticonTypeImage = 0, // 图片表情
-    ZKEmoticonTypeEmoji      // Emoji表情
+    ZKEmoticonTypeImage = 0, //!< 图片表情
+    ZKEmoticonTypeEmoji      //!< Emoji表情
 };
 
 @interface ZKEmoticon : NSObject
 
-@property (nonatomic, copy) NSString *chs; // 简体
-@property (nonatomic, copy) NSString *cht; // 繁体
-@property (nonatomic, copy) NSString *gif;
-@property (nonatomic, copy) NSString *png;
-@property (nonatomic, copy) NSString *code;
-@property (nonatomic, assign) ZKEmoticonType type;
-@property (nonatomic, weak) ZKEmoticonGroup *group;
+@property (nonatomic, copy) NSString *chs; //!< [开心]
+@property (nonatomic, copy) NSString *cht; //!< [開心]
+@property (nonatomic, copy) NSString *gif; //!< kaixin.gif
+@property (nonatomic, copy) NSString *png; //!< kaixin.png
+@property (nonatomic, copy) NSString *code;//!< 0x2f344d
+@property (nonatomic, assign) ZKEmoticonType type; //!< 表情类型
+@property (nonatomic, weak) ZKEmoticonGroup *group;//!< 表情组
 
 @end
 
@@ -31,10 +31,10 @@ typedef NS_ENUM(NSInteger, ZKEmoticonType) {
 
 @interface ZKEmoticonGroup : NSObject
 
-@property (nonatomic, copy) NSString *groupID;
+@property (nonatomic, copy) NSString *groupID; //!< com.sina.default
 @property (nonatomic, assign) NSInteger *version;
-@property (nonatomic, copy) NSString *nameCN;
-@property (nonatomic, copy) NSString *nameEN;
+@property (nonatomic, copy) NSString *nameCN;  //!< 浪小花
+@property (nonatomic, copy) NSString *nameEN;  //!< langxiaohua
 @property (nonatomic, copy) NSString *nameTW;
 @property (nonatomic, assign) NSInteger displayOnly;
 @property (nonatomic, assign) NSInteger groupType;
