@@ -245,7 +245,7 @@
 
 // -------  -----------
 
-@interface ZKEmoticonInputView () <UICollectionViewDelegate, UICollectionViewDataSource, UIInputViewAudioFeedback>
+@interface ZKEmoticonInputView () <UICollectionViewDelegate, UICollectionViewDataSource, UIInputViewAudioFeedback, ZKEmoticonScrollViewDelegate>
 
 @property (nonatomic, strong) NSArray<UIButton *> *toolbarButtons;
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -261,7 +261,7 @@
 static CGFloat const kViewHeight = 216.f;
 static CGFloat const kToolbarHeight = 37.f;
 static CGFloat const kOneEmoticonHeight = 50.f;
-static CGFloat const kOnePageCount = 20.f;
+static NSUInteger const kOnePageCount = 20.f;
 
 @implementation ZKEmoticonInputView
 
@@ -278,7 +278,7 @@ static CGFloat const kOnePageCount = 20.f;
 - (instancetype)init
 {
     self = [super init];
-    self.frame = (CGRect){CGPointZero, SCREEN_WIDTH, SCREEN_HEIGHT};
+    self.frame = (CGRect){CGPointZero, SCREEN_WIDTH, kViewHeight};
     self.backgroundColor = HexColor(0xf9f9f9);
     [self _initGroups];
     [self _initTopLine];
@@ -467,5 +467,141 @@ static CGFloat const kOnePageCount = 20.f;
     });
     return groups;
 }
+
+- (ZKEmoticon *)_emoticonForIndexPath:(NSIndexPath *)indexPath {
+    NSUInteger section = indexPath.section;
+    for (NSInteger i = _emoticonGroupPageIndexs.count - 1; i >= 0; i--) {
+        NSNumber *pageIndex = _emoticonGroupPageIndexs[i];
+        if (section >= pageIndex.unsignedIntegerValue) {
+            ZKEmoticonGroup *group = _emoticonGroups[i];
+            NSUInteger page = section - pageIndex.unsignedIntegerValue;
+            NSUInteger index = page * kOnePageCount + indexPath.row;
+            
+            // transpose line/row
+            NSUInteger ip = index / kOnePageCount;
+            NSUInteger ii = index % kOnePageCount;
+            NSUInteger reIndex = (ii % 3) * 7 + (ii / 3);
+            index = reIndex + ip * kOnePageCount;
+            
+            if (index < group.emoticons.count) {
+                return group.emoticons[index];
+            } else {
+                return nil;
+            }
+        }
+    }
+    return nil;
+}
+
+#pragma mark ZKEmoticonScrollViewDelegate
+
+- (void)emoticonScrollViewDidTapCell:(ZKEmoticonCell *)cell
+{
+    if (!cell) return;
+    if (cell.isDelete) {
+        if ([self.delegate respondsToSelector:@selector(emoticonInputViewDidTapBackspace)]) {
+            [[UIDevice currentDevice] playInputClick];
+            [self.delegate emoticonInputViewDidTapBackspace];
+        }
+    } else if (cell.emoticon) {
+        NSString *text = nil;
+        switch (cell.emoticon.type) {
+            case ZKEmoticonTypeImage: {
+                text = cell.emoticon.chs;
+            } break;
+            case ZKEmoticonTypeEmoji: {
+                NSNumber *num = [NSNumber numberWithString:cell.emoticon.code];
+                text = [NSString stringWithUTF32Char:num.unsignedIntValue];
+            } break;
+            default:break;
+        }
+        if (text && [self.delegate respondsToSelector:@selector(emoticonInputViewDidTapText:)]) {
+            [self.delegate emoticonInputViewDidTapText:text];
+        }
+    }
+}
+
+#pragma mark UICollectionViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    NSInteger page = round(scrollView.contentOffset.x / scrollView.width);
+    if (page < 0) page = 0;
+    else if (page >= _emoticonGroupTotalPageCount) page = _emoticonGroupTotalPageCount - 1;
+    if (page == _currentPageIndex) return;
+    _currentPageIndex = page;
+    NSInteger curGroupIndex = 0, curGroupPageIndex = 0, curGroupPageCount = 0;
+    for (NSInteger i = _emoticonGroupPageIndexs.count - 1; i >= 0; i--) {
+        NSNumber *pageIndex = _emoticonGroupPageIndexs[i];
+        if (page >= pageIndex.unsignedIntegerValue) {
+            curGroupIndex = i;
+            curGroupPageIndex = ((NSNumber *)_emoticonGroupPageIndexs[i]).integerValue;
+            curGroupPageCount = ((NSNumber *)_emoticonGroupPageCounts[i]).integerValue;
+            break;
+        }
+    }
+    [_pageControl.layer removeAllSublayers];
+    CGFloat padding = 5, width = 6, height = 2;
+    CGFloat pageControlWidth = (width + 2 * padding) * curGroupPageCount;
+    for (NSInteger i = 0; i < curGroupPageCount; i++) {
+        CALayer *layer = [CALayer layer];
+        layer.size = CGSizeMake(width, height);
+        layer.cornerRadius = 1;
+        if (page - curGroupPageIndex == i) {
+            layer.backgroundColor = UIColorHex(fd8225).CGColor;
+        } else {
+            layer.backgroundColor = UIColorHex(dedede).CGColor;
+        }
+        layer.centerY = _pageControl.height / 2;
+        layer.left = (_pageControl.width - pageControlWidth) / 2 + i * (width + 2 * padding) + padding;
+        [_pageControl.layer addSublayer:layer];
+    }
+    [_toolbarButtons enumerateObjectsUsingBlock:^(UIButton *btn, NSUInteger idx, BOOL *stop) {
+        btn.selected = (idx == curGroupIndex);
+    }];
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
+#pragma mark UICollectionViewDataSource
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return _emoticonGroupTotalPageCount;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return kOnePageCount + 1;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZKEmoticonCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    if (indexPath.row == kOnePageCount) {
+        cell.isDelete = YES;
+        cell.emoticon = nil;
+    } else {
+        cell.isDelete = NO;
+        cell.emoticon = [self _emoticonForIndexPath:indexPath];
+    }
+    return cell;
+}
+
+#pragma mark - UIInputViewAudioFeedback
+
+- (BOOL)enableInputClicksWhenVisible
+{
+    return YES;
+}
+
 
 @end
