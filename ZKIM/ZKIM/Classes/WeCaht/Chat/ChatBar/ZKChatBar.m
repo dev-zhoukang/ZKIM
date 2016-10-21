@@ -103,7 +103,7 @@ static CGFloat const kBottomInset = 10.f;
     CGRect keyboardFrame = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
     if (keyboardFrame.origin.y == SCREEN_HEIGHT && _emoticonViewShowing) { // 是退下键盘 且 需要显示表情面板
-        keyboardFrame = (CGRect){0, SCREEN_HEIGHT-266, SCREEN_WIDTH, 266};
+        keyboardFrame = (CGRect){0, SCREEN_HEIGHT-kEmoticonInputViewHeight, SCREEN_WIDTH, kEmoticonInputViewHeight}; //将表情面板当做新键盘
     }
     
     DLog(@"keyboardFrame == %@", NSStringFromCGRect(keyboardFrame));
@@ -112,7 +112,7 @@ static CGFloat const kBottomInset = 10.f;
     _keyboard_y = keyboardFrame.origin.y;
     
     [UIView animateWithDuration:duration animations:^{
-        self.bottom = _emoticonViewShowing ? SCREEN_HEIGHT : (keyboardFrame.origin.y+216);
+        self.bottom = _emoticonViewShowing ? SCREEN_HEIGHT : (keyboardFrame.origin.y+kEmoticonInputViewHeight);
         [self setTableViewOffsetWithKeyboardY:keyboardFrame.origin.y barHeight:_inputBarContainer.height];
     } completion:^(BOOL finished) {
         self.tapControl.hidden = (keyboardFrame.origin.y==SCREEN_HEIGHT && !_emoticonViewShowing);
@@ -264,8 +264,8 @@ static CGFloat const kBottomInset = 10.f;
                           delay:0.0
                         options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         self.height = 216 + chatBarNewHeight;
-                         self.bottom = _keyboard_y+216;
+                         self.height = kEmoticonInputViewHeight + chatBarNewHeight;
+                         self.bottom = _keyboard_y+kEmoticonInputViewHeight;
                          [self setTableViewOffsetWithKeyboardY:_keyboard_y barHeight:chatBarNewHeight];
                          
                          [self layoutIfNeeded];
@@ -277,7 +277,7 @@ static CGFloat const kBottomInset = 10.f;
     [KeyWindow endEditing:YES];
     if (_emoticonViewShowing) {
         [UIView animateWithDuration:0.25 animations:^{
-            self.bottom = SCREEN_HEIGHT+216;
+            self.bottom = SCREEN_HEIGHT+kEmoticonInputViewHeight;
             [self setTableViewOffsetWithKeyboardY:SCREEN_HEIGHT barHeight:_inputBarContainer.height];
         }];
     }
