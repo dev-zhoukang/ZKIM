@@ -182,7 +182,7 @@
 #pragma mark - 发送消息
 #pragma mark - <ZKChatPanelDelegate>
 
-- (void)charBar:(ZKChatPanel *)chatBar sendText:(NSString *)content
+- (void)charPanel:(ZKChatPanel *)charPanel sendText:(NSString *)content
 {
     DLog(@"发送消息===%@", content);
     
