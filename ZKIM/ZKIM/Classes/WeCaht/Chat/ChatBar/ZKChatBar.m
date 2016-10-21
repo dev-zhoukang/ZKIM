@@ -9,10 +9,15 @@
 #import "ZKChatBar.h"
 #import "ZKEmoticonInputView.h"
 
+#define kChatPanelHeight   (kChatBarHeight + kEmoticonInputViewHeight)
+
 @interface ZKChatBar() <UITextViewDelegate, ZKEmoticonInputViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton   *recordBtn;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UIView     *emoticonContainer;
+@property (weak, nonatomic) IBOutlet UIView     *inputBarContainer;
+
 @property (nonatomic, strong) UIButton          *selectedBtn;
 @property (nonatomic, strong) UIControl         *tapControl;
 @property (nonatomic, assign) CGFloat           oriHeight; // 如果输入文字很多, 记录高度(语音切换回来还原)
@@ -41,13 +46,17 @@ static CGFloat const kBottomInset = 10.f;
 
 - (void)setup
 {
-    self.size = (CGSize){SCREEN_WIDTH, kChatBarHeight};
+    self.size = (CGSize){SCREEN_WIDTH, kChatPanelHeight};
     _textView.delegate = self;
     _textView.returnKeyType = UIReturnKeySend;
     _textView.font = [UIFont systemFontOfSize:15.f];
     
     [self addBorderForView:_recordBtn];
     [self addBorderForView:_textView];
+
+    ZKEmoticonInputView *emoticonView = [ZKEmoticonInputView shareView];
+    [_emoticonContainer addSubview:emoticonView];
+    emoticonView.frame = emoticonView.bounds;
 }
 
 - (void)addBorderForView:(UIView *)view
@@ -86,19 +95,19 @@ static CGFloat const kBottomInset = 10.f;
     keyboard_y = keyboardFrame.origin.y;
     
     [UIView animateWithDuration:duration animations:^{
-        self.bottom = keyboardFrame.origin.y;
-        [self setTableViewOffsetWithKeyboardFrame:keyboardFrame];
+        self.bottom = keyboardFrame.origin.y+216;
+        [self setTableViewOffsetWithKeyboardFrame:keyboardFrame barHeight:_inputBarContainer.height];
     } completion:^(BOOL finished) {
         self.tapControl.hidden = keyboardFrame.origin.y==SCREEN_HEIGHT;
     }];
 }
 
 /*! 根据内容设置 tableView的位移 */
-- (void)setTableViewOffsetWithKeyboardFrame:(CGRect)keyboardFrame
+- (void)setTableViewOffsetWithKeyboardFrame:(CGRect)keyboardFrame barHeight:(CGFloat)barHeight
 {
     UITableView *tableView = [self tableView];
     
-    CGFloat maxTabelHeight = SCREEN_HEIGHT-64.f-(keyboardFrame.size.height+self.height);
+    CGFloat maxTabelHeight = SCREEN_HEIGHT-64.f-(keyboardFrame.size.height+barHeight);
     
     CGFloat delta = tableView.contentSize.height - maxTabelHeight;
     if (delta > 0) {
@@ -106,7 +115,7 @@ static CGFloat const kBottomInset = 10.f;
     }
     [tableView setContentInset:UIEdgeInsetsMake(tableView.contentInset.top,
                                                 0,
-                                                (SCREEN_HEIGHT-keyboardFrame.origin.y)+kBottomInset+(self.height-kChatBarHeight),
+                                                (SCREEN_HEIGHT-keyboardFrame.origin.y)+kBottomInset+(barHeight-kChatBarHeight),
                                                 0)];
 }
 
@@ -230,9 +239,9 @@ static CGFloat const kBottomInset = 10.f;
                           delay:0.0
                         options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         self.height = chatBarNewHeight;
-                         self.bottom = keyboard_y;
-                         [self setTableViewOffsetWithKeyboardFrame:_keyboardFrame];
+                         self.height = 216 + chatBarNewHeight;
+                         self.bottom = keyboard_y+216;
+                         [self setTableViewOffsetWithKeyboardFrame:_keyboardFrame barHeight:chatBarNewHeight];
                          
                          [self layoutIfNeeded];
                      } completion:nil];

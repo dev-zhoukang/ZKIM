@@ -23,7 +23,7 @@
 + (instancetype)shareChatBar;
 
 /*! 根据内容设置 tableView的位移 */
-- (void)setTableViewOffsetWithKeyboardFrame:(CGRect)keyboardFrame;
+- (void)setTableViewOffsetWithKeyboardFrame:(CGRect)keyboardFrame barHeight:(CGFloat)barHeight;
 
 @property (nonatomic, assign, readonly) CGRect keyboardFrame;
 @property (nonatomic, weak) id <ZKChatBarDelegate> delegate;

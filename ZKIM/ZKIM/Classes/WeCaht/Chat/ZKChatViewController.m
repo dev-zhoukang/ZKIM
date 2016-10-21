@@ -11,7 +11,6 @@
 #import "ZKChatCell.h"
 #import "ZKChatLayout.h"
 #import "ZKChatRefreshHeader.h"
-#import "ZKChatPanel.h"
 
 @interface ZKChatViewController () <UITableViewDelegate, UITableViewDataSource, ZKChatBarDelegate, EMChatManagerDelegate>
 
@@ -151,7 +150,7 @@
     _chatBar = [ZKChatBar shareChatBar];
     _chatBar.delegate = self;
     _chatBar.left = 0;
-    _chatBar.bottom = SCREEN_HEIGHT;
+    _chatBar.bottom = SCREEN_HEIGHT+216;
     [self.view addSubview:_chatBar];
     
     @weakify(self)
@@ -213,7 +212,7 @@
     [_tableView reloadData];
     
     [UIView animateWithDuration:0.25 animations:^{
-        [_chatBar setTableViewOffsetWithKeyboardFrame:_chatBar.keyboardFrame];
+        [_chatBar setTableViewOffsetWithKeyboardFrame:_chatBar.keyboardFrame barHeight:50.f];
     }];
 }
 
