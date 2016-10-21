@@ -11,6 +11,7 @@
 #import "ZKChatCell.h"
 #import "ZKChatLayout.h"
 #import "ZKChatRefreshHeader.h"
+#import "ZKChatPanel.h"
 
 @interface ZKChatViewController () <UITableViewDelegate, UITableViewDataSource, ZKChatBarDelegate, EMChatManagerDelegate>
 

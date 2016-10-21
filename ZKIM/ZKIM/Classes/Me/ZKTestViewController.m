@@ -10,6 +10,7 @@
 
 #import "ZKTestViewController.h"
 #import "ZKEmoticonInputView.h"
+#import "ZKChatPanel.h"
 
 @interface ZKTestViewController ()
 
@@ -23,10 +24,9 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    ZKEmoticonInputView *emoticonView = [ZKEmoticonInputView shareView];
-    [self.view addSubview:emoticonView];
-    emoticonView.bottom = SCREEN_HEIGHT;
-    emoticonView.size = (CGSize){SCREEN_WIDTH, 216.f};
+    ZKChatPanel *chatPanel = [ZKChatPanel shareChatPanel];
+    [self.view addSubview:chatPanel];
+    chatPanel.bottom = SCREEN_HEIGHT;
 }
 
 @end

@@ -10,6 +10,15 @@
 #import "ZKChatBar.h"
 #import "ZKEmoticonInputView.h"
 
+#define kChatPanelHeight   (kChatBarHeight+kEmoticonInputViewHeight)
+
+@interface ZKChatPanel ()
+
+@property (nonatomic, assign) ZKChatBar           *chatBar;
+@property (nonatomic, assign) ZKEmoticonInputView *emoticonView;
+
+@end
+
 @implementation ZKChatPanel
 
 #pragma mark - Public
@@ -23,6 +32,8 @@
     });
     return view;
 }
+
+#pragma mark - Init
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -42,7 +53,23 @@
 
 - (void)setup
 {
+    self.size = (CGSize){SCREEN_WIDTH, kChatPanelHeight};
     
+    _chatBar = [ZKChatBar shareChatBar];
+    _emoticonView = [ZKEmoticonInputView shareView];
+    
+    [self addSubview:_chatBar];
+    [self addSubview:_emoticonView];
+}
+
+#pragma mark - Layout
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    _emoticonView.bottom = self.height;
+    _chatBar.top = 0;
 }
 
 @end
