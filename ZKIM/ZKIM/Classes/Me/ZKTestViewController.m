@@ -24,7 +24,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    ZKChatBar *bar = [ZKChatBar shareChatBar];
+    ZKChatBar *bar = [ZKChatBar chatBar];
     [self.view addSubview:bar];
     bar.bottom = SCREEN_HEIGHT;
 }

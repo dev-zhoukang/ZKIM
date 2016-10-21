@@ -147,7 +147,7 @@
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
     
-    _chatBar = [ZKChatBar shareChatBar];
+    _chatBar = [ZKChatBar chatBar];
     _chatBar.delegate = self;
     _chatBar.left = 0;
     _chatBar.bottom = SCREEN_HEIGHT+216;
@@ -212,7 +212,7 @@
     [_tableView reloadData];
     
     [UIView animateWithDuration:0.25 animations:^{
-        [_chatBar setTableViewOffsetWithKeyboardFrame:_chatBar.keyboardFrame barHeight:50.f];
+        [_chatBar setTableViewOffsetWithKeyboardY:_chatBar.keyboard_y barHeight:50.f];
     }];
 }
 

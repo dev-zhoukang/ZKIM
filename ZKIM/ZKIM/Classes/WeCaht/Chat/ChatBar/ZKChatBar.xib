@@ -116,10 +116,13 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="emojiBtn" destination="foW-l3-JEi" id="DBL-xI-naN"/>
                 <outlet property="emoticonContainer" destination="hna-zE-mWi" id="xhJ-xE-dNv"/>
                 <outlet property="inputBarContainer" destination="WqR-NN-IKY" id="sMp-Fg-1Tu"/>
+                <outlet property="plusBtn" destination="YfS-sN-iqk" id="l5O-5T-gnX"/>
                 <outlet property="recordBtn" destination="ewu-dp-oFD" id="lvj-wU-Hov"/>
                 <outlet property="textView" destination="C37-ua-kiN" id="W27-TI-pYP"/>
+                <outlet property="voiceBtn" destination="5se-ey-v0S" id="s7L-am-8sn"/>
             </connections>
             <point key="canvasLocation" x="-130" y="-145"/>
         </view>
