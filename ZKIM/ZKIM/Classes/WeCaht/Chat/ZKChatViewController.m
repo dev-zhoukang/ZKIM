@@ -7,15 +7,15 @@
 //
 
 #import "ZKChatViewController.h"
-#import "ZKChatBar.h"
+#import "ZKChatPanel.h"
 #import "ZKChatCell.h"
 #import "ZKChatLayout.h"
 #import "ZKChatRefreshHeader.h"
 
-@interface ZKChatViewController () <UITableViewDelegate, UITableViewDataSource, ZKChatBarDelegate, EMChatManagerDelegate>
+@interface ZKChatViewController () <UITableViewDelegate, UITableViewDataSource, ZKChatPanelDelegate, EMChatManagerDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) ZKChatBar   *chatBar;
+@property (nonatomic, strong) ZKChatPanel   *chatBar;
 @property (nonatomic, strong) NSMutableArray <ZKChatLayout *> *layouts;
 @property (nonatomic, copy) NSString *lastMsgID;
 @property (nonatomic, assign) BOOL firstLoad;
@@ -147,10 +147,8 @@
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
     
-    _chatBar = [ZKChatBar chatBar];
+    _chatBar = [ZKChatPanel chatPanel];
     _chatBar.delegate = self;
-    _chatBar.left = 0;
-    _chatBar.bottom = SCREEN_HEIGHT+216;
     [self.view addSubview:_chatBar];
     
     @weakify(self)
@@ -182,9 +180,9 @@
 }
 
 #pragma mark - 发送消息
-#pragma mark - <ZKChatBarDelegate>
+#pragma mark - <ZKChatPanelDelegate>
 
-- (void)charBar:(ZKChatBar *)chatBar sendText:(NSString *)content
+- (void)charBar:(ZKChatPanel *)chatBar sendText:(NSString *)content
 {
     DLog(@"发送消息===%@", content);
     

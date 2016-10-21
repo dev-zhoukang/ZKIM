@@ -1,17 +1,17 @@
 //
-//  ZKChatBar.m
+//  ZKChatPanel.m
 //  ZKIM
 //
 //  Created by ZK on 16/9/20.
 //  Copyright © 2016年 ZK. All rights reserved.
 //
 
-#import "ZKChatBar.h"
+#import "ZKChatPanel.h"
 #import "ZKEmoticonInputView.h"
 
 #define kChatPanelHeight   (kChatBarHeight + kEmoticonInputViewHeight)
 
-@interface ZKChatBar() <UITextViewDelegate, ZKEmoticonInputViewDelegate>
+@interface ZKChatPanel() <UITextViewDelegate, ZKEmoticonInputViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton   *recordBtn;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
@@ -28,10 +28,10 @@
 
 @end
 
-CGFloat const kChatBarHeight = 50.f;
+static CGFloat const kChatBarHeight = 50.f;
 static CGFloat const kBottomInset = 10.f;
 
-@implementation ZKChatBar
+@implementation ZKChatPanel
 
 - (void)awakeFromNib
 {
@@ -89,9 +89,11 @@ static CGFloat const kBottomInset = 10.f;
 {
     [super didMoveToWindow];
     [_textView resignFirstResponder];
+    self.bottom = self.superview.height + kEmoticonInputViewHeight;
+    self.left = 0;
 }
 
-+ (instancetype)chatBar
++ (instancetype)chatPanel
 {
     return [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil].firstObject;
 }
@@ -117,6 +119,8 @@ static CGFloat const kBottomInset = 10.f;
     
     [UIView animateWithDuration:duration animations:^{
         self.bottom = _emoticonViewShowing ? SCREEN_HEIGHT : (keyboardY+kEmoticonInputViewHeight);
+        _emoticonContainer.top = _inputBarContainer.height;
+        
         [self setTableViewOffsetWithKeyboardY:keyboardY barHeight:_inputBarContainer.height];
     } completion:^(BOOL finished) {
         self.tapControl.hidden = (keyboardY==SCREEN_HEIGHT && !_emoticonViewShowing);
@@ -144,7 +148,7 @@ static CGFloat const kBottomInset = 10.f;
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-    [self tapHideEmoticonView];
+    [self willHideEmoticonView];
     return YES;
 }
 
@@ -168,8 +172,8 @@ static CGFloat const kBottomInset = 10.f;
             return NO;
         }
         
-        if ([self.delegate respondsToSelector:@selector(charBar:sendText:)]) {
-            [self.delegate charBar:self sendText:textView.text];
+        if ([self.delegate respondsToSelector:@selector(charPanel:sendText:)]) {
+            [self.delegate charPanel:self sendText:textView.text];
             textView.text = @"";
         }
         return NO;
@@ -205,20 +209,16 @@ static CGFloat const kBottomInset = 10.f;
             
         } break;
         case 1: { //表情键盘
-            DLog(@" 是选中: %d", btn.isSelected);
-            
             if (btn.isSelected) { // 点击显示表情
                 [self tapShowEmoticonView];
             }
             else {
                 [self tapHideEmoticonView];
-                [_textView becomeFirstResponder];
             }
             
         } break;
         case 2: {
             DLog(@"Plus按钮点击");
-            //imageName = @"TypeSelectorBtn_Black_35x35_";
         } break;
     }
 }
@@ -226,24 +226,32 @@ static CGFloat const kBottomInset = 10.f;
 - (void)tapShowEmoticonView
 {
     _emoticonViewShowing = YES;
+    _recordBtn.hidden = YES;
     
     [_emojiBtn setImage:[UIImage imageNamed:@"ToolViewKeyboard_35x35_"] forState:UIControlStateNormal];
     [_emojiBtn setImage:[UIImage imageNamed:@"ToolViewKeyboardHL_35x35_"] forState:UIControlStateHighlighted];
     if (_textView.isFirstResponder) {
-        //失去焦点，隐藏键盘
+        _emoticonContainer.top = kEmoticonInputViewHeight*2;
         [_textView resignFirstResponder];
     }
     else {
         CGFloat keyboardY = SCREEN_HEIGHT-kEmoticonInputViewHeight;
         [self showEmoticonViewWithKeyboardY:keyboardY duration:0.25];
     }
-    
 }
 
 - (void)tapHideEmoticonView
 {
+    [self willHideEmoticonView];
+    [_textView becomeFirstResponder];
+}
+
+- (void)willHideEmoticonView
+{
     _emoticonViewShowing = NO;
     _emojiBtn.selected = NO;
+    self.tapControl.hidden = YES;
+    
     [_emojiBtn setImage:[UIImage imageNamed:@"ToolViewEmotion_35x35_"] forState:UIControlStateNormal];
     [_emojiBtn setImage:[UIImage imageNamed:@"ToolViewEmotionHL_35x35_"] forState:UIControlStateHighlighted];
 }
