@@ -147,7 +147,7 @@
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
     
-    _chatBar = [ZKChatBar chatBar];
+    _chatBar = [ZKChatBar shareChatBar];
     _chatBar.delegate = self;
     _chatBar.left = 0;
     _chatBar.bottom = SCREEN_HEIGHT;

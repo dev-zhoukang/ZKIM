@@ -24,3 +24,8 @@
 + (instancetype)shareView;
 
 @end
+
+
+// ---- ConstString -----
+
+extern const CGFloat kEmoticonInputViewHeight;

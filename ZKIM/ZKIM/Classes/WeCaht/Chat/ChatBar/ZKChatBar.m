@@ -22,7 +22,7 @@
 
 static CGFloat keyboard_y;
 
-static CGFloat const kBarDefaultHeight = 50.f;
+CGFloat const kChatBarHeight = 50.f;
 static CGFloat const kBottomInset = 10.f;
 
 @implementation ZKChatBar
@@ -41,7 +41,7 @@ static CGFloat const kBottomInset = 10.f;
 
 - (void)setup
 {
-    self.size = (CGSize){SCREEN_WIDTH, kBarDefaultHeight};
+    self.size = (CGSize){SCREEN_WIDTH, kChatBarHeight};
     _textView.delegate = self;
     _textView.returnKeyType = UIReturnKeySend;
     _textView.font = [UIFont systemFontOfSize:15.f];
@@ -63,9 +63,14 @@ static CGFloat const kBottomInset = 10.f;
     [super layoutSubviews];
 }
 
-+ (instancetype)chatBar
++ (instancetype)shareChatBar
 {
-    return [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil].firstObject;
+    static ZKChatBar *bar;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        bar = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil].firstObject;
+    });
+    return bar;
 }
 
 #pragma mark - Noti
@@ -101,7 +106,7 @@ static CGFloat const kBottomInset = 10.f;
     }
     [tableView setContentInset:UIEdgeInsetsMake(tableView.contentInset.top,
                                                 0,
-                                                (SCREEN_HEIGHT-keyboardFrame.origin.y)+kBottomInset+(self.height-kBarDefaultHeight),
+                                                (SCREEN_HEIGHT-keyboardFrame.origin.y)+kBottomInset+(self.height-kChatBarHeight),
                                                 0)];
 }
 
@@ -149,14 +154,14 @@ static CGFloat const kBottomInset = 10.f;
             NSString *imageName = btn.selected?@"ToolViewKeyboard_35x35_":@"ToolViewInputVoice_35x35_";
             
             if (btn.isSelected) {
-                if (_oriHeight > kBarDefaultHeight) {
+                if (_oriHeight > kChatBarHeight) {
                     self.height = _oriHeight;
                 }
                 [_textView becomeFirstResponder];
             }
             else {
                 _oriHeight = self.height;
-                [self animateSetHeight:kBarDefaultHeight];
+                [self animateSetHeight:kChatBarHeight];
                 [_textView resignFirstResponder];
             }
             [btn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
@@ -207,8 +212,8 @@ static CGFloat const kBottomInset = 10.f;
 {
     CGFloat chatBarNewHeight = [_textView sizeThatFits:CGSizeMake(_textView.width , MAXFLOAT)].height+14.f;
     
-    if (chatBarNewHeight < kBarDefaultHeight) {
-        [self animateSetHeight:kBarDefaultHeight];
+    if (chatBarNewHeight < kChatBarHeight) {
+        [self animateSetHeight:kChatBarHeight];
         return;
     }
     
@@ -217,7 +222,7 @@ static CGFloat const kBottomInset = 10.f;
 
 - (void)animateSetHeight:(CGFloat)chatBarNewHeight
 {
-    if (chatBarNewHeight > kBarDefaultHeight*3*WindowZoomScale) {
+    if (chatBarNewHeight > kChatBarHeight*3*WindowZoomScale) {
         return;
     }
     

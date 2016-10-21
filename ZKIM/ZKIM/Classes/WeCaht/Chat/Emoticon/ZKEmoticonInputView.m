@@ -288,7 +288,7 @@
 
 @end
 
-static CGFloat const kViewHeight = 216.f;
+CGFloat const kEmoticonInputViewHeight = 216.f;
 static CGFloat const kToolbarHeight = 37.f;
 static CGFloat const kOneEmoticonHeight = 50.f;
 static NSUInteger const kOnePageCount = 20.f;
@@ -317,7 +317,7 @@ static NSString *const kCellIdentify = @"cell";
 
 - (void)setup
 {
-    self.frame = (CGRect){CGPointZero, SCREEN_WIDTH, kViewHeight};
+    self.frame = (CGRect){CGPointZero, SCREEN_WIDTH, kEmoticonInputViewHeight};
     self.backgroundColor = HexColor(0xf9f9f9);
     [self _initGroups];
     [self _initTopLine];

@@ -93,6 +93,7 @@
 		5802F4B91DB8738F00492BA5 /* EmoticonWeibo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5802F4B81DB8738F00492BA5 /* EmoticonWeibo.bundle */; };
 		5802F4BC1DB8781C00492BA5 /* ZKEmoticonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5802F4BB1DB8781C00492BA5 /* ZKEmoticonHelper.m */; };
 		5802F4BF1DB88F9B00492BA5 /* ZKTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5802F4BE1DB88F9B00492BA5 /* ZKTestViewController.m */; };
+		5802F4DE1DB9B39500492BA5 /* ZKChatPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5802F4DD1DB9B39500492BA5 /* ZKChatPanel.m */; };
 		582D55C41D9CE304004E9929 /* ZKChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C31D9CE304004E9929 /* ZKChatCell.m */; };
 		582D55C71D9CE3C8004E9929 /* ZKChatLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C61D9CE3C8004E9929 /* ZKChatLayout.m */; };
 		582D55CA1D9CEB96004E9929 /* ZKRegularTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C91D9CEB96004E9929 /* ZKRegularTool.m */; };
@@ -385,6 +386,8 @@
 		5802F4BB1DB8781C00492BA5 /* ZKEmoticonHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKEmoticonHelper.m; sourceTree = "<group>"; };
 		5802F4BD1DB88F9B00492BA5 /* ZKTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKTestViewController.h; sourceTree = "<group>"; };
 		5802F4BE1DB88F9B00492BA5 /* ZKTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKTestViewController.m; sourceTree = "<group>"; };
+		5802F4DC1DB9B39500492BA5 /* ZKChatPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatPanel.h; sourceTree = "<group>"; };
+		5802F4DD1DB9B39500492BA5 /* ZKChatPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChatPanel.m; sourceTree = "<group>"; };
 		582D55C21D9CE304004E9929 /* ZKChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatCell.h; sourceTree = "<group>"; };
 		582D55C31D9CE304004E9929 /* ZKChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChatCell.m; sourceTree = "<group>"; };
 		582D55C51D9CE3C8004E9929 /* ZKChatLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatLayout.h; sourceTree = "<group>"; };
@@ -923,6 +926,15 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		5802F4DB1DB9B37F00492BA5 /* ChatPanel */ = {
+			isa = PBXGroup;
+			children = (
+				5802F4DC1DB9B39500492BA5 /* ZKChatPanel.h */,
+				5802F4DD1DB9B39500492BA5 /* ZKChatPanel.m */,
+			);
+			path = ChatPanel;
+			sourceTree = "<group>";
+		};
 		582D55BA1D9CDA85004E9929 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -952,6 +964,7 @@
 				582D55BA1D9CDA85004E9929 /* Cell */,
 				5802F3AB1DB862D500492BA5 /* Emoticon */,
 				583A823B1D913A63006F14C6 /* ChatBar */,
+				5802F4DB1DB9B37F00492BA5 /* ChatPanel */,
 				583A81EA1D91092C006F14C6 /* ZKChatViewController.h */,
 				583A81EB1D91092C006F14C6 /* ZKChatViewController.m */,
 				587948D91DAB80DB0053DCDA /* ZKChatManager.h */,
@@ -1671,6 +1684,7 @@
 				5802F4BC1DB8781C00492BA5 /* ZKEmoticonHelper.m in Sources */,
 				58BCC24E1DA9F24200B6B881 /* MJRefreshConst.m in Sources */,
 				5802F4801DB86AC200492BA5 /* YYKVStorage.m in Sources */,
+				5802F4DE1DB9B39500492BA5 /* ZKChatPanel.m in Sources */,
 				58D1496F1D8FEE3100A17D6D /* NSObject+MJCoding.m in Sources */,
 				58E35FFD1D87D5E100D38839 /* AppDelegate.m in Sources */,
 				5802F4661DB86AC200492BA5 /* NSNotificationCenter+YYAdd.m in Sources */,
