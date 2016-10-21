@@ -106,16 +106,20 @@ static CGFloat const kBottomInset = 10.f;
         keyboardFrame = (CGRect){0, SCREEN_HEIGHT-kEmoticonInputViewHeight, SCREEN_WIDTH, kEmoticonInputViewHeight}; //将表情面板当做新键盘
     }
     
-    DLog(@"keyboardFrame == %@", NSStringFromCGRect(keyboardFrame));
-    
     NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    _keyboard_y = keyboardFrame.origin.y;
+    
+    [self showEmoticonViewWithKeyboardY:keyboardFrame.origin.y duration:duration];
+}
+
+- (void)showEmoticonViewWithKeyboardY:(CGFloat)keyboardY duration:(NSTimeInterval)duration
+{
+    _keyboard_y = keyboardY;
     
     [UIView animateWithDuration:duration animations:^{
-        self.bottom = _emoticonViewShowing ? SCREEN_HEIGHT : (keyboardFrame.origin.y+kEmoticonInputViewHeight);
-        [self setTableViewOffsetWithKeyboardY:keyboardFrame.origin.y barHeight:_inputBarContainer.height];
+        self.bottom = _emoticonViewShowing ? SCREEN_HEIGHT : (keyboardY+kEmoticonInputViewHeight);
+        [self setTableViewOffsetWithKeyboardY:keyboardY barHeight:_inputBarContainer.height];
     } completion:^(BOOL finished) {
-        self.tapControl.hidden = (keyboardFrame.origin.y==SCREEN_HEIGHT && !_emoticonViewShowing);
+        self.tapControl.hidden = (keyboardY==SCREEN_HEIGHT && !_emoticonViewShowing);
     }];
 }
 
@@ -140,7 +144,7 @@ static CGFloat const kBottomInset = 10.f;
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-    [self hideEmoticonView];
+    [self tapHideEmoticonView];
     return YES;
 }
 
@@ -203,11 +207,11 @@ static CGFloat const kBottomInset = 10.f;
         case 1: { //表情键盘
             DLog(@" 是选中: %d", btn.isSelected);
             
-            if (btn.isSelected) { // 显示表情
-                [self showEmoticonView];
+            if (btn.isSelected) { // 点击显示表情
+                [self tapShowEmoticonView];
             }
             else {
-                [self hideEmoticonView];
+                [self tapHideEmoticonView];
                 [_textView becomeFirstResponder];
             }
             
@@ -219,17 +223,24 @@ static CGFloat const kBottomInset = 10.f;
     }
 }
 
-- (void)showEmoticonView
+- (void)tapShowEmoticonView
 {
     _emoticonViewShowing = YES;
     
     [_emojiBtn setImage:[UIImage imageNamed:@"ToolViewKeyboard_35x35_"] forState:UIControlStateNormal];
     [_emojiBtn setImage:[UIImage imageNamed:@"ToolViewKeyboardHL_35x35_"] forState:UIControlStateHighlighted];
-    //失去焦点，隐藏键盘
-    [_textView resignFirstResponder];
+    if (_textView.isFirstResponder) {
+        //失去焦点，隐藏键盘
+        [_textView resignFirstResponder];
+    }
+    else {
+        CGFloat keyboardY = SCREEN_HEIGHT-kEmoticonInputViewHeight;
+        [self showEmoticonViewWithKeyboardY:keyboardY duration:0.25];
+    }
+    
 }
 
-- (void)hideEmoticonView
+- (void)tapHideEmoticonView
 {
     _emoticonViewShowing = NO;
     _emojiBtn.selected = NO;
