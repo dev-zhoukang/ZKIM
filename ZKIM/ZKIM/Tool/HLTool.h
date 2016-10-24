@@ -16,7 +16,7 @@ typedef NS_OPTIONS (NSUInteger, USConfigFlag) {
 @interface NSString (ImageURL)
 
 /** 生成完整的原图链接 */
-//- (NSString *)fullImageURL;
+- (NSString *)fullImageURL;
 
 /** 生成极小的缩略图链接(短边50像素) */
 - (NSString *)fullMiniImageURL;

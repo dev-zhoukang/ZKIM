@@ -23,6 +23,11 @@ static NSString *const HTAlbumName = @"HTAlbumName";
 
 @implementation NSString (ImageURL)
 
+- (NSString *)fullImageURL
+{
+    return @"test";
+}
+
 - (NSString *)fullMiniImageURL
 {
     return [self fullThumbImageURLWithMinPixel:50];
