@@ -13,3 +13,6 @@
 + (instancetype)plusPanel;
 
 @end
+
+// -- ---
+extern CGFloat const kPlusPanelHeight;

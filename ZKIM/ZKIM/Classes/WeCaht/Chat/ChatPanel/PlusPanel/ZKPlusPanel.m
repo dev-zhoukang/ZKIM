@@ -36,9 +36,13 @@ extern NSString *const kTitle;
     _btn.backgroundColor = [UIColor clearColor];
     [self addSubview:_btn];
     _btn.size = (CGSize){60.f, 60.f};
-    _btn.layer.cornerRadius = 10.f;
     _btn.layer.borderWidth = .35f;
     _btn.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:.7].CGColor;
+    _btn.layer.cornerRadius = 13.f;
+    _btn.clipsToBounds = YES;
+    
+    UIImage *highlightBackImage = [UIImage imageWithColor:[UIColor lightGrayColor]];
+    [_btn setBackgroundImage:highlightBackImage forState:UIControlStateHighlighted];
     
     _label = [[UILabel alloc] init];
     _label.text = @"测试测试";
@@ -85,6 +89,8 @@ NSString *const kTitle = @"kTitle";
 
 @end
 
+CGFloat const kPlusPanelHeight = 216.f;
+
 @implementation ZKPlusPanel
 
 #pragma mark - Public
@@ -112,6 +118,7 @@ NSString *const kTitle = @"kTitle";
 - (void)setup
 {
     [self initData];
+    self.size = (CGSize){SCREEN_WIDTH, 216.f};
     
     for (NSUInteger i = 0; i < _dataSource.count; i ++) {
         ZKPlusElement *element = [[ZKPlusElement alloc] init];
