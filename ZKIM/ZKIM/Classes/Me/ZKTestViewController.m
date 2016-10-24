@@ -27,7 +27,6 @@
     
     ZKPlusPanel *panel = [ZKPlusPanel new];
     [self.view addSubview:panel];
-    panel.size = (CGSize){SCREEN_WIDTH, 216.f};
     panel.bottom = SCREEN_HEIGHT;
 }
 
