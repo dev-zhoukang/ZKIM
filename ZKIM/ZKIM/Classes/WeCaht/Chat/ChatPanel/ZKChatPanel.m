@@ -16,7 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton   *recordBtn;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
-@property (weak, nonatomic) IBOutlet UIView     *emoticonContainer;
+@property (weak, nonatomic) IBOutlet UIView     *panelContainer; // 放表情和plus面板
 @property (weak, nonatomic) IBOutlet UIView     *inputBarContainer;
 @property (weak, nonatomic) IBOutlet UIButton   *voiceBtn;
 @property (weak, nonatomic) IBOutlet UIButton   *emojiBtn;
@@ -64,12 +64,12 @@ static CGFloat const kBottomInset = 10.f;
     [self addBorderForView:_textView];
 
     _emoticonView = [ZKEmoticonInputView shareView];
-    [_emoticonContainer addSubview:_emoticonView];
-    _emoticonView.frame = _emoticonContainer.bounds;
+    [_panelContainer addSubview:_emoticonView];
+    _emoticonView.frame = _panelContainer.bounds;
     
     _plusPanel = [ZKPlusPanel plusPanel];
-    [_emoticonContainer addSubview:_plusPanel];
-    _plusPanel.frame = _emoticonContainer.bounds;
+    [_panelContainer addSubview:_plusPanel];
+    _plusPanel.frame = _panelContainer.bounds;
     
     [self setImageForBtn:_voiceBtn nor:@"ToolViewInputVoice_35x35_" highlight:@"ToolViewInputVoiceHL_35x35_"];
     [self setImageForBtn:_emojiBtn nor:@"ToolViewEmotion_35x35_" highlight:@"ToolViewEmotionHL_35x35_"];
@@ -129,15 +129,15 @@ static CGFloat const kBottomInset = 10.f;
     
     [UIView animateWithDuration:duration animations:^{
         self.bottom = _emoticonViewShowing ? SCREEN_HEIGHT : (keyboardY+kEmoticonInputViewHeight);
-        _emoticonContainer.top = _inputBarContainer.height;
+        _panelContainer.top = _inputBarContainer.height;
         [self setTableViewOffsetWithKeyboardY:keyboardY barHeight:_inputBarContainer.height];
         if (_shouldShowPlusPanel) {
             _plusPanel.top = 0;
-            _emoticonView.top = _emoticonContainer.height;
+            _emoticonView.top = _panelContainer.height;
         }
         else {
             _emoticonView.top = 0;
-            _plusPanel.top = _emoticonContainer.height;
+            _plusPanel.top = _panelContainer.height;
         }
     } completion:^(BOOL finished) {
         self.tapControl.hidden = (keyboardY==SCREEN_HEIGHT && !_emoticonViewShowing);
@@ -276,7 +276,7 @@ static CGFloat const kBottomInset = 10.f;
 {
     if (_textView.isFirstResponder) {
         // 在弹出表情的时候有向上滑的效果
-        _emoticonContainer.top = kEmoticonInputViewHeight*2;
+        _panelContainer.top = kEmoticonInputViewHeight*2;
         // 在退出键盘的时候 将表情视图设置成新的键盘frame
         [_textView resignFirstResponder];
     }

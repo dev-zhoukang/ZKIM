@@ -96,7 +96,7 @@
                         <constraint firstItem="C37-ua-kiN" firstAttribute="leading" secondItem="ewu-dp-oFD" secondAttribute="leading" id="xkM-sJ-GDi"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hna-zE-mWi" userLabel="Emoticon Container">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hna-zE-mWi" userLabel="Panel Container">
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="216" id="T26-go-Vfg"/>
@@ -117,8 +117,8 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="emojiBtn" destination="foW-l3-JEi" id="DBL-xI-naN"/>
-                <outlet property="emoticonContainer" destination="hna-zE-mWi" id="xhJ-xE-dNv"/>
                 <outlet property="inputBarContainer" destination="WqR-NN-IKY" id="sMp-Fg-1Tu"/>
+                <outlet property="panelContainer" destination="hna-zE-mWi" id="xbY-zh-YCb"/>
                 <outlet property="plusBtn" destination="YfS-sN-iqk" id="l5O-5T-gnX"/>
                 <outlet property="recordBtn" destination="ewu-dp-oFD" id="lvj-wU-Hov"/>
                 <outlet property="textView" destination="C37-ua-kiN" id="W27-TI-pYP"/>
