@@ -18,6 +18,13 @@
 #define GlobalGreenColor   RGBCOLOR(31.f, 185.f, 34.f)
 #define GlobalBGColor      RGBCOLOR(239.f, 239.f, 245.f)
 #define GlobalChatBGColor      RGBCOLOR(230.f, 230.f, 230.f)
+#define ThemColor            HexColor(0x096096)
+
+//通用色调的色值
+#define KB_TINT_COLOR                       HexColor(0xbe9653)       /* 褐色 */
+#define KB_TINT_HIGHLIGHT_COLOR             HexColor(0xbe9653)       /* 褐色，高亮效果 */
+#define KP_TINT_COLOR                       HexColor(0xff72bb)       /* 粉红色 */
+#define KP_TINT_HIGHLIGHT_COLOR             HexColor(0xeb5ea7)       /* 粉红色，高亮效果 */
 
 #ifdef __OBJC__
 #ifdef DEBUG
