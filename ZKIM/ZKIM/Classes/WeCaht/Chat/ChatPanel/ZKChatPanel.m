@@ -8,6 +8,7 @@
 
 #import "ZKChatPanel.h"
 #import "ZKEmoticonInputView.h"
+#import "ZKPlusPanel.h"
 
 #define kChatPanelHeight   (kChatBarHeight + kEmoticonInputViewHeight)
 
@@ -25,6 +26,10 @@
 @property (nonatomic, strong) UIControl         *tapControl;
 @property (nonatomic, assign) CGFloat           oriHeight; // 如果输入文字很多, 记录高度(语音切换回来还原)
 @property (nonatomic, assign) BOOL              emoticonViewShowing;
+@property (nonatomic, assign) BOOL              shouldShowPlusPanel;
+
+@property (nonatomic, strong) ZKEmoticonInputView *emoticonView;
+@property (nonatomic, strong) ZKPlusPanel         *plusPanel;
 
 @end
 
@@ -48,6 +53,7 @@ static CGFloat const kBottomInset = 10.f;
 - (void)setup
 {
     _emoticonViewShowing = NO;
+    _shouldShowPlusPanel = NO;
     
     self.size = (CGSize){SCREEN_WIDTH, kChatPanelHeight};
     _textView.delegate = self;
@@ -57,9 +63,13 @@ static CGFloat const kBottomInset = 10.f;
     [self addBorderForView:_recordBtn];
     [self addBorderForView:_textView];
 
-    ZKEmoticonInputView *emoticonView = [ZKEmoticonInputView shareView];
-    [_emoticonContainer addSubview:emoticonView];
-    emoticonView.frame = emoticonView.bounds;
+    _emoticonView = [ZKEmoticonInputView shareView];
+    [_emoticonContainer addSubview:_emoticonView];
+    _emoticonView.frame = _emoticonContainer.bounds;
+    
+    _plusPanel = [ZKPlusPanel plusPanel];
+    [_emoticonContainer addSubview:_plusPanel];
+    _plusPanel.frame = _emoticonContainer.bounds;
     
     [self setImageForBtn:_voiceBtn nor:@"ToolViewInputVoice_35x35_" highlight:@"ToolViewInputVoiceHL_35x35_"];
     [self setImageForBtn:_emojiBtn nor:@"ToolViewEmotion_35x35_" highlight:@"ToolViewEmotionHL_35x35_"];
@@ -120,8 +130,15 @@ static CGFloat const kBottomInset = 10.f;
     [UIView animateWithDuration:duration animations:^{
         self.bottom = _emoticonViewShowing ? SCREEN_HEIGHT : (keyboardY+kEmoticonInputViewHeight);
         _emoticonContainer.top = _inputBarContainer.height;
-        
         [self setTableViewOffsetWithKeyboardY:keyboardY barHeight:_inputBarContainer.height];
+        if (_shouldShowPlusPanel) {
+            _plusPanel.top = 0;
+            _emoticonView.top = _emoticonContainer.height;
+        }
+        else {
+            _emoticonView.top = 0;
+            _plusPanel.top = _emoticonContainer.height;
+        }
     } completion:^(BOOL finished) {
         self.tapControl.hidden = (keyboardY==SCREEN_HEIGHT && !_emoticonViewShowing);
     }];
@@ -189,71 +206,117 @@ static CGFloat const kBottomInset = 10.f;
     
     switch (btn.tag) {
         case 0: {
-            DLog(@"Voive按钮点击");
-            _recordBtn.hidden = btn.selected;
-            
-            NSString *imageName = btn.selected?@"ToolViewKeyboard_35x35_":@"ToolViewInputVoice_35x35_";
-            
-            if (btn.isSelected) {
-                if (_oriHeight > kChatBarHeight) {
-                    self.height = _oriHeight;
-                }
-                [_textView becomeFirstResponder];
-            }
-            else {
-                _oriHeight = self.height;
-                [self animateSetHeight:kChatBarHeight];
-                [_textView resignFirstResponder];
-            }
-            [btn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-            
+            [self tapVoiceBtn:btn];
         } break;
         case 1: { //表情键盘
-            if (btn.isSelected) { // 点击显示表情
-                [self tapShowEmoticonView];
-            }
-            else {
-                [self tapHideEmoticonView];
-            }
-            
+            [self tapEmoticonBtn:btn];
         } break;
         case 2: {
-            DLog(@"Plus按钮点击");
+            [self tapPlusBtn:btn];
         } break;
     }
+}
+
+- (void)tapPlusBtn:(UIButton *)btn
+{
+    _shouldShowPlusPanel = YES;
+    
+    if (btn.isSelected) { // 点击显示Plus面板
+        [self tapShowPlusPanel];
+    }
+    else {
+        [self tapHidePlusPanel];
+    }
+}
+
+- (void)tapEmoticonBtn:(UIButton *)btn
+{
+    _shouldShowPlusPanel = NO;
+    if (btn.isSelected) { // 点击显示表情
+        [self tapShowEmoticonView];
+    }
+    else {
+        [self tapHideEmoticonView];
+    }
+}
+
+- (void)tapVoiceBtn:(UIButton *)btn
+{
+    DLog(@"Voive按钮点击");
+    _recordBtn.hidden = btn.selected;
+    
+    NSString *imageName = btn.selected?@"ToolViewKeyboard_35x35_":@"ToolViewInputVoice_35x35_";
+    
+    if (btn.isSelected) {
+        if (_oriHeight > kChatBarHeight) {
+            self.height = _oriHeight;
+        }
+        [_textView becomeFirstResponder];
+    }
+    else {
+        _oriHeight = self.height;
+        [self animateSetHeight:kChatBarHeight];
+        [_textView resignFirstResponder];
+    }
+    [btn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+}
+
+- (void)tapShowPlusPanel
+{
+    _emoticonViewShowing = YES;
+    _emojiBtn.selected = NO;
+    
+    [self setImageForBtn:_emojiBtn nor:@"ToolViewEmotion_35x35_" highlight:@"ToolViewEmotionHL_35x35_"];
+    
+    [self showEmoticonContainer];
+}
+
+/*! 显示下部面板 */
+- (void)showEmoticonContainer
+{
+    if (_textView.isFirstResponder) {
+        // 在弹出表情的时候有向上滑的效果
+        _emoticonContainer.top = kEmoticonInputViewHeight*2;
+        // 在退出键盘的时候 将表情视图设置成新的键盘frame
+        [_textView resignFirstResponder];
+    }
+    else { // 在录音状态点击表情按钮
+        CGFloat keyboardY = SCREEN_HEIGHT-kEmoticonInputViewHeight;
+        [self showEmoticonViewWithKeyboardY:keyboardY duration:0.25];
+    }
+}
+
+- (void)tapHidePlusPanel
+{
+    _emoticonViewShowing = NO;
+    self.tapControl.hidden = YES;
+    [_textView becomeFirstResponder];
 }
 
 - (void)tapShowEmoticonView
 {
     _emoticonViewShowing = YES;
     _recordBtn.hidden = YES;
+    _plusBtn.selected = NO; // 将按钮的选中状态归位
     
-    [_emojiBtn setImage:[UIImage imageNamed:@"ToolViewKeyboard_35x35_"] forState:UIControlStateNormal];
-    [_emojiBtn setImage:[UIImage imageNamed:@"ToolViewKeyboardHL_35x35_"] forState:UIControlStateHighlighted];
-    if (_textView.isFirstResponder) {
-        _emoticonContainer.top = kEmoticonInputViewHeight*2;
-        [_textView resignFirstResponder];
-    }
-    else {
-        CGFloat keyboardY = SCREEN_HEIGHT-kEmoticonInputViewHeight;
-        [self showEmoticonViewWithKeyboardY:keyboardY duration:0.25];
-    }
+    [self setImageForBtn:_emojiBtn nor:@"ToolViewKeyboard_35x35_" highlight:@"ToolViewKeyboardHL_35x35_"];
+    
+    [self showEmoticonContainer];
 }
 
 - (void)tapHideEmoticonView
 {
     [self willHideEmoticonView];
+    self.tapControl.hidden = YES;
     [_textView becomeFirstResponder];
 }
 
 - (void)willHideEmoticonView
 {
-    _emoticonViewShowing = NO;
     _emojiBtn.selected = NO;
-    self.tapControl.hidden = YES;
+    _emoticonViewShowing = NO;
     
-    [_emojiBtn setImage:[UIImage imageNamed:@"ToolViewEmotion_35x35_"] forState:UIControlStateNormal];
-    [_emojiBtn setImage:[UIImage imageNamed:@"ToolViewEmotionHL_35x35_"] forState:UIControlStateHighlighted];
+    [self setImageForBtn:_emojiBtn nor:@"ToolViewEmotion_35x35_" highlight:@"ToolViewEmotionHL_35x35_"];
 }
 
 - (IBAction)recordBtnClick
@@ -294,6 +357,10 @@ static CGFloat const kBottomInset = 10.f;
 - (void)tapAction
 {
     [KeyWindow endEditing:YES];
+    _plusBtn.selected = NO;
+    _emojiBtn.selected = NO;
+    [self setImageForBtn:_emojiBtn nor:@"ToolViewEmotion_35x35_" highlight:@"ToolViewEmotionHL_35x35_"];
+    
     if (_emoticonViewShowing) {
         [UIView animateWithDuration:0.25 animations:^{
             self.bottom = SCREEN_HEIGHT+kEmoticonInputViewHeight;
