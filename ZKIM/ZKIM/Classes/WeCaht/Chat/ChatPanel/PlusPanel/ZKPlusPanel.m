@@ -7,10 +7,12 @@
 //
 
 #import "ZKPlusPanel.h"
+#import "ZKDataGetManager.h"
 
 @interface ZKPlusElement : UIView
 
 @property (nonatomic, strong) NSDictionary *info;
+@property (nonatomic, strong) UIButton *btn;
 
 // -- const string --
 extern NSString *const kImageName;
@@ -19,7 +21,6 @@ extern NSString *const kTitle;
 @end
 
 @implementation ZKPlusElement {
-    UIButton *_btn;
     UILabel  *_label;
 }
 
@@ -122,6 +123,8 @@ CGFloat const kPlusPanelHeight = 216.f;
     
     for (NSUInteger i = 0; i < _dataSource.count; i ++) {
         ZKPlusElement *element = [[ZKPlusElement alloc] init];
+        element.btn.tag = i;
+        [element.btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         element.info = _dataSource[i];
         element.backgroundColor = [UIColor clearColor];
         [self addSubview:element];
@@ -134,11 +137,38 @@ CGFloat const kPlusPanelHeight = 216.f;
                     @{kImageName:@"sharemore_location_59x59_", kTitle:@"位置"},
                     @{kImageName:@"sharemore_myfav_59x59_", kTitle:@"我的最爱"},
                     @{kImageName:@"sharemore_pic_59x59_", kTitle:@"照片"},
-                    @{kImageName:@"sharemore_sight_60x60_", kTitle:@"位置"},
-                    @{kImageName:@"sharemore_video_59x59_", kTitle:@"视频"},
+                    @{kImageName:@"sharemore_sight_60x60_", kTitle:@"小视频"},
+                    @{kImageName:@"sharemore_video_59x59_", kTitle:@"照相"},
                     @{kImageName:@"sharemorePay_59x59_", kTitle:@"支付"},
-                    @{kImageName:@"sharemore_videovoip_60x60_", kTitle:@"小视频"}
+                    @{kImageName:@"sharemore_videovoip_60x60_", kTitle:@"视频"}
                     ];
+}
+
+- (void)btnClick:(UIButton *)btn
+{
+    switch (btn.tag) {
+        case 0: {
+            DLog(@"位置");
+        } break;
+        case 1: {
+            DLog(@"我的最爱");
+        } break;
+        case 2: {
+            DLog(@"照片");
+        } break;
+        case 3: {
+            DLog(@"小视频");
+        } break;
+        case 4: {
+            DLog(@"照相");
+        } break;
+        case 5: {
+            DLog(@"支付");
+        } break;
+        case 6: {
+            DLog(@"视频");
+        } break;
+    }
 }
 
 - (void)layoutSubviews
