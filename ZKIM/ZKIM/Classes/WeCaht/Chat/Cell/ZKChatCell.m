@@ -110,7 +110,7 @@
     
     [copyMenu setMenuItems:[NSArray arrayWithObjects:deleteItem, nil]];
     
-    NSString *jsonValue = [@{@"text":_cellLayout.text, @"index":@(1)} json];
+    NSString *jsonValue = [@{@"text":_cellLayout.message.contentText, @"index":@(1)} json];
     
     [copyMenu setMenuItems:[NSArray arrayWithObjects:copyItem,deleteItem, nil]];
     
@@ -135,7 +135,7 @@
 - (void)setCellLayout:(ZKChatLayout *)cellLayout
 {
     _cellLayout = cellLayout;
-    _isMine = cellLayout.isMine;
+    _isMine = cellLayout.message.isMine;
     _contentLabel.textLayout = cellLayout.contentTextLayout;
     
     [self update];
@@ -150,7 +150,7 @@
     _contentLabel.size    = _cellLayout.contentTextLayout.textBoundingSize;
     _bubbleImageView.size = CGSizeMake(labelWidth+40.f, labelHeight+40.f);
     
-    if (_cellLayout.needShowTime) {
+    if (_cellLayout.message.needShowTime) {
         _timeLabel.hidden    = NO;
         NSDate *time = [NSDate dateWithTimeStamp:_cellLayout.message.timestamp];
         NSString *timeStr = [self stringWithDate:time];
@@ -185,13 +185,13 @@
     }
     
     _sendFailBtn.hidden = YES;
-    BOOL showLoading = _cellLayout.message.status == EMMessageStatusDelivering;
+    BOOL showLoading = _cellLayout.message.messageStatus == ZKMessageStatusDelivering;
     if (showLoading) {
         [_indicatorView startAnimating];
     }
     else {
         [_indicatorView stopAnimating];
-        if (_cellLayout.message.status == EMMessageStatusFailed) {
+        if (_cellLayout.message.messageStatus == ZKMessageStatusFailed) {
             _sendFailBtn.hidden = NO;
         }
     }

@@ -75,7 +75,9 @@
             NSMutableArray *tempArray = [[NSMutableArray alloc] init];
             
             for (EMMessage *message in aMessages) {
-                ZKChatLayout *layout = [[ZKChatLayout alloc] initWithEMMessage:message];
+                ZKMessage *zkmsg = [[ZKMessage alloc] initWithEMMessage:message];
+                
+                ZKChatLayout *layout = [[ZKChatLayout alloc] initWithZKMessage:zkmsg];
                 [tempArray addObject:layout];
             }
             
@@ -187,7 +189,7 @@
     DLog(@"发送消息===%@", content);
     
     EMMessage *message = [self generateMessageWithText:content];
-    [self updateDataSourceWithMessage:message];
+    [self insertMsgToDataSourceWithMessage:message];
     
     [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
         if (error) {
@@ -204,10 +206,11 @@
     DLog(@"dict:%@ == type:%zd", dict, mediaType);
 }
 
-/*! 跟新数据源 自动偏移 tableView */
-- (void)updateDataSourceWithMessage:(EMMessage *)message
+/*! 插入到数据源 自动偏移 tableView */
+- (void)insertMsgToDataSourceWithMessage:(EMMessage *)message
 {
-    ZKChatLayout *layout = [[ZKChatLayout alloc] initWithEMMessage:message];
+    ZKMessage *msg = [[ZKMessage alloc] initWithEMMessage:message];
+    ZKChatLayout *layout = [[ZKChatLayout alloc] initWithZKMessage:msg];
     [_layouts addObject:layout];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_layouts.count-1 inSection:0];
     [_tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -248,7 +251,7 @@
                 EMTextMessageBody *textBody = (EMTextMessageBody *)body;
                 NSString *text = textBody.text;
                 DLog(@"文字消息 -- %@", text);
-                [self updateDataSourceWithMessage:message];
+                [self insertMsgToDataSourceWithMessage:message];
                 
             } break;
             case EMMessageBodyTypeImage: {

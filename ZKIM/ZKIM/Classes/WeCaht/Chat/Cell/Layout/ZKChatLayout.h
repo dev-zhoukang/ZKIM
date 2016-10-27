@@ -7,15 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ZKMessage.h"
 
 @interface ZKChatLayout : NSObject
 
-- (instancetype)initWithEMMessage:(EMMessage *)message;
+- (instancetype)initWithZKMessage:(ZKMessage *)message;
 
-@property (nonatomic, strong) EMMessage *message;
-@property (nonatomic, copy, readonly) NSString *text;
-@property (nonatomic, assign, readonly) BOOL isMine;
-@property (nonatomic, assign, readonly) BOOL needShowTime; //展示时间
+@property (nonatomic, strong) ZKMessage *message;
 
 @property (nonatomic, strong) YYTextLayout *contentTextLayout;
 @property (nonatomic, assign) CGFloat      contentTextHeight;

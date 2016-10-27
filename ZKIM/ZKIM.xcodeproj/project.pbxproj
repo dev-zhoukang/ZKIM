@@ -145,6 +145,7 @@
 		5841227B1DC19EC6006D8C05 /* USAssetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 584122561DC19EC5006D8C05 /* USAssetsViewController.xib */; };
 		5841227C1DC19EC6006D8C05 /* USImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5841225A1DC19EC5006D8C05 /* USImagePickerController.m */; };
 		584122801DC1AD87006D8C05 /* ZKPhotoGetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5841227F1DC1AD87006D8C05 /* ZKPhotoGetTool.m */; };
+		5841228F1DC1E290006D8C05 /* ZKMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5841228E1DC1E290006D8C05 /* ZKMessage.m */; };
 		587948DB1DAB80DB0053DCDA /* ZKChatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 587948DA1DAB80DB0053DCDA /* ZKChatManager.m */; };
 		58AB302A1D891B89007BB571 /* ZKHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58AB30261D891B89007BB571 /* ZKHomeViewController.m */; };
 		58AB302B1D891B89007BB571 /* ZKHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58AB30271D891B89007BB571 /* ZKHomeViewController.xib */; };
@@ -534,6 +535,8 @@
 		5841225A1DC19EC5006D8C05 /* USImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USImagePickerController.m; sourceTree = "<group>"; };
 		5841227E1DC1AD87006D8C05 /* ZKPhotoGetTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKPhotoGetTool.h; sourceTree = "<group>"; };
 		5841227F1DC1AD87006D8C05 /* ZKPhotoGetTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKPhotoGetTool.m; sourceTree = "<group>"; };
+		5841228D1DC1E290006D8C05 /* ZKMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKMessage.h; sourceTree = "<group>"; };
+		5841228E1DC1E290006D8C05 /* ZKMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKMessage.m; sourceTree = "<group>"; };
 		587948D91DAB80DB0053DCDA /* ZKChatManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatManager.h; sourceTree = "<group>"; };
 		587948DA1DAB80DB0053DCDA /* ZKChatManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChatManager.m; sourceTree = "<group>"; };
 		58AB30251D891B89007BB571 /* ZKHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKHomeViewController.h; sourceTree = "<group>"; };
@@ -1113,6 +1116,8 @@
 				582D55CC1D9CECDA004E9929 /* ZKTextLinePositionModifier.m */,
 				582D55C81D9CEB96004E9929 /* ZKRegularTool.h */,
 				582D55C91D9CEB96004E9929 /* ZKRegularTool.m */,
+				5841228D1DC1E290006D8C05 /* ZKMessage.h */,
+				5841228E1DC1E290006D8C05 /* ZKMessage.m */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -2018,6 +2023,7 @@
 				5802F46A1DB86AC200492BA5 /* NSObject+YYAddForKVO.m in Sources */,
 				584122721DC19EC5006D8C05 /* UIImage+RSKImageCropper.m in Sources */,
 				5802F46F1DB86AC200492BA5 /* YYCGUtilities.m in Sources */,
+				5841228F1DC1E290006D8C05 /* ZKMessage.m in Sources */,
 				5802F46C1DB86AC200492BA5 /* NSThread+YYAdd.m in Sources */,
 				58D45DBD1DBDDFB800B8C774 /* ImagePickerCollectionView.m in Sources */,
 				58D149711D8FEE3100A17D6D /* NSObject+MJProperty.m in Sources */,

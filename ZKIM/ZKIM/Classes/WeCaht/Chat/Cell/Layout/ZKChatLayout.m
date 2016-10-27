@@ -18,12 +18,11 @@
 
 @implementation ZKChatLayout
 
-- (instancetype)initWithEMMessage:(EMMessage *)message
+- (instancetype)initWithZKMessage:(ZKMessage *)message
 {
     if (!message) return nil;
     if (self = [super init]) {
         _message = message;
-        _needShowTime = YES;
         [self layout];
     }
     return self;
@@ -32,37 +31,28 @@
 - (void)layout
 {
     _height = 0;
-    
-    _isMine = [[EMClient sharedClient].currentUsername isEqualToString:_message.from];
-    
-    EMMessageBody *body = _message.body;
-    switch (body.type) {
-        case EMMessageBodyTypeText: {
+    switch (_message.type) {
+        case ZKMessageBodyTypeText: {
             [self layoutContentText];
         } break;
-        case EMMessageBodyTypeImage: {
+        case ZKMessageBodyTypeImage: {
             
         } break;
-        case EMMessageBodyTypeLocation: {
+        case ZKMessageBodyTypeLocation: {
             
         } break;
-        case EMMessageBodyTypeVoice: {
+        case ZKMessageBodyTypeAudio: {
             
         } break;
-        case EMMessageBodyTypeVideo: {
+        case ZKMessageBodyTypeVideo: {
             
         } break;
-        case EMMessageBodyTypeFile: {
-            
-        } break;
-            
-        default: break;
     }
     
     _height += _contentTextHeight;
     _height += 20*2; // 加上上下的边距
     
-    if (_needShowTime) { // 展示时间的高度
+    if (_message.needShowTime) { // 展示时间的高度
         _height += 20;
     }
 }
@@ -75,10 +65,8 @@
     modifier.font = ContentTextFont;
     modifier.paddingTop = 2.f;
     modifier.paddingBottom = 2.f;
-    EMTextMessageBody *textBody = (EMTextMessageBody *)_message.body;
-    _text = textBody.text;
     
-    NSMutableAttributedString *attributedString = [self matchText:textBody.text];
+    NSMutableAttributedString *attributedString = [self matchText:_message.contentText];
     
     YYTextContainer *container = [[YYTextContainer alloc] init];
     container.size = CGSizeMake([[self class] maxLabelWidth], MAXFLOAT);
@@ -95,7 +83,7 @@
 {
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
     attributedString.font = ContentTextFont;
-    return [ZKRegularTool matchAttributedText:attributedString isMine:_isMine];
+    return [ZKRegularTool matchAttributedText:attributedString isMine:_message.isMine];
 }
 
 + (CGFloat)maxLabelWidth
