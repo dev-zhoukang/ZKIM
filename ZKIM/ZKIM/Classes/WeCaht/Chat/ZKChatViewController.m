@@ -72,12 +72,14 @@
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
-            NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+            NSMutableArray <ZKChatLayout *> *tempArray = [[NSMutableArray alloc] init];
             
-            for (EMMessage *message in aMessages) {
-                ZKMessage *zkmsg = [[ZKMessage alloc] initWithEMMessage:message];
+            for (NSInteger i = 0; i < aMessages.count; i ++) {
                 
+                ZKMessage *zkmsg = [[ZKMessage alloc] initWithEMMessage:aMessages[i]];
+                zkmsg.preTimestamp = tempArray.lastObject.message.timestamp;
                 ZKChatLayout *layout = [[ZKChatLayout alloc] initWithZKMessage:zkmsg];
+                DLog(@" === %@", layout.message.contentText);
                 [tempArray addObject:layout];
             }
             

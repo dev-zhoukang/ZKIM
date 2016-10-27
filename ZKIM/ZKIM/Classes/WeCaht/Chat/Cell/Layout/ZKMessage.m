@@ -28,15 +28,19 @@
         EMTextMessageBody *textBody = (EMTextMessageBody *)_emmsg.body;
         _contentText = [textBody.text copy];
     }
-    
     _timestamp = _emmsg.timestamp;
     _messageStatus = (ZKMessageStatus)_emmsg.status;
-    
     _isMine = [[EMClient sharedClient].currentUsername isEqualToString:_emmsg.from];
+}
+
+- (void)setPreTimestamp:(NSTimeInterval)preTimestamp
+{
+    _preTimestamp = preTimestamp;
+    NSDate *pre_date = [NSDate dateWithTimeStamp:preTimestamp];
+    NSDate *this_date = [NSDate dateWithTimeStamp:_timestamp];
+    NSInteger delta = (NSInteger)[this_date timeIntervalSinceDate:pre_date];
     
-    //@property (nonatomic, assign, readonly) NSTimeInterval preTimeStamp; //!< 上条信息时间戳
-    //@property (nonatomic, assign, readonly) BOOL needShowTime; //!< 需要展示时间
-    _needShowTime = YES;
+    _needShowTime = delta>60;
 }
 
 @end

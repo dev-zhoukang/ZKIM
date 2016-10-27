@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger, ZKMessageStatus) {
 @property (nonatomic, copy, readonly) NSString *messageId; //!< 消息的唯一标识
 @property (nonatomic, copy, readonly) NSString *contentText; //!< 聊天文本
 @property (nonatomic, assign, readonly) NSTimeInterval timestamp; //!< 本条消息时间戳
-@property (nonatomic, assign, readonly) NSTimeInterval preTimestamp; //!< 上条信息时间戳
+@property (nonatomic, assign) NSTimeInterval preTimestamp; //!< 上条信息时间戳
 
 @property (nonatomic, assign, readonly) ZKMessageStatus messageStatus; //!< 消息状态
 @property (nonatomic, assign, readonly) BOOL isMine; //!< 我的消息
