@@ -212,6 +212,7 @@
 - (void)insertMsgToDataSourceWithMessage:(EMMessage *)message
 {
     ZKMessage *msg = [[ZKMessage alloc] initWithEMMessage:message];
+    msg.preTimestamp = _layouts.lastObject.message.timestamp;
     ZKChatLayout *layout = [[ZKChatLayout alloc] initWithZKMessage:msg];
     [_layouts addObject:layout];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_layouts.count-1 inSection:0];
