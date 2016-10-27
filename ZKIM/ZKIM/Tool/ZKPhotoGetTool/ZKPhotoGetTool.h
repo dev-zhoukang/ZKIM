@@ -1,5 +1,5 @@
 //
-//  ZKDataGetManager.h
+//  ZKPhotoGetTool.h
 //  ZKIM
 //
 //  Created by ZK on 16/10/24.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class ZKDataGetManager;
+@class ZKPhotoGetTool;
 
 typedef NS_ENUM(NSInteger, ZKPhotoType) {
     ZKPhotoTypeLocalAlbum,       //!< 本地图册
@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger, ZKPhotoType) {
     ZKPhotoTypeTakePhotoAndVideo //!< 拍摄照片和视频
 };
 
-@protocol ZKDataGetManagerDelegate <NSObject>
+@protocol ZKPhotoGetToolDelegate <NSObject>
 
 @optional
 
@@ -25,9 +25,9 @@ typedef NS_ENUM(NSInteger, ZKPhotoType) {
 
 @end
 
-@interface ZKDataGetManager : NSObject
+@interface ZKPhotoGetTool : NSObject
 
-@property (nonatomic, weak) id <ZKDataGetManagerDelegate> delegate;
+@property (nonatomic, weak) id <ZKPhotoGetToolDelegate> delegate;
 
 + (instancetype)shareInstance;
 - (void)choosePhotoDataWithType:(ZKPhotoType)photoType;

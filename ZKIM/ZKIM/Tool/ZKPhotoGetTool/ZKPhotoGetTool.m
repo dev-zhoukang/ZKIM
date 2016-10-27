@@ -1,18 +1,18 @@
 //
-//  ZKDataGetManager.m
+//  ZKPhotoGetTool.m
 //  ZKIM
 //
 //  Created by ZK on 16/10/24.
 //  Copyright © 2016年 ZK. All rights reserved.
 //
 
-#import "ZKDataGetManager.h"
+#import "ZKPhotoGetTool.h"
 #import <ImageIO/ImageIO.h>
 #import "ImagePickerSheetController.h"
 #import "USImagePickerController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
-@interface ZKDataGetManager () <USImagePickerControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface ZKPhotoGetTool () <USImagePickerControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 //图片数据
 @property (nonatomic, strong) NSMutableArray *imageArr;
 @property (nonatomic, strong) NSMutableArray *imageDataArr;
@@ -26,17 +26,19 @@
 
 @end
 
-@implementation ZKDataGetManager
+@implementation ZKPhotoGetTool
 
 + (instancetype)shareInstance
 {
-    static ZKDataGetManager *mgr = nil;
+    static ZKPhotoGetTool *mgr = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        mgr = [[ZKDataGetManager alloc] init];
+        mgr = [[ZKPhotoGetTool alloc] init];
     });
     return mgr;
 }
+
+#pragma mark - Init
 
 - (instancetype)init
 {
@@ -74,9 +76,7 @@
                 picker.delegate = self;
                 picker.allowsEditing = NO;
                 picker.videoMaximumDuration = 180;
-                [_applicationContext presentNavigationController:picker animated:YES completion:^{
-                    [[UIApplication sharedApplication] setStatusBarHidden:true withAnimation:UIStatusBarAnimationNone];  // 隐藏状态栏
-                }];
+                [_applicationContext presentViewController:picker animated:YES completion:nil];
             }
         } break;
         case ZKPhotoTypeTakePhoto: {
@@ -89,9 +89,7 @@
                 imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
                 imagePicker.delegate = self;
                 imagePicker.allowsEditing = NO;
-                [_applicationContext presentNavigationController:imagePicker animated:YES completion:^{
-                    [[UIApplication sharedApplication] setStatusBarHidden:true withAnimation:UIStatusBarAnimationNone];  // 隐藏状态栏
-                }];
+                [_applicationContext presentViewController:imagePicker animated:YES completion:nil];
             }
         } break;
         case ZKPhotoTypeLocalAlbum: {
@@ -124,7 +122,7 @@
             action.style = ImageActionStyleCancel;
             [controller addAction:action];
             
-            [_applicationContext presentNavigationController:controller animated:YES completion:nil];
+            [_applicationContext presentViewController:controller animated:YES completion:nil];
             
             USImagePickerController *imagePicker = [[USImagePickerController alloc] init];
             imagePicker.delegate = self;
@@ -141,7 +139,7 @@
             [shadow setShadowColor: [UIColor clearColor]];
             NSDictionary * dict = @{NSForegroundColorAttributeName:[UIColor whiteColor], NSShadowAttributeName:shadow};
             imagePicker.navigationBar.titleTextAttributes = dict;
-            [_applicationContext presentNavigationController:imagePicker animated:YES completion:nil];
+            [_applicationContext presentViewController:imagePicker animated:YES completion:nil];
         } break;
         case ZKPhotoTypeLocalVideo: {
             if (![HLTool photoAlbumGranted]) {
@@ -163,15 +161,15 @@
             imagePicker.navigationBar.translucent = NO;
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
             
-            [_applicationContext presentNavigationController:imagePicker animated:YES completion:nil];
+            [_applicationContext presentViewController:imagePicker animated:YES completion:nil];
         } break;
     }
 }
 
+#pragma mark - <USImagePickerControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+
 - (void)imagePickerController:(USImagePickerController *)picker didFinishPickingMediaWithAssets:(NSArray *)assets
 {
-//    [self publishType];
-    
     [self getimageWithAssets:assets picker:picker];
 }
 
@@ -216,22 +214,14 @@
                 
                 NSString *imageName = [UIMedia storeImageToCache:largeImg];
                 [chatImageArr addObject:imageName];
-                
-//                if (self.pubType == PUBLISH_CHATVIEW) {
-//                    
-//                }
-//                else {
-//                    [chatImageArr addObject:@"image"];
-//                }
             }
         }
     }
     
-//    [self updatePublish:@{@"images":self.imageArr, @"chatImageArr": chatImageArr}  andType:MediaType_Image];
-    
     //结束停止用户事件
     dispatch_async(dispatch_get_main_queue(), ^{
-        [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        [_applicationContext dismissViewControllerAnimated:YES completion:nil];
+//        [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     });
 }
 

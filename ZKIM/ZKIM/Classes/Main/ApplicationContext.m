@@ -11,7 +11,8 @@
 
 @interface ApplicationContext ()
 {
-    UINavigationController *presentNavigationController;
+    UINavigationController *_presentNavigationController;
+    UIViewController *_presentedViewController;
 }
 
 @end
@@ -51,72 +52,127 @@
 
 - (void)presentNavigationController:(UIViewController *)viewController animated:(BOOL)animated completion:(void (^)(void))completion
 {
-    if(presentNavigationController){
-        [self removePresentNavigationController];
+    if(_presentNavigationController){
+        [self removePresentController:_presentNavigationController];
     }
     
-    presentNavigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    [presentNavigationController setNavigationBarHidden:true animated:false];
+    _presentNavigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    [_presentNavigationController setNavigationBarHidden:true animated:false];
     
-    [self.rootViewController.view addSubview:presentNavigationController.view];
-    [self.rootViewController addChildViewController:presentNavigationController];
-    [presentNavigationController.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+    [self.rootViewController.view addSubview:_presentNavigationController.view];
+    [self.rootViewController addChildViewController:_presentNavigationController];
+    [_presentNavigationController.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
     
     if(animated){
-        CGFloat viewHeight = presentNavigationController.view.bounds.size.height;
-        [presentNavigationController.view autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:viewHeight];
-        [presentNavigationController.view autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:-viewHeight];
+        CGFloat viewHeight = _presentNavigationController.view.bounds.size.height;
+        [_presentNavigationController.view autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:viewHeight];
+        [_presentNavigationController.view autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:-viewHeight];
         [self.rootViewController.view layoutIfNeeded];
         
-        [UIView animateWithDuration:0.5
-                              delay:0.f
-             usingSpringWithDamping:1.f
-              initialSpringVelocity:1.f
-                            options:UIViewAnimationOptionCurveEaseInOut
-                         animations:^{
-                             [presentNavigationController.view autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0];
-                             [presentNavigationController.view autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:0];
-                             [self.rootViewController.view layoutIfNeeded];
-                         }
-                         completion:^(BOOL finished) {
-                             if (completion) completion();
-                         }];
-    } else {
-        if (completion) completion();
+        [self animations:^{
+            [_presentNavigationController.view autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0];
+            [_presentNavigationController.view autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:0];
+            [self.rootViewController.view layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            !completion?:completion();
+        }];
+    }
+    else {
+        !completion?:completion();
     }
 }
 
-- (void)removePresentNavigationController
+- (void)removePresentController:(UIViewController *)viewController
 {
-    [presentNavigationController.view removeFromSuperview];
-    [presentNavigationController removeFromParentViewController];
+    [viewController.view removeFromSuperview];
+    [viewController removeFromParentViewController];
     
-    presentNavigationController = nil;
+    viewController = nil;
 }
 
 - (void)dismissNavigationControllerAnimated:(BOOL)animated completion:(void (^)(void))completion
 {
     if (!animated) {
-        [self removePresentNavigationController];
+        [self removePresentController:_presentNavigationController];
         if (completion) completion();
         return;
     }
     
-    CGFloat viewHeight = presentNavigationController.view.bounds.size.height;
+    CGFloat viewHeight = _presentNavigationController.view.bounds.size.height;
+    [self animations:^{
+        [_presentNavigationController.view autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:viewHeight];
+        [_presentNavigationController.view autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:-viewHeight];
+        [self.rootViewController.view layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        [self removePresentController:_presentNavigationController];
+        !completion?:completion();
+    }];
+}
+
+#pragma mark - 
+
+- (void)presentViewController:(UIViewController *)viewController animated:(BOOL)animated completion:(void(^)())completion
+{
+    if(_presentedViewController){
+        [self removePresentController:_presentedViewController];
+    }
+    
+    _presentedViewController = viewController;
+    
+    [self.rootViewController.view addSubview:viewController.view];
+    [self.rootViewController addChildViewController:viewController];
+    [viewController.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+    
+    if(animated){
+        CGFloat viewHeight = viewController.view.bounds.size.height;
+        [viewController.view autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:viewHeight];
+        [viewController.view autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:-viewHeight];
+        [self.rootViewController.view layoutIfNeeded];
+        
+        [self animations:^{
+            [viewController.view autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0];
+            [viewController.view autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:0];
+            [self.rootViewController.view layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            !completion?:completion();
+        }];
+    }
+    else {
+        !completion?:completion();
+    }
+}
+
+- (void)dismissViewControllerAnimated:(BOOL)animated completion:(void (^)())completion
+{
+    if (!animated) {
+        [self removePresentController:_presentedViewController];
+        if (completion) completion();
+        return;
+    }
+    
+    CGFloat viewHeight = _presentedViewController.view.bounds.size.height;
+    
+    [self animations:^{
+        [_presentedViewController.view autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:viewHeight];
+        [_presentedViewController.view autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:-viewHeight];
+        [self.rootViewController.view layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        [self removePresentController:_presentedViewController];
+        !completion?:completion();
+    }];
+}
+
+#pragma mark - Private
+
+- (void)animations:(void(^)())animations completion:(void(^)(BOOL finished))completion
+{
     [UIView animateWithDuration:0.5
                           delay:0.f
          usingSpringWithDamping:1.f
           initialSpringVelocity:1.f
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         [presentNavigationController.view autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:viewHeight];
-                         [presentNavigationController.view autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:-viewHeight];
-                         [self.rootViewController.view layoutIfNeeded];
-                     }
-                     completion:^(BOOL finished) {
-                         [self removePresentNavigationController];
-                         if (completion) completion();
-                     }];
+                        options:UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionBeginFromCurrentState
+                     animations:animations
+                     completion:completion];
 }
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "ZKPlusPanel.h"
-#import "ZKDataGetManager.h"
+#import "ZKPhotoGetTool.h"
 
 @interface ZKPlusElement : UIView
 
@@ -134,13 +134,13 @@ CGFloat const kPlusPanelHeight = 216.f;
 - (void)initData
 {
     _dataSource = @[
-                    @{kImageName:@"sharemore_location_59x59_", kTitle:@"位置"},
-                    @{kImageName:@"sharemore_myfav_59x59_", kTitle:@"我的最爱"},
+                    @{kImageName:@"sharemore_video_59x59_", kTitle:@"照相"},
                     @{kImageName:@"sharemore_pic_59x59_", kTitle:@"照片"},
                     @{kImageName:@"sharemore_sight_60x60_", kTitle:@"小视频"},
-                    @{kImageName:@"sharemore_video_59x59_", kTitle:@"照相"},
-                    @{kImageName:@"sharemorePay_59x59_", kTitle:@"支付"},
-                    @{kImageName:@"sharemore_videovoip_60x60_", kTitle:@"视频"}
+                    @{kImageName:@"sharemore_videovoip_60x60_", kTitle:@"视频"},
+                    @{kImageName:@"sharemorePay_59x59_", kTitle:@"转账"},
+                    @{kImageName:@"sharemore_location_59x59_", kTitle:@"位置"},
+                    @{kImageName:@"sharemore_myfav_59x59_", kTitle:@"我的最爱"}
                     ];
 }
 
@@ -148,25 +148,26 @@ CGFloat const kPlusPanelHeight = 216.f;
 {
     switch (btn.tag) {
         case 0: {
-            DLog(@"位置");
-        } break;
-        case 1: {
-            DLog(@"我的最爱");
-        } break;
-        case 2: {
-            DLog(@"照片");
-        } break;
-        case 3: {
-            DLog(@"小视频");
-        } break;
-        case 4: {
             DLog(@"照相");
         } break;
+        case 1: {
+            DLog(@"照片");
+            [[ZKPhotoGetTool shareInstance] choosePhotoDataWithType:ZKPhotoTypeLocalAlbum];
+        } break;
+        case 2: {
+            DLog(@"小视频");
+        } break;
+        case 3: {
+            DLog(@"视频");
+        } break;
+        case 4: {
+            DLog(@"转账");
+        } break;
         case 5: {
-            DLog(@"支付");
+            DLog(@"位置");
         } break;
         case 6: {
-            DLog(@"视频");
+            DLog(@"我的最爱");
         } break;
     }
 }
