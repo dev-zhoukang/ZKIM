@@ -12,6 +12,7 @@
 
 typedef NS_ENUM(NSInteger, ZKPhotoType) {
     ZKPhotoTypeLocalAlbum,       //!< 本地图册
+    ZKPhotoTypeLocalAlbumSheet,  //!< ActionSheet样式展示本地图册
     ZKPhotoTypeLocalVideo,       //!< 本地视频
     ZKPhotoTypeTakePhoto,        //!< 拍摄照片
     ZKPhotoTypeTakePhotoAndVideo //!< 拍摄照片和视频

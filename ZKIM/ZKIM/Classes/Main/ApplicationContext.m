@@ -12,7 +12,6 @@
 @interface ApplicationContext ()
 {
     UINavigationController *_presentNavigationController;
-    UIViewController *_presentedViewController;
 }
 
 @end
@@ -41,7 +40,9 @@
 
 - (UINavigationController *)navigationController
 {
-    //return self.rootViewController.rootNavigationController;
+    /**
+     return self.rootViewController.rootNavigationController;
+     */
     return nil;
 }
 
@@ -105,59 +106,6 @@
         [self.rootViewController.view layoutIfNeeded];
     } completion:^(BOOL finished) {
         [self removePresentController:_presentNavigationController];
-        !completion?:completion();
-    }];
-}
-
-#pragma mark - 
-
-- (void)presentViewController:(UIViewController *)viewController animated:(BOOL)animated completion:(void(^)())completion
-{
-    if(_presentedViewController){
-        [self removePresentController:_presentedViewController];
-    }
-    
-    _presentedViewController = viewController;
-    
-    [self.rootViewController.view addSubview:viewController.view];
-    [self.rootViewController addChildViewController:viewController];
-    [viewController.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
-    
-    if(animated){
-        CGFloat viewHeight = viewController.view.bounds.size.height;
-        [viewController.view autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:viewHeight];
-        [viewController.view autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:-viewHeight];
-        [self.rootViewController.view layoutIfNeeded];
-        
-        [self animations:^{
-            [viewController.view autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0];
-            [viewController.view autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:0];
-            [self.rootViewController.view layoutIfNeeded];
-        } completion:^(BOOL finished) {
-            !completion?:completion();
-        }];
-    }
-    else {
-        !completion?:completion();
-    }
-}
-
-- (void)dismissViewControllerAnimated:(BOOL)animated completion:(void (^)())completion
-{
-    if (!animated) {
-        [self removePresentController:_presentedViewController];
-        if (completion) completion();
-        return;
-    }
-    
-    CGFloat viewHeight = _presentedViewController.view.bounds.size.height;
-    
-    [self animations:^{
-        [_presentedViewController.view autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:viewHeight];
-        [_presentedViewController.view autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:-viewHeight];
-        [self.rootViewController.view layoutIfNeeded];
-    } completion:^(BOOL finished) {
-        [self removePresentController:_presentedViewController];
         !completion?:completion();
     }];
 }

@@ -76,7 +76,7 @@
                 picker.delegate = self;
                 picker.allowsEditing = NO;
                 picker.videoMaximumDuration = 180;
-                [_applicationContext presentViewController:picker animated:YES completion:nil];
+                [_applicationContext.rootViewController presentViewController:picker animated:YES completion:nil];
             }
         } break;
         case ZKPhotoTypeTakePhoto: {
@@ -89,40 +89,13 @@
                 imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
                 imagePicker.delegate = self;
                 imagePicker.allowsEditing = NO;
-                [_applicationContext presentViewController:imagePicker animated:YES completion:nil];
+                [_applicationContext.rootViewController presentViewController:imagePicker animated:YES completion:nil];
             }
         } break;
         case ZKPhotoTypeLocalAlbum: {
             if (![HLTool photoAlbumGranted]) {
                 return;
             }
-        
-            ImagePickerSheetController *controller = [[ImagePickerSheetController alloc] init];
-            controller.maximumSelection = 8;
-            controller.displaySelectMaxLimit = YES;
-            
-            ImageAction *action = [[ImageAction alloc] init];
-            action.title = @"照片图库";
-            action.style = ImageActionStyleDefault;
-            [action setSecondaryTitle:^NSString *(NSInteger num) {
-                return [NSString stringWithFormat:@"发送 %@ 张照片",@(num)];
-            }];
-            [action setHandler:^(ImageAction *action) {
-                [self choosePhotoDataWithType:ZKPhotoTypeLocalAlbum];
-            }];
-            [action setSecondaryHandler:^(ImageAction *action, NSInteger num) {
-                if ([self respondsToSelector:@selector(imagePickerController:didFinishPickingMediaWithAssets:)]){
-                    [self imagePickerController:nil didFinishPickingMediaWithAssets:controller.selectedImageAssets];
-                }
-            }];
-            [controller addAction:action];
-            
-            action = [[ImageAction alloc] init];
-            action.title = @"取消";
-            action.style = ImageActionStyleCancel;
-            [controller addAction:action];
-            
-            [_applicationContext presentViewController:controller animated:YES completion:nil];
             
             USImagePickerController *imagePicker = [[USImagePickerController alloc] init];
             imagePicker.delegate = self;
@@ -139,8 +112,38 @@
             [shadow setShadowColor: [UIColor clearColor]];
             NSDictionary * dict = @{NSForegroundColorAttributeName:[UIColor whiteColor], NSShadowAttributeName:shadow};
             imagePicker.navigationBar.titleTextAttributes = dict;
-            [_applicationContext presentViewController:imagePicker animated:YES completion:nil];
+            [_applicationContext.rootViewController presentViewController:imagePicker animated:YES completion:nil];
         } break;
+        
+        case ZKPhotoTypeLocalAlbumSheet: {
+            ImagePickerSheetController *sheetController = [[ImagePickerSheetController alloc] init];
+            sheetController.maximumSelection = 8;
+            sheetController.displaySelectMaxLimit = YES;
+            
+            ImageAction *action = [[ImageAction alloc] init];
+            action.title = @"照片图库";
+            action.style = ImageActionStyleDefault;
+            [action setSecondaryTitle:^NSString *(NSInteger num) {
+                return [NSString stringWithFormat:@"发送 %@ 张照片",@(num)];
+            }];
+            [action setHandler:^(ImageAction *action) {
+                [self choosePhotoDataWithType:ZKPhotoTypeLocalAlbum];
+            }];
+            [action setSecondaryHandler:^(ImageAction *action, NSInteger num) {
+                if ([self respondsToSelector:@selector(imagePickerController:didFinishPickingMediaWithAssets:)]){
+                    [self imagePickerController:nil didFinishPickingMediaWithAssets:sheetController.selectedImageAssets];
+                }
+            }];
+            [sheetController addAction:action];
+            
+            action = [[ImageAction alloc] init];
+            action.title = @"取消";
+            action.style = ImageActionStyleCancel;
+            [sheetController addAction:action];
+
+            [_applicationContext.rootViewController presentViewController:sheetController animated:YES completion:nil];
+        } break;
+        
         case ZKPhotoTypeLocalVideo: {
             if (![HLTool photoAlbumGranted]) {
                 return;
@@ -161,7 +164,7 @@
             imagePicker.navigationBar.translucent = NO;
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
             
-            [_applicationContext presentViewController:imagePicker animated:YES completion:nil];
+            [_applicationContext.rootViewController presentViewController:imagePicker animated:YES completion:nil];
         } break;
     }
 }
@@ -220,9 +223,13 @@
     
     //结束停止用户事件
     dispatch_async(dispatch_get_main_queue(), ^{
-        [_applicationContext dismissViewControllerAnimated:YES completion:nil];
-//        [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     });
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

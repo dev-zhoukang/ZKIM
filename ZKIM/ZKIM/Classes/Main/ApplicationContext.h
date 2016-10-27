@@ -60,7 +60,4 @@
 - (void)presentNavigationController:(UIViewController *)viewController animated:(BOOL)animated completion:(void (^)(void))completion;
 - (void)dismissNavigationControllerAnimated:(BOOL)animated completion:(void (^)(void))completion;
 
-- (void)presentViewController:(UIViewController *)viewController animated:(BOOL)animated completion:(void(^)())completion;
-- (void)dismissViewControllerAnimated:(BOOL)animated completion:(void (^)())completion;
-
 @end

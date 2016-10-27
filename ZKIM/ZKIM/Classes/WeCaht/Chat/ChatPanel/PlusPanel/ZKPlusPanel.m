@@ -152,7 +152,7 @@ CGFloat const kPlusPanelHeight = 216.f;
         } break;
         case 1: {
             DLog(@"照片");
-            [[ZKPhotoGetTool shareInstance] choosePhotoDataWithType:ZKPhotoTypeLocalAlbum];
+            [[ZKPhotoGetTool shareInstance] choosePhotoDataWithType:ZKPhotoTypeLocalAlbumSheet];
         } break;
         case 2: {
             DLog(@"小视频");
