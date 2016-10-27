@@ -13,7 +13,8 @@
 @protocol ZKChatPanelDelegate <NSObject>
 
 @optional
-- (void)charPanel:(ZKChatPanel *)chatPanel sendText:(NSString *)content;
+- (void)chatPanel:(ZKChatPanel *)chatPanel sendText:(NSString *)content;
+- (void)chatPanelSendMediaDict:(NSDictionary *)dict mediaType:(MediaType)mediaType;
 
 @end
 

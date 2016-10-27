@@ -21,8 +21,7 @@ typedef NS_ENUM(NSInteger, ZKPhotoType) {
 @protocol ZKPhotoGetToolDelegate <NSObject>
 
 @optional
-
-- (void)dataGetManagerDidGotPhotosOrVideoData:(NSDictionary *)dict type:(ZKPhotoType)type;
+- (void)photoGetToolDidGotPhotosOrVideoDict:(NSDictionary *)dict type:(MediaType)type;
 
 @end
 

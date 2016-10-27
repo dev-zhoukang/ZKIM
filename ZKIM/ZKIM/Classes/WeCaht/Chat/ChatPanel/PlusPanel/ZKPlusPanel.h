@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ZKPlusPanelDelegate <NSObject>
+
+@optional
+- (void)plusPanelSendMediaDict:(NSDictionary *)dict type:(MediaType)mediaType;
+
+@end
+
 @interface ZKPlusPanel : UIView
 
 + (instancetype)plusPanel;
+@property (nonatomic, weak) id <ZKPlusPanelDelegate> delegate;
 
 @end
 

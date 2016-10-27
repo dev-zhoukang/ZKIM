@@ -182,7 +182,7 @@
 #pragma mark - 发送消息
 #pragma mark - <ZKChatPanelDelegate>
 
-- (void)charPanel:(ZKChatPanel *)charPanel sendText:(NSString *)content
+- (void)chatPanel:(ZKChatPanel *)charPanel sendText:(NSString *)content
 {
     DLog(@"发送消息===%@", content);
     
@@ -197,6 +197,11 @@
         [_tableView reloadData];
         DLog(@"文字消息发送成功!");
     }];
+}
+
+- (void)chatPanelSendMediaDict:(NSDictionary *)dict mediaType:(MediaType)mediaType
+{
+    DLog(@"dict:%@ == type:%zd", dict, mediaType);
 }
 
 /*! 跟新数据源 自动偏移 tableView */

@@ -14,11 +14,11 @@
 @property (nonatomic, strong) NSDictionary *info;
 @property (nonatomic, strong) UIButton *btn;
 
+@end
+
 // -- const string --
 extern NSString *const kImageName;
 extern NSString *const kTitle;
-
-@end
 
 @implementation ZKPlusElement {
     UILabel  *_label;
@@ -84,9 +84,10 @@ NSString *const kTitle = @"kTitle";
 
 // --- ZKPlusPanel ---
 
-@interface ZKPlusPanel ()
+@interface ZKPlusPanel () <ZKPhotoGetToolDelegate>
 
 @property (nonatomic, strong) NSArray *dataSource;
+@property (nonatomic, strong) ZKPhotoGetTool *imageGetTool;
 
 @end
 
@@ -142,6 +143,8 @@ CGFloat const kPlusPanelHeight = 216.f;
                     @{kImageName:@"sharemore_location_59x59_", kTitle:@"位置"},
                     @{kImageName:@"sharemore_myfav_59x59_", kTitle:@"我的最爱"}
                     ];
+    _imageGetTool = [ZKPhotoGetTool shareInstance];
+    _imageGetTool.delegate = self;
 }
 
 - (void)btnClick:(UIButton *)btn
@@ -149,10 +152,11 @@ CGFloat const kPlusPanelHeight = 216.f;
     switch (btn.tag) {
         case 0: {
             DLog(@"照相");
+            [_imageGetTool choosePhotoDataWithType:ZKPhotoTypeTakePhoto];
         } break;
         case 1: {
             DLog(@"照片");
-            [[ZKPhotoGetTool shareInstance] choosePhotoDataWithType:ZKPhotoTypeLocalAlbumSheet];
+            [_imageGetTool choosePhotoDataWithType:ZKPhotoTypeLocalAlbumSheet];
         } break;
         case 2: {
             DLog(@"小视频");
@@ -197,6 +201,15 @@ CGFloat const kPlusPanelHeight = 216.f;
         
         ZKPlusElement *element = self.subviews[i];
         element.frame = CGRectMake(btnX, btnY, elementW, elementH);
+    }
+}
+
+#pragma mark - <ZKPhotoGetToolDelegate>
+
+- (void)photoGetToolDidGotPhotosOrVideoDict:(NSDictionary *)dict type:(MediaType)type
+{
+    if ([self.delegate respondsToSelector:@selector(plusPanelSendMediaDict:type:)]) {
+        [self.delegate plusPanelSendMediaDict:dict type:type];
     }
 }
 

@@ -12,7 +12,7 @@
 
 #define kChatPanelHeight   (kChatBarHeight + kEmoticonInputViewHeight)
 
-@interface ZKChatPanel() <UITextViewDelegate, ZKEmoticonInputViewDelegate>
+@interface ZKChatPanel() <UITextViewDelegate, ZKEmoticonInputViewDelegate, ZKPlusPanelDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton   *recordBtn;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
@@ -68,6 +68,7 @@ static CGFloat const kBottomInset = 10.f;
     _emoticonView.frame = _panelContainer.bounds;
     
     _plusPanel = [ZKPlusPanel plusPanel];
+    _plusPanel.delegate = self;
     [_panelContainer addSubview:_plusPanel];
     _plusPanel.frame = _panelContainer.bounds;
     
@@ -189,8 +190,8 @@ static CGFloat const kBottomInset = 10.f;
             return NO;
         }
         
-        if ([self.delegate respondsToSelector:@selector(charPanel:sendText:)]) {
-            [self.delegate charPanel:self sendText:textView.text];
+        if ([self.delegate respondsToSelector:@selector(chatPanel:sendText:)]) {
+            [self.delegate chatPanel:self sendText:textView.text];
             textView.text = @"";
         }
         return NO;
@@ -366,6 +367,15 @@ static CGFloat const kBottomInset = 10.f;
             self.bottom = SCREEN_HEIGHT+kEmoticonInputViewHeight;
             [self setTableViewOffsetWithKeyboardY:SCREEN_HEIGHT barHeight:_inputBarContainer.height];
         }];
+    }
+}
+
+#pragma mark - <ZKPlusPanelDelegate>
+
+- (void)plusPanelSendMediaDict:(NSDictionary *)dict type:(MediaType)mediaType
+{
+    if ([self.delegate respondsToSelector:@selector(chatPanelSendMediaDict:mediaType:)]) {
+        [self.delegate chatPanelSendMediaDict:dict mediaType:mediaType];
     }
 }
 

@@ -14,9 +14,9 @@
 
 @interface ZKPhotoGetTool () <USImagePickerControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 //图片数据
-@property (nonatomic, strong) NSMutableArray *imageArr;
-@property (nonatomic, strong) NSMutableArray *imageDataArr;
-@property (nonatomic, strong) NSMutableArray *smallImageDataArr;
+@property (nonatomic, strong) NSMutableArray *largeImages;
+@property (nonatomic, strong) NSMutableArray *largeImageDatas;
+@property (nonatomic, strong) NSMutableArray *smallImageDatas;
 
 //视频数据
 @property (nonatomic, strong) NSData *videoSmallImgData;
@@ -50,122 +50,141 @@
 
 - (void)initData
 {
-    _imageArr = [NSMutableArray new];
-    _imageDataArr = [NSMutableArray new];
-    _smallImageDataArr = [NSMutableArray new];
+    _largeImages = [NSMutableArray new];
+    _largeImageDatas = [NSMutableArray new];
+    _smallImageDatas = [NSMutableArray new];
 }
 
 - (void)choosePhotoDataWithType:(ZKPhotoType)poContentType
 {
     switch (poContentType) {
-        case ZKPhotoTypeTakePhotoAndVideo: {
-            if (![HLTool cameraGranted]) {
-                return;
-            }
-            
-            if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-                UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-                
-                NSArray *temp_MediaTypes = [UIImagePickerController availableMediaTypesForSourceType:picker.sourceType];
-                picker.mediaTypes = temp_MediaTypes;
-                /**
-                 picker.mediaTypes = [[NSArray alloc] initWithObjects:(NSString *) kUTTypeMovie, nil];
-                 */
-                
-                picker.delegate = self;
-                picker.allowsEditing = NO;
-                picker.videoMaximumDuration = 180;
-                [_applicationContext.rootViewController presentViewController:picker animated:YES completion:nil];
-            }
-        } break;
         case ZKPhotoTypeTakePhoto: {
-            if (![HLTool cameraGranted]) {
-                return;
-            }
-            
-            if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-                UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-                imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-                imagePicker.delegate = self;
-                imagePicker.allowsEditing = NO;
-                [_applicationContext.rootViewController presentViewController:imagePicker animated:YES completion:nil];
-            }
+            if (![HLTool cameraGranted]) return;
+            [self startTakePhoto];
         } break;
         case ZKPhotoTypeLocalAlbum: {
-            if (![HLTool photoAlbumGranted]) {
-                return;
-            }
-            
-            USImagePickerController *imagePicker = [[USImagePickerController alloc] init];
-            imagePicker.delegate = self;
-            imagePicker.allowsMultipleSelection = YES;
-            imagePicker.maxSelectNumber = 10;
-            imagePicker.tintColor = ThemColor;
-            imagePicker.hideOriginalImageCheckbox = YES;
-            
-            imagePicker.navigationBar.tintColor = [UIColor whiteColor];
-            imagePicker.navigationBar.barTintColor = ThemColor;
-            imagePicker.navigationBar.translucent = NO;
-            
-            NSShadow *shadow = [NSShadow new];
-            [shadow setShadowColor: [UIColor clearColor]];
-            NSDictionary * dict = @{NSForegroundColorAttributeName:[UIColor whiteColor], NSShadowAttributeName:shadow};
-            imagePicker.navigationBar.titleTextAttributes = dict;
-            [_applicationContext.rootViewController presentViewController:imagePicker animated:YES completion:nil];
+            if (![HLTool photoAlbumGranted]) return;
+            [self startOpenLocalAlbum];
         } break;
-        
+            
         case ZKPhotoTypeLocalAlbumSheet: {
-            ImagePickerSheetController *sheetController = [[ImagePickerSheetController alloc] init];
-            sheetController.maximumSelection = 8;
-            sheetController.displaySelectMaxLimit = YES;
+            if (![HLTool cameraGranted]) return;
+            [self startPopupImageSheet];
+        } break;
             
-            ImageAction *action = [[ImageAction alloc] init];
-            action.title = @"照片图库";
-            action.style = ImageActionStyleDefault;
-            [action setSecondaryTitle:^NSString *(NSInteger num) {
-                return [NSString stringWithFormat:@"发送 %@ 张照片",@(num)];
-            }];
-            [action setHandler:^(ImageAction *action) {
-                [self choosePhotoDataWithType:ZKPhotoTypeLocalAlbum];
-            }];
-            [action setSecondaryHandler:^(ImageAction *action, NSInteger num) {
-                if ([self respondsToSelector:@selector(imagePickerController:didFinishPickingMediaWithAssets:)]){
-                    [self imagePickerController:nil didFinishPickingMediaWithAssets:sheetController.selectedImageAssets];
-                }
-            }];
-            [sheetController addAction:action];
-            
-            action = [[ImageAction alloc] init];
-            action.title = @"取消";
-            action.style = ImageActionStyleCancel;
-            [sheetController addAction:action];
-
-            [_applicationContext.rootViewController presentViewController:sheetController animated:YES completion:nil];
+        case ZKPhotoTypeTakePhotoAndVideo: {
+            if (![HLTool cameraGranted]) return;
+            [self startTakePhotoOrVideo];
         } break;
         
         case ZKPhotoTypeLocalVideo: {
-            if (![HLTool photoAlbumGranted]) {
-                return;
-            }
-            
-            UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-            imagePicker.delegate = self;
-            imagePicker.allowsEditing = YES;
-            imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            imagePicker.mediaTypes =  @[(NSString *)kUTTypeMovie];
-            imagePicker.navigationBar.barTintColor = ThemColor;
-            
-            NSShadow *shadow = [NSShadow new];
-            [shadow setShadowColor: [UIColor clearColor]];
-            NSDictionary * dict = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSShadowAttributeName:shadow};
-            imagePicker.navigationBar.titleTextAttributes = dict;
-            imagePicker.navigationBar.tintColor = [UIColor whiteColor];
-            imagePicker.navigationBar.translucent = NO;
-            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-            
-            [_applicationContext.rootViewController presentViewController:imagePicker animated:YES completion:nil];
+            if (![HLTool photoAlbumGranted]) return;
+            [self startOpenLocalVideo];
         } break;
+    }
+}
+
+- (void)startOpenLocalVideo
+{
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.delegate = self;
+    imagePicker.allowsEditing = YES;
+    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    imagePicker.mediaTypes =  @[(NSString *)kUTTypeMovie];
+    imagePicker.navigationBar.barTintColor = ThemColor;
+    
+    NSShadow *shadow = [NSShadow new];
+    [shadow setShadowColor: [UIColor clearColor]];
+    NSDictionary * dict = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSShadowAttributeName:shadow};
+    imagePicker.navigationBar.titleTextAttributes = dict;
+    imagePicker.navigationBar.tintColor = [UIColor whiteColor];
+    imagePicker.navigationBar.translucent = NO;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    [_applicationContext.rootViewController presentViewController:imagePicker animated:YES completion:nil];
+}
+
+- (void)startTakePhotoOrVideo
+{
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        NSArray *temp_MediaTypes = [UIImagePickerController availableMediaTypesForSourceType:picker.sourceType];
+        picker.mediaTypes = temp_MediaTypes;
+        /**
+         picker.mediaTypes = [[NSArray alloc] initWithObjects:(NSString *) kUTTypeMovie, nil];
+         */
+        
+        picker.delegate = self;
+        picker.allowsEditing = NO;
+        picker.videoMaximumDuration = 180;
+        [_applicationContext.rootViewController presentViewController:picker animated:YES completion:nil];
+    }
+}
+
+- (void)startPopupImageSheet
+{
+    ImagePickerSheetController *sheetController = [[ImagePickerSheetController alloc] init];
+    sheetController.maximumSelection = 8;
+    sheetController.displaySelectMaxLimit = YES;
+    
+    ImageAction *action = [[ImageAction alloc] init];
+    action.title = @"照片图库";
+    action.style = ImageActionStyleDefault;
+    [action setSecondaryTitle:^NSString *(NSInteger num) {
+        return [NSString stringWithFormat:@"发送 %@ 张照片",@(num)];
+    }];
+    [action setHandler:^(ImageAction *action) {
+        [self choosePhotoDataWithType:ZKPhotoTypeLocalAlbum];
+    }];
+    [action setSecondaryHandler:^(ImageAction *action, NSInteger num) {
+        if ([self respondsToSelector:@selector(imagePickerController:didFinishPickingMediaWithAssets:)]){
+            [self imagePickerController:nil didFinishPickingMediaWithAssets:sheetController.selectedImageAssets];
+        }
+    }];
+    [sheetController addAction:action];
+    
+    action = [[ImageAction alloc] init];
+    action.title = @"取消";
+    action.style = ImageActionStyleCancel;
+    [sheetController addAction:action];
+    
+    [_applicationContext.rootViewController presentViewController:sheetController animated:YES completion:nil];
+}
+
+- (void)startOpenLocalAlbum
+{
+    USImagePickerController *imagePicker = [[USImagePickerController alloc] init];
+    imagePicker.delegate = self;
+    imagePicker.allowsMultipleSelection = YES;
+    imagePicker.maxSelectNumber = 10;
+    /**
+     imagePicker.tintColor = ThemColor;
+     */
+    imagePicker.hideOriginalImageCheckbox = YES;
+    
+    imagePicker.navigationBar.tintColor = [UIColor whiteColor];
+    /**
+     imagePicker.navigationBar.barTintColor = ThemColor;
+     */
+    imagePicker.navigationBar.translucent = NO;
+    
+    NSShadow *shadow = [NSShadow new];
+    [shadow setShadowColor: [UIColor clearColor]];
+    NSDictionary * dict = @{NSForegroundColorAttributeName:[UIColor whiteColor], NSShadowAttributeName:shadow};
+    imagePicker.navigationBar.titleTextAttributes = dict;
+    [_applicationContext.rootViewController presentViewController:imagePicker animated:YES completion:nil];
+}
+
+- (void)startTakePhoto
+{
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        imagePicker.delegate = self;
+        imagePicker.allowsEditing = NO;
+        [_applicationContext.rootViewController presentViewController:imagePicker animated:YES completion:nil];
     }
 }
 
@@ -178,7 +197,7 @@
 
 - (void)getimageWithAssets:(NSArray *)assets picker:(USImagePickerController *)picker
 {
-    NSMutableArray *chatImageArr = [[NSMutableArray alloc] init];
+    NSMutableArray <NSString *> *chatImageUrls = [NSMutableArray array];
     
     for (int i=0; i<assets.count; i++) {
         @autoreleasepool {
@@ -209,16 +228,26 @@
             NSData *smallData = UIImageJPEGRepresentation(smallImage, 0.5);
             
             if (largeImg) {
-                [self.imageArr addObject:largeImg];
+                [_largeImages addObject:largeImg];
                 //图片
-                [self.imageDataArr addObject:imageData];
+                [_largeImageDatas addObject:imageData];
                 //小图
-                [self.smallImageDataArr addObject:smallData];
+                [_smallImageDatas addObject:smallData];
                 
                 NSString *imageName = [UIMedia storeImageToCache:largeImg];
-                [chatImageArr addObject:imageName];
+                [chatImageUrls addObject:imageName];
             }
         }
+    }
+    
+    // 通知代理
+    
+    
+    
+    NSDictionary *dict = @{ @"images":_largeImages,
+                            @"imageUrls":chatImageUrls };
+    if ([self.delegate respondsToSelector:@selector(photoGetToolDidGotPhotosOrVideoDict:type:)]) {
+        [self.delegate photoGetToolDidGotPhotosOrVideoDict:dict type:MediaType_Image];
     }
     
     //结束停止用户事件

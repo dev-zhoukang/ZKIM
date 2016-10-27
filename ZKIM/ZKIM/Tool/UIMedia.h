@@ -11,12 +11,12 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
-typedef enum {
+typedef NS_ENUM(NSInteger, MediaType) {
     MediaType_Image = 0,      //普通图片
     MediaType_Audio = 1,      //普通音频
     MediaType_Video = 2,      //普通视频
     MediaType_Map   = 3,      //位置信息
-} MediaType;
+};
 
 extern NSString * const MediaLocalFlag;
 
