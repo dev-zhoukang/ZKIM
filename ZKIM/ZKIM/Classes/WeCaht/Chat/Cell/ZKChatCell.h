@@ -19,6 +19,6 @@ typedef NS_ENUM(NSInteger, ZKChatCellType) {
 
 @property (nonatomic, strong) ZKChatLayout *cellLayout;
 
-+ (instancetype)cellWithTableView:(UITableView *)tableView type:(ZKChatCellType)type;
++ (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @end

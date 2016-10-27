@@ -12,14 +12,18 @@
 @interface ZKChatCell ()
 
 @property (nonatomic, strong) UIImageView *iconImageView;
-@property (nonatomic, strong) UIImageView *bubbleImageView;
-@property (nonatomic, strong) YYLabel     *contentLabel;
+@property (nonatomic, assign) BOOL        isMine; //我的消息
+@property (nonatomic, strong) UILongPressGestureRecognizer *longPress;
 @property (nonatomic, strong) UILabel     *timeLabel;
 @property (nonatomic, strong) UIActivityIndicatorView *indicatorView;
 @property (nonatomic, strong) UIButton *sendFailBtn;
 
-@property (nonatomic, assign) BOOL        isMine; //我的消息
-@property (nonatomic, strong) UILongPressGestureRecognizer *longPress;
+// Text Cell
+@property (nonatomic, strong) UIImageView *bubbleImageView;
+@property (nonatomic, strong) YYLabel     *contentLabel;
+
+// Image Cell
+@property (nonatomic, strong) UIImageView *contentImageView;
 
 @end
 
@@ -68,6 +72,12 @@
     _timeLabel.layer.cornerRadius = 3.5f;
     _timeLabel.layer.masksToBounds = YES;
     
+    _contentImageView = [UIImageView new];
+    [self.contentView addSubview:_contentImageView];
+    _contentImageView.contentMode = UIViewContentModeScaleAspectFill;
+    _contentImageView.clipsToBounds = YES;
+    _contentImageView.backgroundColor = [UIColor redColor];
+    
     _indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [self.contentView addSubview:_indicatorView];
     
@@ -85,7 +95,7 @@
 
 #pragma mark - Public
 
-+ (instancetype)cellWithTableView:(UITableView *)tableView type:(ZKChatCellType)type
++ (instancetype)cellWithTableView:(UITableView *)tableView
 {
     static NSString *cellID = @"ZKChatCell";
     ZKChatCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
@@ -138,11 +148,81 @@
     _isMine = cellLayout.message.isMine;
     _contentLabel.textLayout = cellLayout.contentTextLayout;
     
-    [self update];
+    [self updateCellWithType:cellLayout.message.type];
 }
 
-- (void)update
+- (void)updateCellWithType:(ZKMessageBodyType)type
 {
+    switch (type) {
+        case ZKMessageBodyTypeText: {
+            [self updateTextCell];
+        } break;
+        case ZKMessageBodyTypeImage: {
+            [self updateImageCell];
+        } break;
+            
+        default:
+            break;
+    }
+    
+    _sendFailBtn.hidden = YES;
+    BOOL showLoading = _cellLayout.message.messageStatus == ZKMessageStatusDelivering;
+    if (showLoading) {
+        [_indicatorView startAnimating];
+    }
+    else {
+        [_indicatorView stopAnimating];
+        if (_cellLayout.message.messageStatus == ZKMessageStatusFailed) {
+            _sendFailBtn.hidden = NO;
+        }
+    }
+}
+
+- (void)updateImageCell
+{
+    _contentLabel.hidden = YES;
+    _bubbleImageView.hidden = YES;
+    _contentImageView.hidden = NO;
+    
+    _contentImageView.size = _cellLayout.imageSize;
+    
+    if (_cellLayout.message.needShowTime) {
+        _timeLabel.hidden    = NO;
+        NSDate *time = [NSDate dateWithTimeStamp:_cellLayout.message.timestamp];
+        NSString *timeStr = [self stringWithDate:time];
+        _timeLabel.text = timeStr;
+        _timeLabel.width = [timeStr stringWidthWithFont:_timeLabel.font height:MAXFLOAT]+8.f;
+        _timeLabel.centerX = SCREEN_WIDTH*0.5;
+        _contentImageView.top = 35.f;
+        _iconImageView.top    = _contentImageView.top;
+    }
+    else {
+        _timeLabel.hidden     = YES;
+        _contentImageView.top = 10.f;
+        _iconImageView.top    = _contentImageView.top;
+    }
+    
+    _indicatorView.centerY = CGRectGetMidY(_bubbleImageView.frame);
+    _sendFailBtn.centerY = _indicatorView.centerY;
+    
+    if (_isMine) {
+        _iconImageView.right   = SCREEN_WIDTH - 10.f;
+        _contentImageView.right = CGRectGetMinX(_iconImageView.frame)-5.f;
+        _indicatorView.right = CGRectGetMinX(_bubbleImageView.frame);
+        _sendFailBtn.right = _indicatorView.right;
+    }
+    else {
+        _iconImageView.left   = 10.f;
+        _contentImageView.left = CGRectGetMaxX(_iconImageView.frame)+5.f;
+    }
+}
+
+- (void)updateTextCell
+{
+    _contentLabel.hidden = NO;
+    _bubbleImageView.hidden = NO;
+    _contentImageView.hidden = YES;
+    
     _bubbleImageView.image = [self getBubbleImage];
     
     CGFloat labelWidth    = _cellLayout.contentTextLayout.textBoundingSize.width;
@@ -157,15 +237,15 @@
         _timeLabel.text = timeStr;
         _timeLabel.width = [timeStr stringWidthWithFont:_timeLabel.font height:MAXFLOAT]+8.f;
         _timeLabel.centerX = SCREEN_WIDTH*0.5;
-        _bubbleImageView.top = 30.f;
-        _contentLabel.top    = 45.f;
-        _iconImageView.top   = 30.f;
+        _bubbleImageView.top = 35.f;
+        _iconImageView.top   = _bubbleImageView.top;
+        _contentLabel.top    = _bubbleImageView.top+15.f;
     }
     else {
         _timeLabel.hidden    = YES;
         _bubbleImageView.top = 10.f;
-        _contentLabel.top    = 25.f;
-        _iconImageView.top   = 10.f;
+        _iconImageView.top   = _bubbleImageView.top;
+        _contentLabel.top    = _bubbleImageView.top+15;
     }
     
     _indicatorView.centerY = CGRectGetMidY(_bubbleImageView.frame);
@@ -182,18 +262,6 @@
         _iconImageView.left   = 10.f;
         _bubbleImageView.left = CGRectGetMaxX(_iconImageView.frame)+5.f;
         _contentLabel.left    = CGRectGetMaxX(_iconImageView.frame)+25.f;
-    }
-    
-    _sendFailBtn.hidden = YES;
-    BOOL showLoading = _cellLayout.message.messageStatus == ZKMessageStatusDelivering;
-    if (showLoading) {
-        [_indicatorView startAnimating];
-    }
-    else {
-        [_indicatorView stopAnimating];
-        if (_cellLayout.message.messageStatus == ZKMessageStatusFailed) {
-            _sendFailBtn.hidden = NO;
-        }
     }
 }
 

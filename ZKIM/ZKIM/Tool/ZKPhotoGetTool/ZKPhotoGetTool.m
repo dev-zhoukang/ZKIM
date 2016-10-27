@@ -245,6 +245,7 @@
     
     
     NSDictionary *dict = @{ @"images":_largeImages,
+                            @"imageDatas":_largeImageDatas,
                             @"imageUrls":chatImageUrls };
     if ([self.delegate respondsToSelector:@selector(photoGetToolDidGotPhotosOrVideoDict:type:)]) {
         [self.delegate photoGetToolDidGotPhotosOrVideoDict:dict type:MediaType_Image];

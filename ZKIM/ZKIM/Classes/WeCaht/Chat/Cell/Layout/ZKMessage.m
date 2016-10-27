@@ -31,6 +31,11 @@
     _timestamp = _emmsg.timestamp;
     _messageStatus = (ZKMessageStatus)_emmsg.status;
     _isMine = [[EMClient sharedClient].currentUsername isEqualToString:_emmsg.from];
+    
+    if (_type == ZKMessageBodyTypeImage) {
+        EMImageMessageBody *body = (EMImageMessageBody *)_emmsg.body;
+        _imageSize = body.size;
+    }
 }
 
 - (void)setPreTimestamp:(NSTimeInterval)preTimestamp

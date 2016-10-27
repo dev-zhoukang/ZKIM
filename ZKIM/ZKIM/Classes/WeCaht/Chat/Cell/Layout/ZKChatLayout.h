@@ -13,11 +13,12 @@
 
 - (instancetype)initWithZKMessage:(ZKMessage *)message;
 
-@property (nonatomic, strong) ZKMessage *message;
+@property (nonatomic, strong, readonly) ZKMessage *message;
 
-@property (nonatomic, strong) YYTextLayout *contentTextLayout;
-@property (nonatomic, assign) CGFloat      contentTextHeight;
+@property (nonatomic, strong, readonly) YYTextLayout *contentTextLayout;
+@property (nonatomic, assign, readonly) CGFloat      contentTextHeight;
+@property (nonatomic, assign, readonly) CGSize      imageSize;
 
-@property (nonatomic, assign) CGFloat height; //!< 总高度
+@property (nonatomic, assign, readonly) CGFloat height; //!< 总高度
 
 @end

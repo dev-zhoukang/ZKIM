@@ -172,7 +172,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZKChatCell *cell = [ZKChatCell cellWithTableView:tableView type:ZKChatCellTypeText];
+    ZKChatCell *cell = [ZKChatCell cellWithTableView:tableView];
     cell.cellLayout = _layouts[indexPath.item];
     return cell;
 }
@@ -195,7 +195,7 @@
     
     [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
         if (error) {
-            DLog(@"消息发送失败 -- %@", error.errorDescription);
+            DLog(@"文字消息发送失败 -- %@", error.errorDescription);
             return;
         }
         [_tableView reloadData];
@@ -206,6 +206,19 @@
 - (void)chatPanelSendMediaDict:(NSDictionary *)dict mediaType:(MediaType)mediaType
 {
     DLog(@"dict:%@ == type:%zd", dict, mediaType);
+    // 构造图片消息并发送
+    NSArray *emmsgs = [self generateMessagesWithImageDatas:dict[@"imageDatas"]];
+    for (EMMessage *emmsg in emmsgs) {
+        [self insertMsgToDataSourceWithMessage:emmsg];
+        [[EMClient sharedClient].chatManager sendMessage:emmsg progress:nil completion:^(EMMessage *message, EMError *error) {
+            if (error) {
+                DLog(@"图片消息发送失败 -- %@", error.errorDescription);
+                return;
+            }
+            [_tableView reloadData];
+            DLog(@"图片消息发送成功!");
+        }];
+    }
 }
 
 /*! 插入到数据源 自动偏移 tableView */
@@ -225,7 +238,26 @@
     }];
 }
 
-/*! 构造消息 */
+#pragma mark - 构造消息
+
+- (NSArray <EMMessage *> *)generateMessagesWithImageDatas:(NSArray <NSData *> *)imageDatas
+{
+    NSMutableArray *emmsgs = [NSMutableArray array];
+    
+    for (NSData *imageData in imageDatas) {
+        EMImageMessageBody *body = [[EMImageMessageBody alloc] initWithData:imageData displayName:@"image.png"];
+        NSString *from = [[EMClient sharedClient] currentUsername];
+        
+        // 生成 Message
+        EMMessage *message = [[EMMessage alloc] initWithConversationID:_conversationID from:from to:_toID body:body ext:nil];
+        message.chatType = EMChatTypeChat;
+        
+        [emmsgs addObject:message];
+    }
+    return emmsgs;
+}
+
+/*! 构造文字消息 */
 - (EMMessage *)generateMessageWithText:(NSString *)text
 {
     EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithText:text];

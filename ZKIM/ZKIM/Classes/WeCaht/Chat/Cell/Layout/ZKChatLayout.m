@@ -11,6 +11,7 @@
 #import "ZKRegularTool.h"
 
 #define ContentTextFont    [UIFont systemFontOfSize:15.8f]
+#define kMaxImageWH        (SCREEN_WIDTH*0.6) //!< 图片的最大显示尺寸
 
 @interface ZKChatLayout ()
 
@@ -34,9 +35,11 @@
     switch (_message.type) {
         case ZKMessageBodyTypeText: {
             [self layoutContentText];
+            _height += _contentTextHeight;
         } break;
         case ZKMessageBodyTypeImage: {
-            
+            [self layoutImage];
+            _height += _imageSize.height;
         } break;
         case ZKMessageBodyTypeLocation: {
             
@@ -49,12 +52,35 @@
         } break;
     }
     
-    _height += _contentTextHeight;
     _height += 20*2; // 加上上下的边距
-    
     if (_message.needShowTime) { // 展示时间的高度
-        _height += 20;
+        _height += 25;
     }
+}
+
+- (void)layoutImage
+{
+    _imageSize = CGSizeZero;
+    
+    CGFloat maxImageWidth = kMaxImageWH;
+    CGFloat maxImageHeight = kMaxImageWH;
+    
+    CGFloat imageWidth = _message.imageSize.width;
+    CGFloat imageHeight = _message.imageSize.height;
+    
+    if (imageWidth > imageHeight) { // 如果是宽图
+        if (imageWidth > maxImageWidth) {
+            imageHeight = imageWidth * (maxImageWidth/imageWidth);
+            imageWidth = maxImageWidth;
+        }
+    }
+    else { // 如果是长图
+        if (imageHeight > maxImageHeight) {
+            imageWidth = imageWidth * (maxImageHeight/imageHeight);
+            imageHeight = maxImageHeight;
+        }
+    }
+    _imageSize = (CGSize){imageWidth, imageHeight};
 }
 
 - (void)layoutContentText
