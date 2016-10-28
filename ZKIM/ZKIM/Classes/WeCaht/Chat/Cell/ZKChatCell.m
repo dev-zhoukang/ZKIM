@@ -184,6 +184,11 @@
     _bubbleImageView.hidden = YES;
     _contentImageView.hidden = NO;
     
+    EMImageMessageBody *body = (EMImageMessageBody *)_cellLayout.message.emmsg.body;
+    UIImage *image = [UIImage imageWithContentsOfFile:body.localPath];
+    
+    _contentImageView.image = image;
+    
     _contentImageView.size = _cellLayout.imageSize;
     
     if (_cellLayout.message.needShowTime) {

@@ -245,7 +245,12 @@
     NSMutableArray *emmsgs = [NSMutableArray array];
     
     for (NSData *imageData in imageDatas) {
+        UIImage *image = [UIImage imageWithData:imageData];
+        
         EMImageMessageBody *body = [[EMImageMessageBody alloc] initWithData:imageData displayName:@"image.png"];
+        body.compressionRatio = 1.f;
+        body.size = image.size;
+        
         NSString *from = [[EMClient sharedClient] currentUsername];
         
         // 生成 Message

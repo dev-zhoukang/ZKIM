@@ -198,6 +198,10 @@
 - (void)getimageWithAssets:(NSArray *)assets picker:(USImagePickerController *)picker
 {
     NSMutableArray <NSString *> *chatImageUrls = [NSMutableArray array];
+    [_largeImages removeAllObjects];
+    [_largeImageDatas removeAllObjects];
+    [_smallImageDatas removeAllObjects];
+    
     
     for (int i=0; i<assets.count; i++) {
         @autoreleasepool {
@@ -241,9 +245,6 @@
     }
     
     // 通知代理
-    
-    
-    
     NSDictionary *dict = @{ @"images":_largeImages,
                             @"imageDatas":_largeImageDatas,
                             @"imageUrls":chatImageUrls };
