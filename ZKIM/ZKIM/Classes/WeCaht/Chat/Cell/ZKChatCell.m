@@ -186,9 +186,7 @@
     
     EMImageMessageBody *body = (EMImageMessageBody *)_cellLayout.message.emmsg.body;
     UIImage *image = [UIImage imageWithContentsOfFile:body.localPath];
-    
     _contentImageView.image = image;
-    
     _contentImageView.size = _cellLayout.imageSize;
     
     if (_cellLayout.message.needShowTime) {
@@ -220,6 +218,7 @@
         _iconImageView.left   = 10.f;
         _contentImageView.left = CGRectGetMaxX(_iconImageView.frame)+5.f;
     }
+    [self addMaskLayerForImageView];
 }
 
 - (void)updateTextCell
@@ -228,7 +227,7 @@
     _bubbleImageView.hidden = NO;
     _contentImageView.hidden = YES;
     
-    _bubbleImageView.image = [self getBubbleImage];
+    _bubbleImageView.image = [self getTextBubbleImage];
     
     CGFloat labelWidth    = _cellLayout.contentTextLayout.textBoundingSize.width;
     CGFloat labelHeight   = _cellLayout.contentTextLayout.textBoundingSize.height;
@@ -270,7 +269,24 @@
     }
 }
 
-- (UIImage *)getBubbleImage
+- (void)addMaskLayerForImageView
+{
+    UIImage *bubbleImage = [self getImageBubbleImage];
+    UIEdgeInsets edgeInsets = bubbleImage.capInsets;
+    //    为图片添加遮罩
+    CALayer* iconLayer = [CALayer layer];
+    iconLayer.frame = _contentImageView.bounds;
+    iconLayer.contents = (id)bubbleImage.CGImage;
+    iconLayer.contentsScale = [UIScreen mainScreen].scale;
+    
+    iconLayer.contentsCenter = CGRectMake(edgeInsets.left/bubbleImage.size.width,
+                                          edgeInsets.top/bubbleImage.size.height,
+                                          1.0/bubbleImage.size.width,
+                                          1.0/bubbleImage.size.height);
+    _contentImageView.layer.mask = iconLayer;
+}
+
+- (UIImage *)getTextBubbleImage
 {
     UIImage *oriImage = nil;
     if (_isMine) {
@@ -282,6 +298,21 @@
     CGSize size = oriImage.size;
     UIImage *bubbleImage = [oriImage resizableImageWithCapInsets:UIEdgeInsetsMake(size.height*0.5, size.width*0.5, size.height*0.5, size.width*0.5)];
     return bubbleImage;
+}
+
+- (UIImage *)getImageBubbleImage
+{
+    UIImage *oriImage = nil;
+    if (_isMine) {
+        oriImage = [UIImage imageNamed:@"chat_bubble_right_bg"];
+    }
+    else {
+        oriImage = [UIImage imageNamed:@"chat_bubble_left_bg"];
+    }
+    CGSize size = oriImage.size;
+    UIImage *bubbleImage = [oriImage resizableImageWithCapInsets:UIEdgeInsetsMake(size.height*0.5, size.width*0.5, size.height*0.5, size.width*0.5)];
+    
+    return [bubbleImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 }
 
 - (NSString *)stringWithDate:(NSDate *)date
