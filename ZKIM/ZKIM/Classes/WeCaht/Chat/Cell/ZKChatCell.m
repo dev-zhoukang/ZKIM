@@ -166,13 +166,13 @@
     }
     
     _sendFailBtn.hidden = YES;
-    BOOL showLoading = _cellLayout.message.messageStatus == ZKMessageStatusDelivering;
+    BOOL showLoading = _cellLayout.message.emmsg.status == EMMessageStatusDelivering;
     if (showLoading) {
         [_indicatorView startAnimating];
     }
     else {
         [_indicatorView stopAnimating];
-        if (_cellLayout.message.messageStatus == ZKMessageStatusFailed) {
+        if (_cellLayout.message.emmsg.status == EMMessageStatusFailed) {
             _sendFailBtn.hidden = NO;
         }
     }
