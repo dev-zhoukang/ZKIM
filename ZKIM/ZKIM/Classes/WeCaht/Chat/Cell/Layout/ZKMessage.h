@@ -39,6 +39,9 @@ typedef NS_ENUM(NSInteger, ZKMessageStatus) {
 @property (nonatomic, assign, readonly) BOOL isMine; //!< 我的消息
 @property (nonatomic, assign, readonly) BOOL needShowTime; //!< 需要展示时间
 
+// image
+@property (nonatomic, copy, readonly) NSString *localPath;
+
 - (instancetype)initWithEMMessage:(EMMessage *)emmsg;
 
 @end

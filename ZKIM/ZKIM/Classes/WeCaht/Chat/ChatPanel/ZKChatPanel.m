@@ -55,6 +55,8 @@ static CGFloat const kBottomInset = 10.f;
     _emoticonViewShowing = NO;
     _shouldShowPlusPanel = NO;
     
+    _keyboard_y = SCREEN_HEIGHT;
+    
     self.size = (CGSize){SCREEN_WIDTH, kChatPanelHeight};
     _textView.delegate = self;
     _textView.returnKeyType = UIReturnKeySend;
@@ -366,6 +368,8 @@ static CGFloat const kBottomInset = 10.f;
         [UIView animateWithDuration:0.25 animations:^{
             self.bottom = SCREEN_HEIGHT+kEmoticonInputViewHeight;
             [self setTableViewOffsetWithKeyboardY:SCREEN_HEIGHT barHeight:_inputBarContainer.height];
+        }completion:^(BOOL finished) {
+            self.tapControl.hidden = YES;
         }];
     }
 }

@@ -186,6 +186,10 @@
     
     EMImageMessageBody *body = (EMImageMessageBody *)_cellLayout.message.emmsg.body;
     UIImage *image = [UIImage imageWithContentsOfFile:body.localPath];
+    if (!image) {
+        image = [UIImage imageWithContentsOfFile:body.thumbnailLocalPath];
+    }
+    
     _contentImageView.image = image;
     _contentImageView.size = _cellLayout.imageSize;
     

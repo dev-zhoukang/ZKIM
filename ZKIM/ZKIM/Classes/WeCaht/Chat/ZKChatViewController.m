@@ -228,6 +228,7 @@
     msg.preTimestamp = _layouts.lastObject.message.timestamp;
     ZKChatLayout *layout = [[ZKChatLayout alloc] initWithZKMessage:msg];
     [_layouts addObject:layout];
+    
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_layouts.count-1 inSection:0];
     [_tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     
@@ -292,10 +293,9 @@
                 NSString *text = textBody.text;
                 DLog(@"文字消息 -- %@", text);
                 [self insertMsgToDataSourceWithMessage:message];
-                
             } break;
             case EMMessageBodyTypeImage: {
-                
+                [self didReceiveImageMessage:message];
             } break;
             case EMMessageBodyTypeLocation: {
                 
@@ -312,6 +312,20 @@
                 
             default: break;
         }
+    }
+}
+
+/*! 收到图片信息 先下载 */
+- (void)didReceiveImageMessage:(EMMessage *)message
+{
+    EMImageMessageBody *imageBody = (EMImageMessageBody *)message.body;
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    
+    if (![fileMgr fileExistsAtPath:imageBody.thumbnailLocalPath]) {
+        
+    }
+    else {
+        [self insertMsgToDataSourceWithMessage:message];
     }
 }
 
