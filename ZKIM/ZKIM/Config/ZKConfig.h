@@ -34,6 +34,8 @@
 #endif
 #endif
 
+#define FileManager   [NSFileManager defaultManager]
+
 extern NSString *const kAppKey_EM;
 extern NSString *const UserDefaultKey_LoginUser;
 extern NSString *const UserDefaultKey_LoginResult;

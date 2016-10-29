@@ -24,18 +24,44 @@
     _type = (ZKMessageBodyType)_emmsg.body.type;
     _messageId = _emmsg.messageId;
     
-    if (_type == ZKMessageBodyTypeText) {
-        EMTextMessageBody *textBody = (EMTextMessageBody *)_emmsg.body;
-        _contentText = [textBody.text copy];
-    }
     _timestamp = _emmsg.timestamp;
     _messageStatus = (ZKMessageStatus)_emmsg.status;
     _isMine = [[EMClient sharedClient].currentUsername isEqualToString:_emmsg.from];
     
-    if (_type == ZKMessageBodyTypeImage) {
-        EMImageMessageBody *body = (EMImageMessageBody *)_emmsg.body;
-        _imageSize = body.size;
+    // 解析消息
+    switch (_type) {
+        case ZKMessageBodyTypeText: {
+            EMTextMessageBody *textBody = (EMTextMessageBody *)_emmsg.body;
+            _contentText = [textBody.text copy];
+        } break;
+        case ZKMessageBodyTypeImage: {
+            EMImageMessageBody *body = (EMImageMessageBody *)_emmsg.body;
+            _imageSize = body.size;
+            
+            if ([FileManager fileExistsAtPath:body.localPath]) {
+                _largeImage = [UIImage imageWithContentsOfFile:body.localPath];
+            }
+            _largeImageUrl = [NSURL URLWithString:body.remotePath];
+            
+            if ([FileManager fileExistsAtPath:body.thumbnailLocalPath]) {
+                _thumbnailImage = [UIImage imageWithContentsOfFile:body.thumbnailLocalPath];
+            }
+            _thumbnailImageUrl = [NSURL URLWithString:body.thumbnailRemotePath];
+            
+        } break;
+        case ZKMessageBodyTypeLocation: {
+            
+        } break;
+        case ZKMessageBodyTypeVideo: {
+            
+        } break;
+        case ZKMessageBodyTypeAudio: {
+            
+        } break;
+            
+        default: break;
     }
+    
 }
 
 - (void)setPreTimestamp:(NSTimeInterval)preTimestamp

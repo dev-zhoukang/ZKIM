@@ -184,10 +184,17 @@
     _bubbleImageView.hidden = YES;
     _contentImageView.hidden = NO;
     
-    EMImageMessageBody *body = (EMImageMessageBody *)_cellLayout.message.emmsg.body;
-    UIImage *image = [UIImage imageWithContentsOfFile:body.localPath];
-    if (!image) {
-        image = [UIImage imageWithContentsOfFile:body.thumbnailLocalPath];
+//    EMImageMessageBody *body = (EMImageMessageBody *)_cellLayout.message.emmsg.body;
+//    UIImage *image = [UIImage imageWithContentsOfFile:body.localPath];
+//    if (!image) {
+//        image = [UIImage imageWithContentsOfFile:body.thumbnailLocalPath];
+//    }
+    UIImage *image = nil;
+    if (_cellLayout.message.thumbnailImage) {
+        image = _cellLayout.message.thumbnailImage;
+    }
+    if (_cellLayout.message.largeImageUrl) {
+        image = _cellLayout.message.largeImage;
     }
     
     _contentImageView.image = image;

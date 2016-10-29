@@ -30,7 +30,13 @@ typedef NS_ENUM(NSInteger, ZKMessageStatus) {
 
 @property (nonatomic, copy, readonly) NSString *messageId; //!< 消息的唯一标识
 @property (nonatomic, copy, readonly) NSString *contentText; //!< 聊天文本
+
+// 图片信息
 @property (nonatomic, assign, readonly) CGSize imageSize;
+@property (nonatomic, strong, readonly) UIImage *largeImage;
+@property (nonatomic, strong, readonly) NSURL *largeImageUrl;
+@property (nonatomic, strong, readonly) UIImage *thumbnailImage;
+@property (nonatomic, strong, readonly) NSURL *thumbnailImageUrl;
 
 @property (nonatomic, assign, readonly) NSTimeInterval timestamp; //!< 本条消息时间戳
 @property (nonatomic, assign) NSTimeInterval preTimestamp; //!< 上条信息时间戳
