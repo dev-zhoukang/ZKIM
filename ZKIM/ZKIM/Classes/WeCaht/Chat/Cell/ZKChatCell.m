@@ -8,6 +8,7 @@
 
 #import "ZKChatCell.h"
 #import "ZKChatLayout.h"
+#import "UIImageView+WebCache.h"
 
 @interface ZKChatCell ()
 
@@ -184,20 +185,25 @@
     _bubbleImageView.hidden = YES;
     _contentImageView.hidden = NO;
     
-//    EMImageMessageBody *body = (EMImageMessageBody *)_cellLayout.message.emmsg.body;
-//    UIImage *image = [UIImage imageWithContentsOfFile:body.localPath];
-//    if (!image) {
-//        image = [UIImage imageWithContentsOfFile:body.thumbnailLocalPath];
-//    }
-    UIImage *image = nil;
-    if (_cellLayout.message.thumbnailImage) {
-        image = _cellLayout.message.thumbnailImage;
+    ZKMessage *message = _cellLayout.message;
+    EMImageMessageBody *body = (EMImageMessageBody *)_cellLayout.message.emmsg.body;
+    if ([FileManager fileExistsAtPath:body.localPath]) {
+        _contentImageView.image = [UIImage imageWithContentsOfFile:body.localPath];
     }
-    if (_cellLayout.message.largeImageUrl) {
-        image = _cellLayout.message.largeImage;
+    else {
+        if (message.thumbnailImage) {
+            _contentImageView.image = message.thumbnailImage;
+        }
+        else if (message.thumbnailRemotePath.length) {
+            [_contentImageView setImageURL:[NSURL URLWithString:message.thumbnailRemotePath]];
+        }
+        else if (message.largeImage) {
+            _contentImageView.image = message.largeImage;
+        }
+        else if (message.largeImageRemotePath.length) {
+            [_contentImageView setImageURL:[NSURL URLWithString:message.largeImageRemotePath]];
+        }
     }
-    
-    _contentImageView.image = image;
     _contentImageView.size = _cellLayout.imageSize;
     
     if (_cellLayout.message.needShowTime) {

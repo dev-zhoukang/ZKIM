@@ -232,8 +232,8 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_layouts.count-1 inSection:0];
     [_tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     
+    // 自动调整tableView的位移
     [_tableView reloadData];
-    
     [UIView animateWithDuration:0.25 animations:^{
         [_chatBar setTableViewOffsetWithKeyboardY:_chatBar.keyboard_y barHeight:50.f];
     }];
@@ -289,13 +289,10 @@
         EMMessageBody *body = message.body;
         switch (body.type) {
             case EMMessageBodyTypeText: {
-                EMTextMessageBody *textBody = (EMTextMessageBody *)body;
-                NSString *text = textBody.text;
-                DLog(@"文字消息 -- %@", text);
                 [self insertMsgToDataSourceWithMessage:message];
             } break;
             case EMMessageBodyTypeImage: {
-                [self didReceiveImageMessage:message];
+                [self insertMsgToDataSourceWithMessage:message];
             } break;
             case EMMessageBodyTypeLocation: {
                 
@@ -312,20 +309,6 @@
                 
             default: break;
         }
-    }
-}
-
-/*! 收到图片信息 先下载 */
-- (void)didReceiveImageMessage:(EMMessage *)message
-{
-    EMImageMessageBody *imageBody = (EMImageMessageBody *)message.body;
-    NSFileManager *fileMgr = [NSFileManager defaultManager];
-    
-    if (![fileMgr fileExistsAtPath:imageBody.thumbnailLocalPath]) {
-        
-    }
-    else {
-        [self insertMsgToDataSourceWithMessage:message];
     }
 }
 

@@ -34,9 +34,10 @@ typedef NS_ENUM(NSInteger, ZKMessageStatus) {
 // 图片信息
 @property (nonatomic, assign, readonly) CGSize imageSize;
 @property (nonatomic, strong, readonly) UIImage *largeImage;
-@property (nonatomic, strong, readonly) NSURL *largeImageUrl;
+@property (nonatomic, copy, readonly) NSString *largeImageRemotePath;
 @property (nonatomic, strong, readonly) UIImage *thumbnailImage;
-@property (nonatomic, strong, readonly) NSURL *thumbnailImageUrl;
+@property (nonatomic, copy, readonly) NSString *thumbnailRemotePath;
+@property (nonatomic, copy, readonly) NSString *localPath;
 
 @property (nonatomic, assign, readonly) NSTimeInterval timestamp; //!< 本条消息时间戳
 @property (nonatomic, assign) NSTimeInterval preTimestamp; //!< 上条信息时间戳
@@ -44,9 +45,6 @@ typedef NS_ENUM(NSInteger, ZKMessageStatus) {
 @property (nonatomic, assign, readonly) ZKMessageStatus messageStatus; //!< 消息状态
 @property (nonatomic, assign, readonly) BOOL isMine; //!< 我的消息
 @property (nonatomic, assign, readonly) BOOL needShowTime; //!< 需要展示时间
-
-// image
-@property (nonatomic, copy, readonly) NSString *localPath;
 
 - (instancetype)initWithEMMessage:(EMMessage *)emmsg;
 

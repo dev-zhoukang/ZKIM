@@ -38,15 +38,17 @@
             EMImageMessageBody *body = (EMImageMessageBody *)_emmsg.body;
             _imageSize = body.size;
             
+            _localPath = [body.localPath copy];
+            
             if ([FileManager fileExistsAtPath:body.localPath]) {
                 _largeImage = [UIImage imageWithContentsOfFile:body.localPath];
             }
-            _largeImageUrl = [NSURL URLWithString:body.remotePath];
+            _largeImageRemotePath = body.remotePath;
             
             if ([FileManager fileExistsAtPath:body.thumbnailLocalPath]) {
                 _thumbnailImage = [UIImage imageWithContentsOfFile:body.thumbnailLocalPath];
             }
-            _thumbnailImageUrl = [NSURL URLWithString:body.thumbnailRemotePath];
+            _thumbnailRemotePath = body.thumbnailRemotePath;
             
         } break;
         case ZKMessageBodyTypeLocation: {
