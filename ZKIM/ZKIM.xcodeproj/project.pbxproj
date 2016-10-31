@@ -96,6 +96,7 @@
 		5802F4ED1DBA129500492BA5 /* ZKChatPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5802F4E81DBA129500492BA5 /* ZKChatPanel.m */; };
 		5802F4EE1DBA129500492BA5 /* ZKChatPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5802F4E91DBA129500492BA5 /* ZKChatPanel.xib */; };
 		5802F4F21DBA161700492BA5 /* ZKPlusPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5802F4F11DBA161700492BA5 /* ZKPlusPanel.m */; };
+		58256ADD1DC711CA00C71C8F /* ZKRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58256ADC1DC711CA00C71C8F /* ZKRecordView.m */; };
 		582D55C41D9CE304004E9929 /* ZKChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C31D9CE304004E9929 /* ZKChatCell.m */; };
 		582D55C71D9CE3C8004E9929 /* ZKChatLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C61D9CE3C8004E9929 /* ZKChatLayout.m */; };
 		582D55CA1D9CEB96004E9929 /* ZKRegularTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C91D9CEB96004E9929 /* ZKRegularTool.m */; };
@@ -469,6 +470,8 @@
 		5802F4E91DBA129500492BA5 /* ZKChatPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKChatPanel.xib; sourceTree = "<group>"; };
 		5802F4F01DBA161700492BA5 /* ZKPlusPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKPlusPanel.h; sourceTree = "<group>"; };
 		5802F4F11DBA161700492BA5 /* ZKPlusPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKPlusPanel.m; sourceTree = "<group>"; };
+		58256ADB1DC711CA00C71C8F /* ZKRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKRecordView.h; sourceTree = "<group>"; };
+		58256ADC1DC711CA00C71C8F /* ZKRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKRecordView.m; sourceTree = "<group>"; };
 		582D55C21D9CE304004E9929 /* ZKChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatCell.h; sourceTree = "<group>"; };
 		582D55C31D9CE304004E9929 /* ZKChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChatCell.m; sourceTree = "<group>"; };
 		582D55C51D9CE3C8004E9929 /* ZKChatLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatLayout.h; sourceTree = "<group>"; };
@@ -1166,6 +1169,15 @@
 			path = PlusPanel;
 			sourceTree = "<group>";
 		};
+		58256ADA1DC7118D00C71C8F /* RecordVoice */ = {
+			isa = PBXGroup;
+			children = (
+				58256ADB1DC711CA00C71C8F /* ZKRecordView.h */,
+				58256ADC1DC711CA00C71C8F /* ZKRecordView.m */,
+			);
+			path = RecordVoice;
+			sourceTree = "<group>";
+		};
 		582D55BA1D9CDA85004E9929 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1194,6 +1206,7 @@
 		583A81E91D91090B006F14C6 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				58256ADA1DC7118D00C71C8F /* RecordVoice */,
 				5802F4DF1DBA129500492BA5 /* ChatPanel */,
 				582D55BA1D9CDA85004E9929 /* Cell */,
 				583A81EA1D91092C006F14C6 /* ZKChatViewController.h */,
@@ -2230,6 +2243,7 @@
 				58D1483C1D8F7D1D00A17D6D /* ZKMeTableCell.m in Sources */,
 				5802F47A1DB86AC200492BA5 /* UIScrollView+YYAdd.m in Sources */,
 				5802F4711DB86AC200492BA5 /* UIBarButtonItem+YYAdd.m in Sources */,
+				58256ADD1DC711CA00C71C8F /* ZKRecordView.m in Sources */,
 				5802F4991DB86AC200492BA5 /* YYTextSelectionView.m in Sources */,
 				5840734B1DABABA8009B714A /* ZKXMPPManager.m in Sources */,
 				5841226D1DC19EC5006D8C05 /* RSKImageCropViewController.m in Sources */,

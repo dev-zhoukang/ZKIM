@@ -9,9 +9,7 @@
 //
 
 #import "ZKTestViewController.h"
-#import "ZKEmoticonInputView.h"
-#import "ZKChatPanel.h"
-#import "ZKPlusPanel.h"
+#import "ZKRecordView.h"
 
 @interface ZKTestViewController ()
 
@@ -25,9 +23,8 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    ZKPlusPanel *panel = [ZKPlusPanel new];
+    ZKRecordView *panel = [ZKRecordView shareRecordView];
     [self.view addSubview:panel];
-    panel.bottom = SCREEN_HEIGHT;
 }
 
 @end
