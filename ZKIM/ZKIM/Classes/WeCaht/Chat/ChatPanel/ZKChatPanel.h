@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZKEmoticonInputView.h"
+#import "ZKPlusPanel.h"
 
 @class ZKChatPanel;
 
@@ -20,7 +22,7 @@
 
 @interface ZKChatPanel : UIView
 
-/** 初始化 注意: 不需要设置约束 也不需要监听键盘键盘弹出降落等 */
+/** 初始化 不需要监听键盘键盘弹出降落等 */
 + (instancetype)chatPanel;
 
 /*! 根据内容设置 tableView的位移 */

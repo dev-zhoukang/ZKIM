@@ -32,7 +32,8 @@
                                 <constraint firstAttribute="height" constant="50" id="Xm6-WQ-OLe"/>
                                 <constraint firstAttribute="width" constant="45" id="awd-eo-mZg"/>
                             </constraints>
-                            <state key="normal" image="ToolViewInputVoice_35x35_"/>
+                            <state key="normal" image="ToolViewKeyboard_35x35_"/>
+                            <state key="highlighted" image="ToolViewKeyboard_35x35_"/>
                             <connections>
                                 <action selector="chatBatBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="sgp-Hl-Eqx"/>
                             </connections>
@@ -129,7 +130,7 @@
     </objects>
     <resources>
         <image name="ToolViewEmotion_35x35_" width="35" height="35"/>
-        <image name="ToolViewInputVoice_35x35_" width="35" height="35"/>
+        <image name="ToolViewKeyboard_35x35_" width="35" height="35"/>
         <image name="TypeSelectorBtn_Black_35x35_" width="35" height="35"/>
     </resources>
 </document>

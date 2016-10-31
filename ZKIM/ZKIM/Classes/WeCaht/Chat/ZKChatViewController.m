@@ -154,6 +154,7 @@
     _chatBar = [ZKChatPanel chatPanel];
     _chatBar.delegate = self;
     [self.view addSubview:_chatBar];
+    _chatBar.bottom = self.view.height + kEmoticonInputViewHeight;
     
     @weakify(self)
     _refreshHeader = [ZKChatRefreshHeader headerWithTableView:_tableView refreshBlock:^{

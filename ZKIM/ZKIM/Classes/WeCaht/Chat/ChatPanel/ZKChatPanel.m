@@ -7,8 +7,6 @@
 //
 
 #import "ZKChatPanel.h"
-#import "ZKEmoticonInputView.h"
-#import "ZKPlusPanel.h"
 
 #define kChatPanelHeight   (kChatBarHeight + kEmoticonInputViewHeight)
 
@@ -74,7 +72,7 @@ static CGFloat const kBottomInset = 10.f;
     [_panelContainer addSubview:_plusPanel];
     _plusPanel.frame = _panelContainer.bounds;
     
-    [self setImageForBtn:_voiceBtn nor:@"ToolViewInputVoice_35x35_" highlight:@"ToolViewInputVoiceHL_35x35_"];
+    [self setImageForBtn:_voiceBtn nor:@"ToolViewKeyboard_35x35_" highlight:@"ToolViewKeyboardHL_35x35_"];
     [self setImageForBtn:_emojiBtn nor:@"ToolViewEmotion_35x35_" highlight:@"ToolViewEmotionHL_35x35_"];
     [self setImageForBtn:_plusBtn nor:@"TypeSelectorBtn_Black_35x35_" highlight:@"TypeSelectorBtnHL_Black_35x35_"];
 }
@@ -101,9 +99,11 @@ static CGFloat const kBottomInset = 10.f;
 - (void)didMoveToWindow
 {
     [super didMoveToWindow];
-    [_textView resignFirstResponder];
-    self.bottom = self.superview.height + kEmoticonInputViewHeight;
-    self.left = 0;
+    /*
+     [_textView resignFirstResponder];
+     self.bottom = self.superview.height + kEmoticonInputViewHeight;
+     self.left = 0;
+     */
 }
 
 + (instancetype)chatPanel
@@ -246,22 +246,22 @@ static CGFloat const kBottomInset = 10.f;
 - (void)tapVoiceBtn:(UIButton *)btn
 {
     DLog(@"Voive按钮点击");
-    _recordBtn.hidden = btn.selected;
     
-    NSString *imageName = btn.selected?@"ToolViewKeyboard_35x35_":@"ToolViewInputVoice_35x35_";
-    
-    if (btn.isSelected) {
+    if (btn.selected) {
+        _recordBtn.hidden = YES;
+        [self setImageForBtn:_voiceBtn nor:@"ToolViewInputVoice_35x35_" highlight:@"ToolViewInputVoiceHL_35x35_"];
         if (_oriHeight > kChatBarHeight) {
             self.height = _oriHeight;
         }
         [_textView becomeFirstResponder];
     }
     else {
+        _recordBtn.hidden = NO;
+        [self setImageForBtn:_voiceBtn nor:@"ToolViewKeyboard_35x35_" highlight:@"ToolViewKeyboardHL_35x35_"];
         _oriHeight = self.height;
         [self animateSetHeight:kChatBarHeight];
         [_textView resignFirstResponder];
     }
-    [btn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
 }
 
 - (void)tapShowPlusPanel
