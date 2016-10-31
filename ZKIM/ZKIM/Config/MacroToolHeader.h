@@ -52,6 +52,10 @@
     #define USTakeTimeCountEnd(flag)   ((void)0);
 #endif
 
+static inline CGFloat AutoFitFontSize (CGFloat basePointSize) {
+    return ((IS_IPHONE_4||IS_IPHONE_5)?basePointSize:(IS_IPHONE_6?(basePointSize+1):(basePointSize+2)));
+}
+
 /**
  * Fixes colors in Storyboard and XIB files that are using the wrong colorspace
  *

@@ -42,7 +42,10 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>FZLTHK--GBK1-0.ttf</string>
+		<string>FZLTZHUNHK--GBK1-0.ttf</string>
+	</array>
 </dict>
 </plist>

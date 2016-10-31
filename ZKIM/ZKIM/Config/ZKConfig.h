@@ -15,10 +15,10 @@
 #define RGBACOLOR(r,g,b,a)  [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)] //RGBA进制颜色值
 #define HexColor(hexValue)  [UIColor colorWithRed:((float)(((hexValue) & 0xFF0000) >> 16))/255.0 green:((float)(((hexValue) & 0xFF00) >> 8))/255.0 blue:((float)((hexValue) & 0xFF))/255.0 alpha:1]   //16进制颜色值，如：#000000 , 注意：在使用的时候hexValue写成：0x000000
 
-#define GlobalGreenColor   RGBCOLOR(31.f, 185.f, 34.f)
-#define GlobalBGColor      RGBCOLOR(239.f, 239.f, 245.f)
+#define GlobalGreenColor       RGBCOLOR(31.f, 185.f, 34.f)
+#define GlobalBGColor          RGBCOLOR(239.f, 239.f, 245.f)
 #define GlobalChatBGColor      RGBCOLOR(230.f, 230.f, 230.f)
-#define ThemColor            HexColor(0x096096)
+#define ThemColor              HexColor(0x096096)
 
 //通用色调的色值
 #define KB_TINT_COLOR                       HexColor(0xbe9653)       /* 褐色 */
@@ -35,6 +35,10 @@
 #endif
 
 #define FileManager   [NSFileManager defaultManager]
+
+//自定义字体名称
+#define FZLTHFontName     @"_GBK-"                     //方正兰亭黑_GBK
+#define FZLTZHFontName    @"FZLTZHUNHK--GBK1-0"        //方正兰亭准黑_GBK
 
 extern NSString *const kAppKey_EM;
 extern NSString *const UserDefaultKey_LoginUser;

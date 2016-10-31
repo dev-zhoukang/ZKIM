@@ -97,6 +97,8 @@
 		5802F4EE1DBA129500492BA5 /* ZKChatPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5802F4E91DBA129500492BA5 /* ZKChatPanel.xib */; };
 		5802F4F21DBA161700492BA5 /* ZKPlusPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5802F4F11DBA161700492BA5 /* ZKPlusPanel.m */; };
 		58256ADD1DC711CA00C71C8F /* ZKRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58256ADC1DC711CA00C71C8F /* ZKRecordView.m */; };
+		58256AE11DC72A7900C71C8F /* FZLTHK--GBK1-0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58256ADF1DC72A7900C71C8F /* FZLTHK--GBK1-0.ttf */; };
+		58256AE21DC72A7900C71C8F /* FZLTZHUNHK--GBK1-0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58256AE01DC72A7900C71C8F /* FZLTZHUNHK--GBK1-0.ttf */; };
 		582D55C41D9CE304004E9929 /* ZKChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C31D9CE304004E9929 /* ZKChatCell.m */; };
 		582D55C71D9CE3C8004E9929 /* ZKChatLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C61D9CE3C8004E9929 /* ZKChatLayout.m */; };
 		582D55CA1D9CEB96004E9929 /* ZKRegularTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C91D9CEB96004E9929 /* ZKRegularTool.m */; };
@@ -472,6 +474,8 @@
 		5802F4F11DBA161700492BA5 /* ZKPlusPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKPlusPanel.m; sourceTree = "<group>"; };
 		58256ADB1DC711CA00C71C8F /* ZKRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKRecordView.h; sourceTree = "<group>"; };
 		58256ADC1DC711CA00C71C8F /* ZKRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKRecordView.m; sourceTree = "<group>"; };
+		58256ADF1DC72A7900C71C8F /* FZLTHK--GBK1-0.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FZLTHK--GBK1-0.ttf"; sourceTree = "<group>"; };
+		58256AE01DC72A7900C71C8F /* FZLTZHUNHK--GBK1-0.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FZLTZHUNHK--GBK1-0.ttf"; sourceTree = "<group>"; };
 		582D55C21D9CE304004E9929 /* ZKChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatCell.h; sourceTree = "<group>"; };
 		582D55C31D9CE304004E9929 /* ZKChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChatCell.m; sourceTree = "<group>"; };
 		582D55C51D9CE3C8004E9929 /* ZKChatLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatLayout.h; sourceTree = "<group>"; };
@@ -1130,6 +1134,7 @@
 		5802F4B71DB8738F00492BA5 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				58256ADE1DC72A7900C71C8F /* Fonts */,
 				5802F4B81DB8738F00492BA5 /* EmoticonWeibo.bundle */,
 			);
 			path = Resource;
@@ -1176,6 +1181,15 @@
 				58256ADC1DC711CA00C71C8F /* ZKRecordView.m */,
 			);
 			path = RecordVoice;
+			sourceTree = "<group>";
+		};
+		58256ADE1DC72A7900C71C8F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				58256ADF1DC72A7900C71C8F /* FZLTHK--GBK1-0.ttf */,
+				58256AE01DC72A7900C71C8F /* FZLTZHUNHK--GBK1-0.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		582D55BA1D9CDA85004E9929 /* Cell */ = {
@@ -2068,6 +2082,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58D148381D8F789000A17D6D /* Me_Plist.plist in Resources */,
+				58256AE11DC72A7900C71C8F /* FZLTHK--GBK1-0.ttf in Resources */,
 				584122631DC19EC5006D8C05 /* USPicker-Assets-Locked@2x.png in Resources */,
 				58D1483D1D8F7D1D00A17D6D /* ZKMeTableCell.xib in Resources */,
 				584122791DC19EC6006D8C05 /* USAssetsPreviewViewController.xib in Resources */,
@@ -2078,6 +2093,7 @@
 				588A1E991DC45D2E00DD87B7 /* Info.plist in Resources */,
 				58D148331D8E793C00A17D6D /* ZKWeChatListViewController.xib in Resources */,
 				58D147F01D89288A00A17D6D /* ZKLoginViewController.xib in Resources */,
+				58256AE21DC72A7900C71C8F /* FZLTZHUNHK--GBK1-0.ttf in Resources */,
 				58E360081D87D5E100D38839 /* LaunchScreen.storyboard in Resources */,
 				58D45DC61DBDDFB800B8C774 /* PreviewSupplementaryView-Checkmark@2x.png in Resources */,
 				584122771DC19EC6006D8C05 /* USAssetGroupViewController.xib in Resources */,
