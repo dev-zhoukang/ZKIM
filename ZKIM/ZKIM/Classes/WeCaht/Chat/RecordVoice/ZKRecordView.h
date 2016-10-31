@@ -12,4 +12,7 @@
 
 + (instancetype)shareRecordView;
 
+- (void)showCancelBtn;
+- (void)hideCancelBtn;
+
 @end

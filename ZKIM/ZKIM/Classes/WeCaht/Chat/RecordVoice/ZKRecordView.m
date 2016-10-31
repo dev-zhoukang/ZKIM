@@ -54,18 +54,23 @@
     
     _bgView = [UIView new];
     [self addSubview:_bgView];
-    _bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.38];
+    _bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.56];
     _bgView.size = (CGSize){150.f, 150.f};
     _bgView.layer.cornerRadius = 5.f;
     _bgView.layer.masksToBounds = YES;
     
     _hintLabel = [UILabel new];
     [_bgView addSubview:_hintLabel];
+    _hintLabel.backgroundColor = [UIColor redColor];
     _hintLabel.text = @"手指上滑 取消发送";
     _hintLabel.textAlignment = NSTextAlignmentCenter;
     _hintLabel.font = [UIFont systemFontOfSize:14.f];
-    [_hintLabel sizeToFit];
     _hintLabel.textColor = [UIColor whiteColor];
+    CGFloat labelWidth = [_hintLabel.text stringWidthWithFont:_hintLabel.font height:MAXFLOAT]+8.f;
+    CGFloat labelHeight = _hintLabel.font.lineHeight+6.f;
+    _hintLabel.size = (CGSize){labelWidth, labelHeight};
+    _hintLabel.layer.cornerRadius = 3.f;
+    _hintLabel.layer.masksToBounds = YES;
     
     _imagesContainer = [UIView new];
     [_bgView addSubview:_imagesContainer];
@@ -82,9 +87,9 @@
     _volumeImageView.size = (CGSize){38.f, 100.f};
     
     _backoutImageView = [UIImageView new];
-    [_imagesContainer addSubview:_backoutImageView];
+    [_bgView addSubview:_backoutImageView];
     _backoutImageView.image = [UIImage imageNamed:@"RecordCancel_100x100_"];
-    _backoutImageView.frame = _imagesContainer.bounds;
+    _backoutImageView.size = (CGSize){100.f, 100.f};
     _backoutImageView.hidden = YES;
 }
 
@@ -98,10 +103,28 @@
     _imagesContainer.top = 15.f;
     _imagesContainer.centerX = _imagesContainer.superview.width*0.5;
     
+    _backoutImageView.top = _imagesContainer.top;
+    _backoutImageView.centerX = _imagesContainer.centerX;
+    
     _volumeImageView.left = CGRectGetMaxX(_microphoneImageView.frame);
     
     _hintLabel.centerX = _hintLabel.superview.width*0.5;
     _hintLabel.top = CGRectGetMaxY(_imagesContainer.frame);
+}
+
+- (void)showCancelBtn
+{
+    _backoutImageView.hidden = NO;
+    _imagesContainer.hidden = YES;
+    _hintLabel.text = @"松开手指 取消发送";
+}
+
+- (void)hideCancelBtn
+{
+    _backoutImageView.hidden = YES;
+    _imagesContainer.hidden = NO;
+    _hintLabel.text = @"手指上滑 取消发送";
+    _hintLabel.backgroundColor = [UIColor clearColor];
 }
 
 @end

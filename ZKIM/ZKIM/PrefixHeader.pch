@@ -28,5 +28,6 @@
 #import "DataHash.h"
 #import "UIMedia.h"
 #import "USAlertView.h"
+#import "UIButton+Common.h"
 
 #endif

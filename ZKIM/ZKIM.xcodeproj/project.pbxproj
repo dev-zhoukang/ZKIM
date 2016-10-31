@@ -99,6 +99,8 @@
 		58256ADD1DC711CA00C71C8F /* ZKRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58256ADC1DC711CA00C71C8F /* ZKRecordView.m */; };
 		58256AE11DC72A7900C71C8F /* FZLTHK--GBK1-0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58256ADF1DC72A7900C71C8F /* FZLTHK--GBK1-0.ttf */; };
 		58256AE21DC72A7900C71C8F /* FZLTZHUNHK--GBK1-0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58256AE01DC72A7900C71C8F /* FZLTZHUNHK--GBK1-0.ttf */; };
+		58256AE51DC735B200C71C8F /* ZKRecordHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 58256AE41DC735B200C71C8F /* ZKRecordHelper.m */; };
+		58256AE81DC7412B00C71C8F /* UIButton+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 58256AE71DC7412B00C71C8F /* UIButton+Common.m */; };
 		582D55C41D9CE304004E9929 /* ZKChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C31D9CE304004E9929 /* ZKChatCell.m */; };
 		582D55C71D9CE3C8004E9929 /* ZKChatLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C61D9CE3C8004E9929 /* ZKChatLayout.m */; };
 		582D55CA1D9CEB96004E9929 /* ZKRegularTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 582D55C91D9CEB96004E9929 /* ZKRegularTool.m */; };
@@ -476,6 +478,10 @@
 		58256ADC1DC711CA00C71C8F /* ZKRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKRecordView.m; sourceTree = "<group>"; };
 		58256ADF1DC72A7900C71C8F /* FZLTHK--GBK1-0.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FZLTHK--GBK1-0.ttf"; sourceTree = "<group>"; };
 		58256AE01DC72A7900C71C8F /* FZLTZHUNHK--GBK1-0.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FZLTZHUNHK--GBK1-0.ttf"; sourceTree = "<group>"; };
+		58256AE31DC735B200C71C8F /* ZKRecordHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKRecordHelper.h; sourceTree = "<group>"; };
+		58256AE41DC735B200C71C8F /* ZKRecordHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKRecordHelper.m; sourceTree = "<group>"; };
+		58256AE61DC7412B00C71C8F /* UIButton+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Common.h"; sourceTree = "<group>"; };
+		58256AE71DC7412B00C71C8F /* UIButton+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Common.m"; sourceTree = "<group>"; };
 		582D55C21D9CE304004E9929 /* ZKChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatCell.h; sourceTree = "<group>"; };
 		582D55C31D9CE304004E9929 /* ZKChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChatCell.m; sourceTree = "<group>"; };
 		582D55C51D9CE3C8004E9929 /* ZKChatLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatLayout.h; sourceTree = "<group>"; };
@@ -1179,6 +1185,8 @@
 			children = (
 				58256ADB1DC711CA00C71C8F /* ZKRecordView.h */,
 				58256ADC1DC711CA00C71C8F /* ZKRecordView.m */,
+				58256AE31DC735B200C71C8F /* ZKRecordHelper.h */,
+				58256AE41DC735B200C71C8F /* ZKRecordHelper.m */,
 			);
 			path = RecordVoice;
 			sourceTree = "<group>";
@@ -1261,6 +1269,8 @@
 				5840733C1DABABA8009B714A /* NSString+Common.m */,
 				5840733D1DABABA8009B714A /* UIImage+Common.h */,
 				5840733E1DABABA8009B714A /* UIImage+Common.m */,
+				58256AE61DC7412B00C71C8F /* UIButton+Common.h */,
+				58256AE71DC7412B00C71C8F /* UIButton+Common.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -2177,6 +2187,7 @@
 				588A1E7C1DC459B300DD87B7 /* SDImageCache.m in Sources */,
 				582D55CA1D9CEB96004E9929 /* ZKRegularTool.m in Sources */,
 				58D45DBF1DBDDFB800B8C774 /* ImagePreviewFlowLayout.m in Sources */,
+				58256AE81DC7412B00C71C8F /* UIButton+Common.m in Sources */,
 				5802F4771DB86AC200492BA5 /* UIGestureRecognizer+YYAdd.m in Sources */,
 				58D45DBE1DBDDFB800B8C774 /* ImagePickerSheetController.m in Sources */,
 				5802F4A31DB86AC200492BA5 /* YYLabel.m in Sources */,
@@ -2209,6 +2220,7 @@
 				5841225B1DC19EC5006D8C05 /* ALAsset+ImagePicker.m in Sources */,
 				5802F4601DB86AC200492BA5 /* NSArray+YYAdd.m in Sources */,
 				58BCC24F1DA9F24200B6B881 /* NSBundle+MJRefresh.m in Sources */,
+				58256AE51DC735B200C71C8F /* ZKRecordHelper.m in Sources */,
 				58BCC24E1DA9F24200B6B881 /* MJRefreshConst.m in Sources */,
 				5802F4801DB86AC200492BA5 /* YYKVStorage.m in Sources */,
 				5841226E1DC19EC5006D8C05 /* RSKImageScrollView.m in Sources */,

@@ -7,10 +7,11 @@
 //
 
 #import "ZKChatPanel.h"
+#import "ZKRecordHelper.h"
 
 #define kChatPanelHeight   (kChatBarHeight + kEmoticonInputViewHeight)
 
-@interface ZKChatPanel() <UITextViewDelegate, ZKEmoticonInputViewDelegate, ZKPlusPanelDelegate>
+@interface ZKChatPanel() <UITextViewDelegate, ZKEmoticonInputViewDelegate, ZKPlusPanelDelegate, ZKRecordHelperDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton   *recordBtn;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
@@ -28,6 +29,8 @@
 
 @property (nonatomic, strong) ZKEmoticonInputView *emoticonView;
 @property (nonatomic, strong) ZKPlusPanel         *plusPanel;
+
+@property (nonatomic, strong) ZKRecordHelper      *recordHelper;
 
 @end
 
@@ -62,6 +65,11 @@ static CGFloat const kBottomInset = 10.f;
     
     [self addBorderForView:_recordBtn];
     [self addBorderForView:_textView];
+    
+    UIColor *highlightColor = [[UIColor blackColor] colorWithAlphaComponent:.22];
+    [_recordBtn setBackgroundImage:[UIImage imageWithColor:highlightColor] forState:UIControlStateHighlighted];
+    [_recordBtn setBackgroundImage:[UIImage imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
+    _recordBtn.hitEdgeInsets = UIEdgeInsetsMake(-7, 0, -7, 0);
 
     _emoticonView = [ZKEmoticonInputView shareView];
     [_panelContainer addSubview:_emoticonView];
@@ -75,6 +83,9 @@ static CGFloat const kBottomInset = 10.f;
     [self setImageForBtn:_voiceBtn nor:@"ToolViewKeyboard_35x35_" highlight:@"ToolViewKeyboardHL_35x35_"];
     [self setImageForBtn:_emojiBtn nor:@"ToolViewEmotion_35x35_" highlight:@"ToolViewEmotionHL_35x35_"];
     [self setImageForBtn:_plusBtn nor:@"TypeSelectorBtn_Black_35x35_" highlight:@"TypeSelectorBtnHL_Black_35x35_"];
+    
+    _recordHelper = [ZKRecordHelper recordHelperWithButton:_recordBtn];
+    _recordHelper.delegate = self;
 }
 
 - (void)setImageForBtn:(UIButton *)btn nor:(NSString *)nor highlight:(NSString *)highlight
@@ -393,6 +404,23 @@ static CGFloat const kBottomInset = 10.f;
         [self.viewController.view insertSubview:_tapControl belowSubview:self];
     }
     return _tapControl;
+}
+
+#pragma mark - <ZKRecordHelperDelegate>
+
+- (void)recordHelperDidStartRecord
+{
+    
+}
+
+- (void)recordHelperDidCancelRecord
+{
+    
+}
+
+- (void)recordHelperDidEndRecordWithData:(NSData *)amrAudio duration:(NSTimeInterval)duration
+{
+    
 }
 
 #pragma mark - 获取 view 所在控制器
