@@ -61,7 +61,7 @@
     
     _hintLabel = [UILabel new];
     [_bgView addSubview:_hintLabel];
-    _hintLabel.backgroundColor = [UIColor redColor];
+    _hintLabel.backgroundColor = [UIColor clearColor];
     _hintLabel.text = @"手指上滑 取消发送";
     _hintLabel.textAlignment = NSTextAlignmentCenter;
     _hintLabel.font = [UIFont systemFontOfSize:14.f];
@@ -117,6 +117,7 @@
     _backoutImageView.hidden = NO;
     _imagesContainer.hidden = YES;
     _hintLabel.text = @"松开手指 取消发送";
+    _hintLabel.backgroundColor = RGBACOLOR(170, 60, 49, .99);
 }
 
 - (void)hideCancelBtn
