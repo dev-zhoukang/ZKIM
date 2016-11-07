@@ -61,7 +61,6 @@
 
 - (void)startRecord
 {
-    DLog(@"开始录音");
     _recordView.hidden = NO;
     if ([self.delegate respondsToSelector:@selector(recordHelperDidStartRecord)]) {
         [self.delegate recordHelperDidStartRecord];
@@ -70,7 +69,6 @@
 
 - (void)endRecord
 {
-    DLog(@"结束录音");
     _recordView.hidden = YES;
     if ([self.delegate respondsToSelector:@selector(recordHelperDidEndRecordWithData:duration:)]) {
         [self.delegate recordHelperDidEndRecordWithData:nil duration:0];
@@ -80,7 +78,6 @@
 - (void)dragInside
 {
     if (_btnIsOutside) {
-        DLog(@"拖到里面");
         [_recordView hideCancelBtn];
     }
     _btnIsOutside = NO;
@@ -89,7 +86,6 @@
 - (void)dragOutside
 {
     if (!_btnIsOutside) {
-        DLog(@"拖到外面");
         [_recordView showCancelBtn];
     }
     _btnIsOutside = YES;
@@ -97,7 +93,6 @@
 
 - (void)cancleRecord
 {
-    DLog(@"取消录音");
     _recordView.hidden = YES;
     if ([self.delegate respondsToSelector:@selector(recordHelperDidCancelRecord)]) {
         [self.delegate recordHelperDidCancelRecord];

@@ -8,6 +8,7 @@
 
 #import "ZKChatPanel.h"
 #import "ZKRecordHelper.h"
+#import "EMCDDeviceManager.h"
 
 #define kChatPanelHeight   (kChatBarHeight + kEmoticonInputViewHeight)
 
@@ -406,21 +407,42 @@ static CGFloat const kBottomInset = 10.f;
     return _tapControl;
 }
 
+static inline NSString *getAudioPath() {
+    NSString *path = [NSDocumentPath() stringByAppendingPathComponent:@"audio"];
+    if (![FileManager fileExistsAtPath:path]) {
+        [FileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    return path;
+}
+
 #pragma mark - <ZKRecordHelperDelegate>
 
 - (void)recordHelperDidStartRecord
 {
+    DLog(@"开始录音");
     
+    NSString *dateStr = [[NSDate date] timestamp];
+    NSString *pathStr = [NSString stringWithFormat:@"%@%zd", dateStr, Random(0, 100000)];
+    NSString *filePath = [getAudioPath() stringByAppendingPathComponent:pathStr];
+    
+    [[EMCDDeviceManager sharedInstance] asyncStartRecordingWithFileName:filePath completion:^(NSError *error) {
+        if (error) {
+            DLog(@"%@", error.description);
+        }
+    }];
 }
 
 - (void)recordHelperDidCancelRecord
 {
-    
+    DLog(@"取消录音");
 }
 
 - (void)recordHelperDidEndRecordWithData:(NSData *)amrAudio duration:(NSTimeInterval)duration
 {
-    
+    DLog(@"结束录音");
+    [[EMCDDeviceManager sharedInstance] asyncStopRecordingWithCompletion:^(NSString *recordPath, NSInteger aDuration, NSError *error) {
+        DLog(@"路径 == %@  时长 == %zd", recordPath, aDuration);
+    }];
 }
 
 #pragma mark - 获取 view 所在控制器

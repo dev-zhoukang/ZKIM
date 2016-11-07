@@ -16,7 +16,7 @@
 @interface EMCDDeviceManager (Media)
 
 #pragma mark - AudioPlayer
-// 播放音频
+/*! 播放音频 */
 - (void)asyncPlayingWithPath:(NSString *)aFilePath
                   completion:(void(^)(NSError *error))completon;
 // 停止播放

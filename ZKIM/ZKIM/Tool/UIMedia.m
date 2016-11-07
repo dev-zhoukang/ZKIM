@@ -324,3 +324,7 @@ NSString * const MediaLocalFlag = @"local>";
 }
 
 @end
+
+@implementation ZKMediaModel
+
+@end

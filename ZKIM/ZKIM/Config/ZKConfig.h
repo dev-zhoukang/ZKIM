@@ -40,6 +40,11 @@
 #define FZLTHFontName     @"_GBK-"                     //方正兰亭黑_GBK
 #define FZLTZHFontName    @"FZLTZHUNHK--GBK1-0"        //方正兰亭准黑_GBK
 
+/** 获取Document文件夹的路径 */
+static inline NSString *NSDocumentPath() {
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+}
+
 extern NSString *const kAppKey_EM;
 extern NSString *const UserDefaultKey_LoginUser;
 extern NSString *const UserDefaultKey_LoginResult;

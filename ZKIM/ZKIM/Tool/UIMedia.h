@@ -20,6 +20,14 @@ typedef NS_ENUM(NSInteger, MediaType) {
 
 extern NSString * const MediaLocalFlag;
 
+@interface ZKMediaModel : NSObject
+
+@property (nonatomic, strong) NSArray *images;
+@property (nonatomic, strong) NSArray *imageDatas;
+@property (nonatomic, strong) NSArray *imageUrls;
+
+@end
+
 @interface UIMedia : NSObject
 
 + (NSString *)folderPathWithName:(NSString *)name;
