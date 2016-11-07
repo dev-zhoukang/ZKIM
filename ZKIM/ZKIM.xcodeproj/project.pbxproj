@@ -151,6 +151,18 @@
 		5841227C1DC19EC6006D8C05 /* USImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5841225A1DC19EC5006D8C05 /* USImagePickerController.m */; };
 		584122801DC1AD87006D8C05 /* ZKPhotoGetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5841227F1DC1AD87006D8C05 /* ZKPhotoGetTool.m */; };
 		5841228F1DC1E290006D8C05 /* ZKMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5841228E1DC1E290006D8C05 /* ZKMessage.m */; };
+		584C517B1DD074C70043394C /* amrFileCodec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 584C516D1DD074C70043394C /* amrFileCodec.mm */; };
+		584C517C1DD074C70043394C /* wav.mm in Sources */ = {isa = PBXBuildFile; fileRef = 584C516F1DD074C70043394C /* wav.mm */; };
+		584C517D1DD074C70043394C /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 584C51731DD074C70043394C /* libopencore-amrnb.a */; };
+		584C517E1DD074C70043394C /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 584C51771DD074C70043394C /* libopencore-amrwb.a */; };
+		584C517F1DD074C70043394C /* EMVoiceConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 584C517A1DD074C70043394C /* EMVoiceConverter.mm */; };
+		584C51951DD07F2C0043394C /* EMAudioPlayerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 584C51871DD07F2C0043394C /* EMAudioPlayerUtil.m */; };
+		584C51961DD07F2C0043394C /* EMAudioRecorderUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 584C51891DD07F2C0043394C /* EMAudioRecorderUtil.m */; };
+		584C51971DD07F2C0043394C /* EMCDDeviceManager+Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 584C518B1DD07F2C0043394C /* EMCDDeviceManager+Media.m */; };
+		584C51981DD07F2C0043394C /* EMCDDeviceManager+Microphone.m in Sources */ = {isa = PBXBuildFile; fileRef = 584C518D1DD07F2C0043394C /* EMCDDeviceManager+Microphone.m */; };
+		584C51991DD07F2C0043394C /* EMCDDeviceManager+ProximitySensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 584C518F1DD07F2C0043394C /* EMCDDeviceManager+ProximitySensor.m */; };
+		584C519A1DD07F2C0043394C /* EMCDDeviceManager+Remind.m in Sources */ = {isa = PBXBuildFile; fileRef = 584C51911DD07F2C0043394C /* EMCDDeviceManager+Remind.m */; };
+		584C519B1DD07F2C0043394C /* EMCDDeviceManagerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 584C51941DD07F2C0043394C /* EMCDDeviceManagerBase.m */; };
 		587948DB1DAB80DB0053DCDA /* ZKChatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 587948DA1DAB80DB0053DCDA /* ZKChatManager.m */; };
 		588A1E781DC459B300DD87B7 /* FLAnimatedImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 588A1E501DC459B300DD87B7 /* FLAnimatedImageView+WebCache.m */; };
 		588A1E791DC459B300DD87B7 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 588A1E521DC459B300DD87B7 /* MKAnnotationView+WebCache.m */; };
@@ -573,6 +585,36 @@
 		5841227F1DC1AD87006D8C05 /* ZKPhotoGetTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKPhotoGetTool.m; sourceTree = "<group>"; };
 		5841228D1DC1E290006D8C05 /* ZKMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKMessage.h; sourceTree = "<group>"; };
 		5841228E1DC1E290006D8C05 /* ZKMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKMessage.m; sourceTree = "<group>"; };
+		584C516C1DD074C70043394C /* amrFileCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = amrFileCodec.h; sourceTree = "<group>"; };
+		584C516D1DD074C70043394C /* amrFileCodec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = amrFileCodec.mm; sourceTree = "<group>"; };
+		584C516E1DD074C70043394C /* wav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wav.h; sourceTree = "<group>"; };
+		584C516F1DD074C70043394C /* wav.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = wav.mm; sourceTree = "<group>"; };
+		584C51711DD074C70043394C /* interf_dec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_dec.h; sourceTree = "<group>"; };
+		584C51721DD074C70043394C /* interf_enc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_enc.h; sourceTree = "<group>"; };
+		584C51731DD074C70043394C /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
+		584C51751DD074C70043394C /* dec_if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dec_if.h; sourceTree = "<group>"; };
+		584C51761DD074C70043394C /* if_rom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_rom.h; sourceTree = "<group>"; };
+		584C51771DD074C70043394C /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
+		584C51791DD074C70043394C /* EMVoiceConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMVoiceConverter.h; sourceTree = "<group>"; };
+		584C517A1DD074C70043394C /* EMVoiceConverter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EMVoiceConverter.mm; sourceTree = "<group>"; };
+		584C51821DD07F2C0043394C /* EMCDDeviceManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManagerDelegate.h; sourceTree = "<group>"; };
+		584C51831DD07F2C0043394C /* EMCDDeviceManagerProximitySensorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManagerProximitySensorDelegate.h; sourceTree = "<group>"; };
+		584C51851DD07F2C0043394C /* DemoErrorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoErrorCode.h; sourceTree = "<group>"; };
+		584C51861DD07F2C0043394C /* EMAudioPlayerUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMAudioPlayerUtil.h; sourceTree = "<group>"; };
+		584C51871DD07F2C0043394C /* EMAudioPlayerUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMAudioPlayerUtil.m; sourceTree = "<group>"; };
+		584C51881DD07F2C0043394C /* EMAudioRecorderUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMAudioRecorderUtil.h; sourceTree = "<group>"; };
+		584C51891DD07F2C0043394C /* EMAudioRecorderUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMAudioRecorderUtil.m; sourceTree = "<group>"; };
+		584C518A1DD07F2C0043394C /* EMCDDeviceManager+Media.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMCDDeviceManager+Media.h"; sourceTree = "<group>"; };
+		584C518B1DD07F2C0043394C /* EMCDDeviceManager+Media.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMCDDeviceManager+Media.m"; sourceTree = "<group>"; };
+		584C518C1DD07F2C0043394C /* EMCDDeviceManager+Microphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMCDDeviceManager+Microphone.h"; sourceTree = "<group>"; };
+		584C518D1DD07F2C0043394C /* EMCDDeviceManager+Microphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMCDDeviceManager+Microphone.m"; sourceTree = "<group>"; };
+		584C518E1DD07F2C0043394C /* EMCDDeviceManager+ProximitySensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMCDDeviceManager+ProximitySensor.h"; sourceTree = "<group>"; };
+		584C518F1DD07F2C0043394C /* EMCDDeviceManager+ProximitySensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMCDDeviceManager+ProximitySensor.m"; sourceTree = "<group>"; };
+		584C51901DD07F2C0043394C /* EMCDDeviceManager+Remind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMCDDeviceManager+Remind.h"; sourceTree = "<group>"; };
+		584C51911DD07F2C0043394C /* EMCDDeviceManager+Remind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMCDDeviceManager+Remind.m"; sourceTree = "<group>"; };
+		584C51921DD07F2C0043394C /* EMCDDeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManager.h; sourceTree = "<group>"; };
+		584C51931DD07F2C0043394C /* EMCDDeviceManagerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManagerBase.h; sourceTree = "<group>"; };
+		584C51941DD07F2C0043394C /* EMCDDeviceManagerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMCDDeviceManagerBase.m; sourceTree = "<group>"; };
 		587948D91DAB80DB0053DCDA /* ZKChatManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChatManager.h; sourceTree = "<group>"; };
 		587948DA1DAB80DB0053DCDA /* ZKChatManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKChatManager.m; sourceTree = "<group>"; };
 		588A1E4F1DC459B300DD87B7 /* FLAnimatedImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLAnimatedImageView+WebCache.h"; sourceTree = "<group>"; };
@@ -840,9 +882,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				58E360691D87E4C700D38839 /* ImageIO.framework in Frameworks */,
+				584C517D1DD074C70043394C /* libopencore-amrnb.a in Frameworks */,
 				58E360741D87EC0C00D38839 /* libiconv.tbd in Frameworks */,
 				58E360711D87E50700D38839 /* libsqlite3.tbd in Frameworks */,
 				58E3606F1D87E4F600D38839 /* libstdc++.6.0.9.tbd in Frameworks */,
+				584C517E1DD074C70043394C /* libopencore-amrwb.a in Frameworks */,
 				58E3606D1D87E4E700D38839 /* libz.tbd in Frameworks */,
 				58E3606B1D87E4D900D38839 /* libc++.tbd in Frameworks */,
 				58E360671D87E4BB00D38839 /* MobileCoreServices.framework in Frameworks */,
@@ -1409,6 +1453,98 @@
 			path = ZKPhotoGetTool;
 			sourceTree = "<group>";
 		};
+		584C516A1DD074C70043394C /* VoiceConvert */ = {
+			isa = PBXGroup;
+			children = (
+				584C516B1DD074C70043394C /* amrwapper */,
+				584C51701DD074C70043394C /* opencore-amrnb */,
+				584C51741DD074C70043394C /* opencore-amrwb */,
+				584C51781DD074C70043394C /* VoiceConvert */,
+			);
+			path = VoiceConvert;
+			sourceTree = "<group>";
+		};
+		584C516B1DD074C70043394C /* amrwapper */ = {
+			isa = PBXGroup;
+			children = (
+				584C516C1DD074C70043394C /* amrFileCodec.h */,
+				584C516D1DD074C70043394C /* amrFileCodec.mm */,
+				584C516E1DD074C70043394C /* wav.h */,
+				584C516F1DD074C70043394C /* wav.mm */,
+			);
+			path = amrwapper;
+			sourceTree = "<group>";
+		};
+		584C51701DD074C70043394C /* opencore-amrnb */ = {
+			isa = PBXGroup;
+			children = (
+				584C51711DD074C70043394C /* interf_dec.h */,
+				584C51721DD074C70043394C /* interf_enc.h */,
+				584C51731DD074C70043394C /* libopencore-amrnb.a */,
+			);
+			path = "opencore-amrnb";
+			sourceTree = "<group>";
+		};
+		584C51741DD074C70043394C /* opencore-amrwb */ = {
+			isa = PBXGroup;
+			children = (
+				584C51751DD074C70043394C /* dec_if.h */,
+				584C51761DD074C70043394C /* if_rom.h */,
+				584C51771DD074C70043394C /* libopencore-amrwb.a */,
+			);
+			path = "opencore-amrwb";
+			sourceTree = "<group>";
+		};
+		584C51781DD074C70043394C /* VoiceConvert */ = {
+			isa = PBXGroup;
+			children = (
+				584C51791DD074C70043394C /* EMVoiceConverter.h */,
+				584C517A1DD074C70043394C /* EMVoiceConverter.mm */,
+			);
+			path = VoiceConvert;
+			sourceTree = "<group>";
+		};
+		584C51801DD07F2C0043394C /* DeviceUtil */ = {
+			isa = PBXGroup;
+			children = (
+				584C51811DD07F2C0043394C /* delegates */,
+				584C51841DD07F2C0043394C /* internal */,
+			);
+			path = DeviceUtil;
+			sourceTree = "<group>";
+		};
+		584C51811DD07F2C0043394C /* delegates */ = {
+			isa = PBXGroup;
+			children = (
+				584C51821DD07F2C0043394C /* EMCDDeviceManagerDelegate.h */,
+				584C51831DD07F2C0043394C /* EMCDDeviceManagerProximitySensorDelegate.h */,
+			);
+			path = delegates;
+			sourceTree = "<group>";
+		};
+		584C51841DD07F2C0043394C /* internal */ = {
+			isa = PBXGroup;
+			children = (
+				584C51851DD07F2C0043394C /* DemoErrorCode.h */,
+				584C51861DD07F2C0043394C /* EMAudioPlayerUtil.h */,
+				584C51871DD07F2C0043394C /* EMAudioPlayerUtil.m */,
+				584C51881DD07F2C0043394C /* EMAudioRecorderUtil.h */,
+				584C51891DD07F2C0043394C /* EMAudioRecorderUtil.m */,
+				584C518A1DD07F2C0043394C /* EMCDDeviceManager+Media.h */,
+				584C518B1DD07F2C0043394C /* EMCDDeviceManager+Media.m */,
+				584C518C1DD07F2C0043394C /* EMCDDeviceManager+Microphone.h */,
+				584C518D1DD07F2C0043394C /* EMCDDeviceManager+Microphone.m */,
+				584C518E1DD07F2C0043394C /* EMCDDeviceManager+ProximitySensor.h */,
+				584C518F1DD07F2C0043394C /* EMCDDeviceManager+ProximitySensor.m */,
+				584C51901DD07F2C0043394C /* EMCDDeviceManager+Remind.h */,
+				584C51911DD07F2C0043394C /* EMCDDeviceManager+Remind.m */,
+				584C51921DD07F2C0043394C /* EMCDDeviceManager.h */,
+				584C51931DD07F2C0043394C /* EMCDDeviceManagerBase.h */,
+				584C51941DD07F2C0043394C /* EMCDDeviceManagerBase.m */,
+			);
+			path = internal;
+			sourceTree = "<group>";
+		};
 		588A1E4D1DC459B300DD87B7 /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -1882,6 +2018,8 @@
 		58E360311D87D76000D38839 /* Thirdparty */ = {
 			isa = PBXGroup;
 			children = (
+				584C51801DD07F2C0043394C /* DeviceUtil */,
+				584C516A1DD074C70043394C /* VoiceConvert */,
 				588A1E911DC45D2E00DD87B7 /* FLAnimatedImage */,
 				588A1E4D1DC459B300DD87B7 /* SDWebImage */,
 				5841221B1DC19EC5006D8C05 /* USImagePickerController */,
@@ -2166,10 +2304,12 @@
 				5802F4611DB86AC200492BA5 /* NSBundle+YYAdd.m in Sources */,
 				588A1E7A1DC459B300DD87B7 /* NSData+ImageContentType.m in Sources */,
 				588A1E781DC459B300DD87B7 /* FLAnimatedImageView+WebCache.m in Sources */,
+				584C51991DD07F2C0043394C /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				5841225C1DC19EC5006D8C05 /* ALAssetsLibrary+ImagePicker.m in Sources */,
 				58BCC23F1DA9F24200B6B881 /* MJRefreshAutoFooter.m in Sources */,
 				588A1E7F1DC459B300DD87B7 /* SDWebImageDecoder.m in Sources */,
 				5802F4911DB86AC200492BA5 /* YYTextContainerView.m in Sources */,
+				584C51951DD07F2C0043394C /* EMAudioPlayerUtil.m in Sources */,
 				58BCC2401DA9F24200B6B881 /* MJRefreshBackFooter.m in Sources */,
 				58E360781D87F16F00D38839 /* ZKConfig.m in Sources */,
 				5802F4861DB86AC200492BA5 /* UIImageView+YYWebImage.m in Sources */,
@@ -2233,6 +2373,7 @@
 				5802F4931DB86AC200492BA5 /* YYTextEffectWindow.m in Sources */,
 				58BCC1C11DA9D96F00B6B881 /* ZKAlertView.m in Sources */,
 				5802F49E1DB86AC200492BA5 /* YYTextAttribute.m in Sources */,
+				584C517C1DD074C70043394C /* wav.mm in Sources */,
 				588A1E971DC45D2E00DD87B7 /* FLAnimatedImage.m in Sources */,
 				5802F48F1DB86AC200492BA5 /* NSObject+YYModel.m in Sources */,
 				583A81E71D90FE4A006F14C6 /* ZKWeChatCell.m in Sources */,
@@ -2240,6 +2381,7 @@
 				58D148221D8E77D800A17D6D /* ZKContactViewController.m in Sources */,
 				58D1496A1D8FEE3100A17D6D /* MJFoundation.m in Sources */,
 				5802F47D1DB86AC200492BA5 /* UIView+YYAdd.m in Sources */,
+				584C517F1DD074C70043394C /* EMVoiceConverter.mm in Sources */,
 				5802F4AE1DB86AC200492BA5 /* YYTimer.m in Sources */,
 				58E35FFA1D87D5E100D38839 /* main.m in Sources */,
 				5802F46D1DB86AC200492BA5 /* NSTimer+YYAdd.m in Sources */,
@@ -2263,6 +2405,7 @@
 				58BCC2521DA9F24200B6B881 /* UIView+MJExtension.m in Sources */,
 				5840734A1DABABA8009B714A /* ZKHVButton.m in Sources */,
 				58D45E3A1DBDF03E00B8C774 /* USAlertView.m in Sources */,
+				584C519A1DD07F2C0043394C /* EMCDDeviceManager+Remind.m in Sources */,
 				5841225E1DC19EC5006D8C05 /* PHPhotoLibrary+ImagePicker.m in Sources */,
 				584122731DC19EC5006D8C05 /* USAssetCollectionCell.m in Sources */,
 				5802F4811DB86AC200492BA5 /* YYMemoryCache.m in Sources */,
@@ -2271,6 +2414,7 @@
 				58D1483C1D8F7D1D00A17D6D /* ZKMeTableCell.m in Sources */,
 				5802F47A1DB86AC200492BA5 /* UIScrollView+YYAdd.m in Sources */,
 				5802F4711DB86AC200492BA5 /* UIBarButtonItem+YYAdd.m in Sources */,
+				584C51971DD07F2C0043394C /* EMCDDeviceManager+Media.m in Sources */,
 				58256ADD1DC711CA00C71C8F /* ZKRecordView.m in Sources */,
 				5802F4991DB86AC200492BA5 /* YYTextSelectionView.m in Sources */,
 				5840734B1DABABA8009B714A /* ZKXMPPManager.m in Sources */,
@@ -2297,6 +2441,7 @@
 				584122801DC1AD87006D8C05 /* ZKPhotoGetTool.m in Sources */,
 				5802F4A01DB86AC200492BA5 /* YYTextRubyAnnotation.m in Sources */,
 				5802F4AD1DB86AC200492BA5 /* YYThreadSafeDictionary.m in Sources */,
+				584C517B1DD074C70043394C /* amrFileCodec.mm in Sources */,
 				5802F4A61DB86AC200492BA5 /* YYDispatchQueuePool.m in Sources */,
 				582D55C41D9CE304004E9929 /* ZKChatCell.m in Sources */,
 				58BCC2481DA9F24200B6B881 /* MJRefreshBackNormalFooter.m in Sources */,
@@ -2340,11 +2485,13 @@
 				5802F4BF1DB88F9B00492BA5 /* ZKTestViewController.m in Sources */,
 				5802F48A1DB86AC200492BA5 /* YYImageCache.m in Sources */,
 				5802F4681DB86AC200492BA5 /* NSObject+YYAdd.m in Sources */,
+				584C519B1DD07F2C0043394C /* EMCDDeviceManagerBase.m in Sources */,
 				58D1496D1D8FEE3100A17D6D /* MJPropertyType.m in Sources */,
 				5802F4881DB86AC200492BA5 /* YYFrameImage.m in Sources */,
 				588A1E7B1DC459B300DD87B7 /* NSImage+WebCache.m in Sources */,
 				58D148361D8E7F3C00A17D6D /* ZKNavigationController.m in Sources */,
 				5802F4A81DB86AC200492BA5 /* YYGestureRecognizer.m in Sources */,
+				584C51981DD07F2C0043394C /* EMCDDeviceManager+Microphone.m in Sources */,
 				5802F4751DB86AC200492BA5 /* UIDevice+YYAdd.m in Sources */,
 				5841227C1DC19EC6006D8C05 /* USImagePickerController.m in Sources */,
 				58D147EA1D89240A00A17D6D /* ZKLoginHomeViewController.m in Sources */,
@@ -2356,6 +2503,7 @@
 				5802F4891DB86AC200492BA5 /* YYImage.m in Sources */,
 				58BCC2411DA9F24200B6B881 /* MJRefreshComponent.m in Sources */,
 				5802F4651DB86AC200492BA5 /* NSKeyedUnarchiver+YYAdd.m in Sources */,
+				584C51961DD07F2C0043394C /* EMAudioRecorderUtil.m in Sources */,
 				58D1496C1D8FEE3100A17D6D /* MJPropertyKey.m in Sources */,
 				588A1E8A1DC459B300DD87B7 /* UIView+WebCache.m in Sources */,
 				58BCC2491DA9F24200B6B881 /* MJRefreshBackStateFooter.m in Sources */,
@@ -2521,6 +2669,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ZKIM/Thirdparty/HyphenateFullSDK/lib",
+					"$(PROJECT_DIR)/ZKIM/Thirdparty/VoiceConvert/opencore-amrnb",
+					"$(PROJECT_DIR)/ZKIM/Thirdparty/VoiceConvert/opencore-amrwb",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zk.ZKIM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2540,6 +2690,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ZKIM/Thirdparty/HyphenateFullSDK/lib",
+					"$(PROJECT_DIR)/ZKIM/Thirdparty/VoiceConvert/opencore-amrnb",
+					"$(PROJECT_DIR)/ZKIM/Thirdparty/VoiceConvert/opencore-amrwb",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zk.ZKIM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
