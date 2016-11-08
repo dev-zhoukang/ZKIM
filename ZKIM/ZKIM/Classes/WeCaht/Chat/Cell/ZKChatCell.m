@@ -31,6 +31,8 @@
 
 // Voice Cell
 @property (nonatomic, strong) UIButton *audioBtn;
+@property (nonatomic, strong) UILabel *durationLabel;
+@property (nonatomic, strong) UIImageView *hornImageView; //!< 小喇叭
 
 @end
 
