@@ -204,11 +204,11 @@
     }];
 }
 
-- (void)chatPanelSendMediaDict:(NSDictionary *)dict mediaType:(MediaType)mediaType
+- (void)chatPanelSendMediaModel:(ZKMediaModel *)mediaModel mediaType:(MediaType)mediaType
 {
-    DLog(@"dict:%@ == type:%zd", dict, mediaType);
+    DLog(@"dict:%@ == type:%zd", mediaModel, mediaType);
     // 构造图片消息并发送
-    NSArray *emmsgs = [self generateMessagesWithImageDatas:dict[@"imageDatas"]];
+    NSArray *emmsgs = [self generateMessagesWithImageDatas:mediaModel.imageDatas];
     for (EMMessage *emmsg in emmsgs) {
         [self insertMsgToDataSourceWithMessage:emmsg];
         [[EMClient sharedClient].chatManager sendMessage:emmsg progress:nil completion:^(EMMessage *message, EMError *error) {

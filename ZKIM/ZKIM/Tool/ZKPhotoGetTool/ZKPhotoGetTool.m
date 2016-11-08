@@ -245,11 +245,14 @@
     }
     
     // 通知代理
-    NSDictionary *dict = @{ @"images":_largeImages,
-                            @"imageDatas":_largeImageDatas,
-                            @"imageUrls":chatImageUrls };
-    if ([self.delegate respondsToSelector:@selector(photoGetToolDidGotPhotosOrVideoDict:type:)]) {
-        [self.delegate photoGetToolDidGotPhotosOrVideoDict:dict type:MediaType_Image];
+    ZKMediaModel *model = [ZKMediaModel new];
+    model.images = _largeImages;
+    model.imageDatas = _largeImageDatas;
+    model.imageUrls = chatImageUrls;
+    
+    if ([self.delegate respondsToSelector:@selector(photoGetToolDidGotMediaModel:type:)]) {
+        // plus面板是其代理
+        [self.delegate photoGetToolDidGotMediaModel:model type:MediaType_Image];
     }
     
     //结束停止用户事件

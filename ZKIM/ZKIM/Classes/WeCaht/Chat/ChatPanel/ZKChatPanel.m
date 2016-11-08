@@ -388,10 +388,11 @@ static CGFloat const kBottomInset = 10.f;
 
 #pragma mark - <ZKPlusPanelDelegate>
 
-- (void)plusPanelSendMediaDict:(NSDictionary *)dict type:(MediaType)mediaType
+- (void)plusPanelSendMediaDict:(ZKMediaModel *)mediaModel type:(MediaType)mediaType
 {
-    if ([self.delegate respondsToSelector:@selector(chatPanelSendMediaDict:mediaType:)]) {
-        [self.delegate chatPanelSendMediaDict:dict mediaType:mediaType];
+    if ([self.delegate respondsToSelector:@selector(chatPanelSendMediaModel:mediaType:)]) {
+        // chat VC 是其代理
+        [self.delegate chatPanelSendMediaModel:mediaModel mediaType:mediaType];
     }
 }
 

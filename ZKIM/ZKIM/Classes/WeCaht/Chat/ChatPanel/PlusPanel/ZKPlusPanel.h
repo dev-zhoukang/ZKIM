@@ -11,7 +11,7 @@
 @protocol ZKPlusPanelDelegate <NSObject>
 
 @optional
-- (void)plusPanelSendMediaDict:(NSDictionary *)dict type:(MediaType)mediaType;
+- (void)plusPanelSendMediaModel:(ZKMediaModel *)mediaModel type:(MediaType)mediaType;
 
 @end
 

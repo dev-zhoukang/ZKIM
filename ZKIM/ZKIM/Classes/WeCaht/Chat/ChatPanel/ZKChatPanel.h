@@ -16,7 +16,7 @@
 
 @optional
 - (void)chatPanel:(ZKChatPanel *)chatPanel sendText:(NSString *)content;
-- (void)chatPanelSendMediaDict:(NSDictionary *)dict mediaType:(MediaType)mediaType;
+- (void)chatPanelSendMediaModel:(ZKMediaModel *)mediaModel mediaType:(MediaType)mediaType;
 
 @end
 
