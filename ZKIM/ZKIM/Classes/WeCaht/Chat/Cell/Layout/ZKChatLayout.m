@@ -63,7 +63,7 @@
 
 - (void)layoutAudio
 {
-    _audioHeight = 40.f;
+    _audioHeight = 45.f;
 }
 
 - (void)layoutImage

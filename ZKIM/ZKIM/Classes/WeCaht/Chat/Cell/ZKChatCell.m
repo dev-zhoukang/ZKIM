@@ -95,8 +95,8 @@
     
     _audioBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.contentView addSubview:_audioBtn];
-    _audioBtn.backgroundColor = [UIColor redColor];
-    _audioBtn.height = 40.f;
+    _audioBtn.backgroundColor = [UIColor clearColor];
+    _audioBtn.height = 55.f;
     
     _longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     [_contentLabel addGestureRecognizer:_longPress];
@@ -198,6 +198,7 @@
     _audioBtn.hidden = NO;
     
     _audioBtn.width = 100.f;
+    [_audioBtn setBackgroundImage:[self getTextBubbleImage] forState:UIControlStateNormal];
     
     if (_cellLayout.message.needShowTime) {
         _timeLabel.hidden    = NO;
