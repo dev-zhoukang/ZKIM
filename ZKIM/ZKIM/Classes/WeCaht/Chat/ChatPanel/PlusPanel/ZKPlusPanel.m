@@ -206,7 +206,7 @@ CGFloat const kPlusPanelHeight = 216.f;
 
 #pragma mark - <ZKPhotoGetToolDelegate>
 
-- (void)photoGetToolDidGotPhotosOrVideoDict:(ZKMediaModel *)mediaModel type:(MediaType)type
+- (void)photoGetToolDidGotMediaModel:(ZKMediaModel *)mediaModel type:(MediaType)type
 {
     if ([self.delegate respondsToSelector:@selector(plusPanelSendMediaModel:type:)]) {
         // chat panel 是其代理

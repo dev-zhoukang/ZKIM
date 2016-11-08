@@ -71,8 +71,12 @@ extern NSString * const MediaLocalFlag;
 
 @interface ZKMediaModel : NSObject
 
+// 照片
 @property (nonatomic, strong) NSArray <UIImage *> *images;
 @property (nonatomic, strong) NSArray <NSData *> *imageDatas;
 @property (nonatomic, strong) NSArray <NSString *> *imageUrls;
+// 音频
+@property (nonatomic, copy) NSString *audioPath;
+@property (nonatomic, assign) NSTimeInterval audioDuration;
 
 @end

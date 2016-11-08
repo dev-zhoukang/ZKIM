@@ -18,6 +18,7 @@
 @property (nonatomic, strong, readonly) YYTextLayout *contentTextLayout;
 @property (nonatomic, assign, readonly) CGFloat      contentTextHeight;
 @property (nonatomic, assign, readonly) CGSize      imageSize;
+@property (nonatomic, assign, readonly) CGFloat     audioHeight;
 
 @property (nonatomic, assign, readonly) CGFloat height; //!< 总高度
 

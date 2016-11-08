@@ -47,7 +47,9 @@
             
         } break;
         case ZKMessageBodyTypeAudio: {
-            
+            [self layoutAudio];
+            _height += _audioHeight;
+            _height += 10*2;
         } break;
         case ZKMessageBodyTypeVideo: {
             
@@ -57,6 +59,11 @@
     if (_message.needShowTime) { // 展示时间的高度
         _height += 25;
     }
+}
+
+- (void)layoutAudio
+{
+    _audioHeight = 40.f;
 }
 
 - (void)layoutImage

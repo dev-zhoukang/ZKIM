@@ -26,6 +26,9 @@
 // Image Cell
 @property (nonatomic, strong) UIImageView *contentImageView;
 
+// Voice Cell
+@property (nonatomic, strong) UIButton *audioBtn;
+
 @end
 
 @implementation ZKChatCell
@@ -89,6 +92,11 @@
     _sendFailBtn.hidden = YES;
     _sendFailBtn.contentMode = UIViewContentModeCenter;
     [self.contentView addSubview:_sendFailBtn];
+    
+    _audioBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.contentView addSubview:_audioBtn];
+    _audioBtn.backgroundColor = [UIColor redColor];
+    _audioBtn.height = 40.f;
     
     _longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     [_contentLabel addGestureRecognizer:_longPress];
@@ -161,6 +169,9 @@
         case ZKMessageBodyTypeImage: {
             [self updateImageCell];
         } break;
+        case ZKMessageBodyTypeAudio: {
+            [self updateAudioCell];
+        } break;
             
         default:
             break;
@@ -179,10 +190,51 @@
     }
 }
 
+- (void)updateAudioCell
+{
+    _contentLabel.hidden = YES;
+    _bubbleImageView.hidden = YES;
+    _contentImageView.hidden = YES;
+    _audioBtn.hidden = NO;
+    
+    _audioBtn.width = 100.f;
+    
+    if (_cellLayout.message.needShowTime) {
+        _timeLabel.hidden    = NO;
+        NSDate *time = [NSDate dateWithTimeStamp:_cellLayout.message.timestamp];
+        NSString *timeStr = [self stringWithDate:time];
+        _timeLabel.text = timeStr;
+        _timeLabel.width = [timeStr stringWidthWithFont:_timeLabel.font height:MAXFLOAT]+8.f;
+        _timeLabel.centerX = SCREEN_WIDTH*0.5;
+        _audioBtn.top = 35.f;
+        _iconImageView.top = _audioBtn.top;
+    }
+    else {
+        _timeLabel.hidden     = YES;
+        _audioBtn.top = 10.f;
+        _iconImageView.top = _audioBtn.top;
+    }
+    
+    _indicatorView.centerY = CGRectGetMidY(_bubbleImageView.frame);
+    _sendFailBtn.centerY = _indicatorView.centerY;
+    
+    if (_isMine) {
+        _iconImageView.right   = SCREEN_WIDTH - 10.f;
+        _audioBtn.right = CGRectGetMinX(_iconImageView.frame)-5.f;
+        _indicatorView.right = CGRectGetMinX(_bubbleImageView.frame);
+        _sendFailBtn.right = _indicatorView.right;
+    }
+    else {
+        _iconImageView.left   = 10.f;
+        _audioBtn.left = CGRectGetMaxX(_iconImageView.frame)+5.f;
+    }
+}
+
 - (void)updateImageCell
 {
     _contentLabel.hidden = YES;
     _bubbleImageView.hidden = YES;
+    _audioBtn.hidden = YES;
     _contentImageView.hidden = NO;
     
     ZKMessage *message = _cellLayout.message;
@@ -243,6 +295,7 @@
     _contentLabel.hidden = NO;
     _bubbleImageView.hidden = NO;
     _contentImageView.hidden = YES;
+    _audioBtn.hidden = YES;
     
     _bubbleImageView.image = [self getTextBubbleImage];
     

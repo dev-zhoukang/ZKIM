@@ -388,7 +388,7 @@ static CGFloat const kBottomInset = 10.f;
 
 #pragma mark - <ZKPlusPanelDelegate>
 
-- (void)plusPanelSendMediaDict:(ZKMediaModel *)mediaModel type:(MediaType)mediaType
+- (void)plusPanelSendMediaModel:(ZKMediaModel *)mediaModel type:(MediaType)mediaType
 {
     if ([self.delegate respondsToSelector:@selector(chatPanelSendMediaModel:mediaType:)]) {
         // chat VC 是其代理
@@ -443,6 +443,14 @@ static inline NSString *getAudioPath() {
     DLog(@"结束录音");
     [[EMCDDeviceManager sharedInstance] asyncStopRecordingWithCompletion:^(NSString *recordPath, NSInteger aDuration, NSError *error) {
         DLog(@"路径 == %@  时长 == %zd", recordPath, aDuration);
+        // 结束录音后 将录音信息传给代理
+        ZKMediaModel *model = [ZKMediaModel new];
+        model.audioPath = recordPath.copy;
+        model.audioDuration = aDuration;
+        
+        if ([self.delegate respondsToSelector:@selector(chatPanelSendMediaModel:mediaType:)]) {
+            [self.delegate chatPanelSendMediaModel:model mediaType:MediaType_Audio];
+        }
     }];
 }
 

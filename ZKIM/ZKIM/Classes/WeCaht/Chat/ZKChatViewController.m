@@ -207,18 +207,19 @@
 - (void)chatPanelSendMediaModel:(ZKMediaModel *)mediaModel mediaType:(MediaType)mediaType
 {
     DLog(@"dict:%@ == type:%zd", mediaModel, mediaType);
-    // 构造图片消息并发送
-    NSArray *emmsgs = [self generateMessagesWithImageDatas:mediaModel.imageDatas];
-    for (EMMessage *emmsg in emmsgs) {
-        [self insertMsgToDataSourceWithMessage:emmsg];
-        [[EMClient sharedClient].chatManager sendMessage:emmsg progress:nil completion:^(EMMessage *message, EMError *error) {
-            if (error) {
-                DLog(@"图片消息发送失败 -- %@", error.errorDescription);
-                return;
-            }
-            [_tableView reloadData];
-            DLog(@"图片消息发送成功!");
-        }];
+    switch (mediaType) {
+        case MediaType_Image: {
+            [self generateImageMessageWithModel:mediaModel];
+        } break;
+        case MediaType_Audio: {
+            [self generateAudioMessageWithModel:mediaModel];
+        } break;
+        case MediaType_Map: {
+            
+        } break;
+            
+        default:
+            break;
     }
 }
 
@@ -241,6 +242,44 @@
 }
 
 #pragma mark - 构造消息
+
+- (void)generateAudioMessageWithModel:(ZKMediaModel *)mediaModel
+{
+    EMVoiceMessageBody *body = [[EMVoiceMessageBody alloc] initWithLocalPath:mediaModel.audioPath displayName:@"audio"];
+    body.duration = mediaModel.audioDuration;
+    NSString *from = [EMClient sharedClient].currentUsername;
+    
+    // 生成Message
+    EMMessage *message = [[EMMessage alloc] initWithConversationID:_conversationID from:from to:_toID body:body ext:nil];
+    message.chatType = EMChatTypeChat;
+    
+    [self insertMsgToDataSourceWithMessage:message];
+    [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
+        if (error) {
+            DLog(@"语音消息发送失败 -- %@", error.errorDescription);
+            return;
+        }
+        [_tableView reloadData];
+        DLog(@"语音消息发送成功!");
+    }];
+}
+
+- (void)generateImageMessageWithModel:(ZKMediaModel *)mediaModel
+{
+    // 构造图片消息并发送
+    NSArray *emmsgs = [self generateMessagesWithImageDatas:mediaModel.imageDatas];
+    for (EMMessage *emmsg in emmsgs) {
+        [self insertMsgToDataSourceWithMessage:emmsg];
+        [[EMClient sharedClient].chatManager sendMessage:emmsg progress:nil completion:^(EMMessage *message, EMError *error) {
+            if (error) {
+                DLog(@"图片消息发送失败 -- %@", error.errorDescription);
+                return;
+            }
+            [_tableView reloadData];
+            DLog(@"图片消息发送成功!");
+        }];
+    }
+}
 
 - (NSArray <EMMessage *> *)generateMessagesWithImageDatas:(NSArray <NSData *> *)imageDatas
 {
