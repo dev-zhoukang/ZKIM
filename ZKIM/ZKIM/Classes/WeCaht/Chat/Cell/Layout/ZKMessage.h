@@ -42,7 +42,7 @@ typedef NS_ENUM(NSInteger, ZKMessageStatus) {
 // 语音信息
 @property (nonatomic, copy, readonly) NSString *audioLocalPath;
 @property (nonatomic, copy, readonly) NSString *audioRemotePath;
-@property (nonatomic, assign, readonly) NSTimeInterval audioDuration;
+@property (nonatomic, assign, readonly) int audioDuration;
 
 @property (nonatomic, assign, readonly) NSTimeInterval timestamp; //!< 本条消息时间戳
 @property (nonatomic, assign) NSTimeInterval preTimestamp; //!< 上条信息时间戳

@@ -10,6 +10,9 @@
 #import "ZKChatLayout.h"
 #import "UIImageView+WebCache.h"
 
+#define kMaxAudioBtnWidth    SCREEN_WIDTH*0.6
+#define kMinAudioBtnWidth    70.f
+
 @interface ZKChatCell ()
 
 @property (nonatomic, strong) UIImageView *iconImageView;
@@ -197,7 +200,8 @@
     _contentImageView.hidden = YES;
     _audioBtn.hidden = NO;
     
-    _audioBtn.width = 100.f;
+    _audioBtn.width = [self calculateAudioWidth];
+    
     [_audioBtn setBackgroundImage:[self getTextBubbleImage] forState:UIControlStateNormal];
     
     if (_cellLayout.message.needShowTime) {
@@ -338,6 +342,35 @@
         _bubbleImageView.left = CGRectGetMaxX(_iconImageView.frame)+5.f;
         _contentLabel.left    = CGRectGetMaxX(_iconImageView.frame)+25.f;
     }
+}
+
+#pragma mark - Private
+
+- (CGFloat)calculateAudioWidth
+{
+    int voiceDuration = _cellLayout.message.audioDuration;
+    CGFloat width = 0;
+    
+    if (voiceDuration > 2) {
+        __block CGFloat length;
+        CGFloat lengthUnit = 10.f;
+        // 1-2 长度固定, 2-10s每秒增加一个单位, 10-60s每10s增加一个单位
+        do {
+            if (voiceDuration <= 10) {
+                length = lengthUnit*(voiceDuration-2);
+                break;
+            }
+            if (voiceDuration > 10) {
+                length = lengthUnit*(10-2) + lengthUnit*((voiceDuration-2)/10);
+                break;
+            }
+        } while (NO);
+        width = kMinAudioBtnWidth+length;
+    }
+    else {
+        width = kMinAudioBtnWidth;
+    }
+    return width;
 }
 
 - (void)addMaskLayerForImageView
