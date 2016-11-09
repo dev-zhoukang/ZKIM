@@ -37,12 +37,12 @@ typedef NS_ENUM(NSInteger, ZKMessageStatus) {
 @property (nonatomic, copy, readonly) NSString *largeImageRemotePath;
 @property (nonatomic, strong, readonly) UIImage *thumbnailImage;
 @property (nonatomic, copy, readonly) NSString *thumbnailRemotePath;
-@property (nonatomic, copy, readonly) NSString *localPath;
+@property (nonatomic, copy, readonly) NSString *localPath;//!< 图片本地路径
 
 // 语音信息
 @property (nonatomic, copy, readonly) NSString *audioLocalPath;
 @property (nonatomic, copy, readonly) NSString *audioRemotePath;
-@property (nonatomic, assign, readonly) int audioDuration;
+@property (nonatomic, assign, readonly) NSInteger audioDuration;
 
 @property (nonatomic, assign, readonly) NSTimeInterval timestamp; //!< 本条消息时间戳
 @property (nonatomic, assign) NSTimeInterval preTimestamp; //!< 上条信息时间戳

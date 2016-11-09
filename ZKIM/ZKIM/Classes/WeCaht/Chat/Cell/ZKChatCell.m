@@ -9,6 +9,7 @@
 #import "ZKChatCell.h"
 #import "ZKChatLayout.h"
 #import "UIImageView+WebCache.h"
+#import "EMCDDeviceManager.h"
 
 #define kMaxAudioBtnWidth    SCREEN_WIDTH*0.6
 #define kMinAudioBtnWidth    70.f
@@ -35,6 +36,8 @@
 @property (nonatomic, strong) UIImageView *hornImageView; //!< 小喇叭
 
 @end
+
+static UIButton *currentPlayingBtn_;
 
 @implementation ZKChatCell
 
@@ -85,7 +88,6 @@
     [self.contentView addSubview:_contentImageView];
     _contentImageView.contentMode = UIViewContentModeScaleAspectFill;
     _contentImageView.clipsToBounds = YES;
-    _contentImageView.backgroundColor = [UIColor redColor];
     
     _indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [self.contentView addSubview:_indicatorView];
@@ -102,13 +104,17 @@
     [self.contentView addSubview:_audioBtn];
     _audioBtn.backgroundColor = [UIColor clearColor];
     _audioBtn.height = 55.f;
+    [_audioBtn addTarget:self action:@selector(playingAudio:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _hornImageView = [UIImageView new];
+    [self.contentView addSubview:_hornImageView];
+    _hornImageView.size = (CGSize){12.f, 17.f};
     
     _durationLabel = [UILabel new];
     [self.contentView addSubview:_durationLabel];
     _durationLabel.font = [UIFont systemFontOfSize:15.f];
     _durationLabel.textColor = [UIColor grayColor];
     _durationLabel.textAlignment = NSTextAlignmentRight;
-    _durationLabel.size = (CGSize){50.f, 55.f};
     
     _longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     [_contentLabel addGestureRecognizer:_longPress];
@@ -161,6 +167,48 @@
     [self setSelected:YES animated:YES];
 }
 
+#pragma mark - Action
+
+- (void)playingAudio:(UIButton *)btn
+{
+    if ([currentPlayingBtn_ isEqual:btn]) {
+        btn.selected = !btn.selected;
+    } else {
+        btn.selected = YES;
+    }
+    currentPlayingBtn_ = btn;
+    
+    [[EMCDDeviceManager sharedInstance] stopPlaying];
+    
+    if (btn.isSelected) { // 播放录音
+        [self startHornImagesAnimation];
+        DLog(@"点击播放音频");
+        NSString *audioPath = _cellLayout.message.audioLocalPath;
+        [[EMCDDeviceManager sharedInstance] asyncPlayingWithPath:audioPath completion:^(NSError *error) {
+            if (error) {
+                DLog(@"播放出错 == %@", error);
+                return;
+            }
+            DLog(@"播放完毕");
+        }];
+    }
+    else { // 停止播放
+        DLog(@"点击停止音频");
+        [_hornImageView stopAnimating];
+        [[EMCDDeviceManager sharedInstance] stopPlaying];
+    }
+}
+
+- (void)startHornImagesAnimation
+{
+    NSInteger duration = _cellLayout.message.audioDuration;
+    NSInteger maxRepeatCount = ceil(duration/(NSInteger)_hornImageView.animationDuration);
+    
+    _hornImageView.animationRepeatCount = maxRepeatCount;
+    
+    [_hornImageView startAnimating];
+}
+
 #pragma mark - Setter
 
 - (void)setCellLayout:(ZKChatLayout *)cellLayout
@@ -210,6 +258,9 @@
     _audioBtn.hidden = NO;
     _durationLabel.hidden = NO;
     
+    _durationLabel.text = [NSString stringWithFormat:@"%zd''", _cellLayout.message.audioDuration];
+    [_durationLabel sizeToFit];
+    
     _audioBtn.width = [self calculateAudioWidth];
     
     [_audioBtn setBackgroundImage:[self getTextBubbleImage] forState:UIControlStateNormal];
@@ -224,13 +275,13 @@
         _audioBtn.top = 35.f;
     }
     else {
-        _timeLabel.hidden     = YES;
+        _timeLabel.hidden = YES;
         _audioBtn.top = 10.f;
     }
     
     _iconImageView.top = _audioBtn.top;
-    _durationLabel.top = _audioBtn.top;
-    _durationLabel.text = [NSString stringWithFormat:@"%d%@", _cellLayout.message.audioDuration, @"''"];
+    _durationLabel.centerY = _audioBtn.centerY;
+    _hornImageView.top = _audioBtn.top + 15.f;
     
     _indicatorView.centerY = CGRectGetMidY(_audioBtn.frame);
     _sendFailBtn.centerY = _indicatorView.centerY;
@@ -241,12 +292,19 @@
         _indicatorView.right = CGRectGetMinX(_audioBtn.frame);
         _sendFailBtn.right = _indicatorView.right;
         _durationLabel.right = CGRectGetMinX(_audioBtn.frame);
+        _hornImageView.right = CGRectGetMaxX(_audioBtn.frame)-15.f;
+        _hornImageView.image = [UIImage imageNamed:@"SenderVoiceNodePlaying_12x17_"];
     }
     else {
         _iconImageView.left   = 10.f;
         _audioBtn.left = CGRectGetMaxX(_iconImageView.frame)+5.f;
         _durationLabel.left = CGRectGetMaxX(_audioBtn.frame);
+        _hornImageView.left = CGRectGetMinX(_audioBtn.frame)+13.f;
+        _hornImageView.image = [UIImage imageNamed:@"ReceiverVoiceNodePlaying_12x17_"];
     }
+    _hornImageView.animationDuration = 1.f;
+    _hornImageView.animationRepeatCount = -1;
+    _hornImageView.animationImages = [self getHornImages];
 }
 
 - (void)updateImageCell
@@ -362,9 +420,27 @@
 
 #pragma mark - Private
 
+- (NSArray *)getHornImages
+{
+    NSArray *imageNames = [NSArray array];
+    if (_isMine) {
+        imageNames = @[@"SenderVoiceNodePlaying001_12x17_", @"SenderVoiceNodePlaying002_12x17_", @"SenderVoiceNodePlaying003_12x17_"];
+    }
+    else {
+        imageNames = @[@"ReceiverVoiceNodePlaying001_12x17_", @"ReceiverVoiceNodePlaying002_12x17_", @"ReceiverVoiceNodePlaying003_12x17_"];
+    }
+    NSMutableArray *images = [NSMutableArray array];
+    for (NSString *imageName in imageNames) {
+        UIImage *image = [UIImage imageNamed:imageName];
+        [images addObject:image];
+    }
+    
+    return images;
+}
+
 - (CGFloat)calculateAudioWidth
 {
-    int voiceDuration = _cellLayout.message.audioDuration;
+    NSInteger voiceDuration = _cellLayout.message.audioDuration;
     CGFloat width = 0;
     
     if (voiceDuration > 2) {
