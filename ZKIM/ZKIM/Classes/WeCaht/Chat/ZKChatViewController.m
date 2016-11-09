@@ -256,6 +256,7 @@
     [self insertMsgToDataSourceWithMessage:message];
     [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
         if (error) {
+            [_tableView reloadData];
             DLog(@"语音消息发送失败 -- %@", error.errorDescription);
             return;
         }
@@ -272,6 +273,7 @@
         [self insertMsgToDataSourceWithMessage:emmsg];
         [[EMClient sharedClient].chatManager sendMessage:emmsg progress:nil completion:^(EMMessage *message, EMError *error) {
             if (error) {
+                [_tableView reloadData];
                 DLog(@"图片消息发送失败 -- %@", error.errorDescription);
                 return;
             }

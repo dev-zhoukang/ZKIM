@@ -408,14 +408,6 @@ static CGFloat const kBottomInset = 10.f;
     return _tapControl;
 }
 
-static inline NSString *getAudioPath() {
-    NSString *path = [NSDocumentPath() stringByAppendingPathComponent:@"audio"];
-    if (![FileManager fileExistsAtPath:path]) {
-        [FileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-    return path;
-}
-
 #pragma mark - <ZKRecordHelperDelegate>
 
 - (void)recordHelperDidStartRecord
@@ -424,9 +416,8 @@ static inline NSString *getAudioPath() {
     
     NSString *dateStr = [[NSDate date] timestamp];
     NSString *pathStr = [NSString stringWithFormat:@"%@%zd", dateStr, Random(0, 100000)];
-    NSString *filePath = [getAudioPath() stringByAppendingPathComponent:pathStr];
     
-    [[EMCDDeviceManager sharedInstance] asyncStartRecordingWithFileName:filePath completion:^(NSError *error) {
+    [[EMCDDeviceManager sharedInstance] asyncStartRecordingWithFileName:pathStr completion:^(NSError *error) {
         if (error) {
             DLog(@"%@", error.description);
         }
@@ -443,6 +434,10 @@ static inline NSString *getAudioPath() {
     DLog(@"结束录音");
     [[EMCDDeviceManager sharedInstance] asyncStopRecordingWithCompletion:^(NSString *recordPath, NSInteger aDuration, NSError *error) {
         DLog(@"路径 == %@  时长 == %zd", recordPath, aDuration);
+        if (error) {
+            DLog(@"录音失败 == %@", error);
+            return;
+        }
         // 结束录音后 将录音信息传给代理
         ZKMediaModel *model = [ZKMediaModel new];
         model.audioPath = recordPath.copy;

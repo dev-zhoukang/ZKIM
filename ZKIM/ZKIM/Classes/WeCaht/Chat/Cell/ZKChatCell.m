@@ -103,6 +103,13 @@
     _audioBtn.backgroundColor = [UIColor clearColor];
     _audioBtn.height = 55.f;
     
+    _durationLabel = [UILabel new];
+    [self.contentView addSubview:_durationLabel];
+    _durationLabel.font = [UIFont systemFontOfSize:15.f];
+    _durationLabel.textColor = [UIColor grayColor];
+    _durationLabel.textAlignment = NSTextAlignmentRight;
+    _durationLabel.size = (CGSize){50.f, 55.f};
+    
     _longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     [_contentLabel addGestureRecognizer:_longPress];
 }
@@ -201,6 +208,7 @@
     _bubbleImageView.hidden = YES;
     _contentImageView.hidden = YES;
     _audioBtn.hidden = NO;
+    _durationLabel.hidden = NO;
     
     _audioBtn.width = [self calculateAudioWidth];
     
@@ -214,26 +222,30 @@
         _timeLabel.width = [timeStr stringWidthWithFont:_timeLabel.font height:MAXFLOAT]+8.f;
         _timeLabel.centerX = SCREEN_WIDTH*0.5;
         _audioBtn.top = 35.f;
-        _iconImageView.top = _audioBtn.top;
     }
     else {
         _timeLabel.hidden     = YES;
         _audioBtn.top = 10.f;
-        _iconImageView.top = _audioBtn.top;
     }
     
-    _indicatorView.centerY = CGRectGetMidY(_bubbleImageView.frame);
+    _iconImageView.top = _audioBtn.top;
+    _durationLabel.top = _audioBtn.top;
+    _durationLabel.text = [NSString stringWithFormat:@"%d%@", _cellLayout.message.audioDuration, @"''"];
+    
+    _indicatorView.centerY = CGRectGetMidY(_audioBtn.frame);
     _sendFailBtn.centerY = _indicatorView.centerY;
     
     if (_isMine) {
         _iconImageView.right   = SCREEN_WIDTH - 10.f;
         _audioBtn.right = CGRectGetMinX(_iconImageView.frame)-5.f;
-        _indicatorView.right = CGRectGetMinX(_bubbleImageView.frame);
+        _indicatorView.right = CGRectGetMinX(_audioBtn.frame);
         _sendFailBtn.right = _indicatorView.right;
+        _durationLabel.right = CGRectGetMinX(_audioBtn.frame);
     }
     else {
         _iconImageView.left   = 10.f;
         _audioBtn.left = CGRectGetMaxX(_iconImageView.frame)+5.f;
+        _durationLabel.left = CGRectGetMaxX(_audioBtn.frame);
     }
 }
 
@@ -242,6 +254,7 @@
     _contentLabel.hidden = YES;
     _bubbleImageView.hidden = YES;
     _audioBtn.hidden = YES;
+    _durationLabel.hidden = YES;
     _contentImageView.hidden = NO;
     
     ZKMessage *message = _cellLayout.message;
@@ -302,6 +315,7 @@
     _contentLabel.hidden = NO;
     _bubbleImageView.hidden = NO;
     _contentImageView.hidden = YES;
+    _durationLabel.hidden = YES;
     _audioBtn.hidden = YES;
     
     _bubbleImageView.image = [self getTextBubbleImage];
