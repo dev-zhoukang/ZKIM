@@ -83,7 +83,7 @@
     
     _volumeImageView = [UIImageView new];
     [_imagesContainer addSubview:_volumeImageView];
-    _volumeImageView.image = [UIImage imageNamed:@"RecordingSignal003_38x100_"];
+    _volumeImageView.image = [UIImage imageNamed:@"RecordingSignal001_38x100_"];
     _volumeImageView.size = (CGSize){38.f, 100.f};
     
     _backoutImageView = [UIImageView new];
@@ -137,6 +137,16 @@
     _imagesContainer.hidden = NO;
     _hintLabel.text = @"手指上滑 取消发送";
     _hintLabel.backgroundColor = [UIColor clearColor];
+}
+
+- (void)setVolume:(double)volume
+{
+    int temp = (int)(volume*10);
+    temp = temp<1?1:temp;
+    temp = temp>8?8:temp;
+    
+    NSString *imageName = [NSString stringWithFormat:@"RecordingSignal00%d_38x100_.png",temp];
+    _volumeImageView.image = [UIImage imageNamed:imageName];
 }
 
 - (void)hide

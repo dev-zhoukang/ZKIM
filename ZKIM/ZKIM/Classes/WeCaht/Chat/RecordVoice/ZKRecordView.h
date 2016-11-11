@@ -19,4 +19,6 @@
 - (void)hide;
 - (void)show;
 
+- (void)setVolume:(double)volume;
+
 @end

@@ -17,7 +17,6 @@
 @property (nonatomic, assign) BOOL btnIsOutside;
 
 @property (nonatomic, strong) NSTimer *timer;
-@property (nonatomic, assign) NSTimeInterval remainSections;
 
 @end
 
@@ -34,7 +33,6 @@
 - (void)setup
 {
     _btnIsOutside = NO;
-    _remainSections = 0;
     
     _recordView = [ZKRecordView shareRecordView];
     [KeyWindow addSubview:_recordView];
@@ -69,11 +67,9 @@
     [_recordView show];
     DLog(@"开始录音");
     
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1 block:^(NSTimer * _Nonnull timer) {
-        _remainSections += 1;
-        if (_remainSections >= 3) {
-            [timer invalidate];
-        }
+    _timer = [NSTimer scheduledTimerWithTimeInterval:.1 block:^(NSTimer * _Nonnull timer) {
+        double volume = [[EMCDDeviceManager sharedInstance] emPeekRecorderVoiceMeter];
+        [_recordView setVolume:volume];
     } repeats:YES];
     
     NSString *dateStr = [[NSDate date] timestamp];
@@ -94,25 +90,22 @@
 {
     DLog(@"结束录音");
     
-    if (_remainSections <= 2) {
-        DLog(@"录音时间太短!");
-        [_recordView showTooShort];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            _remainSections = 0;
-            [self cancelRecord];
-        });
-        
-        return;
-    }
-    [_recordView hide];
-    
     [[EMCDDeviceManager sharedInstance] asyncStopRecordingWithCompletion:^(NSString *recordPath, NSInteger aDuration, NSError *error) {
-        DLog(@"路径 == %@  时长 == %zd", recordPath, aDuration);
+        if (aDuration < 2) {
+            DLog(@"录音时间太短!");
+            [_recordView showTooShort];
+            [_timer invalidate];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self cancelRecord];
+            });
+            
+            return;
+        }
+        
         if (error) {
             DLog(@"录音失败 == %@", error);
             return;
         }
-        _remainSections = 0;
         // 结束录音后 将录音信息传给代理
         ZKMediaModel *model = [ZKMediaModel new];
         model.audioPath = recordPath.copy;
@@ -121,6 +114,8 @@
         if ([self.delegate respondsToSelector:@selector(recordHelperDidEndRecordMediaModel:mediaType:)]) {
             [self.delegate recordHelperDidEndRecordMediaModel:model mediaType:MediaType_Audio];
         }
+        [_recordView hide];
+        [_timer invalidate];
     }];
 }
 
@@ -143,6 +138,7 @@
 - (void)cancelRecord
 {
     [_recordView hide];
+    [_timer invalidate];
     [[EMCDDeviceManager sharedInstance] cancelCurrentRecording];
     DLog(@"取消录音");
     if ([self.delegate respondsToSelector:@selector(recordHelperDidCancelRecord)]) {
