@@ -12,7 +12,10 @@
 
 + (instancetype)shareRecordView;
 
-- (void)showCancelBtn;
-- (void)hideCancelBtn;
+- (void)showCancelBtn; // 显示取消按钮
+- (void)hideCancelBtn; // 隐藏取消按钮
+
+- (void)hide;
+- (void)show;
 
 @end

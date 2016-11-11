@@ -33,7 +33,7 @@
     
     _recordView = [ZKRecordView shareRecordView];
     [KeyWindow addSubview:_recordView];
-    _recordView.hidden = YES;
+    [_recordView hide];
 }
 
 + (ZKRecordHelper *)recordHelperWithButton:(UIButton *)button
@@ -61,7 +61,7 @@
 
 - (void)startRecord
 {
-    _recordView.hidden = NO;
+    [_recordView show];
     if ([self.delegate respondsToSelector:@selector(recordHelperDidStartRecord)]) {
         [self.delegate recordHelperDidStartRecord];
     }
@@ -69,7 +69,7 @@
 
 - (void)endRecord
 {
-    _recordView.hidden = YES;
+    [_recordView hide];
     if ([self.delegate respondsToSelector:@selector(recordHelperDidEndRecordWithData:duration:)]) {
         [self.delegate recordHelperDidEndRecordWithData:nil duration:0];
     }
@@ -93,7 +93,7 @@
 
 - (void)cancleRecord
 {
-    _recordView.hidden = YES;
+    [_recordView hide];
     if ([self.delegate respondsToSelector:@selector(recordHelperDidCancelRecord)]) {
         [self.delegate recordHelperDidCancelRecord];
     }

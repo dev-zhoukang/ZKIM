@@ -426,6 +426,7 @@ static CGFloat const kBottomInset = 10.f;
 
 - (void)recordHelperDidCancelRecord
 {
+    [[EMCDDeviceManager sharedInstance] cancelCurrentRecording];
     DLog(@"取消录音");
 }
 

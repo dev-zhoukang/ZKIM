@@ -128,4 +128,15 @@
     _hintLabel.backgroundColor = [UIColor clearColor];
 }
 
+- (void)hide
+{
+    self.hidden = YES;
+    [self hideCancelBtn];
+}
+
+- (void)show
+{
+    self.hidden = NO;
+}
+
 @end
