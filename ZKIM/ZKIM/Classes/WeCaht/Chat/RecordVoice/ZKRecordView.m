@@ -141,7 +141,8 @@
 
 - (void)setVolume:(double)volume
 {
-    int temp = (int)(volume*10);
+    int temp = (int)(volume*8);
+    
     temp = temp<1?1:temp;
     temp = temp>8?8:temp;
     
