@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
+
+typedef NS_ENUM(NSInteger, ZKAudioRecordQualityType) {
+    ZKAudioRecordQualityLow,
+    ZKAudioRecordQualityMedium,
+    ZKAudioRecordQualityHigh,
+    ZKAudioRecordQualityMax
+};
+
 @interface EMAudioRecorderUtil : NSObject
 
 // 当前是否正在录音
@@ -16,6 +24,11 @@
 // 开始录音
 + (void)asyncStartRecordingWithPreparePath:(NSString *)aFilePath
                                 completion:(void(^)(NSError *error))completion;
+
++ (void)asyncStartRecordingWithPreparePath:(NSString *)aFilePath
+                               qualityType:(ZKAudioRecordQualityType)qualityType
+                                completion:(void(^)(NSError *error))completion;
+
 // 停止录音
 +(void)asyncStopRecordingWithCompletion:(void(^)(NSString *recordPath))completion;
 

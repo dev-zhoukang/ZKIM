@@ -18,7 +18,10 @@ static EMAudioRecorderUtil *audioRecorderUtil = nil;
     void (^recordFinish)(NSString *recordPath);
 }
 @property (nonatomic, strong) AVAudioRecorder *recorder;
-@property (nonatomic, strong) NSDictionary *recordSetting;
+@property (nonatomic, strong) NSDictionary *recordSetting_low;
+@property (nonatomic, strong) NSDictionary *recordSetting_medium;
+@property (nonatomic, strong) NSDictionary *recordSetting_high;
+@property (nonatomic, strong) NSDictionary *recordSetting_max;
 
 @end
 
@@ -26,91 +29,61 @@ static EMAudioRecorderUtil *audioRecorderUtil = nil;
 
 #pragma mark - Public
 // 当前是否正在录音
-+(BOOL)isRecording{
++(BOOL)isRecording {
     return [[EMAudioRecorderUtil sharedInstance] isRecording];
 }
 
 // 开始录音
 + (void)asyncStartRecordingWithPreparePath:(NSString *)aFilePath
-                                completion:(void(^)(NSError *error))completion{
+                                completion:(void(^)(NSError *error))completion {
+    
+    [EMAudioRecorderUtil asyncStartRecordingWithPreparePath:aFilePath
+                                                qualityType:ZKAudioRecordQualityLow
+                                                 completion:completion];
+}
+
++ (void)asyncStartRecordingWithPreparePath:(NSString *)aFilePath
+                               qualityType:(ZKAudioRecordQualityType)qualityType
+                                completion:(void(^)(NSError *error))completion {
+    
     [[EMAudioRecorderUtil sharedInstance] asyncStartRecordingWithPreparePath:aFilePath
+                                                                 qualityType:qualityType
                                                                   completion:completion];
 }
 
 // 停止录音
-+(void)asyncStopRecordingWithCompletion:(void(^)(NSString *recordPath))completion{
++(void)asyncStopRecordingWithCompletion:(void(^)(NSString *recordPath))completion {
     [[EMAudioRecorderUtil sharedInstance] asyncStopRecordingWithCompletion:completion];
 }
 
 // 取消录音
-+(void)cancelCurrentRecording{
++(void)cancelCurrentRecording {
     [[EMAudioRecorderUtil sharedInstance] cancelCurrentRecording];
 }
 
-+(AVAudioRecorder *)recorder{
++(AVAudioRecorder *)recorder {
     return [EMAudioRecorderUtil sharedInstance].recorder;
 }
 
-#pragma mark - getter
-- (NSDictionary *)recordSetting
-{
-    if (!_recordSetting) {
-        _recordSetting = [[NSDictionary alloc] initWithObjectsAndKeys:
-                          [NSNumber numberWithFloat: 8000.0],AVSampleRateKey, //采样率
-                          [NSNumber numberWithInt: kAudioFormatLinearPCM],AVFormatIDKey,
-                          [NSNumber numberWithInt:16],AVLinearPCMBitDepthKey,//采样位数 默认 16
-                          [NSNumber numberWithInt: 1], AVNumberOfChannelsKey,//通道的数目
-                          nil];
-    }
-    
-    return _recordSetting;
-}
-
-#pragma mark - Private
-+(EMAudioRecorderUtil *)sharedInstance{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        audioRecorderUtil = [[self alloc] init];
-    });
-    
-    return audioRecorderUtil;
-}
-
--(instancetype)init{
-    if (self = [super init]) {
-        
-    }
-    
-    return self;
-}
-
--(void)dealloc{
-    if (_recorder) {
-        _recorder.delegate = nil;
-        [_recorder stop];
-        [_recorder deleteRecording];
-        _recorder = nil;
-    }
-    recordFinish = nil;
-}
-
--(BOOL)isRecording{
+- (BOOL)isRecording {
     return !!_recorder;
 }
 
 // 开始录音，文件放到aFilePath下
 - (void)asyncStartRecordingWithPreparePath:(NSString *)aFilePath
-                                completion:(void(^)(NSError *error))completion
-{
+                               qualityType:(ZKAudioRecordQualityType)qualityType
+                                completion:(void(^)(NSError *error))completion {
     NSError *error = nil;
     NSString *wavFilePath = [[aFilePath stringByDeletingPathExtension]
                              stringByAppendingPathExtension:@"wav"];
     NSURL *wavUrl = [[NSURL alloc] initFileURLWithPath:wavFilePath];
+    
+    NSDictionary *setting = [self getRecordSettingWithQuality:qualityType];
+    
     _recorder = [[AVAudioRecorder alloc] initWithURL:wavUrl
-                                            settings:self.recordSetting
+                                            settings:setting?:self.recordSetting_low
                                                error:&error];
-    if(!_recorder || error)
-    {
+    if(!_recorder || error) {
         _recorder = nil;
         if (completion) {
             error = [NSError errorWithDomain:@"Failed to initialize AVAudioRecorder"
@@ -118,7 +91,7 @@ static EMAudioRecorderUtil *audioRecorderUtil = nil;
                                     userInfo:nil];
             completion(error);
         }
-        return ;
+        return;
     }
     _startDate = [NSDate date];
     _recorder.meteringEnabled = YES;
@@ -131,7 +104,7 @@ static EMAudioRecorderUtil *audioRecorderUtil = nil;
 }
 
 // 停止录音
--(void)asyncStopRecordingWithCompletion:(void(^)(NSString *recordPath))completion{
+- (void)asyncStopRecordingWithCompletion:(void(^)(NSString *recordPath))completion {
     recordFinish = completion;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self->_recorder stop];
@@ -139,8 +112,7 @@ static EMAudioRecorderUtil *audioRecorderUtil = nil;
 }
 
 // 取消录音
-- (void)cancelCurrentRecording
-{
+- (void)cancelCurrentRecording {
     _recorder.delegate = nil;
     if (_recorder.recording) {
         [_recorder stop];
@@ -149,11 +121,9 @@ static EMAudioRecorderUtil *audioRecorderUtil = nil;
     recordFinish = nil;
 }
 
-
 #pragma mark - AVAudioRecorderDelegate
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder
-                           successfully:(BOOL)flag
-{
+                           successfully:(BOOL)flag {
     NSString *recordPath = [[_recorder url] path];
     if (recordFinish) {
         if (!flag) {
@@ -166,7 +136,106 @@ static EMAudioRecorderUtil *audioRecorderUtil = nil;
 }
 
 - (void)audioRecorderEncodeErrorDidOccur:(AVAudioRecorder *)recorder
-                                   error:(NSError *)error{
+                                   error:(NSError *)error {
     NSLog(@"audioRecorderEncodeErrorDidOccur");
 }
+
+#pragma mark - Private
++(EMAudioRecorderUtil *)sharedInstance {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        audioRecorderUtil = [[self alloc] init];
+    });
+    
+    return audioRecorderUtil;
+}
+
+- (instancetype)init {
+    if (self = [super init]) {
+        
+    }
+    
+    return self;
+}
+
+- (NSDictionary *)getRecordSettingWithQuality:(ZKAudioRecordQualityType)qualityType
+{
+    switch (qualityType) {
+        case ZKAudioRecordQualityLow: {
+            return self.recordSetting_low;
+        } break;
+        case ZKAudioRecordQualityMedium: {
+            return self.recordSetting_medium;
+        } break;
+        case ZKAudioRecordQualityHigh: {
+            return self.recordSetting_high;
+        } break;
+        case ZKAudioRecordQualityMax: {
+            return self.recordSetting_max;
+        } break;
+    }
+}
+
+- (void)dealloc {
+    if (_recorder) {
+        _recorder.delegate = nil;
+        [_recorder stop];
+        [_recorder deleteRecording];
+        _recorder = nil;
+    }
+    recordFinish = nil;
+}
+
+#pragma mark - getter
+
+- (NSDictionary *)recordSetting_low {
+    if (!_recordSetting_low) {
+        _recordSetting_low = @{ AVSampleRateKey:@(8000.f), //采样率
+                                AVFormatIDKey:@(kAudioFormatLinearPCM),
+                                AVLinearPCMBitDepthKey:@(16), //采样位数 默认 16
+                                AVNumberOfChannelsKey:@(1) };
+    }
+    
+    return _recordSetting_low;
+}
+
+- (NSDictionary *)recordSetting_medium
+{
+    if (!_recordSetting_medium) {
+        _recordSetting_medium = @{ /**
+                                    采样率 44.1kHZ和标准的CD Audio是相同的, 32KHZ, 24KHZ, 16KHZ, 12KHZ, 8KHZ是电话采样率，对一般的录音已经足够了
+                                    */
+                                  AVSampleRateKey:@(16000.f), //采样率
+                                  AVFormatIDKey:@(kAudioFormatLinearPCM),
+                                  AVLinearPCMBitDepthKey:@(16), //采样位数 默认 16
+                                  AVNumberOfChannelsKey:@(1), //通道的数目, iphone 只有一个声道
+                                  AVEncoderAudioQualityKey:@(AVAudioQualityMedium) };
+    }
+    return _recordSetting_medium;
+}
+
+- (NSDictionary *)recordSetting_high
+{
+    if (!_recordSetting_high) {
+        _recordSetting_high = @{ AVSampleRateKey:@(32000.f), //采样率
+                                 AVFormatIDKey:@(kAudioFormatLinearPCM),
+                                 AVLinearPCMBitDepthKey:@(16), //采样位数 默认 16
+                                 AVNumberOfChannelsKey:@(1), //通道的数目
+                                 AVEncoderAudioQualityKey:@(AVAudioQualityHigh) };
+    }
+    return _recordSetting_high;
+}
+
+- (NSDictionary *)recordSetting_max
+{
+    if (!_recordSetting_max) {
+        _recordSetting_max = @{ AVSampleRateKey:@(40000.f), //采样率
+                                AVFormatIDKey:@(kAudioFormatLinearPCM),
+                                AVLinearPCMBitDepthKey:@(16), //采样位数 默认 16
+                                AVNumberOfChannelsKey:@(1), //通道的数目
+                                AVEncoderAudioQualityKey:@(AVAudioQualityMax) };
+    }
+    return _recordSetting_max;
+}
+
 @end
