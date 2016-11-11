@@ -59,8 +59,7 @@
         } break;
         case ZKMessageBodyTypeAudio: {
             EMVoiceMessageBody *body = (EMVoiceMessageBody *)_emmsg.body;
-            _audioLocalPath = body.localPath.copy;
-            _audioRemotePath = body.remotePath.copy;
+            _audioPath = body.localPath?:body.remotePath;
             _audioDuration = body.duration;
         } break;
             

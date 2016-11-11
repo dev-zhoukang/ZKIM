@@ -50,6 +50,12 @@
     [self requestData];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_ChatPlayingAudio object:nil];
+}
+
 - (void)requestData
 {
     EMConversation *conversation = [[EMClient sharedClient].chatManager getConversation:_conversationID type:EMConversationTypeChat createIfNotExist:YES];

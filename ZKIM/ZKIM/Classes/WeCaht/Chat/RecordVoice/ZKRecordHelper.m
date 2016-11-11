@@ -66,6 +66,7 @@
 {
     [_recordView show];
     DLog(@"开始录音");
+    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_ChatPlayingAudio object:nil];
     
     _timer = [NSTimer scheduledTimerWithTimeInterval:.1 block:^(NSTimer * _Nonnull timer) {
         double volume = [[EMCDDeviceManager sharedInstance] emPeekRecorderVoiceMeter];

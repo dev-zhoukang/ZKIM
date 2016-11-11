@@ -126,7 +126,8 @@
 {
     _isPlayingAudio = note.userInfo[Notification_Key_ChatPlayingAudio];
     
-    if (!_isPlayingAudio || ![_isPlayingAudio isEqualToString:_cellLayout.message.audioLocalPath]){
+    if (!_isPlayingAudio || ![_isPlayingAudio isEqualToString:_cellLayout.message.audioPath]){
+        [[EMCDDeviceManager sharedInstance] stopPlaying];
         [_hornImageView stopAnimating];
     }
 }
@@ -182,16 +183,16 @@
 
 - (void)playingAudio:(UIButton *)btn
 {
-    if (_isPlayingAudio && [_isPlayingAudio isEqualToString:_cellLayout.message.audioLocalPath]) {
+    if (_isPlayingAudio && [_isPlayingAudio isEqualToString:_cellLayout.message.audioPath]) {
         [[EMCDDeviceManager sharedInstance] stopPlaying];
         [[NSNotificationCenter defaultCenter] postNotificationName:Notification_ChatPlayingAudio object:nil];
         return;
     }
     
     [_hornImageView startAnimating];
-    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_ChatPlayingAudio object:nil userInfo:@{Notification_Key_ChatPlayingAudio:_cellLayout.message.audioLocalPath}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_ChatPlayingAudio object:nil userInfo:@{Notification_Key_ChatPlayingAudio:_cellLayout.message.audioPath}];
     
-    NSString *audioPath = _cellLayout.message.audioLocalPath;
+    NSString *audioPath = _cellLayout.message.audioPath;
         [[EMCDDeviceManager sharedInstance] asyncPlayingWithPath:audioPath completion:^(NSError *error) {
             if (error) {
                 DLog(@"播放出错 == %@", error);
@@ -309,7 +310,7 @@
     _hornImageView.animationRepeatCount = -1;
     _hornImageView.animationImages = [self getHornImages];
     
-    if (_isPlayingAudio && [_isPlayingAudio isEqualToString:_cellLayout.message.audioLocalPath]){
+    if (_isPlayingAudio && [_isPlayingAudio isEqualToString:_cellLayout.message.audioPath]){
         [_hornImageView startAnimating];
     }
     else{
