@@ -16,3 +16,6 @@ NSString *const UserDefaultKey_LoginUser = @"UserDefaultKey_LoginUser";
 NSString *const UserDefaultKey_LoginResult = @"UserDefaultKey_LoginResult";
 NSString *const Notification_LoginSuccess = @"Notification_LoginSuccess";
 NSString *const UserDefaultKey_timeDifference = @"UserDefaultKey_timeDifference";
+
+NSString *const Notification_ChatPlayingAudio = @"Notification_ChatPlayingAudio";
+NSString *const Notification_Key_ChatPlayingAudio = @"Notification_Key_ChatPlayingAudio";

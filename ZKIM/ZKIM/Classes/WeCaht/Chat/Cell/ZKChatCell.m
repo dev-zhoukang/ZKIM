@@ -34,10 +34,9 @@
 @property (nonatomic, strong) UIButton *audioBtn;
 @property (nonatomic, strong) UILabel *durationLabel;
 @property (nonatomic, strong) UIImageView *hornImageView; //!< 小喇叭
+@property (nonatomic, copy) NSString *isPlayingAudio;
 
 @end
-
-static UIButton *currentPlayingBtn_;
 
 @implementation ZKChatCell
 
@@ -118,6 +117,18 @@ static UIButton *currentPlayingBtn_;
     
     _longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     [_contentLabel addGestureRecognizer:_longPress];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePlayingAudioNoti:) name:Notification_ChatPlayingAudio object:nil];
+}
+
+#pragma mark - Noti
+- (void)handlePlayingAudioNoti:(NSNotification *)note
+{
+    _isPlayingAudio = note.userInfo[Notification_Key_ChatPlayingAudio];
+    
+    if (!_isPlayingAudio || ![_isPlayingAudio isEqualToString:_cellLayout.message.audioLocalPath]){
+        [_hornImageView stopAnimating];
+    }
 }
 
 #pragma mark - Public
@@ -171,32 +182,24 @@ static UIButton *currentPlayingBtn_;
 
 - (void)playingAudio:(UIButton *)btn
 {
-    if ([currentPlayingBtn_ isEqual:btn]) {
-        btn.selected = !btn.selected;
-    } else {
-        btn.selected = YES;
+    if (_isPlayingAudio && [_isPlayingAudio isEqualToString:_cellLayout.message.audioLocalPath]) {
+        [[EMCDDeviceManager sharedInstance] stopPlaying];
+        [[NSNotificationCenter defaultCenter] postNotificationName:Notification_ChatPlayingAudio object:nil];
+        return;
     }
-    currentPlayingBtn_ = btn;
     
-    [[EMCDDeviceManager sharedInstance] stopPlaying];
+    [_hornImageView startAnimating];
+    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_ChatPlayingAudio object:nil userInfo:@{Notification_Key_ChatPlayingAudio:_cellLayout.message.audioLocalPath}];
     
-    if (btn.isSelected) { // 播放录音
-        [self startHornImagesAnimation];
-        DLog(@"点击播放音频");
-        NSString *audioPath = _cellLayout.message.audioLocalPath;
+    NSString *audioPath = _cellLayout.message.audioLocalPath;
         [[EMCDDeviceManager sharedInstance] asyncPlayingWithPath:audioPath completion:^(NSError *error) {
             if (error) {
                 DLog(@"播放出错 == %@", error);
                 return;
             }
             DLog(@"播放完毕");
+            [[NSNotificationCenter defaultCenter] postNotificationName:Notification_ChatPlayingAudio object:nil];
         }];
-    }
-    else { // 停止播放
-        DLog(@"点击停止音频");
-        [_hornImageView stopAnimating];
-        [[EMCDDeviceManager sharedInstance] stopPlaying];
-    }
 }
 
 - (void)startHornImagesAnimation
@@ -305,6 +308,13 @@ static UIButton *currentPlayingBtn_;
     _hornImageView.animationDuration = 1.f;
     _hornImageView.animationRepeatCount = -1;
     _hornImageView.animationImages = [self getHornImages];
+    
+    if (_isPlayingAudio && [_isPlayingAudio isEqualToString:_cellLayout.message.audioLocalPath]){
+        [_hornImageView startAnimating];
+    }
+    else{
+        [_hornImageView stopAnimating];
+    }
 }
 
 - (void)updateImageCell
@@ -545,6 +555,11 @@ static UIButton *currentPlayingBtn_;
     [alertView showWithCompletionBlock:^(NSInteger buttonIndex) {
         DLog(@"=======%zd", buttonIndex);
     }];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
