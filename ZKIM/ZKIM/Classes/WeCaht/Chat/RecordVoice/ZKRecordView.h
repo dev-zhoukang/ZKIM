@@ -14,6 +14,7 @@
 
 - (void)showCancelBtn; // 显示取消按钮
 - (void)hideCancelBtn; // 隐藏取消按钮
+- (void)showTooShort;  
 
 - (void)hide;
 - (void)show;

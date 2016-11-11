@@ -87,6 +87,7 @@
     _volumeImageView.size = (CGSize){38.f, 100.f};
     
     _backoutImageView = [UIImageView new];
+    _backoutImageView.contentMode = UIViewContentModeCenter;
     [_bgView addSubview:_backoutImageView];
     _backoutImageView.image = [UIImage imageNamed:@"RecordCancel_100x100_"];
     _backoutImageView.size = (CGSize){100.f, 100.f};
@@ -112,6 +113,15 @@
     _hintLabel.top = CGRectGetMaxY(_imagesContainer.frame);
 }
 
+- (void)showTooShort
+{
+    self.hidden = NO;
+    _backoutImageView.image = [UIImage imageNamed:@"wechatout_mute_24x35_"];
+    _backoutImageView.hidden = NO;
+    _imagesContainer.hidden = YES;
+    _hintLabel.text = @"录音时间太短";
+}
+
 - (void)showCancelBtn
 {
     _backoutImageView.hidden = NO;
@@ -123,6 +133,7 @@
 - (void)hideCancelBtn
 {
     _backoutImageView.hidden = YES;
+    _backoutImageView.image = [UIImage imageNamed:@"RecordCancel_100x100_"];
     _imagesContainer.hidden = NO;
     _hintLabel.text = @"手指上滑 取消发送";
     _hintLabel.backgroundColor = [UIColor clearColor];

@@ -8,7 +8,6 @@
 
 #import "ZKChatPanel.h"
 #import "ZKRecordHelper.h"
-#import "EMCDDeviceManager.h"
 
 #define kChatPanelHeight   (kChatBarHeight + kEmoticonInputViewHeight)
 
@@ -213,6 +212,15 @@ static CGFloat const kBottomInset = 10.f;
     return YES;
 }
 
+#pragma mark - <ZKRecordHelperDelegate>
+
+- (void)recordHelperDidEndRecordMediaModel:(ZKMediaModel *)mediaModel mediaType:(MediaType)mediaType
+{
+    if ([self.delegate respondsToSelector:@selector(chatPanelSendMediaModel:mediaType:)]) {
+        [self.delegate chatPanelSendMediaModel:mediaModel mediaType:MediaType_Audio];
+    }
+}
+
 #pragma mark - Action
 
 - (IBAction)chatBatBtnClick:(UIButton *)btn
@@ -406,48 +414,6 @@ static CGFloat const kBottomInset = 10.f;
         [self.viewController.view insertSubview:_tapControl belowSubview:self];
     }
     return _tapControl;
-}
-
-#pragma mark - <ZKRecordHelperDelegate>
-
-- (void)recordHelperDidStartRecord
-{
-    DLog(@"开始录音");
-    
-    NSString *dateStr = [[NSDate date] timestamp];
-    NSString *pathStr = [NSString stringWithFormat:@"%@%zd", dateStr, Random(0, 100000)];
-    
-    [[EMCDDeviceManager sharedInstance] asyncStartRecordingWithFileName:pathStr completion:^(NSError *error) {
-        if (error) {
-            DLog(@"%@", error.description);
-        }
-    }];
-}
-
-- (void)recordHelperDidCancelRecord
-{
-    [[EMCDDeviceManager sharedInstance] cancelCurrentRecording];
-    DLog(@"取消录音");
-}
-
-- (void)recordHelperDidEndRecordWithData:(NSData *)amrAudio duration:(NSTimeInterval)duration
-{
-    DLog(@"结束录音");
-    [[EMCDDeviceManager sharedInstance] asyncStopRecordingWithCompletion:^(NSString *recordPath, NSInteger aDuration, NSError *error) {
-        DLog(@"路径 == %@  时长 == %zd", recordPath, aDuration);
-        if (error) {
-            DLog(@"录音失败 == %@", error);
-            return;
-        }
-        // 结束录音后 将录音信息传给代理
-        ZKMediaModel *model = [ZKMediaModel new];
-        model.audioPath = recordPath.copy;
-        model.audioDuration = aDuration;
-        
-        if ([self.delegate respondsToSelector:@selector(chatPanelSendMediaModel:mediaType:)]) {
-            [self.delegate chatPanelSendMediaModel:model mediaType:MediaType_Audio];
-        }
-    }];
 }
 
 #pragma mark - 获取 view 所在控制器

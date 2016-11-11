@@ -15,7 +15,7 @@
 @optional
 - (void)recordHelperDidStartRecord;
 - (void)recordHelperDidCancelRecord;
-- (void)recordHelperDidEndRecordWithData:(NSData *)amrAudio duration:(NSTimeInterval)duration;
+- (void)recordHelperDidEndRecordMediaModel:(ZKMediaModel *)mediaModel mediaType:(MediaType)mediaType;
 
 @end
 
