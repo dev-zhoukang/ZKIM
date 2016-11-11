@@ -116,7 +116,7 @@
 - (void)showTooShort
 {
     self.hidden = NO;
-    _backoutImageView.image = [UIImage imageNamed:@"wechatout_mute_24x35_"];
+    _backoutImageView.image = [UIImage imageNamed:@"record_short"];
     _backoutImageView.hidden = NO;
     _imagesContainer.hidden = YES;
     _hintLabel.text = @"录音时间太短";

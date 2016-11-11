@@ -94,7 +94,7 @@
 {
     DLog(@"结束录音");
     
-    if (_remainSections < 2) {
+    if (_remainSections <= 2) {
         DLog(@"录音时间太短!");
         [_recordView showTooShort];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
