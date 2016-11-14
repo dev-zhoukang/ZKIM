@@ -2,12 +2,13 @@
 //  ZKMeViewController.h
 //  ZKIM
 //
-//  Created by ZK on 16/9/18.
+//  Created by ZK on 16/11/14.
 //  Copyright © 2016年 ZK. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "ZKMeBaseViewController.h"
 
-@interface ZKMeViewController : ZKViewController
+@interface ZKMeViewController : ZKMeBaseViewController
 
 @end

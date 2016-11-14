@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZKMeBaseViewController.h"
 
-@interface ZKDiscoverViewController : ZKViewController
+@interface ZKDiscoverViewController : ZKMeBaseViewController
 
 @end

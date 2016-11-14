@@ -111,6 +111,8 @@
 		583A82361D91219B006F14C6 /* ZKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A82351D91219B006F14C6 /* ZKViewController.m */; };
 		583CC1AE1DD98CA3002677BF /* ZKProfileHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 583CC1AD1DD98CA3002677BF /* ZKProfileHeader.m */; };
 		583CC1B01DD98CBA002677BF /* ZKProfileHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 583CC1AF1DD98CBA002677BF /* ZKProfileHeader.xib */; };
+		583CC1B21DD9A2E9002677BF /* Discover_Plist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 583CC1B11DD9A2E9002677BF /* Discover_Plist.plist */; };
+		583CC1B51DD9A391002677BF /* ZKMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 583CC1B41DD9A391002677BF /* ZKMeViewController.m */; };
 		584073461DABABA8009B714A /* NSDate+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 584073381DABABA8009B714A /* NSDate+Common.m */; };
 		584073471DABABA8009B714A /* NSObject+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 5840733A1DABABA8009B714A /* NSObject+Common.m */; };
 		584073481DABABA8009B714A /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 5840733C1DABABA8009B714A /* NSString+Common.m */; };
@@ -231,9 +233,8 @@
 		58D147FA1D89366100A17D6D /* ApplicationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D147F91D89366100A17D6D /* ApplicationContext.m */; };
 		58D148221D8E77D800A17D6D /* ZKContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D148201D8E77D800A17D6D /* ZKContactViewController.m */; };
 		58D148271D8E77F500A17D6D /* ZKDiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D148251D8E77F500A17D6D /* ZKDiscoverViewController.m */; };
-		58D148281D8E77F500A17D6D /* ZKDiscoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D148261D8E77F500A17D6D /* ZKDiscoverViewController.xib */; };
-		58D1482C1D8E780000A17D6D /* ZKMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D1482A1D8E780000A17D6D /* ZKMeViewController.m */; };
-		58D1482D1D8E780000A17D6D /* ZKMeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D1482B1D8E780000A17D6D /* ZKMeViewController.xib */; };
+		58D1482C1D8E780000A17D6D /* ZKMeBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D1482A1D8E780000A17D6D /* ZKMeBaseViewController.m */; };
+		58D1482D1D8E780000A17D6D /* ZKMeBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D1482B1D8E780000A17D6D /* ZKMeBaseViewController.xib */; };
 		58D148321D8E793C00A17D6D /* ZKWeChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D148301D8E793C00A17D6D /* ZKWeChatListViewController.m */; };
 		58D148331D8E793C00A17D6D /* ZKWeChatListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D148311D8E793C00A17D6D /* ZKWeChatListViewController.xib */; };
 		58D148361D8E7F3C00A17D6D /* ZKNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D148351D8E7F3C00A17D6D /* ZKNavigationController.m */; };
@@ -515,6 +516,9 @@
 		583CC1AC1DD98CA3002677BF /* ZKProfileHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKProfileHeader.h; sourceTree = "<group>"; };
 		583CC1AD1DD98CA3002677BF /* ZKProfileHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKProfileHeader.m; sourceTree = "<group>"; };
 		583CC1AF1DD98CBA002677BF /* ZKProfileHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKProfileHeader.xib; sourceTree = "<group>"; };
+		583CC1B11DD9A2E9002677BF /* Discover_Plist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Discover_Plist.plist; sourceTree = "<group>"; };
+		583CC1B31DD9A391002677BF /* ZKMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKMeViewController.h; sourceTree = "<group>"; };
+		583CC1B41DD9A391002677BF /* ZKMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKMeViewController.m; sourceTree = "<group>"; };
 		584073371DABABA8009B714A /* NSDate+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Common.h"; sourceTree = "<group>"; };
 		584073381DABABA8009B714A /* NSDate+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Common.m"; sourceTree = "<group>"; };
 		584073391DABABA8009B714A /* NSObject+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Common.h"; sourceTree = "<group>"; };
@@ -743,10 +747,9 @@
 		58D148201D8E77D800A17D6D /* ZKContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKContactViewController.m; sourceTree = "<group>"; };
 		58D148241D8E77F500A17D6D /* ZKDiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKDiscoverViewController.h; sourceTree = "<group>"; };
 		58D148251D8E77F500A17D6D /* ZKDiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKDiscoverViewController.m; sourceTree = "<group>"; };
-		58D148261D8E77F500A17D6D /* ZKDiscoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKDiscoverViewController.xib; sourceTree = "<group>"; };
-		58D148291D8E780000A17D6D /* ZKMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKMeViewController.h; sourceTree = "<group>"; };
-		58D1482A1D8E780000A17D6D /* ZKMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKMeViewController.m; sourceTree = "<group>"; };
-		58D1482B1D8E780000A17D6D /* ZKMeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKMeViewController.xib; sourceTree = "<group>"; };
+		58D148291D8E780000A17D6D /* ZKMeBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKMeBaseViewController.h; sourceTree = "<group>"; };
+		58D1482A1D8E780000A17D6D /* ZKMeBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKMeBaseViewController.m; sourceTree = "<group>"; };
+		58D1482B1D8E780000A17D6D /* ZKMeBaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKMeBaseViewController.xib; sourceTree = "<group>"; };
 		58D1482F1D8E793C00A17D6D /* ZKWeChatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKWeChatListViewController.h; sourceTree = "<group>"; };
 		58D148301D8E793C00A17D6D /* ZKWeChatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKWeChatListViewController.m; sourceTree = "<group>"; };
 		58D148311D8E793C00A17D6D /* ZKWeChatListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKWeChatListViewController.xib; sourceTree = "<group>"; };
@@ -1817,9 +1820,9 @@
 		58D148171D8E775D00A17D6D /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				583CC1B11DD9A2E9002677BF /* Discover_Plist.plist */,
 				58D148241D8E77F500A17D6D /* ZKDiscoverViewController.h */,
 				58D148251D8E77F500A17D6D /* ZKDiscoverViewController.m */,
-				58D148261D8E77F500A17D6D /* ZKDiscoverViewController.xib */,
 			);
 			path = Discover;
 			sourceTree = "<group>";
@@ -1827,9 +1830,11 @@
 		58D148191D8E775D00A17D6D /* Me */ = {
 			isa = PBXGroup;
 			children = (
-				58D148291D8E780000A17D6D /* ZKMeViewController.h */,
-				58D1482A1D8E780000A17D6D /* ZKMeViewController.m */,
-				58D1482B1D8E780000A17D6D /* ZKMeViewController.xib */,
+				58D148291D8E780000A17D6D /* ZKMeBaseViewController.h */,
+				58D1482A1D8E780000A17D6D /* ZKMeBaseViewController.m */,
+				58D1482B1D8E780000A17D6D /* ZKMeBaseViewController.xib */,
+				583CC1B31DD9A391002677BF /* ZKMeViewController.h */,
+				583CC1B41DD9A391002677BF /* ZKMeViewController.m */,
 				58D148391D8F7D1D00A17D6D /* ZKMeTableCell.h */,
 				58D1483A1D8F7D1D00A17D6D /* ZKMeTableCell.m */,
 				58D1483B1D8F7D1D00A17D6D /* ZKMeTableCell.xib */,
@@ -2255,9 +2260,9 @@
 				584122771DC19EC6006D8C05 /* USAssetGroupViewController.xib in Resources */,
 				58D45DC41DBDDFB800B8C774 /* PreviewSupplementaryView-Checkmark-Selected@3x.png in Resources */,
 				58D149681D8FEE3100A17D6D /* Info.plist in Resources */,
-				58D148281D8E77F500A17D6D /* ZKDiscoverViewController.xib in Resources */,
 				584122671DC19EC5006D8C05 /* USPicker-Checkmark-Selected@2x.png in Resources */,
 				58BCC1C91DA9DF7D00B6B881 /* ZKAlertView_camera.png in Resources */,
+				583CC1B21DD9A2E9002677BF /* Discover_Plist.plist in Resources */,
 				584122681DC19EC5006D8C05 /* USPicker-Checkmark-Selected@3x.png in Resources */,
 				584122661DC19EC5006D8C05 /* USPicker-Checkbox@3x.png in Resources */,
 				584122741DC19EC5006D8C05 /* USAssetCollectionCell.xib in Resources */,
@@ -2282,7 +2287,7 @@
 				58D147F61D892E8D00A17D6D /* USSuspensionView.xib in Resources */,
 				58BCC1CB1DA9DF7D00B6B881 /* ZKAlertView_identification.png in Resources */,
 				5802F4B91DB8738F00492BA5 /* EmoticonWeibo.bundle in Resources */,
-				58D1482D1D8E780000A17D6D /* ZKMeViewController.xib in Resources */,
+				58D1482D1D8E780000A17D6D /* ZKMeBaseViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2320,6 +2325,7 @@
 				5802F4911DB86AC200492BA5 /* YYTextContainerView.m in Sources */,
 				584C51951DD07F2C0043394C /* EMAudioPlayerUtil.m in Sources */,
 				58BCC2401DA9F24200B6B881 /* MJRefreshBackFooter.m in Sources */,
+				583CC1B51DD9A391002677BF /* ZKMeViewController.m in Sources */,
 				58E360781D87F16F00D38839 /* ZKConfig.m in Sources */,
 				5802F4861DB86AC200492BA5 /* UIImageView+YYWebImage.m in Sources */,
 				58D45DBC1DBDDFB800B8C774 /* ImageCollectionViewCell.m in Sources */,
@@ -2478,7 +2484,7 @@
 				5802F4AF1DB86AC200492BA5 /* YYTransaction.m in Sources */,
 				58BCC24B1DA9F24200B6B881 /* MJRefreshNormalHeader.m in Sources */,
 				58BCC2511DA9F24200B6B881 /* UIScrollView+MJRefresh.m in Sources */,
-				58D1482C1D8E780000A17D6D /* ZKMeViewController.m in Sources */,
+				58D1482C1D8E780000A17D6D /* ZKMeBaseViewController.m in Sources */,
 				58BCC25F1DAA11B700B6B881 /* ZKChatRefreshHeader.m in Sources */,
 				58BCC2471DA9F24200B6B881 /* MJRefreshBackGifFooter.m in Sources */,
 				5802F4951DB86AC200492BA5 /* YYTextKeyboardManager.m in Sources */,

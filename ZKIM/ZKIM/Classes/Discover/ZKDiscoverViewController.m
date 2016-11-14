@@ -7,18 +7,26 @@
 //
 
 #import "ZKDiscoverViewController.h"
+#import "ZKMeTableCell.h"
 
 @interface ZKDiscoverViewController ()
-
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
 @implementation ZKDiscoverViewController
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:NSStringFromClass([self.superclass class]) bundle:nibBundleOrNil];
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.dataSource = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Discover_Plist" ofType:@"plist"]];
+    [self.tableView reloadData];
 }
 
 @end
