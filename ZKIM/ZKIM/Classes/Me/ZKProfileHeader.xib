@@ -16,6 +16,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D3x-ZK-ZT4" userLabel="Content View">
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zk_icon" translatesAutoresizingMaskIntoConstraints="NO" id="zuO-wP-vW9">
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="zuO-wP-vW9" secondAttribute="height" multiplier="1:1" id="xwh-R8-YAS"/>
                             </constraints>
@@ -36,22 +37,27 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="fdR-RH-XJo">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_line_arrow_10x17_" translatesAutoresizingMaskIntoConstraints="NO" id="fdR-RH-XJo">
                             <constraints>
-                                <constraint firstAttribute="width" constant="16" id="Bfq-9w-qjp"/>
-                                <constraint firstAttribute="height" constant="16" id="ck2-Ig-Hoq"/>
+                                <constraint firstAttribute="width" constant="10" id="Bfq-9w-qjp"/>
+                                <constraint firstAttribute="height" constant="17" id="ck2-Ig-Hoq"/>
                             </constraints>
                         </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCi-AH-OI1"/>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="fdR-RH-XJo" firstAttribute="centerY" secondItem="D3x-ZK-ZT4" secondAttribute="centerY" id="5FE-pm-FV2"/>
                         <constraint firstItem="mNH-Dc-P0m" firstAttribute="centerY" secondItem="D3x-ZK-ZT4" secondAttribute="centerY" constant="-10" id="8V5-jc-7Nb"/>
+                        <constraint firstItem="fCi-AH-OI1" firstAttribute="top" secondItem="D3x-ZK-ZT4" secondAttribute="top" id="AVB-uM-7QA"/>
                         <constraint firstItem="zuO-wP-vW9" firstAttribute="top" secondItem="D3x-ZK-ZT4" secondAttribute="top" constant="10" id="DTZ-kP-5G2"/>
                         <constraint firstAttribute="bottom" secondItem="zuO-wP-vW9" secondAttribute="bottom" constant="10" id="Ex7-3H-IfF"/>
+                        <constraint firstAttribute="trailing" secondItem="fCi-AH-OI1" secondAttribute="trailing" id="GIS-4d-XvA"/>
+                        <constraint firstAttribute="bottom" secondItem="fCi-AH-OI1" secondAttribute="bottom" id="HG6-rK-neP"/>
                         <constraint firstItem="zuO-wP-vW9" firstAttribute="leading" secondItem="D3x-ZK-ZT4" secondAttribute="leading" constant="10" id="HyG-p8-R1X"/>
                         <constraint firstItem="mNH-Dc-P0m" firstAttribute="leading" secondItem="zuO-wP-vW9" secondAttribute="trailing" constant="10" id="NeF-sx-NAl"/>
                         <constraint firstItem="0Kh-zM-2Q5" firstAttribute="trailing" secondItem="mNH-Dc-P0m" secondAttribute="trailing" id="Wrk-z4-cOj"/>
+                        <constraint firstItem="fCi-AH-OI1" firstAttribute="leading" secondItem="D3x-ZK-ZT4" secondAttribute="leading" id="b4d-fT-Bq4"/>
                         <constraint firstAttribute="trailing" secondItem="mNH-Dc-P0m" secondAttribute="trailing" constant="90" id="bCx-Bx-QCq"/>
                         <constraint firstItem="0Kh-zM-2Q5" firstAttribute="leading" secondItem="mNH-Dc-P0m" secondAttribute="leading" id="dMi-Tu-mQx"/>
                         <constraint firstAttribute="trailing" secondItem="fdR-RH-XJo" secondAttribute="trailing" constant="10" id="gi8-Eq-9Te"/>
@@ -72,6 +78,7 @@
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="9YI-Ow-piw" secondAttribute="trailing" id="5Je-jR-oNs"/>
                 <constraint firstAttribute="trailing" secondItem="D3x-ZK-ZT4" secondAttribute="trailing" id="8Bh-B9-G7i"/>
@@ -95,7 +102,7 @@
         </view>
     </objects>
     <resources>
-        <image name="profile_arrow" width="16" height="16"/>
+        <image name="login_line_arrow_10x17_" width="10" height="17"/>
         <image name="zk_icon" width="200" height="200"/>
     </resources>
 </document>

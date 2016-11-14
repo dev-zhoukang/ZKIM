@@ -30,7 +30,7 @@
     _tableView.sectionIndexBackgroundColor = [UIColor clearColor];
     _tableView.sectionIndexTrackingBackgroundColor = [UIColor clearColor];
     _tableView.backgroundColor = GlobalBGColor;
-    _tableView.contentInset = UIEdgeInsetsMake(_topInset+15.f, 0, _bottomInset, 0);
+    _tableView.contentInset = UIEdgeInsetsMake(_topInset+15.f,  0, _bottomInset, 0);
     _tableView.separatorColor = HexColor(0xdcdcdc);
     _tableView.separatorInset = UIEdgeInsetsZero;
 }

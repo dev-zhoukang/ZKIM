@@ -8,7 +8,7 @@
 
 #import "ZKProfileHeader.h"
 
-@interface ZKProfileHeader ()
+@interface ZKProfileHeader () <UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *icon;
 @property (weak, nonatomic) IBOutlet UILabel *name;

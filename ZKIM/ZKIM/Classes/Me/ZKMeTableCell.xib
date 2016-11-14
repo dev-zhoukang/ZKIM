@@ -28,10 +28,10 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="V0z-5H-ODh">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_line_arrow_10x17_" translatesAutoresizingMaskIntoConstraints="NO" id="V0z-5H-ODh">
                         <constraints>
-                            <constraint firstAttribute="width" constant="16" id="2rE-kd-44O"/>
-                            <constraint firstAttribute="height" constant="16" id="QtY-gC-He2"/>
+                            <constraint firstAttribute="width" constant="10" id="2rE-kd-44O"/>
+                            <constraint firstAttribute="height" constant="17" id="QtY-gC-He2"/>
                         </constraints>
                     </imageView>
                 </subviews>
@@ -55,6 +55,6 @@
     </objects>
     <resources>
         <image name="MoreMyBankCard" width="25" height="25"/>
-        <image name="profile_arrow" width="16" height="16"/>
+        <image name="login_line_arrow_10x17_" width="10" height="17"/>
     </resources>
 </document>
