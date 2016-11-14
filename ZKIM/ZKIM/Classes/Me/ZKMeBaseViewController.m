@@ -1,26 +1,21 @@
 //
-//  ZKMeViewController.m
+//  ZKMeBaseViewController.m
 //  ZKIM
 //
 //  Created by ZK on 16/9/18.
 //  Copyright © 2016年 ZK. All rights reserved.
 //
 
-#import "ZKMeViewController.h"
+#import "ZKMeBaseViewController.h"
 #import "ZKMeTableCell.h"
 #import "MJRefresh.h"
 #import "ZKTestViewController.h"
-#import "ZKProfileHeader.h"
 
-@interface ZKMeViewController () <UITableViewDelegate, UITableViewDataSource>
-
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-
-@property (nonatomic, strong) NSArray <NSArray *> *dataSource;
+@interface ZKMeBaseViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @end
 
-@implementation ZKMeViewController
+@implementation ZKMeBaseViewController
 
 - (void)viewDidLoad
 {
@@ -38,15 +33,6 @@
     _tableView.contentInset = UIEdgeInsetsMake(_topInset, 0, _bottomInset, 0);
     _tableView.separatorColor = HexColor(0xdcdcdc);
     _tableView.separatorInset = UIEdgeInsetsZero;
-    
-    UIView *headerContainer = [UIView new];
-    headerContainer.size = (CGSize){SCREEN_WIDTH, 86.f+22.f};
-    
-    ZKProfileHeader *header = [ZKProfileHeader header];
-    [headerContainer addSubview:header];
-    header.frame = headerContainer.bounds;
-    
-    _tableView.tableHeaderView = headerContainer;
 }
 
 #pragma mark - <UITableViewDelegate, UITableViewDataSource>
@@ -103,16 +89,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     ZKTestViewController *testVC = [[ZKTestViewController alloc] init];
     [self.navigationController pushViewController:testVC animated:YES];
-}
-
-#pragma mark - Getter
-
-- (NSArray<NSArray *> *)dataSource
-{
-    if (!_dataSource) {
-        _dataSource = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Me_Plist" ofType:@"plist"]];
-    }
-    return _dataSource;
 }
 
 @end
