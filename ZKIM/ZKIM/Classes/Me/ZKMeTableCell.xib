@@ -3,13 +3,12 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ZKMeTableCell_Common" id="KGk-i7-Jjw" customClass="ZKMeTableCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ZKMeTableCell" id="KGk-i7-Jjw" customClass="ZKMeTableCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -25,7 +24,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="V6y-L1-pLW"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -49,67 +48,12 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="icon" destination="6uH-ly-ri4" id="10R-Vb-Dll"/>
-                <outlet property="nameLabel" destination="eDa-71-T0b" id="4Bi-uQ-TXs"/>
                 <outlet property="title" destination="8rr-Ki-8vl" id="cPS-OD-0DR"/>
-                <outlet property="wechatNum" destination="d1H-U5-FjM" id="BBU-QX-Q3y"/>
             </connections>
             <point key="canvasLocation" x="-198" y="-5"/>
         </tableViewCell>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ZKMeTableCell_Profile" id="bfZ-Ft-3h6" customClass="ZKMeTableCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bfZ-Ft-3h6" id="bIP-F7-qfb">
-                <frame key="frameInset" width="320" height="84"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MessageBackup" translatesAutoresizingMaskIntoConstraints="NO" id="3Ig-1s-GIp" userLabel="Icon View">
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="3Ig-1s-GIp" secondAttribute="height" multiplier="1:1" id="SRM-yt-hv8"/>
-                        </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="5"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
-                        </userDefinedRuntimeAttributes>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="周康" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDa-71-T0b">
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信号: zk_520it" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d1H-U5-FjM">
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="Ill-Am-NzH">
-                        <constraints>
-                            <constraint firstAttribute="width" constant="16" id="49U-Vr-8cx"/>
-                            <constraint firstAttribute="height" constant="16" id="hlU-46-vQP"/>
-                        </constraints>
-                    </imageView>
-                </subviews>
-                <constraints>
-                    <constraint firstItem="eDa-71-T0b" firstAttribute="leading" secondItem="3Ig-1s-GIp" secondAttribute="trailing" constant="10" id="0ZV-Ob-4Tb"/>
-                    <constraint firstItem="3Ig-1s-GIp" firstAttribute="leading" secondItem="bIP-F7-qfb" secondAttribute="leading" constant="10" id="2nc-eZ-a4n"/>
-                    <constraint firstItem="d1H-U5-FjM" firstAttribute="centerY" secondItem="bIP-F7-qfb" secondAttribute="centerY" constant="13" id="3QV-OU-uGN"/>
-                    <constraint firstAttribute="bottom" secondItem="3Ig-1s-GIp" secondAttribute="bottom" constant="10" id="UPi-96-rTc"/>
-                    <constraint firstItem="3Ig-1s-GIp" firstAttribute="top" secondItem="bIP-F7-qfb" secondAttribute="top" constant="10" id="Ufu-M9-bcd"/>
-                    <constraint firstItem="Ill-Am-NzH" firstAttribute="centerY" secondItem="bIP-F7-qfb" secondAttribute="centerY" id="cjb-pW-SAX"/>
-                    <constraint firstItem="eDa-71-T0b" firstAttribute="centerY" secondItem="bIP-F7-qfb" secondAttribute="centerY" constant="-13" id="gLJ-Iz-IWs"/>
-                    <constraint firstAttribute="trailing" secondItem="Ill-Am-NzH" secondAttribute="trailing" constant="10" id="sOc-dm-kjS"/>
-                    <constraint firstItem="d1H-U5-FjM" firstAttribute="leading" secondItem="eDa-71-T0b" secondAttribute="leading" id="veO-Ol-QaT"/>
-                </constraints>
-            </tableViewCellContentView>
-            <connections>
-                <outlet property="icon" destination="3Ig-1s-GIp" id="GXB-wL-A3s"/>
-            </connections>
-            <point key="canvasLocation" x="-211" y="-141"/>
-        </tableViewCell>
     </objects>
     <resources>
-        <image name="MessageBackup" width="120" height="120"/>
         <image name="MoreMyBankCard" width="25" height="25"/>
         <image name="profile_arrow" width="16" height="16"/>
     </resources>

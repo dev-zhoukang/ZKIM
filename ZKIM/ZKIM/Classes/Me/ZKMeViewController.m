@@ -10,6 +10,7 @@
 #import "ZKMeTableCell.h"
 #import "MJRefresh.h"
 #import "ZKTestViewController.h"
+#import "ZKProfileHeader.h"
 
 @interface ZKMeViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -25,11 +26,27 @@
 {
     [super viewDidLoad];
     
-    _tableView.sectionIndexColor = [UIColor lightGrayColor];
+    [self setupTableView];
+}
+
+- (void)setupTableView
+{
+    _tableView.sectionIndexColor = [UIColor clearColor];
     _tableView.sectionIndexBackgroundColor = [UIColor clearColor];
     _tableView.sectionIndexTrackingBackgroundColor = [UIColor clearColor];
     _tableView.backgroundColor = GlobalBGColor;
     _tableView.contentInset = UIEdgeInsetsMake(_topInset, 0, _bottomInset, 0);
+    _tableView.separatorColor = HexColor(0xdcdcdc);
+    _tableView.separatorInset = UIEdgeInsetsZero;
+    
+    UIView *headerContainer = [UIView new];
+    headerContainer.size = (CGSize){SCREEN_WIDTH, 86.f+22.f};
+    
+    ZKProfileHeader *header = [ZKProfileHeader header];
+    [headerContainer addSubview:header];
+    header.frame = headerContainer.bounds;
+    
+    _tableView.tableHeaderView = headerContainer;
 }
 
 #pragma mark - <UITableViewDelegate, UITableViewDataSource>
@@ -46,7 +63,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZKMeTableCell *cell = [ZKMeTableCell cellWithTableView:tableView indexPath:indexPath];
+    ZKMeTableCell *cell = [ZKMeTableCell cellWithTableView:tableView];
     cell.dataInfo = self.dataSource[indexPath.section][indexPath.row];
     return cell;
 }
@@ -60,12 +77,24 @@
 {
     UIView *footer = [[UIView alloc] init];
     footer.backgroundColor = [UIColor clearColor];
+    footer.size = (CGSize){SCREEN_WIDTH, 22.f};
+    
+    UIView *topLine = [UIView new];
+    [footer addSubview:topLine];
+    topLine.backgroundColor = HexColor(0xdcdcdc);
+    topLine.size = (CGSize){SCREEN_WIDTH, 1.f/[UIScreen mainScreen].scale};
+    
+    UIView *bottomLine = [UIView new];
+    [footer addSubview:bottomLine];
+    bottomLine.backgroundColor = section==self.dataSource.count-1 ? [UIColor clearColor] : HexColor(0xdcdcdc);
+    bottomLine.size = topLine.size;
+    bottomLine.bottom = footer.height;
+    
     return footer;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!indexPath.section) return 85.f;
     return 44.f;
 }
 

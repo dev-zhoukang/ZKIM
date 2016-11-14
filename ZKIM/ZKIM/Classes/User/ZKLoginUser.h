@@ -23,6 +23,7 @@ typedef NS_ENUM(NSInteger, GENDER) {
 @property (nonatomic, copy) NSString       *birthday;
 @property (nonatomic, strong) NSDictionary *payload;
 @property (nonatomic, copy) NSString       *name;
+@property (nonatomic, copy) NSString       *wechatNum;
 @property (nonatomic, assign) GENDER       gender;
 @property (nonatomic, copy) NSString       *uid;
 

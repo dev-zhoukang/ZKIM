@@ -12,31 +12,20 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *icon;
 @property (weak, nonatomic) IBOutlet UILabel     *title;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *wechatNum;
-
 
 @end
 
 @implementation ZKMeTableCell
 
-+ (instancetype)cellWithTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath
++ (instancetype)cellWithTableView:(UITableView *)tableView
 {
-    static NSString *cellIdentify_Profile = @"ZKMeTableCell_Profile";
-    static NSString *cellIdentify_Common = @"ZKMeTableCell_Common";
+    static NSString *cellIdentify = @"ZKMeTableCell";
     
-    if (!indexPath.section) {
-        ZKMeTableCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentify_Profile];
-        if (!cell) {
-            cell = [[NSBundle mainBundle] loadNibNamed:@"ZKMeTableCell" owner:nil options:nil].lastObject;
-        }
-        return cell;
-    }
-    
-    ZKMeTableCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentify_Common];
+    ZKMeTableCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentify];
     if (!cell) {
         cell = [[NSBundle mainBundle] loadNibNamed:@"ZKMeTableCell" owner:nil options:nil].firstObject;
-    }cell.layer.cornerRadius = 5;
+    }
+    cell.layer.cornerRadius = 5;
     cell.clipsToBounds = YES;
     return cell;
 }

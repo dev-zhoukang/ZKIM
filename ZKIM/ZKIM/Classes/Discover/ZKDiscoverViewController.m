@@ -10,6 +10,8 @@
 
 @interface ZKDiscoverViewController ()
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @end
 
 @implementation ZKDiscoverViewController
